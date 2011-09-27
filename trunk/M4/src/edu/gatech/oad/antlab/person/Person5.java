@@ -30,12 +30,9 @@ public class Person5 {
 	 * @return the modified string
 	 */
 	private String calc(String input) {
-		char[] shift = input.toCharArray();
-		
-		
-		String shifted = "";
-		
-		return shifted;
+		if(input.length() < 4)
+			return input;
+		return input.substring(3)+input.substring(0, 2);
 	}
 	
 	/**
