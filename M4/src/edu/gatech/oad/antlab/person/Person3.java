@@ -7,6 +7,8 @@ package edu.gatech.oad.antlab.person;
  *  @author  Bob
  *  @version 1.1
  */
+
+
 public class Person3 {
    /** Holds the persons real name */  
 	private String name;
@@ -44,10 +46,11 @@ public class Person3 {
 	private String calc(String input) {
 		String output = "";
 		for (int i=input.length(); i>=0;i--){
-			output.concat(input.substring(i, (i+1)));
+			output.concat(input.substring(i, i));
 			
 		}
 		//Person 3 put your implementation here
 	  return output;
 	}
 }
+
