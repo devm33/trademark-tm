@@ -34,7 +34,7 @@ public class Person1 {
 	  if(input.length()<3){
 		output=input;  
 	  }
-	  output = input.substring(2)+input.substring(0, 1);
+	  output = input.substring(2)+input.substring(0, 2);
 	  return output;
 	}
 	
