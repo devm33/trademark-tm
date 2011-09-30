@@ -1,0 +1,59 @@
+<project name="M4" default="all" basedir="." >
+	<description>
+		CS2340 M4 Individual Ant Build by Jaron Gao (902481391/jgao30)
+	</description>
+	<target name="init" description="set properties">
+		<property name="src" location="src"/>
+		<property name="person" location="src/edu/gatech/oad/antlab/person"/>
+		<property name="pkg1" location="src/edu/gatech/oad/antlab/pkg1"/>
+		<property name="pkg2" location="src/edu/gatech/oad/antlab/pkg2"/>
+		<property name="lib" location="lib"/>
+		<property name="build" location="build"/>
+		<property name="apidoc" location="apidoc"/>
+	</target>
+	
+	<target name="prepare" description="create directories">
+		<mkdir dir="${build}"/>
+		<mkdir dir="${apidoc}"/>
+	</target>
+	
+	<target name="compile" depends="init,prepare" 
+			description="compiles from src to build">
+		<javac destdir="${build}" includeantruntime="false"
+			classpath="${lib}/resources.jar">
+			<src path="${person}"/>
+			<src path="${pkg1}"/>
+			<src path="${pkg2}"/>
+		</javac>
+	</target>
+	
+	<target name="javadoc" description="javadoc placed in apidoc">
+		<javadoc sourcepath="${src}" destdir="{apidoc}" classpath="${lib}/resources.jar">
+			<fileset dir="${src}">
+				<include name="**/*.java"/>
+			</fileset>
+		</javadoc>
+	</target>
+	
+	<target name="jar" depends="compile" description="create .jar in lib">
+		<jar basedir="${build}" destfile="${lib}/AntLabRun.jar">
+			<manifest>
+				<attribute name="Main-Class" value="edu.gatech.oad.antlab.pkg1.AntLabMain"/>
+				<attribute name="Class-Path" value="resources.jar"/>
+			</manifest>
+		</jar>
+	</target>
+	
+	<target name="run" depends="compile,jar">
+		<java jar="${lib}/AntLabRun.jar" fork="true">
+		</java>
+	</target>
+	
+	<target name="all" depends="run,javadoc">
+	</target>
+	
+	<target name="clean" description="clean up">
+		<delete dir="${build}"/>
+		<delete dir="${apidoc}"/>
+	</target>
+</project>
