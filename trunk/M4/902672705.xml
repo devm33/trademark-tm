@@ -29,18 +29,18 @@
         <jar basedir="${classes}" destfile="${jar}/AntLabRun.jar" includes="edu/gatech/oad/antlab/**">
             <manifest>
                 <attribute name="Main-Class" value="edu.gatech.oad.antlab.pkg1.AntLabMain" />
-        		<attribute name="Class-Path" value="${build.classpath}" />
+        		<attribute name="Class-Path" value="${lib}/resources.jar" />
             </manifest>
         </jar>
 	</target>
 	
 	<target name="run" depends="jar">
-		 <java jar="${jar}/AntLabRun.jar" fork="true" classpath="${build.classpath}" />
+		 <java jar="${jar}/AntLabRun.jar" fork="true" />
 	</target>
 	
 	<target name="javadoc">
-		<javadoc sourcepath="${src}" access="public" destdir="${doc}" classpath="${compile_classpath}">
-      		<package name="edu.cs2335.antlab.pkg3"/>
+		<javadoc sourcepath="${src}" access="public" destdir="${doc}" packagenames="edu.gatech.oad.antlab.*" Verbose="false">
+			<classpath refid="build.classpath"/>
       		<bottom>
           		<![CDATA[<i>Copyright &#169; 2011 Team Trademark TM CS2340.  All Rights Reserved.</i>]]>
       		</bottom>
@@ -49,9 +49,9 @@
 	
 	<target name="all" depends="run,javadoc" />
 
-	<target name="clean">
+	<target name="clean" depends="init">
 		<delete dir="${classes}"/>
 		<delete dir="${jar}"/>
-		<delete dir="${javadoc}"/>
+		<delete dir="${doc}"/>
 	</target>
 </project>
