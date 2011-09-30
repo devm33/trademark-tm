@@ -32,7 +32,7 @@ public class Person5 {
 	private String calc(String input) {
 		if(input.length() < 4)
 			return input;
-		return input.substring(3)+input.substring(0, 2);
+		return input.substring(3)+input.substring(0, 3);
 	}
 	
 	/**
