@@ -4,9 +4,16 @@ package m5;
  * Person Interface
  * 
  * @author Devraj Mehta
- * @version 1.0
+ * 
  */
 public interface Person {
+	
+	/**
+	 * Method to check Person's name.
+	 * 
+	 * @return the Person's name
+	 */
+	public String getName();
 	
 	/**
 	 * Method to check each person's health.
@@ -24,17 +31,20 @@ public interface Person {
 	public int setHealth(int change);
 	
 	/**
-	 * Given an amount of food the person eats it and updates its health.
-	 * 
-	 * @param amount the amount of food to eat.
+	 * Designate this person as sick. Further implementation details to come.
 	 */
-	
+	public void sick();
 	
 	/**
 	 * Kill this person: sets the health to zero and the status to DEAD.
 	 */
 	public void die();
 	
+	/**
+	 * Given an amount of food the person eats it and updates its health.
+	 * 
+	 * @param amount the amount of food to eat.
+	 */
 	public void eatFood(int amount);
 	
 	/**
