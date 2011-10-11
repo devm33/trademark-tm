@@ -76,5 +76,4 @@ public class Traveler implements Person {
 		//TODO
 		return null;
 	}
-
 }

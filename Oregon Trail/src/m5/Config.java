@@ -17,15 +17,28 @@ import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.wb.swt.SWTResourceManager;
 import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.events.MouseAdapter;
+import org.eclipse.swt.events.MouseEvent;
 
 public class Config {
 
 	protected Shell shlOregontrail;
-	private Text text;
-	private Text text_1;
-	private Text text_2;
-	private Text text_3;
-	private Text text_4;
+	private Text txtName4;
+	private Text txtLeaderName;
+	private Text txtName3;
+	private Text txtName2;
+	private Text txtName1;
+	private Combo dropProfession;
+	private Combo dropPace;
+	private Combo dropRations;
+	private Button btnStart;
+	
+	private Leader partyLeader;
+	private Traveler party1;
+	private Traveler party2;
+	private Traveler party3;
+	private Traveler party4;
+	private Wagon wagon;
 
 	/**
 	 * Launch the application.
@@ -54,26 +67,29 @@ public class Config {
 			}
 		}
 	}
-
+	
 	/**
 	 * Create contents of the window.
 	 */
 	protected void createContents() {
+		wagon = new Wagon(0,0,0,partyLeader);
+		
 		shlOregontrail = new Shell();
 		shlOregontrail.setSize(395, 293);
 		shlOregontrail.setText("Oregon Trail");
 		
-		text = new Text(shlOregontrail, SWT.BORDER);
-		text.setBounds(71, 65, 76, 21);
+		txtLeaderName = new Text(shlOregontrail, SWT.BORDER);
+		txtLeaderName.setText("Jonathan");
+		txtLeaderName.setBounds(71, 65, 76, 21);
 		
-		text_1 = new Text(shlOregontrail, SWT.BORDER);
-		text_1.setBounds(71, 90, 76, 21);
+		txtName1 = new Text(shlOregontrail, SWT.BORDER);
+		txtName1.setBounds(71, 90, 76, 21);
 		
-		text_2 = new Text(shlOregontrail, SWT.BORDER);
-		text_2.setBounds(71, 117, 76, 21);
+		txtName2 = new Text(shlOregontrail, SWT.BORDER);
+		txtName2.setBounds(71, 117, 76, 21);
 		
-		text_3 = new Text(shlOregontrail, SWT.BORDER);
-		text_3.setBounds(71, 144, 76, 21);
+		txtName3 = new Text(shlOregontrail, SWT.BORDER);
+		txtName3.setBounds(71, 144, 76, 21);
 		
 		Label lblNewLabel = new Label(shlOregontrail, SWT.NONE);
 		lblNewLabel.setAlignment(SWT.RIGHT);
@@ -85,8 +101,8 @@ public class Config {
 		lblConfig.setBounds(146, 10, 91, 32);
 		lblConfig.setText("CONFIG");
 		
-		text_4 = new Text(shlOregontrail, SWT.BORDER);
-		text_4.setBounds(71, 171, 76, 21);
+		txtName4 = new Text(shlOregontrail, SWT.BORDER);
+		txtName4.setBounds(71, 171, 76, 21);
 		
 		Label lblParty = new Label(shlOregontrail, SWT.NONE);
 		lblParty.setAlignment(SWT.RIGHT);
@@ -123,24 +139,87 @@ public class Config {
 		lblNewLabel_3.setBounds(195, 174, 55, 15);
 		lblNewLabel_3.setText("Rations:");
 		
-		Combo combo = new Combo(shlOregontrail, SWT.READ_ONLY);
-		combo.setItems(new String[] {"Farmer", "Banker", "Carpenter"});
-		combo.setBounds(256, 65, 91, 23);
-		combo.setText("Farmer");
+		dropProfession = new Combo(shlOregontrail, SWT.READ_ONLY);
+		dropProfession.setItems(new String[] {"Farmer", "Banker", "Carpenter"});
+		dropProfession.setBounds(256, 65, 91, 23);
+		dropProfession.setText("Farmer");
 		
-		Combo combo_1 = new Combo(shlOregontrail, SWT.READ_ONLY);
-		combo_1.setItems(new String[] {"Meager", "Normal", "Filling"});
-		combo_1.setBounds(256, 171, 91, 23);
-		combo_1.setText("Meager");
+		dropRations = new Combo(shlOregontrail, SWT.READ_ONLY);
+		dropRations.setItems(new String[] {"Meager", "Normal", "Filling"});
+		dropRations.setBounds(256, 171, 91, 23);
+		dropRations.setText("Meager");
 		
-		Combo combo_2 = new Combo(shlOregontrail, SWT.READ_ONLY);
-		combo_2.setItems(new String[] {"Slow", "Medium", "Fast"});
-		combo_2.setBounds(256, 117, 91, 23);
-		combo_2.setText("Slow");
+		dropPace = new Combo(shlOregontrail, SWT.READ_ONLY);
+		dropPace.setItems(new String[] {"Slow", "Medium", "Fast"});
+		dropPace.setBounds(256, 117, 91, 23);
+		dropPace.setText("Slow");
 		
-		Button btnNewButton = new Button(shlOregontrail, SWT.NONE);
-		btnNewButton.setBounds(146, 220, 91, 25);
-		btnNewButton.setText("Start");
+		btnStart = new Button(shlOregontrail, SWT.NONE);
+		btnStart.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				
+				if(dropProfession.getText().equals("Farmer")){
+					partyLeader = new Farmer(txtLeaderName.getText());
+				} else if(dropProfession.getText().equals("Banker")){
+					partyLeader = new Banker(txtLeaderName.getText());
+				} else {
+					partyLeader = new Carpenter(txtLeaderName.getText());
+				}
+				
+				if(dropPace.getText().equals("Slow")){
+					wagon.setPace(0);
+				} else if(dropPace.getText().equals("Medium")){
+					wagon.setPace(1);
+				} else {
+					wagon.setPace(2);
+				}
+				
+				if(dropRations.getText().equals("Meager")){
+					wagon.setRations(0);
+				} else if(dropRations.getText().equals("Normal")){
+					wagon.setRations(1);
+				} else {
+					wagon.setRations(2);
+				}
+				
+				if(txtName1.getText().equals("")){
+					party1 = new Traveler("Wilson");
+				} else {
+					party1 = new Traveler(txtName1.getText());
+				}
+				
+				if(txtName2.getText().equals("")){
+					party2 = new Traveler("Sarah");
+				} else {
+					party2 = new Traveler(txtName2.getText());
+				}
+				
+				if(txtName3.getText().equals("")){
+					party3 = new Traveler("Sebastian");
+				} else {
+					party3 = new Traveler(txtName3.getText());
+				}
+				
+				if(txtName4.getText().equals("")){
+					party4 = new Traveler("Elizabeth");
+				} else {
+					party4 = new Traveler(txtName4.getText());
+				}
+				
+				System.out.println("Leader: " + partyLeader.getName());
+				System.out.println("Cash: " + partyLeader.getMoney());
+				System.out.println("Profession: " + dropProfession.getText());
+				System.out.println("Pace: " + dropPace.getText() + " (" + wagon.getPace() + ")");
+				System.out.println("Rations: " + dropRations.getText() + " ("+ wagon.getRations() + ")");
+				System.out.println("Member1: " + party1.getName());
+				System.out.println("Member2: " + party2.getName());
+				System.out.println("Member3: " + party3.getName());
+				System.out.println("Member4: " + party4.getName());
+			}
+		});
+		btnStart.setBounds(146, 220, 91, 25);
+		btnStart.setText("Start");
 
 	}
 }
