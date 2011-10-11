@@ -28,11 +28,12 @@ public class Wagon {
 	 * @param leader
 	 */
 	public Wagon(int pace, int rations, int capacity,
-			Leader leader) {
+			Leader leader, List<Traveler> members) {
 		this.pace = pace;
 		this.rations = rations;
 		this.capacity = capacity;
 		this.leader = leader;
+		this.members = members;
 		totalWeight = 0;
 		inventory = new ArrayList<Item>();
 	}
