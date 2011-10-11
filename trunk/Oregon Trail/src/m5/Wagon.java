@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * Wagon class.
  * 
  * @author Devraj Mehta
- * 
+ * NEED TO ADD MEMBERS
  */
 
 public class Wagon {
@@ -25,15 +25,13 @@ public class Wagon {
 	 * @param pace
 	 * @param rations
 	 * @param capacity
-	 * @param members
 	 * @param leader
 	 */
-	public Wagon(int pace, int rations, int capacity, List<Traveler> members,
+	public Wagon(int pace, int rations, int capacity,
 			Leader leader) {
 		this.pace = pace;
 		this.rations = rations;
 		this.capacity = capacity;
-		this.members = members;
 		this.leader = leader;
 		totalWeight = 0;
 		inventory = new ArrayList<Item>();
