@@ -7,7 +7,7 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.ToolBar;
 import org.eclipse.swt.widgets.ToolItem;
-import org.eclipse.swt.widgets.List;
+//import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.dnd.DropTarget;
@@ -19,6 +19,9 @@ import org.eclipse.wb.swt.SWTResourceManager;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
+
+import java.util.List;
+import java.util.ArrayList;
 
 public class Config {
 
@@ -39,6 +42,7 @@ public class Config {
 	private Traveler party3;
 	private Traveler party4;
 	private Wagon wagon;
+	private List<Traveler> memberList;
 
 	/**
 	 * Launch the application.
@@ -72,7 +76,13 @@ public class Config {
 	 * Create contents of the window.
 	 */
 	protected void createContents() {
-		wagon = new Wagon(0,0,0,partyLeader);
+		memberList = new ArrayList<Traveler>();
+		memberList.add(party1);
+		memberList.add(party2);
+		memberList.add(party3);
+		memberList.add(party4);
+		
+		wagon = new Wagon(0,0,0,partyLeader, memberList);
 		
 		shlOregontrail = new Shell();
 		shlOregontrail.setSize(395, 293);
@@ -83,12 +93,15 @@ public class Config {
 		txtLeaderName.setBounds(71, 65, 76, 21);
 		
 		txtName1 = new Text(shlOregontrail, SWT.BORDER);
+		txtName1.setText("Wilson");
 		txtName1.setBounds(71, 90, 76, 21);
 		
 		txtName2 = new Text(shlOregontrail, SWT.BORDER);
+		txtName2.setText("Sarah");
 		txtName2.setBounds(71, 117, 76, 21);
 		
 		txtName3 = new Text(shlOregontrail, SWT.BORDER);
+		txtName3.setText("Sebastian");
 		txtName3.setBounds(71, 144, 76, 21);
 		
 		Label lblNewLabel = new Label(shlOregontrail, SWT.NONE);
@@ -102,6 +115,7 @@ public class Config {
 		lblConfig.setText("CONFIG");
 		
 		txtName4 = new Text(shlOregontrail, SWT.BORDER);
+		txtName4.setText("Elizabeth");
 		txtName4.setBounds(71, 171, 76, 21);
 		
 		Label lblParty = new Label(shlOregontrail, SWT.NONE);
@@ -158,13 +172,17 @@ public class Config {
 		btnStart.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
+				String leaderName = "";
+				leaderName = txtLeaderName.getText();
+				if(leaderName.equals(""))
+					leaderName = "Jonathon";
 				
 				if(dropProfession.getText().equals("Farmer")){
-					partyLeader = new Farmer(txtLeaderName.getText());
+					partyLeader = new Farmer(leaderName);
 				} else if(dropProfession.getText().equals("Banker")){
-					partyLeader = new Banker(txtLeaderName.getText());
+					partyLeader = new Banker(leaderName);
 				} else {
-					partyLeader = new Carpenter(txtLeaderName.getText());
+					partyLeader = new Carpenter(leaderName);
 				}
 				
 				if(dropPace.getText().equals("Slow")){
