@@ -1,4 +1,4 @@
-package m5;
+package game;
 
 /**
  * Abstract class to implement basic functions of all leader classes.

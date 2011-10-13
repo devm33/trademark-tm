@@ -1,4 +1,4 @@
-package m5;
+package game;
 
 /**
  * Class for inactive members of the wagon party.

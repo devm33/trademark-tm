@@ -1,4 +1,4 @@
-package m5;
+package game;
 
 /**
  * Class for the Banker character

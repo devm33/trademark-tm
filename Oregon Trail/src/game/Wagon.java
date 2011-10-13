@@ -1,4 +1,4 @@
-package m5;
+package game;
 
 import java.util.List;
 import java.util.ArrayList;
