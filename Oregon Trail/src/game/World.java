@@ -27,6 +27,10 @@ public class World {
 		theWagon = window.startGame();
 				
 		System.out.println(theWagon);
+		
+		//next first town
+		
+		//next map (loop?)
 	}
 	
 	
