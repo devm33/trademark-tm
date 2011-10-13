@@ -1,4 +1,4 @@
-package m5;
+package game;
 
 /**
  * Exception class for inventory errors.

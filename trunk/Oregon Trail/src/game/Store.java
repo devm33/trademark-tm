@@ -1,4 +1,4 @@
-package m5;
+package game;
 
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;

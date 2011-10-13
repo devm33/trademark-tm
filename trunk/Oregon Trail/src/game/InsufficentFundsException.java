@@ -1,4 +1,4 @@
-package m5;
+package game;
 
 /**
  * Class to throw when there is an accounting error.
