@@ -43,7 +43,21 @@ public class Config {
 	private Traveler party4;
 	private Wagon wagon;
 	private List<Traveler> memberList;
-
+	
+	/**
+	 * Method to be called from world to start game
+	 * 
+	 * @return wagon the wagon that was created using config
+	 */
+	public Wagon startGame() {
+		try {
+			this.open();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return wagon;
+	}
+	
 	/**
 	 * Launch the application.
 	 * @param args
@@ -70,19 +84,13 @@ public class Config {
 				display.sleep();
 			}
 		}
+		display.close();
 	}
 	
 	/**
 	 * Create contents of the window.
 	 */
 	protected void createContents() {
-		memberList = new ArrayList<Traveler>();
-		memberList.add(party1);
-		memberList.add(party2);
-		memberList.add(party3);
-		memberList.add(party4);
-		
-		wagon = new Wagon(0,0,0,partyLeader, memberList);
 		
 		shlOregontrail = new Shell();
 		shlOregontrail.setSize(395, 293);
@@ -185,22 +193,6 @@ public class Config {
 					partyLeader = new Carpenter(leaderName);
 				}
 				
-				if(dropPace.getText().equals("Slow")){
-					wagon.setPace(0);
-				} else if(dropPace.getText().equals("Medium")){
-					wagon.setPace(1);
-				} else {
-					wagon.setPace(2);
-				}
-				
-				if(dropRations.getText().equals("Meager")){
-					wagon.setRations(0);
-				} else if(dropRations.getText().equals("Normal")){
-					wagon.setRations(1);
-				} else {
-					wagon.setRations(2);
-				}
-				
 				if(txtName1.getText().equals("")){
 					party1 = new Traveler("Wilson");
 				} else {
@@ -225,6 +217,32 @@ public class Config {
 					party4 = new Traveler(txtName4.getText());
 				}
 				
+				//create the wagon
+				memberList = new ArrayList<Traveler>();
+				memberList.add(party1);
+				memberList.add(party2);
+				memberList.add(party3);
+				memberList.add(party4);
+				
+				wagon = new Wagon(0,0,0, partyLeader, memberList);
+				
+				if(dropPace.getText().equals("Slow")){
+					wagon.setPace(0);
+				} else if(dropPace.getText().equals("Medium")){
+					wagon.setPace(1);
+				} else {
+					wagon.setPace(2);
+				}
+				
+				if(dropRations.getText().equals("Meager")){
+					wagon.setRations(0);
+				} else if(dropRations.getText().equals("Normal")){
+					wagon.setRations(1);
+				} else {
+					wagon.setRations(2);
+				}
+				
+				
 				System.out.println("Leader: " + partyLeader.getName());
 				System.out.println("Cash: " + partyLeader.getMoney());
 				System.out.println("Profession: " + dropProfession.getText());
@@ -234,6 +252,9 @@ public class Config {
 				System.out.println("Member2: " + party2.getName());
 				System.out.println("Member3: " + party3.getName());
 				System.out.println("Member4: " + party4.getName());
+				
+				//close the window
+				shlOregontrail.dispose();
 			}
 		});
 		btnStart.setBounds(146, 220, 91, 25);

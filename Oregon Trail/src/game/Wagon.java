@@ -182,5 +182,16 @@ public class Wagon {
 		return weight;
 	}
 	
-	
+	/**
+	 * toString method for Wagon class.
+	 * 
+	 * @return string representing this wagon class.
+	 */
+	public String toString(){
+		String str = "";
+		str += leader;
+		for(Traveler t : members)
+			str += ", " + t;
+		return str;
+	}
 }
