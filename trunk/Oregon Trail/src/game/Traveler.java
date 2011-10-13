@@ -70,6 +70,11 @@ public class Traveler implements Person {
 			thirst = 0;
 		//TODO update health
 	}
+	
+	@Override
+	public String toString() {
+		return name;
+	}
 
 	@Override
 	public String getStatus() {

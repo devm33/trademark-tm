@@ -61,4 +61,9 @@ public interface Person {
 	 */
 	public String getStatus();
 	
+	/**
+	 * @return String representing this person class.
+	 */
+	public String toString();
+	
 }
