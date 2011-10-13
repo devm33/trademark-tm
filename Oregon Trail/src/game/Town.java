@@ -2,10 +2,15 @@ package game;
 
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.SWT;
+import org.eclipse.ui.forms.widgets.FormToolkit;
+import org.eclipse.swt.widgets.Label;
 
 public class Town {
 
 	protected Shell shlOregonTrail;
+	private final FormToolkit formToolkit = new FormToolkit(Display.getDefault());
 
 	/**
 	 * Launch the application.
@@ -42,7 +47,21 @@ public class Town {
 		shlOregonTrail = new Shell();
 		shlOregonTrail.setSize(450, 300);
 		shlOregonTrail.setText("Oregon Trail");
+		
+		Button btnInn = new Button(shlOregonTrail, SWT.NONE);
+		btnInn.setBounds(10, 240, 122, 23);
+		btnInn.setText("Inn ");
+		
+		Button btnStore = formToolkit.createButton(shlOregonTrail, "Store", SWT.NONE);
+		btnStore.setBounds(174, 240, 122, 23);
+		
+		Button btnLeaveTown = formToolkit.createButton(shlOregonTrail, "Leave Town", SWT.NONE);
+		btnLeaveTown.setBounds(323, 240, 109, 23);
+		
+		Label lblTown = new Label(shlOregonTrail, SWT.NONE);
+		lblTown.setBounds(10, 10, 49, 13);
+		formToolkit.adapt(lblTown, true, true);
+		lblTown.setText("TOWN");
 
 	}
-
 }
