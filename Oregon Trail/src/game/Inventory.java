@@ -20,10 +20,23 @@ public class Inventory {
 	private static Item[]itemInventory;
 	
 	public Inventory(){
+		
+	}
+	
+	public Inventory(Item item0,Item item1, Item item2){
 		itemInventory = new Item[5];
-		//itemInventory[0] = new Item(0,0,"Water");
-		//itemInventory[1]; //item type 1
-		//itemInventory[2];	//item type 2
+		itemInventory[0] = item0;
+		itemInventory[1] = item1;
+		itemInventory[2] = item2;
+	}
+	
+	public Inventory(Item item0,Item item1, Item item2, Item item3, Item item4){
+		itemInventory = new Item[5];
+		itemInventory[0] = item0;
+		itemInventory[1] = item1;
+		itemInventory[2] = item2;
+		itemInventory[3] = item3;
+		itemInventory[4] = item4;
 	}
 
 	protected Shell shlOregonTrail;
@@ -73,39 +86,39 @@ public class Inventory {
 		lblAmmount.setText("Amount");
 		
 
-		Label lblWater = new Label(shlOregonTrail, SWT.NONE);
-		lblWater.setText(itemInventory[0].getName());
+		Label lblItems0 = new Label(shlOregonTrail, SWT.NONE);
+		lblItems0.setText(itemInventory[0].getName());
 
 		
-		Label lblWaterwt = new Label(shlOregonTrail, SWT.NONE);
-		lblWaterwt.setText(display+itemInventory[0].getWeight());
+		Label lblItems0wt = new Label(shlOregonTrail, SWT.NONE);
+		lblItems0wt.setText(display+itemInventory[0].getWeight());
 
 		
-		Label lblWateramt = new Label(shlOregonTrail, SWT.NONE);
-		lblWateramt.setText(display+itemInventory[0].getNumber());
+		Label lblItems0amt = new Label(shlOregonTrail, SWT.NONE);
+		lblItems0amt.setText(display+itemInventory[0].getNumber());
 		
-		Label lblFood = new Label(shlOregonTrail, SWT.NONE);
-		lblFood.setText(itemInventory[1].getName());
+		Label lblItems1 = new Label(shlOregonTrail, SWT.NONE);
+		lblItems1.setText(itemInventory[1].getName());
 
 		
-		Label lblFoodwt = new Label(shlOregonTrail, SWT.NONE);
-		lblFoodwt.setText(display+itemInventory[1].getWeight());
+		Label lblItems1wt = new Label(shlOregonTrail, SWT.NONE);
+		lblItems1wt.setText(display+itemInventory[1].getWeight());
 
 		
-		Label lblFoodamt = new Label(shlOregonTrail, SWT.NONE);
-		lblFoodamt.setText(display+itemInventory[1].getNumber());
+		Label lblItems1amt = new Label(shlOregonTrail, SWT.NONE);
+		lblItems1amt.setText(display+itemInventory[1].getNumber());
 
 		
-		Label lblAmmo = new Label(shlOregonTrail, SWT.NONE);
-		lblAmmo.setText(itemInventory[2].getName());
+		Label lblItems2 = new Label(shlOregonTrail, SWT.NONE);
+		lblItems2.setText(itemInventory[2].getName());
 
 		
-		Label lblAmmowt = new Label(shlOregonTrail, SWT.NONE);
-		lblAmmowt.setText(display+itemInventory[2].getWeight());
+		Label lblItems2wt = new Label(shlOregonTrail, SWT.NONE);
+		lblItems2wt.setText(display+itemInventory[2].getWeight());
 
 		
-		Label lblAmmoamt = new Label(shlOregonTrail, SWT.NONE);
-		lblAmmoamt.setText(display+itemInventory[2].getNumber());
+		Label lblItems2amt = new Label(shlOregonTrail, SWT.NONE);
+		lblItems2amt.setText(display+itemInventory[2].getNumber());
 
 
 
