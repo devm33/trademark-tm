@@ -177,14 +177,18 @@ public class Config {
 		dropPace.setText("Slow");
 		
 		btnStart = new Button(shlOregontrail, SWT.NONE);
+		
+		//When user clicks the "Start Journey" button.
 		btnStart.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
+				//Leader is named by user or defaults to Jonathan
 				String leaderName = "";
 				leaderName = txtLeaderName.getText();
 				if(leaderName.equals(""))
-					leaderName = "Jonathon";
+					leaderName = "Jonathan";
 				
+				//Set leader profession (Farmer, Banker, or Carpenter)
 				if(dropProfession.getText().equals("Farmer")){
 					partyLeader = new Farmer(leaderName);
 				} else if(dropProfession.getText().equals("Banker")){
@@ -193,39 +197,45 @@ public class Config {
 					partyLeader = new Carpenter(leaderName);
 				}
 				
+				//First party member is named or defaults to Wilson
 				if(txtName1.getText().equals("")){
 					party1 = new Traveler("Wilson");
 				} else {
 					party1 = new Traveler(txtName1.getText());
 				}
 				
+				//Second party member is named or defaults to Sarah
 				if(txtName2.getText().equals("")){
 					party2 = new Traveler("Sarah");
 				} else {
 					party2 = new Traveler(txtName2.getText());
 				}
 				
+				//Third party member is named or defaults to Sebastian
 				if(txtName3.getText().equals("")){
 					party3 = new Traveler("Sebastian");
 				} else {
 					party3 = new Traveler(txtName3.getText());
 				}
 				
+				//Fourth party member is named or defaults to Elizabeth
 				if(txtName4.getText().equals("")){
 					party4 = new Traveler("Elizabeth");
 				} else {
 					party4 = new Traveler(txtName4.getText());
 				}
 				
-				//create the wagon
+				//Add all party members to the party member list.
 				memberList = new ArrayList<Traveler>();
 				memberList.add(party1);
 				memberList.add(party2);
 				memberList.add(party3);
 				memberList.add(party4);
 				
+				//Initialize and create the wagon
 				wagon = new Wagon(0,0,0, partyLeader, memberList);
 				
+				//Set initial pace of wagon to user selection
 				if(dropPace.getText().equals("Slow")){
 					wagon.setPace(0);
 				} else if(dropPace.getText().equals("Medium")){
@@ -234,6 +244,7 @@ public class Config {
 					wagon.setPace(2);
 				}
 				
+				//Set initial ration rate based on user selection.
 				if(dropRations.getText().equals("Meager")){
 					wagon.setRations(0);
 				} else if(dropRations.getText().equals("Normal")){
@@ -258,7 +269,7 @@ public class Config {
 			}
 		});
 		btnStart.setBounds(146, 220, 91, 25);
-		btnStart.setText("Start");
+		btnStart.setText("Start Journey");
 
 	}
 }
