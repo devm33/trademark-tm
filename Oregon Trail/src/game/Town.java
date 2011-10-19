@@ -6,6 +6,8 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.SWT;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 
 public class Town {
 
@@ -56,6 +58,11 @@ public class Town {
 		btnStore.setBounds(174, 240, 122, 23);
 		
 		Button btnLeaveTown = formToolkit.createButton(shlOregonTrail, "Leave Town", SWT.NONE);
+		btnLeaveTown.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+			}
+		});
 		btnLeaveTown.setBounds(323, 240, 109, 23);
 		
 		Label lblTown = new Label(shlOregonTrail, SWT.NONE);
