@@ -10,7 +10,8 @@ public class Wheel extends Item {
 	@Override
 	public void use() 
 	{
-		setNumber(getNumber()-1);
+		if(getNumber() > 0)
+			setNumber(getNumber()-1);
 	}
 
 }
