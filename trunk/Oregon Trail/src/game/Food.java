@@ -5,28 +5,8 @@ public class Food extends Item {
 	
 	
 	//from super
-	public Food(int w) {
-		super(w);
-		// TODO Auto-generated constructor stub
-	}
-
-	public Food(Item i, int num) {
-		super(i, num);
-		// TODO Auto-generated constructor stub
-	}
-
-	public Food(int w, int num) {
-		super(w, num);
-		// TODO Auto-generated constructor stub
-	}
-
-	public Food(int w, int num, String n) {
-		super(w, num, n);
-		// TODO Auto-generated constructor stub
-	}
-
-	public Food(Item i) {
-		super(i);
+	public Food() {
+		super(5, 0, "Food");
 		// TODO Auto-generated constructor stub
 	}
 

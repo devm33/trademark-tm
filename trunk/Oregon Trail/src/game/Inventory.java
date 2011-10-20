@@ -24,26 +24,43 @@ import org.eclipse.swt.custom.ViewForm;
 
 public class Inventory {
 	private Item[]itemInventory;
+	private int length = 6;
 	
 	public Inventory(){
-		itemInventory = new Item[6];
+		itemInventory = new Item[length];
 		
 	}
 	
 	public Inventory(Item item0,Item item1, Item item2){
-		itemInventory = new Item[6];
+		itemInventory = new Item[length];
 		itemInventory[0] = item0;
 		itemInventory[1] = item1;
 		itemInventory[2] = item2;
 	}
 	
 	public Inventory(Item item0,Item item1, Item item2, Item item3, Item item4){
-		itemInventory = new Item[6];
+		itemInventory = new Item[length];
 		itemInventory[0] = item0;
 		itemInventory[1] = item1;
 		itemInventory[2] = item2;
 		itemInventory[3] = item3;
 		itemInventory[4] = item4;
+	}
+	
+	public int getLength(){
+		return length;
+	}
+	
+	public Item getItem(int x){
+		return itemInventory[x];
+	}
+	
+	public void setItemNum(int item, int num){
+		itemInventory[item].setNumber(num);
+	}
+	
+	public Item[] getItemInventory(){
+		return itemInventory;
 	}
 	
 
@@ -130,5 +147,16 @@ public class Inventory {
 
 
 
+	}
+
+	public boolean contains(Item i) {
+		// TODO Auto-generated method stub
+		for (int x=0; x<length; x++){
+			if (itemInventory[x].getName()==i.getName()){
+				return true;
+			}
+			
+		}
+		return false;
 	}
 }
