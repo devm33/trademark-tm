@@ -14,7 +14,7 @@ public class Wagon {
 	
 	private int pace, rations, capacity;
 	private int totalWeight;
-	private List<Item> inventory;
+	private Inventory inventory;
 	private List<Traveler> members;
 	private Leader leader;
 	
@@ -35,7 +35,7 @@ public class Wagon {
 		this.leader = leader;
 		this.members = members;
 		totalWeight = 0;
-		inventory = new ArrayList<Item>();
+		inventory = new Inventory(new Water(),new Food(), new Ammo());
 	}
 
 	/**
@@ -110,7 +110,7 @@ public class Wagon {
 	 * 
 	 * @return the Wagon's inventory in a list of Items.
 	 */
-	public List<Item> getInventory() {
+	public Inventory getInventory() {
 		return inventory;
 	}
 	
@@ -123,7 +123,12 @@ public class Wagon {
 	public void addToInventory(Item i) throws WeightCapacityExceededException {
 		if(i.getWeight() + totalWeight > capacity)
 			throw new WeightCapacityExceededException();
-		inventory.add(i);
+		//inventory.add(i);
+		for (int x=0; x<inventory.getLength(); x++){
+			if(i.getName()==inventory.getItemInventory()[x].getName()){
+				inventory.getItemInventory()[x].setNumber(inventory.getItemInventory()[x].getNumber()+1);
+			}
+		}
 		totalWeight += i.getWeight();
 	}
 	
