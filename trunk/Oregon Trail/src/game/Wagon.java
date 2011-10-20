@@ -145,7 +145,7 @@ public class Wagon {
 		if(weight + totalWeight > capacity)
 			throw new WeightCapacityExceededException();
 		totalWeight += weight;
-		inventory.addAll(l);
+	//	inventory.addAll(l);//needs compatibility fix with Inventory.java
 	}
 	
 	/**
@@ -158,7 +158,7 @@ public class Wagon {
 		if(!inventory.contains(i))
 			throw new ItemNotFoundException();
 		totalWeight -= i.getWeight();
-		inventory.remove(i);
+	//	inventory.remove(i);//needs compatibility fix with Inventory.java
 	}
 	
 	/**
@@ -172,7 +172,7 @@ public class Wagon {
 			if(!inventory.contains(i))
 				throw new ItemNotFoundException();
 		totalWeight -= sumWeight(l);
-		inventory.removeAll(l);
+	//	inventory.removeAll(l);//needs compatibility fix with Inventory.java
 	}
 	
 	/**
