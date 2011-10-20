@@ -23,8 +23,8 @@ public class World {
 	
 	public World() {
 		//open the config window to start game
-		Config window = new Config();
-		theWagon = window.startGame();
+		//Config window = new Config();
+		//theWagon = window.startGame();
 				
 		System.out.println(theWagon);
 		
