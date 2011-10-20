@@ -43,6 +43,11 @@ public class Config extends Composite{
 	private Wagon wagon;
 	private List<Traveler> memberList;
 
+	/**
+	 * Create the composite
+	 * @param parent
+	 * @param style
+	 */
 	public Config(Composite parent, int style) {
 		super(parent, style);
 
