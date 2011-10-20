@@ -18,143 +18,65 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 
-public class Store {
-
-	protected Shell shlStoer;
+public class Store extends Composite{
 	private Text txtAmount;
-
+	
 	/**
-	 * Launch the application.
-	 * @param args
+	 * Create the composite.
+	 * @param parent
+	 * @param style
 	 */
-	public static void main(String[] args) {
-		try {
-			Store window = new Store();
-			window.open();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	/**
-	 * Open the window.
-	 */
-	public void open() {
-		Display display = Display.getDefault();
-		createContents();
-		shlStoer.open();
-		shlStoer.layout();
-		while (!shlStoer.isDisposed()) {
-			if (!display.readAndDispatch()) {
-				display.sleep();
-			}
-		}
-	}
-
-	/**
-	 * Create contents of the window.
-	 */
-	protected void createContents() {
-		shlStoer = new Shell();
-		shlStoer.setSize(450, 300);
-		shlStoer.setText("Oregon Trail");
-		shlStoer.setLayout(new FormLayout());
+	public Store(Composite parent, int style){
+		super(parent,style);
 		
-		final List list = new List(shlStoer, SWT.BORDER);
+		final List list = new List(this, SWT.BORDER);
 		list.setItems(new String[] {"Ammunition", "Food", "Water"});
-		FormData fd_list = new FormData();
-		fd_list.bottom = new FormAttachment(100, -23);
-		fd_list.top = new FormAttachment(0, 10);
-		fd_list.right = new FormAttachment(100, -283);
-		fd_list.left = new FormAttachment(0, 10);
-		list.setLayoutData(fd_list);
+		list.setBounds(33, 10, 141, 229);
 		
-		Label lbl1 = new Label(shlStoer, SWT.NONE);
-		FormData fd_lbl1 = new FormData();
-		fd_lbl1.top = new FormAttachment(list, 0, SWT.TOP);
-		fd_lbl1.left = new FormAttachment(list, 24);
-		lbl1.setLayoutData(fd_lbl1);
+		Label lbl1 = new Label(this, SWT.NONE);
 		lbl1.setText("Name:");
+		lbl1.setBounds(198, 10, 35, 15);
 		
-		Label lbl2 = new Label(shlStoer, SWT.NONE);
-		FormData fd_lbl2 = new FormData();
-		fd_lbl2.top = new FormAttachment(lbl1, 7);
-		fd_lbl2.left = new FormAttachment(lbl1, 0, SWT.LEFT);
-		lbl2.setLayoutData(fd_lbl2);
+		Label lbl2 = new Label(this, SWT.NONE);
 		lbl2.setText("Weight:");
+		lbl2.setBounds(198, 32, 41, 15);
 		
-		Label lbl3 = new Label(shlStoer, SWT.NONE);
-		FormData fd_lbl3 = new FormData();
-		fd_lbl3.top = new FormAttachment(lbl2, 9);
-		fd_lbl3.left = new FormAttachment(lbl1, 0, SWT.LEFT);
-		lbl3.setLayoutData(fd_lbl3);
+		Label lbl3 = new Label(this, SWT.NONE);
 		lbl3.setText("Price:");
+		lbl3.setBounds(198, 56, 29, 15);
 		
-		Label lbl4 = new Label(shlStoer, SWT.NONE);
-		FormData fd_lbl4 = new FormData();
-		fd_lbl4.top = new FormAttachment(lbl3, 6);
-		fd_lbl4.left = new FormAttachment(lbl1, 0, SWT.LEFT);
-		lbl4.setLayoutData(fd_lbl4);
+		Label lbl4 = new Label(this, SWT.NONE);
 		lbl4.setText("Description:");
+		lbl4.setBounds(198, 77, 63, 15);
 		
-		final Label lblName = new Label(shlStoer, SWT.NONE);
-		FormData fd_lblName = new FormData();
-		fd_lblName.top = new FormAttachment(list, 0, SWT.TOP);
-		fd_lblName.left = new FormAttachment(lbl1, 6);
-		lblName.setLayoutData(fd_lblName);
+		final Label lblName = new Label(this, SWT.NONE);
 		lblName.setText("No Item Selected");
+		lblName.setBounds(239, 10, 101, 15);
 		
-		final Label lblWeight = new Label(shlStoer, SWT.NONE);
-		FormData fd_lblWeight = new FormData();
-		fd_lblWeight.right = new FormAttachment(lbl2, 41, SWT.RIGHT);
-		fd_lblWeight.bottom = new FormAttachment(lbl2, 0, SWT.BOTTOM);
-		fd_lblWeight.left = new FormAttachment(lbl2, 6);
-		lblWeight.setLayoutData(fd_lblWeight);
+		final Label lblWeight = new Label(this, SWT.NONE);
+		lblWeight.setBounds(245, 32, 35, 15);
 		
-		final Label lblPrice = new Label(shlStoer, SWT.NONE);
-		FormData fd_lblPrice = new FormData();
-		fd_lblPrice.right = new FormAttachment(lbl4, 0, SWT.RIGHT);
-		fd_lblPrice.bottom = new FormAttachment(lbl3, 0, SWT.BOTTOM);
-		fd_lblPrice.left = new FormAttachment(lbl3, 6);
-		lblPrice.setLayoutData(fd_lblPrice);
+		final Label lblPrice = new Label(this, SWT.NONE);
+		lblPrice.setBounds(233, 56, 28, 15);
 		
-		final Label lblDesc = new Label(shlStoer, SWT.WRAP);
+		final Label lblDesc = new Label(this, SWT.WRAP);
 		lblDesc.setText("Select an item to buy from the store inventory.");
-		FormData fd_lblDesc = new FormData();
-		fd_lblDesc.top = new FormAttachment(lbl4, 0, SWT.TOP);
-		fd_lblDesc.left = new FormAttachment(lbl4, 6);
-		lblDesc.setLayoutData(fd_lblDesc);
+		lblDesc.setBounds(267, 77, 128, 57);
 		
-		Button btnPurchase = new Button(shlStoer, SWT.NONE);
-		
-		FormData fd_btnPurchase = new FormData();
-		fd_btnPurchase.bottom = new FormAttachment(100, -58);
-		fd_btnPurchase.left = new FormAttachment(list, 61);
-		btnPurchase.setLayoutData(fd_btnPurchase);
+		Button btnPurchase = new Button(this, SWT.NONE);
 		btnPurchase.setText("Purchase");
+		btnPurchase.setBounds(235, 179, 60, 25);
 		
-		Button btnExitStore = new Button(shlStoer, SWT.NONE);
-		fd_lblDesc.right = new FormAttachment(btnExitStore, 0, SWT.RIGHT);
-		FormData fd_btnExitStore = new FormData();
-		fd_btnExitStore.top = new FormAttachment(btnPurchase, 0, SWT.TOP);
-		fd_btnExitStore.left = new FormAttachment(btnPurchase, 40);
-		btnExitStore.setLayoutData(fd_btnExitStore);
+		Button btnExitStore = new Button(this, SWT.NONE);
 		btnExitStore.setText("Exit Store");
+		btnExitStore.setBounds(335, 179, 60, 25);
 		
-		txtAmount = new Text(shlStoer, SWT.BORDER);
-		fd_lblDesc.bottom = new FormAttachment(txtAmount, -6);
-		fd_lblName.right = new FormAttachment(txtAmount, 0, SWT.RIGHT);
-		FormData fd_txtAmount = new FormData();
-		fd_txtAmount.bottom = new FormAttachment(btnPurchase, -18);
-		fd_txtAmount.left = new FormAttachment(list, 90);
-		txtAmount.setLayoutData(fd_txtAmount);
+		txtAmount = new Text(this, SWT.BORDER);
+		txtAmount.setBounds(264, 140, 76, 21);
 		
-		Label lblAmount = new Label(shlStoer, SWT.NONE);
-		FormData fd_lblAmount = new FormData();
-		fd_lblAmount.top = new FormAttachment(txtAmount, 3, SWT.TOP);
-		fd_lblAmount.right = new FormAttachment(lbl4, 0, SWT.RIGHT);
-		lblAmount.setLayoutData(fd_lblAmount);
+		Label lblAmount = new Label(this, SWT.NONE);
 		lblAmount.setText("Amount:");
+		lblAmount.setBounds(214, 143, 47, 15);
 
 		//When user selects an item in the store inventory list.
 		list.addSelectionListener(new SelectionAdapter() {
@@ -195,5 +117,10 @@ public class Store {
 			public void widgetSelected(SelectionEvent e) {
 			}
 		});
+	}
+	
+	@Override
+	protected void checkSubclass() {
+		// Disable the check that prevents subclassing of SWT components
 	}
 }
