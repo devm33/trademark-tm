@@ -23,27 +23,29 @@ import org.eclipse.swt.custom.SashForm;
 import org.eclipse.swt.custom.ViewForm;
 
 public class Inventory {
-	private static Item[]itemInventory;
+	private Item[]itemInventory;
 	
 	public Inventory(){
+		itemInventory = new Item[6];
 		
 	}
 	
 	public Inventory(Item item0,Item item1, Item item2){
-		itemInventory = new Item[5];
+		itemInventory = new Item[6];
 		itemInventory[0] = item0;
 		itemInventory[1] = item1;
 		itemInventory[2] = item2;
 	}
 	
 	public Inventory(Item item0,Item item1, Item item2, Item item3, Item item4){
-		itemInventory = new Item[5];
+		itemInventory = new Item[6];
 		itemInventory[0] = item0;
 		itemInventory[1] = item1;
 		itemInventory[2] = item2;
 		itemInventory[3] = item3;
 		itemInventory[4] = item4;
 	}
+	
 
 	protected Shell shlOregonTrail;
 
