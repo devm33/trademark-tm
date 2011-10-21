@@ -199,4 +199,9 @@ public class Wagon {
 			str += ", " + t;
 		return str;
 	}
+	
+	public String getCash(){
+		String total = Integer.toString(leader.getMoney());
+		return total;
+	}
 }

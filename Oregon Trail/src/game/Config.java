@@ -233,4 +233,8 @@ public class Config extends Composite{
 	protected void checkSubclass() {
 		// Disable the check that prevents subclassing of SWT components
 	}
+	
+	public Wagon getWagon(){
+		return wagon;
+	}
 }
