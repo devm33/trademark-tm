@@ -1,60 +1,50 @@
 package game;
 
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Shell;
-import org.eclipse.swt.custom.StackLayout;
-import org.eclipse.ui.forms.widgets.FormToolkit;
-import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.StackLayout;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.ToolBar;
-import org.eclipse.swt.widgets.Menu;
-import org.eclipse.swt.widgets.MenuItem;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Event;
+import org.eclipse.swt.widgets.Listener;
+import org.eclipse.swt.widgets.Shell;
 
-public class MainGame {
-
-	protected Shell shlOregonTrail;
-	private final FormToolkit formToolkit = new FormToolkit(Display.getDefault());
+public class MainGame {	
 	
-	/**
-	 * Launch the application.
-	 * @param args
-	 */
 	public static void main(String[] args) {
 		try {
 			MainGame window = new MainGame();
-			window.open();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
 
-	/**
-	 * Open the window.
-	 */
-	public void open() {
-		Display display = Display.getDefault();
-		createContents();
-		shlOregonTrail.open();
-		shlOregonTrail.layout();
-		while (!shlOregonTrail.isDisposed()) {
-			if (!display.readAndDispatch()) {
+		Display display = new Display();
+		Shell shell = new Shell(display);
+		shell.setBounds(10, 10, 900, 700);
+		// create the composite that the pages will share
+		final Composite contentPanel = new Composite(shell, SWT.BORDER);
+		contentPanel.setBounds(50, 50, 500, 500);
+		final StackLayout layout = new StackLayout();
+		contentPanel.setLayout(layout);
+		shell.open();
+		
+		final Config config = new Config(contentPanel, SWT.NONE);
+		final Store store = new Store(contentPanel, SWT.NONE);
+		
+		layout.topControl = config;
+		contentPanel.layout();
+		shell.update();
+		
+		while (!shell.isDisposed()) {
+			if (!display.readAndDispatch())
 				display.sleep();
+			if (config.done == 1){
+				config.setVisible(false);
+				layout.topControl = store;
+				contentPanel.layout();
+				shell.update();
 			}
 		}
-	}
-
-	/**
-	 * Create contents of the window.
-	 */
-	protected void createContents() {
-		shlOregonTrail = new Shell();
-		shlOregonTrail.setSize(450, 300);
-		shlOregonTrail.setText("Oregon Trail");
-		shlOregonTrail.setLayout(new StackLayout());
-		
-		Composite card1 = formToolkit.createComposite(shlOregonTrail, SWT.NONE);
-		formToolkit.paintBordersFor(card1);
-
+		display.dispose();
 	}
 }
