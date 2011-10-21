@@ -19,6 +19,7 @@ import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 
 public class Store extends Composite{
+	public static int done = 0;
 	private Text txtAmount;
 	
 	/**
@@ -120,6 +121,7 @@ public class Store extends Composite{
 		btnExitStore.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
+				done = 1;
 			}
 		});
 	}
