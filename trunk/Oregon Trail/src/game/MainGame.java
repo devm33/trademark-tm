@@ -15,7 +15,9 @@ import org.eclipse.swt.widgets.ToolItem;
 import org.eclipse.swt.widgets.Label;
 
 /**
- * 
+ * And yes, everything so far is in one giant main method.
+ * I know that sucks ass.
+ * -Jaron
  * @author Jaron, David
  *
  */
@@ -25,12 +27,18 @@ public class MainGame {
 	private static Wagon wagon;
 
 	public static void main(String[] args) {
+		/*Basic setup*/
 		try {
 			MainGame window = new MainGame();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
+		
+		/*
+		 * BEGIN INITIALIZATION OF CONTROLS (buttons, labels, etc)
+		 * BEGIN INITIALIZATION OF CONTROLS
+		 * BEGIN INITIALIZATION OF CONTROLS
+		 */
 		final Display display = new Display();
 		final Shell shell = new Shell(display);
 		shell.setBounds(100, 100, 500, 400);
@@ -56,19 +64,6 @@ public class MainGame {
 		btnQuitGame.setBounds(349, 10, 75, 25);
 		btnQuitGame.setText("Quit Game");
 		
-		// create the composite that the pages will share
-		final Composite contentPanel = new Composite(shell, SWT.BORDER);
-		contentPanel.setBounds(0, 50, 500, 300);
-		final StackLayout layout = new StackLayout();
-		contentPanel.setLayout(layout);
-		shell.open();
-
-		final Config config = new Config(contentPanel, SWT.NONE);
-		final Town town = new Town(contentPanel, SWT.NONE);
-		final Store store = new Store(contentPanel, SWT.NONE);
-
-		layout.topControl = config;
-		
 		Label lblCash = new Label(shell, SWT.NONE);
 		lblCash.setText("$0");
 		lblCash.setBounds(65, 15, 55, 15);
@@ -78,6 +73,26 @@ public class MainGame {
 		lblNewLabel.setBounds(15, 15, 44, 15);
 		lblNewLabel.setText("Cash:");
 		
+		/*Create the composite that the pages will share*/
+		final Composite contentPanel = new Composite(shell, SWT.BORDER);
+		contentPanel.setBounds(0, 50, 500, 300);
+		final StackLayout layout = new StackLayout();
+		contentPanel.setLayout(layout);
+		shell.open();
+
+		/*Create config, town, and store screens*/
+		final Config config = new Config(contentPanel, SWT.NONE);
+		final Town town = new Town(contentPanel, SWT.NONE);
+		final Store store = new Store(contentPanel, SWT.NONE);
+		
+		/*
+		 * END INITIALIZATION OF CONTROLS
+		 * END INITIALIZATION OF CONTROLS
+		 * END INITIALIZATION OF CONTROLS
+		 */
+
+		//Put Config screen on top
+		layout.topControl = config;
 		contentPanel.layout();
 		shell.update();
 
