@@ -38,7 +38,7 @@ public class MainGame {
 		while (!shell.isDisposed()) {
 			if (!display.readAndDispatch())
 				display.sleep();
-			if (config.done == 1){
+			if (config.done == 1 && !shell.isDisposed()){
 				config.setVisible(false);
 				layout.topControl = store;
 				contentPanel.layout();
