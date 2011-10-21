@@ -100,6 +100,8 @@ public class Store extends Composite{
 					lblWeight.setText("10 lbs");
 					lblPrice.setText("$5");
 					lblDesc.setText("A bucket of water.");
+				} else {
+					
 				}
 			}
 		});
