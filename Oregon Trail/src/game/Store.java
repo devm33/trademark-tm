@@ -82,21 +82,24 @@ public class Store extends Composite{
 		list.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				lblName.setText(list.getItem(list.getSelectionIndex()));
+				//lblName.setText(list.getItem(list.getSelectionIndex()));
 				/*need to hold weight, price, and description in some database*/
 				
 				if(list.getSelectionIndex()==0){
 					//If Ammunition is selected in the list
+					lblName.setText("Ammunition");
 					lblWeight.setText("5 lbs");
 					lblPrice.setText("$20");
 					lblDesc.setText("Hunting rifle rounds used for big game.");
 				} else if(list.getSelectionIndex()==1){
 					//If Food is selected in the list
+					lblName.setText("Food");
 					lblWeight.setText("4 lbs");
 					lblPrice.setText("$10");
 					lblDesc.setText("Durable canned foodstuff.");
 				} else if(list.getSelectionIndex()==2){
 					//If Water is selected in the list
+					lblName.setText("Water");
 					lblWeight.setText("10 lbs");
 					lblPrice.setText("$5");
 					lblDesc.setText("A bucket of water.");
