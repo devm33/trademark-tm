@@ -24,7 +24,16 @@ import org.eclipse.swt.events.MouseEvent;
 import java.util.List;
 import java.util.ArrayList;
 
+/**
+ * Configuration Screen
+ * 
+ * @author Jaron
+ *
+ */
 public class Config extends Composite{
+	/**
+	 * done is set to 1 upon exit of configuration screen
+	 */
 	public int done = 0;
 	
 	private Text txtName4;
@@ -47,6 +56,7 @@ public class Config extends Composite{
 
 	/**
 	 * Create the composite
+	 * Places and initializes all the controls
 	 * @param parent
 	 * @param style
 	 */

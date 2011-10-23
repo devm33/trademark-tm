@@ -93,6 +93,10 @@ public class Store extends Composite{
 		
 		Label label_1 = new Label(this, SWT.SEPARATOR | SWT.HORIZONTAL);
 		label_1.setBounds(198, 23, 242, 16);
+		
+		Label lblResponse = new Label(this, SWT.WRAP);
+		lblResponse.setBounds(198, 245, 223, 30);
+		lblResponse.setText("Welcome to the Independence Store!");
 
 		//When user selects an item in the store inventory list.
 		list.addSelectionListener(new SelectionAdapter() {

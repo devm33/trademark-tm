@@ -13,7 +13,6 @@ import org.eclipse.swt.events.SelectionEvent;
 public class Town extends Composite{
 	//0 is default, 1 is Inn, 2 is Store, 3 is Leave Town
 	public int choice = 0;
-	public int done = 0;
 	
 	/**
 	 * Create the composite.
