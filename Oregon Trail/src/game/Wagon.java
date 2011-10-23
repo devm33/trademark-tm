@@ -120,16 +120,16 @@ public class Wagon {
 	 * @param i the item to add
 	 * @throws WeightCapacityExceededException
 	 */
-	public void addToInventory(Item i) throws WeightCapacityExceededException {
-		if(i.getWeight() + totalWeight > capacity)
+	public void addToInventory(Item i, int n) throws WeightCapacityExceededException {
+		if((i.getWeight()*n) + totalWeight > capacity)
 			throw new WeightCapacityExceededException();
 		//inventory.add(i);
 		for (int x=0; x<inventory.getLength(); x++){
 			if(i.getName().equals(inventory.getItemInventory()[x].getName())){
-				inventory.getItemInventory()[x].setNumber(inventory.getItemInventory()[x].getNumber()+1);
+				inventory.getItemInventory()[x].setNumber(inventory.getItemInventory()[x].getNumber()+n);
 			}
 		}
-		totalWeight += i.getWeight();
+		totalWeight += (i.getWeight()*n);
 	}
 	
 	/**
