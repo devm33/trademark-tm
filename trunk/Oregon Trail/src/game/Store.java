@@ -129,7 +129,27 @@ public class Store extends Composite{
 		btnPurchase.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				
+				if(list.getSelectionIndex()==0){
+					//If Ammunition is selected in the list
+					int buyNum = Integer.parseInt(txtAmount.getText());
+					int availCash = Integer.parseInt(MainGame.getWagon().getCash());
+					int total;
+					try{
+						MainGame.getWagon().getLeader().setMoney(Integer.parseInt(MainGame.getWagon().getCash())-total);
+					}
+					catch(InsufficentFundsException f){
+						
+					}
+					
+				} else if(list.getSelectionIndex()==1){
+					//If Food is selected in the list
+					int buyNum = Integer.parseInt(txtAmount.getText());
+				} else if(list.getSelectionIndex()==2){
+					//If Medicine is selected in the list
+					int buyNum = Integer.parseInt(txtAmount.getText());
+				} else {
+					
+				}
 			}
 		});
 		

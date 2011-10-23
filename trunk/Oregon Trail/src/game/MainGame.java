@@ -33,6 +33,10 @@ public class MainGame {
 	public static int currentScreen = 0;
 	
 	private static Wagon wagon;
+	
+	public static Wagon getWagon(){
+		return wagon;
+	}
 
 	public static void main(String[] args) {
 		/*Basic setup*/
