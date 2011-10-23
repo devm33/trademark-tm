@@ -211,15 +211,15 @@ public class Config extends Composite{
 				}
 
 
-				System.out.println("Leader: " + partyLeader.getName());
-				System.out.println("Cash: " + partyLeader.getMoney());
-				System.out.println("Profession: " + dropProfession.getText());
-				System.out.println("Pace: " + dropPace.getText() + " (" + wagon.getPace() + ")");
-				System.out.println("Rations: " + dropRations.getText() + " ("+ wagon.getRations() + ")");
-				System.out.println("Member1: " + party1.getName());
-				System.out.println("Member2: " + party2.getName());
-				System.out.println("Member3: " + party3.getName());
-				System.out.println("Member4: " + party4.getName());
+//				System.out.println("Leader: " + partyLeader.getName());
+//				System.out.println("Cash: " + partyLeader.getMoney());
+//				System.out.println("Profession: " + dropProfession.getText());
+//				System.out.println("Pace: " + dropPace.getText() + " (" + wagon.getPace() + ")");
+//				System.out.println("Rations: " + dropRations.getText() + " ("+ wagon.getRations() + ")");
+//				System.out.println("Member1: " + party1.getName());
+//				System.out.println("Member2: " + party2.getName());
+//				System.out.println("Member3: " + party3.getName());
+//				System.out.println("Member4: " + party4.getName());
 				
 				done = 1;
 			}
