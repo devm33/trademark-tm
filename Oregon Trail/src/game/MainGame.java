@@ -100,7 +100,6 @@ public class MainGame {
 			if (!display.readAndDispatch())
 				display.sleep();
 			
-			
 			/*Configuration Screen Continuation*/
 			if (config.done == 1 && !shell.isDisposed()){
 				wagon = config.getWagon();
@@ -131,6 +130,16 @@ public class MainGame {
 				layout.topControl = town;
 				contentPanel.layout();
 				shell.update();
+				
+			}
+			
+			/*Inventory Screen Continuation*/
+			if (accessInventory == 1 && !shell.isDisposed()){
+				accessInventory = 0;
+				Inventory inventory = new Inventory();
+				shell.setVisible(false);
+				inventory.open();
+				shell.setVisible(true);
 			}
 		}
 		display.dispose();

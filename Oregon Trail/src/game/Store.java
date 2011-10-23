@@ -18,8 +18,8 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 
-public class Store extends Composite{
-	public static int done = 0;
+public class Store extends Screen{
+	public int done = 0;
 	private Text txtAmount;
 	
 	/**
@@ -89,20 +89,20 @@ public class Store extends Composite{
 				if(list.getSelectionIndex()==0){
 					//If Ammunition is selected in the list
 					lblName.setText("Ammunition");
-					lblWeight.setText("5 lbs");
-					lblPrice.setText("$20");
-					lblDesc.setText("Hunting rifle rounds used for big game.");
+					lblWeight.setText("3 lbs");
+					lblPrice.setText("$2");
+					lblDesc.setText("A box of 20 hunting rifle rounds used for big game.");
 				} else if(list.getSelectionIndex()==1){
 					//If Food is selected in the list
 					lblName.setText("Food");
-					lblWeight.setText("4 lbs");
-					lblPrice.setText("$10");
+					lblWeight.setText("5 lbs");
+					lblPrice.setText("$5");
 					lblDesc.setText("Durable canned foodstuff.");
 				} else if(list.getSelectionIndex()==2){
 					//If Water is selected in the list
 					lblName.setText("Water");
-					lblWeight.setText("10 lbs");
-					lblPrice.setText("$5");
+					lblWeight.setText("7 lbs");
+					lblPrice.setText("$4");
 					lblDesc.setText("A bucket of water.");
 				} else {
 					

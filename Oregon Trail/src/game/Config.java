@@ -24,8 +24,8 @@ import org.eclipse.swt.events.MouseEvent;
 import java.util.List;
 import java.util.ArrayList;
 
-public class Config extends Composite{
-	public static int done = 0;
+public class Config extends Screen{
+	public int done = 0;
 	
 	private Text txtName4;
 	private Text txtLeaderName;
