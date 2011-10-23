@@ -10,9 +10,10 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 
-public class Town extends Composite{
+public class Town extends Screen{
 	//0 is default, 1 is Inn, 2 is Store, 3 is Leave Town
-	public static int choice = 0;
+	public int choice = 0;
+	public int done = 0;
 	
 	/**
 	 * Create the composite.

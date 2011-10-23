@@ -21,6 +21,9 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.custom.SashForm;
 import org.eclipse.swt.custom.ViewForm;
+import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 
 public class Inventory {
 	private Item[]itemInventory;
@@ -28,7 +31,9 @@ public class Inventory {
 	
 	public Inventory(){
 		itemInventory = new Item[length];
-		
+		itemInventory[0] = new Ammo();
+		itemInventory[1] = new Food();
+		itemInventory[2] = new Water();
 	}
 	
 	public Inventory(Item item0,Item item1, Item item2){
@@ -64,7 +69,7 @@ public class Inventory {
 	}
 	
 
-	protected Shell shlOregonTrail;
+	protected Shell shell;
 
 	/**
 	 * Launch the application.
@@ -85,7 +90,9 @@ public class Inventory {
 	public void open() {
 		Display display = Display.getDefault();
 		createContents();
-		while (!shlOregonTrail.isDisposed()) {
+		shell.open();
+		shell.layout();
+		while (!shell.isDisposed()) {
 			if (!display.readAndDispatch()) {
 				display.sleep();
 			}
@@ -96,54 +103,69 @@ public class Inventory {
 	 * Create contents of the window.
 	 */
 	protected void createContents() {
-		shlOregonTrail = new Shell();
-		shlOregonTrail.setLayout(new GridLayout(3, true));
+		shell = new Shell();
+		shell.setLayout(new GridLayout(3, true));
+		shell.setBounds(300, 300, 300, 200);
 		String display="";
 		
-		Label lblItem = new Label(shlOregonTrail, SWT.NONE);
+		Label lblItem = new Label(shell, SWT.NONE);
 		lblItem.setText("Item                ");
 		
-		Label lblWeight = new Label(shlOregonTrail, SWT.NONE);
+		Label lblWeight = new Label(shell, SWT.NONE);
 		lblWeight.setText("Weight");
 
 		
-		Label lblAmmount = new Label(shlOregonTrail, SWT.NONE);
+		Label lblAmmount = new Label(shell, SWT.NONE);
 		lblAmmount.setText("Amount");
 		
 
-		Label lblItems0 = new Label(shlOregonTrail, SWT.NONE);
+		Label lblItems0 = new Label(shell, SWT.NONE);
 		lblItems0.setText(itemInventory[0].getName());
 
 		
-		Label lblItems0wt = new Label(shlOregonTrail, SWT.NONE);
+		Label lblItems0wt = new Label(shell, SWT.NONE);
 		lblItems0wt.setText(display+itemInventory[0].getWeight());
 
 		
-		Label lblItems0amt = new Label(shlOregonTrail, SWT.NONE);
+		Label lblItems0amt = new Label(shell, SWT.NONE);
 		lblItems0amt.setText(display+itemInventory[0].getNumber());
 		
-		Label lblItems1 = new Label(shlOregonTrail, SWT.NONE);
+		Label lblItems1 = new Label(shell, SWT.NONE);
 		lblItems1.setText(itemInventory[1].getName());
 
 		
-		Label lblItems1wt = new Label(shlOregonTrail, SWT.NONE);
+		Label lblItems1wt = new Label(shell, SWT.NONE);
 		lblItems1wt.setText(display+itemInventory[1].getWeight());
 
 		
-		Label lblItems1amt = new Label(shlOregonTrail, SWT.NONE);
+		Label lblItems1amt = new Label(shell, SWT.NONE);
 		lblItems1amt.setText(display+itemInventory[1].getNumber());
 
 		
-		Label lblItems2 = new Label(shlOregonTrail, SWT.NONE);
+		Label lblItems2 = new Label(shell, SWT.NONE);
 		lblItems2.setText(itemInventory[2].getName());
 
 		
-		Label lblItems2wt = new Label(shlOregonTrail, SWT.NONE);
+		Label lblItems2wt = new Label(shell, SWT.NONE);
 		lblItems2wt.setText(display+itemInventory[2].getWeight());
 
 		
-		Label lblItems2amt = new Label(shlOregonTrail, SWT.NONE);
+		Label lblItems2amt = new Label(shell, SWT.NONE);
 		lblItems2amt.setText(display+itemInventory[2].getNumber());
+		new Label(shell, SWT.NONE);
+		new Label(shell, SWT.NONE);
+		new Label(shell, SWT.NONE);
+		new Label(shell, SWT.NONE);
+		
+		Button btnClose = new Button(shell, SWT.NONE);
+		btnClose.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent arg0) {
+				shell.dispose();
+			}
+		});
+		btnClose.setText("Close Inventory");
+		new Label(shell, SWT.NONE);
 
 
 
