@@ -17,8 +17,12 @@ import org.eclipse.wb.swt.SWTResourceManager;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
-
-public class Store extends Screen{
+/**
+ * TODO: RESET UPON EXIT
+ * @author Jaron
+ *
+ */
+public class Store extends Composite{
 	public int done = 0;
 	private Text txtAmount;
 	

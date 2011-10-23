@@ -25,11 +25,12 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 
-public class Inventory {
+public class Inventory extends Composite{
+	public int done = 0;
 	private Item[]itemInventory;
 	private int length = 6;
 	
-	public Inventory(){
+/*	public Inventory(){
 		itemInventory = new Item[length];
 		itemInventory[0] = new Ammo();
 		itemInventory[1] = new Food();
@@ -50,8 +51,78 @@ public class Inventory {
 		itemInventory[2] = item2;
 		itemInventory[3] = item3;
 		itemInventory[4] = item4;
-	}
+	}*/
+
+	public Inventory(Composite parent, int style){
+		super(parent,style);
+		
+		itemInventory = new Item[length];
+		itemInventory[0] = new Ammo();
+		itemInventory[1] = new Food();
+		itemInventory[2] = new Water();
 	
+		this.setLayout(new GridLayout(3, true));
+		String display="";
+		
+		Label lblItem = new Label(this, SWT.NONE);
+		lblItem.setText("Item                ");
+		
+		Label lblWeight = new Label(this, SWT.NONE);
+		lblWeight.setText("Weight");
+
+		
+		Label lblAmmount = new Label(this, SWT.NONE);
+		lblAmmount.setText("Amount");
+		
+
+		Label lblItems0 = new Label(this, SWT.NONE);
+		lblItems0.setText(itemInventory[0].getName());
+
+		
+		Label lblItems0wt = new Label(this, SWT.NONE);
+		lblItems0wt.setText(display+itemInventory[0].getWeight());
+
+		
+		Label lblItems0amt = new Label(this, SWT.NONE);
+		lblItems0amt.setText(display+itemInventory[0].getNumber());
+		
+		Label lblItems1 = new Label(this, SWT.NONE);
+		lblItems1.setText(itemInventory[1].getName());
+
+		
+		Label lblItems1wt = new Label(this, SWT.NONE);
+		lblItems1wt.setText(display+itemInventory[1].getWeight());
+
+		
+		Label lblItems1amt = new Label(this, SWT.NONE);
+		lblItems1amt.setText(display+itemInventory[1].getNumber());
+
+		
+		Label lblItems2 = new Label(this, SWT.NONE);
+		lblItems2.setText(itemInventory[2].getName());
+
+		
+		Label lblItems2wt = new Label(this, SWT.NONE);
+		lblItems2wt.setText(display+itemInventory[2].getWeight());
+
+		
+		Label lblItems2amt = new Label(this, SWT.NONE);
+		lblItems2amt.setText(display+itemInventory[2].getNumber());
+		new Label(this, SWT.NONE);
+		new Label(this, SWT.NONE);
+		new Label(this, SWT.NONE);
+		new Label(this, SWT.NONE);
+		
+		Button btnClose = new Button(this, SWT.NONE);
+		btnClose.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent arg0) {
+				done = 1;
+			}
+		});
+		btnClose.setText("Close Inventory");
+	}
+
 	public int getLength(){
 		return length;
 	}
@@ -67,109 +138,6 @@ public class Inventory {
 	public Item[] getItemInventory(){
 		return itemInventory;
 	}
-	
-
-	protected Shell shell;
-
-	/**
-	 * Launch the application.
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		try {
-			Inventory window = new Inventory();
-			window.open();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	/**
-	 * Open the window.
-	 */
-	public void open() {
-		Display display = Display.getDefault();
-		createContents();
-		shell.open();
-		shell.layout();
-		while (!shell.isDisposed()) {
-			if (!display.readAndDispatch()) {
-				display.sleep();
-			}
-		}
-	}
-
-	/**
-	 * Create contents of the window.
-	 */
-	protected void createContents() {
-		shell = new Shell();
-		shell.setLayout(new GridLayout(3, true));
-		shell.setBounds(300, 300, 300, 200);
-		String display="";
-		
-		Label lblItem = new Label(shell, SWT.NONE);
-		lblItem.setText("Item                ");
-		
-		Label lblWeight = new Label(shell, SWT.NONE);
-		lblWeight.setText("Weight");
-
-		
-		Label lblAmmount = new Label(shell, SWT.NONE);
-		lblAmmount.setText("Amount");
-		
-
-		Label lblItems0 = new Label(shell, SWT.NONE);
-		lblItems0.setText(itemInventory[0].getName());
-
-		
-		Label lblItems0wt = new Label(shell, SWT.NONE);
-		lblItems0wt.setText(display+itemInventory[0].getWeight());
-
-		
-		Label lblItems0amt = new Label(shell, SWT.NONE);
-		lblItems0amt.setText(display+itemInventory[0].getNumber());
-		
-		Label lblItems1 = new Label(shell, SWT.NONE);
-		lblItems1.setText(itemInventory[1].getName());
-
-		
-		Label lblItems1wt = new Label(shell, SWT.NONE);
-		lblItems1wt.setText(display+itemInventory[1].getWeight());
-
-		
-		Label lblItems1amt = new Label(shell, SWT.NONE);
-		lblItems1amt.setText(display+itemInventory[1].getNumber());
-
-		
-		Label lblItems2 = new Label(shell, SWT.NONE);
-		lblItems2.setText(itemInventory[2].getName());
-
-		
-		Label lblItems2wt = new Label(shell, SWT.NONE);
-		lblItems2wt.setText(display+itemInventory[2].getWeight());
-
-		
-		Label lblItems2amt = new Label(shell, SWT.NONE);
-		lblItems2amt.setText(display+itemInventory[2].getNumber());
-		new Label(shell, SWT.NONE);
-		new Label(shell, SWT.NONE);
-		new Label(shell, SWT.NONE);
-		new Label(shell, SWT.NONE);
-		
-		Button btnClose = new Button(shell, SWT.NONE);
-		btnClose.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent arg0) {
-				shell.dispose();
-			}
-		});
-		btnClose.setText("Close Inventory");
-		new Label(shell, SWT.NONE);
-
-
-
-	}
 
 	public boolean contains(Item i) {
 		// TODO Auto-generated method stub
@@ -181,4 +149,10 @@ public class Inventory {
 		}
 		return false;
 	}
+	
+	@Override
+	protected void checkSubclass() {
+		// Disable the check that prevents subclassing of SWT components
+	}
+
 }
