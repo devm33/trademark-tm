@@ -100,10 +100,10 @@ public class Store extends Screen{
 					lblDesc.setText("Durable canned foodstuff.");
 				} else if(list.getSelectionIndex()==2){
 					//If Water is selected in the list
-					lblName.setText("Water");
-					lblWeight.setText("7 lbs");
-					lblPrice.setText("$4");
-					lblDesc.setText("A bucket of water.");
+					lblName.setText("Medicine");
+					lblWeight.setText("1 lb");
+					lblPrice.setText("$10");
+					lblDesc.setText("A large container of medicine.");
 				} else {
 					
 				}
@@ -114,6 +114,7 @@ public class Store extends Screen{
 		btnPurchase.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
+				
 			}
 		});
 		

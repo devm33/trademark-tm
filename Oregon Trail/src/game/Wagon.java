@@ -125,7 +125,7 @@ public class Wagon {
 			throw new WeightCapacityExceededException();
 		//inventory.add(i);
 		for (int x=0; x<inventory.getLength(); x++){
-			if(i.getName()==inventory.getItemInventory()[x].getName()){
+			if(i.getName().equals(inventory.getItemInventory()[x].getName())){
 				inventory.getItemInventory()[x].setNumber(inventory.getItemInventory()[x].getNumber()+1);
 			}
 		}
