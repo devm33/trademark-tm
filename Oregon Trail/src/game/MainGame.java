@@ -28,7 +28,6 @@ public class MainGame {
 	 * 0 if Config
 	 * 1 if Town
 	 * 2 if Store
-	 * 3 if Inventory
 	 */
 	public static int currentScreen = 0;
 	
