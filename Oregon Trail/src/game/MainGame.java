@@ -23,8 +23,16 @@ import org.eclipse.swt.widgets.Label;
  */
 public class MainGame {	
 	public static int accessInventory = 0;
+	/*
+	 * currentScreen is:
+	 * 0 if Config
+	 * 1 if Town
+	 * 2 if Store
+	 * 3 if Inventory
+	 */
+	public static int currentScreen = 0;
 	
-	private static Wagon wagon;
+	public static Wagon wagon;
 
 	public static void main(String[] args) {
 		/*Basic setup*/
@@ -36,8 +44,6 @@ public class MainGame {
 		
 		/*
 		 * BEGIN INITIALIZATION OF CONTROLS (buttons, labels, etc)
-		 * BEGIN INITIALIZATION OF CONTROLS
-		 * BEGIN INITIALIZATION OF CONTROLS
 		 */
 		final Display display = new Display();
 		final Shell shell = new Shell(display);
@@ -85,11 +91,8 @@ public class MainGame {
 		final Town town = new Town(contentPanel, SWT.NONE);
 		final Store store = new Store(contentPanel, SWT.NONE);
 		final Inventory inventory = new Inventory(contentPanel, SWT.NONE);
-		int currentScreen = 0;
 		
 		/*
-		 * END INITIALIZATION OF CONTROLS
-		 * END INITIALIZATION OF CONTROLS
 		 * END INITIALIZATION OF CONTROLS
 		 */
 
@@ -109,6 +112,7 @@ public class MainGame {
 				config.done = 0;
 				config.setVisible(false);
 				town.setVisible(true);
+				currentScreen = 1;
 				layout.topControl = town;
 				contentPanel.layout();
 				shell.update();
@@ -119,6 +123,7 @@ public class MainGame {
 				town.choice = 0;
 				town.setVisible(false);
 				store.setVisible(true);
+				currentScreen = 2;
 				layout.topControl = store;
 				contentPanel.layout();
 				shell.update();
@@ -129,6 +134,7 @@ public class MainGame {
 				store.done = 0;
 				store.setVisible(false);
 				town.setVisible(true);
+				currentScreen = 1;
 				layout.topControl = town;
 				contentPanel.layout();
 				shell.update();
@@ -149,8 +155,20 @@ public class MainGame {
 			if (inventory.done == 1 && !shell.isDisposed()){
 				inventory.done = 0;
 				inventory.setVisible(false);
-				town.setVisible(true);
-				layout.topControl = town;
+				switch(currentScreen){
+					case 0:
+						config.setVisible(true);
+						layout.topControl = config;
+						break;
+					case 1:
+						town.setVisible(true);
+						layout.topControl = town;
+						break;
+					case 2:
+						store.setVisible(true);
+						layout.topControl = store;
+						break;
+				}
 				contentPanel.update();
 				shell.update();
 			}

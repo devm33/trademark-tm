@@ -35,7 +35,7 @@ public class Store extends Composite{
 		super(parent,style);
 		
 		final List list = new List(this, SWT.BORDER);
-		list.setItems(new String[] {"Ammunition", "Food", "Water"});
+		list.setItems(new String[] {"Ammunition", "Food", "Medicine"});
 		list.setBounds(33, 10, 141, 229);
 		
 		Label lbl1 = new Label(this, SWT.NONE);
@@ -84,7 +84,7 @@ public class Store extends Composite{
 		lblAmount.setBounds(214, 178, 47, 15);
 		
 		Label lblWagonCapacity = new Label(this, SWT.NONE);
-		lblWagonCapacity.setBounds(198, 10, 90, 13);
+		lblWagonCapacity.setBounds(198, 10, 90, 17);
 		lblWagonCapacity.setText("Wagon Capacity:");
 		
 		Label lblWCap = new Label(this, SWT.NONE);
