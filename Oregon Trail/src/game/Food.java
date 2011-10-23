@@ -13,7 +13,9 @@ public class Food extends Item {
 	@Override
 	public void use() {
 		// TODO Auto-generated method stub
-		this.setNumber(this.getNumber()-1);
+		if(this.getNumber()>0){
+			this.setNumber(this.getNumber()-1);
+		}
 	}
 
 }
