@@ -87,9 +87,9 @@ public class Store extends Composite{
 		lblWagonCapacity.setBounds(198, 10, 90, 13);
 		lblWagonCapacity.setText("Wagon Capacity:");
 		
-		Label label = new Label(this, SWT.NONE);
-		label.setBounds(294, 10, 63, 13);
-		label.setText("0/0");
+		Label lblWCap = new Label(this, SWT.NONE);
+		lblWCap.setBounds(294, 10, 63, 13);
+		lblWCap.setText("0/0");
 		
 		Label label_1 = new Label(this, SWT.SEPARATOR | SWT.HORIZONTAL);
 		label_1.setBounds(198, 23, 242, 16);
