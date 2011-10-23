@@ -89,7 +89,7 @@ public class Store extends Composite{
 		
 		Label lblWCap = new Label(this, SWT.NONE);
 		lblWCap.setBounds(294, 10, 63, 13);
-		lblWCap.setText("0/0");
+		lblWCap.setText(MainGame.getWagon().getTotalWeight()+"/"+MainGame.getWagon().getCapacity());
 		
 		Label label_1 = new Label(this, SWT.SEPARATOR | SWT.HORIZONTAL);
 		label_1.setBounds(198, 23, 242, 16);
@@ -137,11 +137,15 @@ public class Store extends Composite{
 					//If Ammunition is selected in the list
 					int buyNum = Integer.parseInt(txtAmount.getText());
 					int availCash = Integer.parseInt(MainGame.getWagon().getCash());
-					int total;
+					int total = buyNum*2;
 					try{
-						MainGame.getWagon().getLeader().setMoney(Integer.parseInt(MainGame.getWagon().getCash())-total);
+						MainGame.getWagon().getLeader().setMoney(availCash-total);
+						MainGame.getWagon().addToInventory(new Ammo(), buyNum);
 					}
 					catch(InsufficentFundsException f){
+						
+					}
+					catch(WeightCapacityExceededException w){
 						
 					}
 					

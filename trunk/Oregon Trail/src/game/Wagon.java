@@ -204,4 +204,7 @@ public class Wagon {
 		String total = Integer.toString(leader.getMoney());
 		return total;
 	}
+	public int getTotalWeight(){
+		return totalWeight;
+	}
 }
