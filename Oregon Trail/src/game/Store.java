@@ -40,23 +40,23 @@ public class Store extends Composite{
 		
 		Label lbl1 = new Label(this, SWT.NONE);
 		lbl1.setText("Name:");
-		lbl1.setBounds(198, 10, 35, 15);
+		lbl1.setBounds(198, 45, 35, 15);
 		
 		Label lbl2 = new Label(this, SWT.NONE);
 		lbl2.setText("Weight:");
-		lbl2.setBounds(198, 32, 41, 15);
+		lbl2.setBounds(198, 67, 41, 15);
 		
 		Label lbl3 = new Label(this, SWT.NONE);
 		lbl3.setText("Price:");
-		lbl3.setBounds(198, 56, 29, 15);
+		lbl3.setBounds(198, 91, 29, 15);
 		
 		Label lbl4 = new Label(this, SWT.NONE);
 		lbl4.setText("Description:");
-		lbl4.setBounds(198, 77, 63, 15);
+		lbl4.setBounds(198, 112, 63, 15);
 		
 		final Label lblName = new Label(this, SWT.NONE);
 		lblName.setText("No Item Selected");
-		lblName.setBounds(239, 10, 101, 15);
+		lblName.setBounds(239, 45, 101, 15);
 		
 		final Label lblWeight = new Label(this, SWT.NONE);
 		lblWeight.setBounds(245, 32, 35, 15);
@@ -66,22 +66,33 @@ public class Store extends Composite{
 		
 		final Label lblDesc = new Label(this, SWT.WRAP);
 		lblDesc.setText("Select an item to buy from the store inventory.");
-		lblDesc.setBounds(267, 77, 128, 57);
+		lblDesc.setBounds(267, 112, 128, 57);
 		
 		Button btnPurchase = new Button(this, SWT.NONE);
 		btnPurchase.setText("Purchase");
-		btnPurchase.setBounds(235, 179, 60, 25);
+		btnPurchase.setBounds(235, 214, 60, 25);
 		
 		Button btnExitStore = new Button(this, SWT.NONE);
 		btnExitStore.setText("Exit Store");
-		btnExitStore.setBounds(335, 179, 60, 25);
+		btnExitStore.setBounds(335, 214, 60, 25);
 		
 		txtAmount = new Text(this, SWT.BORDER);
-		txtAmount.setBounds(264, 140, 76, 21);
+		txtAmount.setBounds(264, 175, 76, 21);
 		
 		Label lblAmount = new Label(this, SWT.NONE);
 		lblAmount.setText("Amount:");
-		lblAmount.setBounds(214, 143, 47, 15);
+		lblAmount.setBounds(214, 178, 47, 15);
+		
+		Label lblWagonCapacity = new Label(this, SWT.NONE);
+		lblWagonCapacity.setBounds(198, 10, 90, 13);
+		lblWagonCapacity.setText("Wagon Capacity:");
+		
+		Label label = new Label(this, SWT.NONE);
+		label.setBounds(294, 10, 63, 13);
+		label.setText("0/0");
+		
+		Label label_1 = new Label(this, SWT.SEPARATOR | SWT.HORIZONTAL);
+		label_1.setBounds(198, 23, 242, 16);
 
 		//When user selects an item in the store inventory list.
 		list.addSelectionListener(new SelectionAdapter() {
