@@ -59,10 +59,10 @@ public class Store extends Composite{
 		lblName.setBounds(239, 45, 101, 15);
 		
 		final Label lblWeight = new Label(this, SWT.NONE);
-		lblWeight.setBounds(245, 32, 35, 15);
+		lblWeight.setBounds(245, 67, 35, 15);
 		
 		final Label lblPrice = new Label(this, SWT.NONE);
-		lblPrice.setBounds(233, 56, 28, 15);
+		lblPrice.setBounds(233, 91, 28, 15);
 		
 		final Label lblDesc = new Label(this, SWT.WRAP);
 		lblDesc.setText("Select an item to buy from the store inventory.");
