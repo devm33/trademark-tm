@@ -84,6 +84,8 @@ public class MainGame {
 		final Config config = new Config(contentPanel, SWT.NONE);
 		final Town town = new Town(contentPanel, SWT.NONE);
 		final Store store = new Store(contentPanel, SWT.NONE);
+		final Inventory inventory = new Inventory(contentPanel, SWT.NONE);
+		int currentScreen = 0;
 		
 		/*
 		 * END INITIALIZATION OF CONTROLS
@@ -136,10 +138,21 @@ public class MainGame {
 			/*Inventory Screen Continuation*/
 			if (accessInventory == 1 && !shell.isDisposed()){
 				accessInventory = 0;
-				Inventory inventory = new Inventory();
-				shell.setVisible(false);
-				inventory.open();
-				shell.setVisible(true);
+				
+				layout.topControl.setVisible(false);
+				inventory.setVisible(true);
+				layout.topControl = inventory;
+				layout.topControl.setVisible(true);
+				contentPanel.update();
+				shell.update();
+			}
+			if (inventory.done == 1 && !shell.isDisposed()){
+				inventory.done = 0;
+				inventory.setVisible(false);
+				town.setVisible(true);
+				layout.topControl = town;
+				contentPanel.update();
+				shell.update();
 			}
 		}
 		display.dispose();
