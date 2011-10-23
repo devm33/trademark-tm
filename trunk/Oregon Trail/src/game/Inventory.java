@@ -59,7 +59,7 @@ public class Inventory extends Composite{
 		itemInventory = new Item[length];
 		itemInventory[0] = new Ammo();
 		itemInventory[1] = new Food();
-		itemInventory[2] = new Water();
+		itemInventory[2] = new Medicine();
 	
 		this.setLayout(new GridLayout(3, true));
 		String display="";
