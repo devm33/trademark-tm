@@ -14,6 +14,16 @@ public class Medicine extends Item {
 	 * Keeps track of the number of uses of this medicine.
 	 */
 	private int uses;
+	/**
+	 * in order to keep track of uses this class needs to know when
+	 * the number of items is change. this variable keeps track of what
+	 * it thinks the amount is.
+	 */
+	private int amount;
+	/**
+	 * the number of uses per item.
+	 */
+	private final static int num_uses = 50;
 	
 	/**
 	 * Creates a new medicine item with 0 inventory.
@@ -23,15 +33,19 @@ public class Medicine extends Item {
 	}
 	
 	@Override
-	public void setNumber(int num) {
-		super.setNumber(num);
-		uses = num * 50; //50 uses in 1lb of medicine.
-	}
-	
-	@Override
 	public void use() {
+		if(amount != getNumber()) {
+			uses += num_uses*(getNumber() - amount);
+			amount = getNumber();
+		}
+		if(uses == 0)
+			return;
+		if(uses < 0) {
+			uses = 0;
+			return;
+		}
 		uses--;
-		if(uses % 50 == 0)
+		if(uses % num_uses == 0)
 			super.setNumber(getNumber()-1);
 	}
 	
