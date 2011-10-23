@@ -190,8 +190,8 @@ public class Config extends Composite{
 				memberList.add(party4);
 
 				//Initialize and create the wagon
-				wagon = new Wagon(0,0,0, partyLeader, memberList);
-
+				wagon = new Wagon(0,0,3500, partyLeader, memberList);
+				
 				//Set initial pace of wagon to user selection
 				if(dropPace.getText().equals("Slow")){
 					wagon.setPace(0);
