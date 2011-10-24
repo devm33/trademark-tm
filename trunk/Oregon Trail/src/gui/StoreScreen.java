@@ -25,6 +25,22 @@ public class StoreScreen extends Composite{
 	public boolean done = false;
 	private Text txtAmount;
 	private Store currentStore;
+	private List list;
+	private Label lbl1;
+	private Label lbl2;
+	private Label lbl3;
+	private Label lbl4;
+	private Label lblName;
+	private Label lblWeight;
+	private Label lblPrice;
+	private Label lblDesc;
+	private Button btnPurchase;
+	private Button btnExitStore;
+	private Label lblAmount;
+	private Label lbl5;
+	private Label lblWagonCapacity;
+	private Label lbl6;
+	private Label lblResponse;
 	
 	/**
 	 * Change the store of the store screen.
@@ -43,67 +59,67 @@ public class StoreScreen extends Composite{
 	public StoreScreen(Composite parent, int style){
 		super(parent,style);
 		
-		final List list = new List(this, SWT.BORDER);
+		list = new List(this, SWT.BORDER);
 		list.setItems(new String[] {"Ammunition", "Food", "Medicine"});
 		list.setBounds(33, 10, 141, 229);
 		
-		Label lbl1 = new Label(this, SWT.NONE);
+		lbl1 = new Label(this, SWT.NONE);
 		lbl1.setText("Name:");
 		lbl1.setBounds(198, 45, 35, 15);
 		
-		Label lbl2 = new Label(this, SWT.NONE);
+		lbl2 = new Label(this, SWT.NONE);
 		lbl2.setText("Weight:");
 		lbl2.setBounds(198, 67, 41, 15);
 		
-		Label lbl3 = new Label(this, SWT.NONE);
+		lbl3 = new Label(this, SWT.NONE);
 		lbl3.setText("Price:");
 		lbl3.setBounds(198, 91, 29, 15);
 		
-		Label lbl4 = new Label(this, SWT.NONE);
+		lbl4 = new Label(this, SWT.NONE);
 		lbl4.setText("Description:");
 		lbl4.setBounds(198, 112, 63, 15);
 		
-		final Label lblName = new Label(this, SWT.NONE);
+		lblName = new Label(this, SWT.NONE);
 		lblName.setText("No Item Selected");
 		lblName.setBounds(239, 45, 101, 15);
 		
-		final Label lblWeight = new Label(this, SWT.NONE);
+		lblWeight = new Label(this, SWT.NONE);
 		lblWeight.setBounds(245, 67, 35, 15);
 		
-		final Label lblPrice = new Label(this, SWT.NONE);
+		lblPrice = new Label(this, SWT.NONE);
 		lblPrice.setBounds(233, 91, 28, 15);
 		
-		final Label lblDesc = new Label(this, SWT.WRAP);
+		lblDesc = new Label(this, SWT.WRAP);
 		lblDesc.setText("Select an item to buy from the store inventory.");
 		lblDesc.setBounds(267, 112, 128, 57);
 		
-		Button btnPurchase = new Button(this, SWT.NONE);
+		btnPurchase = new Button(this, SWT.NONE);
 		btnPurchase.setText("Purchase");
 		btnPurchase.setBounds(235, 214, 60, 25);
 		
-		Button btnExitStore = new Button(this, SWT.NONE);
+		btnExitStore = new Button(this, SWT.NONE);
 		btnExitStore.setText("Exit Store");
 		btnExitStore.setBounds(335, 214, 60, 25);
 		
 		txtAmount = new Text(this, SWT.BORDER);
 		txtAmount.setBounds(264, 175, 76, 21);
 		
-		Label lblAmount = new Label(this, SWT.NONE);
+		lblAmount = new Label(this, SWT.NONE);
 		lblAmount.setText("Amount:");
 		lblAmount.setBounds(214, 178, 47, 15);
 		
-		Label lblWagonCapacity = new Label(this, SWT.NONE);
-		lblWagonCapacity.setBounds(198, 10, 90, 17);
-		lblWagonCapacity.setText("Wagon Capacity:");
+		lbl5 = new Label(this, SWT.NONE);
+		lbl5.setBounds(198, 10, 90, 17);
+		lbl5.setText("Wagon Capacity:");
 		
-		Label lblWCap = new Label(this, SWT.NONE);
-		lblWCap.setBounds(294, 10, 63, 13);
-		lblWCap.setText(MainScreen.getWagon().getTotalWeight()+"/"+MainScreen.getWagon().getCapacity());
+		lblWagonCapacity = new Label(this, SWT.NONE);
+		lblWagonCapacity.setBounds(294, 10, 63, 13);
+		lblWagonCapacity.setText(MainScreen.getWagon().getTotalWeight()+"/"+MainScreen.getWagon().getCapacity());
 		
-		Label label_1 = new Label(this, SWT.SEPARATOR | SWT.HORIZONTAL);
-		label_1.setBounds(198, 23, 242, 16);
+		lbl6 = new Label(this, SWT.SEPARATOR | SWT.HORIZONTAL);
+		lbl6.setBounds(198, 23, 242, 16);
 		
-		Label lblResponse = new Label(this, SWT.WRAP);
+		lblResponse = new Label(this, SWT.WRAP);
 		lblResponse.setBounds(198, 245, 223, 30);
 		lblResponse.setText("Welcome to the Independence Store!");
 
