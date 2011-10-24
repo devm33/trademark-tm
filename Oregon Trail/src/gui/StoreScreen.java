@@ -17,6 +17,7 @@ import org.eclipse.swt.events.SelectionEvent;
 
 import exceptions.InsufficentFundsException;
 import exceptions.WeightCapacityExceededException;
+import org.eclipse.wb.swt.SWTResourceManager;
 /**
  * Store composite
  * @author Jaron
@@ -121,7 +122,9 @@ public class StoreScreen extends Composite{
 		lbl6.setBounds(198, 23, 242, 16);
 		
 		lblResponse = new Label(this, SWT.WRAP);
-		lblResponse.setBounds(198, 245, 223, 30);
+		lblResponse.setFont(SWTResourceManager.getFont("Segoe UI", 11, SWT.BOLD));
+		lblResponse.setAlignment(SWT.CENTER);
+		lblResponse.setBounds(43, 249, 352, 41);
 		lblResponse.setText("Welcome to the Independence Store!");
 
 		//When user selects an item in the store inventory list.
@@ -159,7 +162,7 @@ public class StoreScreen extends Composite{
 		btnPurchase.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				lblResponse.setText("WHITE PEOPLE");
+				
 				if(list.getSelectionIndex()==0){
 					//If Ammunition is selected in the list
 					currentStore.buy(new Ammo(), Integer.parseInt(txtAmount.getText()), 2);
@@ -173,7 +176,7 @@ public class StoreScreen extends Composite{
 					currentStore.buy(new Medicine(), Integer.parseInt(txtAmount.getText()), 10);
 
 				} else {
-					
+					lblResponse.setText("YOU NEED TO CHOOSE AN ITEM, FOOL");
 				}
 			}
 		});
