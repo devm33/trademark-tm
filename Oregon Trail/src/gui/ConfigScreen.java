@@ -1,4 +1,4 @@
-package game;
+package gui;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
@@ -16,6 +16,8 @@ import people.Farmer;
 import people.Leader;
 import people.Traveler;
 
+import game.Wagon;
+
 import java.util.List;
 import java.util.ArrayList;
 
@@ -25,7 +27,7 @@ import java.util.ArrayList;
  * @author Jaron
  *
  */
-public class Config extends Composite{
+public class ConfigScreen extends Composite{
 	/**
 	 * done is set to 1 upon exit of configuration screen
 	 */
@@ -55,7 +57,7 @@ public class Config extends Composite{
 	 * @param parent
 	 * @param style
 	 */
-	public Config(Composite parent, int style) {
+	public ConfigScreen(Composite parent, int style) {
 		super(parent, style);
 
 		txtLeaderName = new Text(this, SWT.BORDER);

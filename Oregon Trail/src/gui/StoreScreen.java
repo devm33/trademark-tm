@@ -1,4 +1,4 @@
-package game;
+package gui;
 
 import items.Ammo;
 
@@ -18,7 +18,7 @@ import exceptions.WeightCapacityExceededException;
  * @author Jaron
  *
  */
-public class Store extends Composite{
+public class StoreScreen extends Composite{
 	public int done = 0;
 	private Text txtAmount;
 	
@@ -27,7 +27,7 @@ public class Store extends Composite{
 	 * @param parent
 	 * @param style
 	 */
-	public Store(Composite parent, int style){
+	public StoreScreen(Composite parent, int style){
 		super(parent,style);
 		
 		final List list = new List(this, SWT.BORDER);
@@ -85,7 +85,7 @@ public class Store extends Composite{
 		
 		Label lblWCap = new Label(this, SWT.NONE);
 		lblWCap.setBounds(294, 10, 63, 13);
-		lblWCap.setText(MainGame.getWagon().getTotalWeight()+"/"+MainGame.getWagon().getCapacity());
+		lblWCap.setText(MainScreen.getWagon().getTotalWeight()+"/"+MainScreen.getWagon().getCapacity());
 		
 		Label label_1 = new Label(this, SWT.SEPARATOR | SWT.HORIZONTAL);
 		label_1.setBounds(198, 23, 242, 16);
@@ -132,11 +132,11 @@ public class Store extends Composite{
 				if(list.getSelectionIndex()==0){
 					//If Ammunition is selected in the list
 					int buyNum = Integer.parseInt(txtAmount.getText());
-					int availCash = Integer.parseInt(MainGame.getWagon().getCash());
+					int availCash = Integer.parseInt(MainScreen.getWagon().getCash());
 					int total = buyNum*2;
 					try{
-						MainGame.getWagon().getLeader().setMoney(availCash-total);
-						MainGame.getWagon().addToInventory(new Ammo(), buyNum);
+						MainScreen.getWagon().getLeader().setMoney(availCash-total);
+						MainScreen.getWagon().addToInventory(new Ammo(), buyNum);
 					}
 					catch(InsufficentFundsException f){
 						
@@ -148,11 +148,11 @@ public class Store extends Composite{
 				} else if(list.getSelectionIndex()==1){
 					//If Food is selected in the list
 					int buyNum = Integer.parseInt(txtAmount.getText());
-					int availCash = Integer.parseInt(MainGame.getWagon().getCash());
+					int availCash = Integer.parseInt(MainScreen.getWagon().getCash());
 					int total = buyNum*5;
 					try{
-						MainGame.getWagon().getLeader().setMoney(availCash-total);
-						MainGame.getWagon().addToInventory(new Ammo(), buyNum);
+						MainScreen.getWagon().getLeader().setMoney(availCash-total);
+						MainScreen.getWagon().addToInventory(new Ammo(), buyNum);
 					}
 					catch(InsufficentFundsException f){
 						
@@ -163,11 +163,11 @@ public class Store extends Composite{
 				} else if(list.getSelectionIndex()==2){
 					//If Medicine is selected in the list
 					int buyNum = Integer.parseInt(txtAmount.getText());
-					int availCash = Integer.parseInt(MainGame.getWagon().getCash());
+					int availCash = Integer.parseInt(MainScreen.getWagon().getCash());
 					int total = buyNum*10;
 					try{
-						MainGame.getWagon().getLeader().setMoney(availCash-total);
-						MainGame.getWagon().addToInventory(new Ammo(), buyNum);
+						MainScreen.getWagon().getLeader().setMoney(availCash-total);
+						MainScreen.getWagon().addToInventory(new Ammo(), buyNum);
 					}
 					catch(InsufficentFundsException f){
 						
