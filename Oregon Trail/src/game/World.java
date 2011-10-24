@@ -35,7 +35,7 @@ public class World {
 		firstStore = firstTown.getStore();
 		
 		//initialize the main gui
-		mainScreen = new MainScreen(theWagon);
+		mainScreen = new MainScreen();
 		
 		//set the first store as the first store for the store screen
 		mainScreen.setStore(firstStore);
