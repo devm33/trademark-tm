@@ -1,8 +1,5 @@
 package game;
 
-import java.util.List;
-import java.util.ArrayList;
-
 /**
  * The World class holds the overarching organization for the Oregon Trail Game
  * 
@@ -18,7 +15,6 @@ public class World {
 	//this class should also contain the events and should run them periodically/randomly
 	
 	public static void main(String[] args) {
-		World theWorld = new World();
 	}
 	
 	public World() {
