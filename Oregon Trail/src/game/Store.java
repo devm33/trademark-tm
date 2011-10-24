@@ -36,11 +36,11 @@ public class Store {
 	 */
 	public void buy(Item i, int num, int price){
 		int buyNum = num;
-		int availCash = Integer.parseInt(MainScreen.getWagon().getCash());
+		int availCash = Integer.parseInt(World.getWagon().getCash());
 		int total = buyNum*price;
 		try{
-			MainScreen.getWagon().getLeader().setMoney(availCash-total);
-			MainScreen.getWagon().addToInventory(i, buyNum);
+			World.getWagon().getLeader().setMoney(availCash-total);
+			World.getWagon().addToInventory(i, buyNum);
 		}
 		catch(InsufficentFundsException f){
 			
