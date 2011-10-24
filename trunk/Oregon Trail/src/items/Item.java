@@ -8,7 +8,7 @@ package items;
  *
  */
 
-public abstract class Item {
+public abstract class Item implements Comparable<Item> {
 	
 	private String name;
 	private int weight;
@@ -128,5 +128,11 @@ public abstract class Item {
 	 * Abstract method for using items.
 	 */
 	public abstract void use();
-
+	
+	/**
+	 * Implementing the comparable library
+	 */
+	public boolean equals(Item i) {
+		return name.equals(i.getName());
+	}
 }
