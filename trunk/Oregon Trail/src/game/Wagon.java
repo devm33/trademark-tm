@@ -129,7 +129,7 @@ public class Wagon {
 	 * 
 	 * @return the Wagon's inventory in a list of Items.
 	 */
-	public InventoryScreen getInventory() {
+	public Inventory getInventory() {
 		return inventory;
 	}
 	

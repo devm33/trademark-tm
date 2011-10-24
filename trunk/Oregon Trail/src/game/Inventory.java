@@ -39,5 +39,31 @@ public class Inventory {
 		itemInventory[3] = item3;
 		itemInventory[4] = item4;
 	}
+	public int getLength(){
+		return length;
+	}
+	
+	public Item getItem(int x){
+		return itemInventory[x];
+	}
+	
+	public void setItemNum(int item, int num){
+		itemInventory[item].setNumber(num);
+	}
+	
+	public Item[] getItemInventory(){
+		return itemInventory;
+	}
+	
+	public boolean contains(Item i) {
+		// TODO Auto-generated method stub
+		for (int x=0; x<length; x++){
+			if (itemInventory[x].getName()==i.getName()){
+				return true;
+			}
+			
+		}
+		return false;
+	}
 
 }
