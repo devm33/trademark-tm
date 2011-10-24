@@ -181,7 +181,7 @@ public class MainScreen {
 		display.dispose();
 	}
 	
-	public void setStore(Store store){
-		store.setStore(store);
+	public void setStore(Store s){
+		store.setStore(s);
 	}
 }
