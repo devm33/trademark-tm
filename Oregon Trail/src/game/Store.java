@@ -8,8 +8,6 @@ package game;
  */
 import exceptions.InsufficientFundsException;
 import exceptions.WeightCapacityExceededException;
-import gui.MainScreen;
-import items.*;
 import items.Item;
 
 public class Store {
@@ -48,7 +46,6 @@ public class Store {
 		catch(WeightCapacityExceededException w){
 			throw new WeightCapacityExceededException();
 		}
-		//System.out.println("item purchased");
 	}
 
 }
