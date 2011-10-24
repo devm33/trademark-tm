@@ -6,6 +6,11 @@ import items.Item;
 import items.Medicine;
 import items.Water;
 
+/**
+ * Backend for Inventory GUI
+ * @author Jaron
+ *
+ */
 public class Inventory {
 	private Item[]itemInventory;
 	private int length = 6;

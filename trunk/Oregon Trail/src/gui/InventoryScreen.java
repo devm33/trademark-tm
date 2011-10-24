@@ -1,11 +1,5 @@
 package gui;
 
-/**
- * Inventory class to hold and display Items
- * 
- * @author Stephen Bentley
- */
-
 import items.Ammo;
 import items.Food;
 import items.Item;
@@ -18,6 +12,12 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+
+/**
+ * Inventory class to hold and display Items
+ * 
+ * @author Stephen Bentley
+ */
 
 public class InventoryScreen extends Composite{
 	public int done = 0;

@@ -14,7 +14,7 @@ import org.eclipse.swt.events.SelectionEvent;
 import exceptions.InsufficentFundsException;
 import exceptions.WeightCapacityExceededException;
 /**
- * TODO: RESET UPON EXIT
+ * Store composite
  * @author Jaron
  *
  */
