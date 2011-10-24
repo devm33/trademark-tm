@@ -2,6 +2,7 @@ package gui;
 
 import game.Store;
 import game.Wagon;
+import game.World;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StackLayout;
@@ -42,8 +43,8 @@ public class MainScreen {
 	private InventoryScreen inventory;
 	private Wagon wagon;
 
-	public MainScreen(Wagon wagon) {
-		this.wagon = wagon;
+	public MainScreen() {
+		wagon = World.getWagon();
 		/*
 		 * BEGIN INITIALIZATION OF CONTROLS (buttons, labels, etc)
 		 */
@@ -94,7 +95,7 @@ public class MainScreen {
 		shell.open();
 
 		/*Create config, town, and store screens*/
-		config = new ConfigScreen(contentPanel, SWT.NONE, wagon);
+		config = new ConfigScreen(contentPanel, SWT.NONE);
 		town = new TownScreen(contentPanel, SWT.NONE);
 		store = new StoreScreen(contentPanel, SWT.NONE);;
 		inventory = new InventoryScreen(contentPanel, SWT.NONE);
