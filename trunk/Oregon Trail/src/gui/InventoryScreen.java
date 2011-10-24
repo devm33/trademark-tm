@@ -70,7 +70,7 @@ public class InventoryScreen extends Composite{
 
 		
 		lblItems0amt = new Label(this, SWT.NONE);
-		lblItems0amt.setText(display+itemInventory[0].getNumber());
+		lblItems0amt.setText("00");
 		
 		lblItems1 = new Label(this, SWT.NONE);
 		lblItems1.setText(itemInventory[1].getName());
@@ -81,7 +81,7 @@ public class InventoryScreen extends Composite{
 
 		
 		lblItems1amt = new Label(this, SWT.NONE);
-		lblItems1amt.setText(display+itemInventory[1].getNumber());
+		lblItems1amt.setText("00");
 
 		
 		lblItems2 = new Label(this, SWT.NONE);
@@ -93,7 +93,7 @@ public class InventoryScreen extends Composite{
 
 		
 		lblItems2amt = new Label(this, SWT.NONE);
-		lblItems2amt.setText(display+itemInventory[2].getNumber());
+		lblItems2amt.setText("00");
 		new Label(this, SWT.NONE);
 		new Label(this, SWT.NONE);
 		new Label(this, SWT.NONE);
@@ -107,6 +107,7 @@ public class InventoryScreen extends Composite{
 			}
 		});
 		btnClose.setText("Close Inventory");
+		new Label(this, SWT.NONE);
 	}
 
 	public int getLength(){
