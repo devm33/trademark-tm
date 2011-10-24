@@ -29,7 +29,7 @@ public class Medicine extends Item {
 	 * Creates a new medicine item with 0 inventory.
 	 */
 	public Medicine() {
-		super(1,0,"Medicine");
+		super(1000,0,"Medicine");
 	}
 	
 	@Override

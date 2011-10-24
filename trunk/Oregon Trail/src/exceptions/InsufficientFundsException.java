@@ -7,10 +7,10 @@ package exceptions;
  *
  */
 
-public class InsufficentFundsException extends Exception {
+public class InsufficientFundsException extends Exception {
 
 	private static final long serialVersionUID = 1L;
-	public InsufficentFundsException(){
+	public InsufficientFundsException(){
 		System.out.println("YOU OUTTA MONEY, FOOL");
 	}
 }

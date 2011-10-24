@@ -1,6 +1,6 @@
 package people;
 
-import exceptions.InsufficentFundsException;
+import exceptions.InsufficientFundsException;
 
 /**
  * Abstract class to implement basic functions of all leader classes.
@@ -39,11 +39,11 @@ public abstract class Leader implements Person {
 	 * 
 	 * @param change the amount to add to the Leader's money.
 	 * @return the Leader's current funds.
-	 * @throws InsufficentFundsException
+	 * @throws InsufficientFundsException
 	 */
-	public int addMoney(int change) throws InsufficentFundsException {
+	public int addMoney(int change) throws InsufficientFundsException {
 		if(money + change < 0)
-			throw new InsufficentFundsException();
+			throw new InsufficientFundsException();
 		else
 			money += change;
 		return money;
@@ -53,11 +53,11 @@ public abstract class Leader implements Person {
 	 * Change the money
 	 * @param newmoney
 	 * @return
-	 * @throws InsufficentFundsException
+	 * @throws InsufficientFundsException
 	 */
-	public int setMoney(int newmoney) throws InsufficentFundsException {
+	public int setMoney(int newmoney) throws InsufficientFundsException {
 		if(newmoney < 0)
-			throw new InsufficentFundsException();
+			throw new InsufficientFundsException();
 		else
 			money = newmoney;
 		return money;
