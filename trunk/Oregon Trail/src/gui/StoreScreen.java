@@ -1,6 +1,7 @@
 package gui;
 
 import game.Store;
+import game.World;
 import items.Ammo;
 import items.Food;
 import items.Medicine;
@@ -114,7 +115,7 @@ public class StoreScreen extends Composite{
 		
 		lblWagonCapacity = new Label(this, SWT.NONE);
 		lblWagonCapacity.setBounds(294, 10, 63, 13);
-		lblWagonCapacity.setText(MainScreen.getWagon().getTotalWeight()+"/"+MainScreen.getWagon().getCapacity());
+		lblWagonCapacity.setText(World.getWagon().getTotalWeight()+"/"+World.getWagon().getCapacity());
 		
 		lbl6 = new Label(this, SWT.SEPARATOR | SWT.HORIZONTAL);
 		lbl6.setBounds(198, 23, 242, 16);
