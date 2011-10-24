@@ -13,9 +13,7 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Label;
 
 /**
- * And yes, everything so far is in one giant main method.
- * I know that sucks ass.
- * -Jaron
+ * The Main game screen that holds other screens
  * @author Jaron, David
  *
  */
