@@ -42,9 +42,10 @@ public abstract class Leader implements Person {
 	 * @throws InsufficentFundsException
 	 */
 	public int addMoney(int change) throws InsufficentFundsException {
-		money += change;
-		if(money < 0)
+		if(money + change < 0)
 			throw new InsufficentFundsException();
+		else
+			money += change;
 		return money;
 	}
 	
@@ -55,9 +56,10 @@ public abstract class Leader implements Person {
 	 * @throws InsufficentFundsException
 	 */
 	public int setMoney(int newmoney) throws InsufficentFundsException {
-		money = newmoney;
-		if(money < 0)
+		if(newmoney < 0)
 			throw new InsufficentFundsException();
+		else
+			money = newmoney;
 		return money;
 	}
 	
