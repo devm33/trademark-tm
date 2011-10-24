@@ -32,18 +32,20 @@ public class Store {
 	 * @param num the number of that item to buy
 	 * @param price the price of the item
 	 */
-	public void buy(Item i, int num, int price) throws InsufficientFundsException, WeightCapacityExceededException{
-		int buyNum = num;
-		int availCash = Integer.parseInt(World.getWagon().getCash());
-		int total = buyNum*price;
-		try{
-			World.getWagon().getLeader().setMoney((availCash-total));
-			World.getWagon().addToInventory(i, buyNum);
-		}
-		catch(InsufficientFundsException f){
-			throw new InsufficientFundsException();
-		}
-		catch(WeightCapacityExceededException w){
+	public void buy(Item i, int num, int price, int weight) throws InsufficientFundsException, WeightCapacityExceededException{
+		int newWeight = World.getWagon().getTotalWeight() + (num*weight);
+		if(newWeight < World.getWagon().getCapacity()){
+			int buyNum = num;
+			int availCash = Integer.parseInt(World.getWagon().getCash());
+			int total = buyNum*price;
+			try{
+				World.getWagon().getLeader().setMoney((availCash-total));
+				World.getWagon().addToInventory(i, buyNum);
+			}
+			catch(InsufficientFundsException f){
+				throw new InsufficientFundsException();
+			}
+		} else {
 			throw new WeightCapacityExceededException();
 		}
 	}
