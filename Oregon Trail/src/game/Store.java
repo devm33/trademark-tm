@@ -48,6 +48,7 @@ public class Store {
 		catch(WeightCapacityExceededException w){
 			
 		}
+		System.out.println("item purchased");
 	}
 
 }
