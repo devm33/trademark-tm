@@ -34,7 +34,7 @@ public class Wagon {
 		this.leader = leader;
 		this.members = members;
 		totalWeight = 0;
-		//inventory = new Inventory(new Water(),new Food(), new Ammo());
+		inventory = new Inventory(new Water(),new Food(), new Ammo());
 	}
 
 	/**
