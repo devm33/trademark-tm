@@ -152,9 +152,33 @@ public class Store extends Composite{
 				} else if(list.getSelectionIndex()==1){
 					//If Food is selected in the list
 					int buyNum = Integer.parseInt(txtAmount.getText());
+					int availCash = Integer.parseInt(MainGame.getWagon().getCash());
+					int total = buyNum*5;
+					try{
+						MainGame.getWagon().getLeader().setMoney(availCash-total);
+						MainGame.getWagon().addToInventory(new Ammo(), buyNum);
+					}
+					catch(InsufficentFundsException f){
+						
+					}
+					catch(WeightCapacityExceededException w){
+						
+					}
 				} else if(list.getSelectionIndex()==2){
 					//If Medicine is selected in the list
 					int buyNum = Integer.parseInt(txtAmount.getText());
+					int availCash = Integer.parseInt(MainGame.getWagon().getCash());
+					int total = buyNum*10;
+					try{
+						MainGame.getWagon().getLeader().setMoney(availCash-total);
+						MainGame.getWagon().addToInventory(new Ammo(), buyNum);
+					}
+					catch(InsufficentFundsException f){
+						
+					}
+					catch(WeightCapacityExceededException w){
+						
+					}
 				} else {
 					
 				}
