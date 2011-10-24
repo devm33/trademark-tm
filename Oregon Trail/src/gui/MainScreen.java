@@ -146,6 +146,7 @@ public class MainScreen {
 			}
 			if (store.needUpdate){
 				store.needUpdate = false;
+				inventory.update();
 				lblCash.setText("$"+World.getWagon().getCash());
 			}
 			

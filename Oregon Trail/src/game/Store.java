@@ -6,7 +6,7 @@ package game;
  * @author Jaron
  *
  */
-import exceptions.InsufficentFundsException;
+import exceptions.InsufficientFundsException;
 import exceptions.WeightCapacityExceededException;
 import gui.MainScreen;
 import items.*;
@@ -34,7 +34,7 @@ public class Store {
 	 * @param num the number of that item to buy
 	 * @param price the price of the item
 	 */
-	public void buy(Item i, int num, int price){
+	public void buy(Item i, int num, int price) throws InsufficientFundsException, WeightCapacityExceededException{
 		int buyNum = num;
 		int availCash = Integer.parseInt(World.getWagon().getCash());
 		int total = buyNum*price;
@@ -42,11 +42,11 @@ public class Store {
 			World.getWagon().getLeader().setMoney((availCash-total));
 			World.getWagon().addToInventory(i, buyNum);
 		}
-		catch(InsufficentFundsException f){
-			
+		catch(InsufficientFundsException f){
+			throw new InsufficientFundsException();
 		}
 		catch(WeightCapacityExceededException w){
-			
+			throw new WeightCapacityExceededException();
 		}
 		//System.out.println("item purchased");
 	}

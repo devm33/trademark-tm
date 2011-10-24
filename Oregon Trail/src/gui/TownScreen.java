@@ -25,8 +25,8 @@ public class TownScreen extends Composite{
 		super(parent,style);
 		
 		Label lblTown = new Label(this, SWT.NONE);
-		lblTown.setText("TOWN");
-		lblTown.setBounds(10, 10, 49, 13);
+		lblTown.setText("I'm a Town");
+		lblTown.setBounds(10, 10, 201, 13);
 		
 		
 		Button btnInn = new Button(this, SWT.NONE);
