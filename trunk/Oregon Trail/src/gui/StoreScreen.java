@@ -144,50 +144,16 @@ public class StoreScreen extends Composite{
 			public void widgetSelected(SelectionEvent e) {
 				if(list.getSelectionIndex()==0){
 					//If Ammunition is selected in the list
-					int buyNum = Integer.parseInt(txtAmount.getText());
-					int availCash = Integer.parseInt(MainScreen.getWagon().getCash());
-					int total = buyNum*2;
-					try{
-						MainScreen.getWagon().getLeader().setMoney(availCash-total);
-						MainScreen.getWagon().addToInventory(new Ammo(), buyNum);
-					}
-					catch(InsufficentFundsException f){
-						
-					}
-					catch(WeightCapacityExceededException w){
-						
-					}
+					currentStore.buy(new Ammo(), Integer.parseInt(txtAmount.getText()), 2);
 					
 				} else if(list.getSelectionIndex()==1){
 					//If Food is selected in the list
-					int buyNum = Integer.parseInt(txtAmount.getText());
-					int availCash = Integer.parseInt(MainScreen.getWagon().getCash());
-					int total = buyNum*5;
-					try{
-						MainScreen.getWagon().getLeader().setMoney(availCash-total);
-						MainScreen.getWagon().addToInventory(new Food(), buyNum);
-					}
-					catch(InsufficentFundsException f){
-						
-					}
-					catch(WeightCapacityExceededException w){
-						
-					}
+					currentStore.buy(new Food(), Integer.parseInt(txtAmount.getText()), 5);
+
 				} else if(list.getSelectionIndex()==2){
 					//If Medicine is selected in the list
-					int buyNum = Integer.parseInt(txtAmount.getText());
-					int availCash = Integer.parseInt(MainScreen.getWagon().getCash());
-					int total = buyNum*10;
-					try{
-						MainScreen.getWagon().getLeader().setMoney(availCash-total);
-						MainScreen.getWagon().addToInventory(new Medicine(), buyNum);
-					}
-					catch(InsufficentFundsException f){
-						
-					}
-					catch(WeightCapacityExceededException w){
-						
-					}
+					currentStore.buy(new Medicine(), Integer.parseInt(txtAmount.getText()), 10);
+
 				} else {
 					
 				}
