@@ -110,7 +110,9 @@ public class MainGame {
 			
 			/*Configuration Screen Continuation*/
 			if (config.done == 1 && !shell.isDisposed()){
+				System.out.println("test");
 				wagon = config.getWagon();
+				
 				lblCash.setText("$"+wagon.getCash());
 				config.done = 0;
 				config.setVisible(false);
