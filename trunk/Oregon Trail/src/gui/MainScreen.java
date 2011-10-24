@@ -1,5 +1,6 @@
 package gui;
 
+import game.Store;
 import game.Wagon;
 
 import org.eclipse.swt.SWT;
@@ -178,5 +179,9 @@ public class MainScreen {
 	
 	public void disposeDisplay(){
 		display.dispose();
+	}
+	
+	public void setStore(Store store){
+		store.setStore(store);
 	}
 }
