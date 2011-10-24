@@ -135,4 +135,8 @@ public abstract class Item implements Comparable<Item> {
 	public boolean equals(Item i) {
 		return name.equals(i.getName());
 	}
+	
+	public int compareTo(Item o) {
+		return name.compareTo(o.getName());
+	}
 }

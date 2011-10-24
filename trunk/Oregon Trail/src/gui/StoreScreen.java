@@ -159,6 +159,7 @@ public class StoreScreen extends Composite{
 		btnPurchase.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
+				lblResponse.setText("WHITE PEOPLE");
 				if(list.getSelectionIndex()==0){
 					//If Ammunition is selected in the list
 					currentStore.buy(new Ammo(), Integer.parseInt(txtAmount.getText()), 2);
