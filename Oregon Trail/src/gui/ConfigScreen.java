@@ -17,6 +17,7 @@ import people.Leader;
 import people.Traveler;
 
 import game.Wagon;
+import game.World;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -58,9 +59,9 @@ public class ConfigScreen extends Composite{
 	 * @param style
 	 * @param w the wagon
 	 */
-	public ConfigScreen(Composite parent, int style, Wagon w) {
+	public ConfigScreen(Composite parent, int style) {
 		super(parent, style);
-		wagon = w;
+		wagon = World.getWagon();
 
 		txtLeaderName = new Text(this, SWT.BORDER);
 		txtLeaderName.setText("Jonathan");
