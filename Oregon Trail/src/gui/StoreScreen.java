@@ -1,5 +1,6 @@
 package gui;
 
+import game.Store;
 import items.Ammo;
 import items.Food;
 import items.Medicine;
@@ -23,6 +24,16 @@ import exceptions.WeightCapacityExceededException;
 public class StoreScreen extends Composite{
 	public int done = 0;
 	private Text txtAmount;
+	private Store currentStore;
+	
+	/**
+	 * Change the store of the store screen.
+	 * 
+	 * @param s the new store to access
+	 */
+	public void setStore(Store s) {
+		currentStore = s;
+	}
 	
 	/**
 	 * Create the composite.

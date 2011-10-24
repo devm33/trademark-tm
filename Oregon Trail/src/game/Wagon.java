@@ -23,9 +23,19 @@ public class Wagon {
 	
 	private int pace, rations, capacity;
 	private int totalWeight;
-	private InventoryScreen inventory;
+	private Inventory inventory;
 	private List<Traveler> members;
 	private Leader leader;
+	
+	
+	/**
+	 * Better constructor for wagon -- blank.
+	 */
+	public Wagon() {
+		capacity = 3500; //this should just stay here.
+		totalWeight = 0;
+		inventory = new Inventory();
+	}
 	
 	
 	/**
@@ -44,7 +54,7 @@ public class Wagon {
 		this.leader = leader;
 		this.members = members;
 		totalWeight = 0;
-		//inventory = new Inventory(new Water(),new Food(), new Ammo());
+		inventory = new Inventory();
 	}
 
 	/**
