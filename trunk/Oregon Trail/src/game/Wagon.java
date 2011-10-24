@@ -1,5 +1,6 @@
 package game;
 
+import gui.InventoryScreen;
 import items.Item;
 
 import java.util.List;
@@ -22,7 +23,7 @@ public class Wagon {
 	
 	private int pace, rations, capacity;
 	private int totalWeight;
-	private Inventory inventory;
+	private InventoryScreen inventory;
 	private List<Traveler> members;
 	private Leader leader;
 	
@@ -118,7 +119,7 @@ public class Wagon {
 	 * 
 	 * @return the Wagon's inventory in a list of Items.
 	 */
-	public Inventory getInventory() {
+	public InventoryScreen getInventory() {
 		return inventory;
 	}
 	

@@ -1,4 +1,4 @@
-package game;
+package gui;
 
 /**
  * Inventory class to hold and display Items
@@ -19,7 +19,7 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 
-public class Inventory extends Composite{
+public class InventoryScreen extends Composite{
 	public int done = 0;
 	private Item[]itemInventory;
 	private int length = 6;
@@ -47,7 +47,7 @@ public class Inventory extends Composite{
 		itemInventory[4] = item4;
 	}*/
 
-	public Inventory(Composite parent, int style){
+	public InventoryScreen(Composite parent, int style){
 		super(parent,style);
 		
 		itemInventory = new Item[length];

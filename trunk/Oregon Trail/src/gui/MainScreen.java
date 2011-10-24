@@ -1,4 +1,6 @@
-package game;
+package gui;
+
+import game.Wagon;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StackLayout;
@@ -17,7 +19,7 @@ import org.eclipse.swt.widgets.Label;
  * @author Jaron, David
  *
  */
-public class MainGame {	
+public class MainScreen {	
 	public static int accessInventory = 0;
 	/*
 	 * currentScreen is:
@@ -80,10 +82,10 @@ public class MainGame {
 		shell.open();
 
 		/*Create config, town, and store screens*/
-		final Config config = new Config(contentPanel, SWT.NONE);
-		final Town town = new Town(contentPanel, SWT.NONE);
-		final Store store = new Store(contentPanel, SWT.NONE);;
-		final Inventory inventory = new Inventory(contentPanel, SWT.NONE);
+		final ConfigScreen config = new ConfigScreen(contentPanel, SWT.NONE);
+		final TownScreen town = new TownScreen(contentPanel, SWT.NONE);
+		final StoreScreen store = new StoreScreen(contentPanel, SWT.NONE);;
+		final InventoryScreen inventory = new InventoryScreen(contentPanel, SWT.NONE);
 		
 		/*
 		 * END INITIALIZATION OF CONTROLS
