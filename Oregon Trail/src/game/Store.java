@@ -89,7 +89,7 @@ public class Store extends Composite{
 		
 		Label lblWCap = new Label(this, SWT.NONE);
 		lblWCap.setBounds(294, 10, 63, 13);
-		lblWCap.setText(MainGame.getWagon().getTotalWeight()+"/"+MainGame.getWagon().getCapacity());
+		//lblWCap.setText(MainGame.getWagon().getTotalWeight()+"/"+MainGame.getWagon().getCapacity());
 		
 		Label label_1 = new Label(this, SWT.SEPARATOR | SWT.HORIZONTAL);
 		label_1.setBounds(198, 23, 242, 16);
