@@ -19,7 +19,7 @@ public class Town {
 		this.townStore = new Store();
 	}
 	
-	public Store getTownStore(){
+	public Store getStore(){
 		return townStore;
 	}
 	public String getTownName(){
