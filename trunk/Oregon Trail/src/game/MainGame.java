@@ -5,13 +5,9 @@ import org.eclipse.swt.custom.StackLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Event;
-import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.widgets.ToolBar;
-import org.eclipse.swt.widgets.ToolItem;
 import org.eclipse.swt.widgets.Label;
 
 /**
@@ -31,19 +27,13 @@ public class MainGame {
 	 */
 	public static int currentScreen = 0;
 	
-	private static Wagon wagon;
+	private static Wagon wagon = new Wagon(0,0,3500,null,null);
 	
 	public static Wagon getWagon(){
 		return wagon;
 	}
 
 	public static void main(String[] args) {
-		/*Basic setup*/
-		try {
-			MainGame window = new MainGame();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 		
 		/*
 		 * BEGIN INITIALIZATION OF CONTROLS (buttons, labels, etc)
@@ -92,7 +82,7 @@ public class MainGame {
 		/*Create config, town, and store screens*/
 		final Config config = new Config(contentPanel, SWT.NONE);
 		final Town town = new Town(contentPanel, SWT.NONE);
-		final Store store = new Store(contentPanel, SWT.NONE);
+		final Store store = new Store(contentPanel, SWT.NONE);;
 		final Inventory inventory = new Inventory(contentPanel, SWT.NONE);
 		
 		/*
@@ -110,7 +100,6 @@ public class MainGame {
 			
 			/*Configuration Screen Continuation*/
 			if (config.done == 1 && !shell.isDisposed()){
-				System.out.println("test");
 				wagon = config.getWagon();
 				
 				lblCash.setText("$"+wagon.getCash());
