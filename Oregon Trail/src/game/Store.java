@@ -16,7 +16,11 @@ public class Store {
 	private String name;
 	
 	public Store(){
-		this.name = "default";
+		this.name = "Independence General Store";
+		
+	}
+	public Store(String name){
+		this.name = name;
 		
 	}
 	
