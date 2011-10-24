@@ -156,8 +156,8 @@ public class Wagon {
 					if(i.equals(inventory.getItemInventory()[x])){
 						totalWeight += (i.getWeight()*n);
 						inventory.getItemInventory()[x].setNumber(inventory.getItemInventory()[x].getNumber()+n);
-						System.out.println("weight: "+totalWeight);
-						System.out.println("item: "+inventory.getItemInventory()[x].getName());
+						//System.out.println("weight: "+totalWeight);
+						//System.out.println("item: "+inventory.getItemInventory()[x].getName());
 					}
 				}
 			}
