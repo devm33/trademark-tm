@@ -132,7 +132,6 @@ public class StoreScreen extends Composite{
 		list.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				//lblName.setText(list.getItem(list.getSelectionIndex()));
 				/*need to hold weight, price, and description in some database*/
 				if(list.getSelectionIndex()==0){
 					//If Ammunition is selected in the list
@@ -171,15 +170,15 @@ public class StoreScreen extends Composite{
 					try {
 						if(list.getSelectionIndex()==0){
 							//If Ammunition is selected in the list
-							currentStore.buy(new Ammo(), Integer.parseInt(txtAmount.getText()), 2);
+							currentStore.buy(new Ammo(), Integer.parseInt(txtAmount.getText()), 2, 3);
 							lblResponse.setText("Happy hunting, shooter!");
 						} else if(list.getSelectionIndex()==1){
 							//If Food is selected in the list
-							currentStore.buy(new Food(), Integer.parseInt(txtAmount.getText()), 5);
+							currentStore.buy(new Food(), Integer.parseInt(txtAmount.getText()), 5, 5);
 							lblResponse.setText("It won't expire for another hour or two.");
 						} else if(list.getSelectionIndex()==2){
 							//If Medicine is selected in the list
-							currentStore.buy(new Medicine(), Integer.parseInt(txtAmount.getText()), 10);
+							currentStore.buy(new Medicine(), Integer.parseInt(txtAmount.getText()), 10, 1000);
 							lblResponse.setText("Don't tell the doctor where you got that...");
 						} else {
 							lblResponse.setText("You need to choose an item, fool!");
