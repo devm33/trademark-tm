@@ -22,7 +22,7 @@ import exceptions.WeightCapacityExceededException;
  *
  */
 public class StoreScreen extends Composite{
-	public int done = 0;
+	public boolean done = false;
 	private Text txtAmount;
 	private Store currentStore;
 	
@@ -164,7 +164,7 @@ public class StoreScreen extends Composite{
 		btnExitStore.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				done = 1;
+				done = true;
 			}
 		});
 	}

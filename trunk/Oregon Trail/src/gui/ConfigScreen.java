@@ -29,9 +29,9 @@ import java.util.ArrayList;
  */
 public class ConfigScreen extends Composite{
 	/**
-	 * done is set to 1 upon exit of configuration screen
+	 * done is true upon exit of configuration screen
 	 */
-	public int done = 0;
+	public boolean done = false;
 	
 	private Text txtName4;
 	private Text txtLeaderName;
@@ -60,6 +60,9 @@ public class ConfigScreen extends Composite{
 	public ConfigScreen(Composite parent, int style) {
 		super(parent, style);
 
+		/*
+		 * INITIALIZATION OF CONTROLS START HERE
+		 */
 		txtLeaderName = new Text(this, SWT.BORDER);
 		txtLeaderName.setText("Jonathan");
 		txtLeaderName.setBounds(71, 65, 76, 21);
@@ -141,6 +144,9 @@ public class ConfigScreen extends Composite{
 		dropPace.setText("Slow");
 
 		btnStart = new Button(this, SWT.NONE);
+		/*
+		 * END INITIALIZATION OF CONTROLS
+		 */
 
 		//When user clicks the "Start Journey" button.
 		btnStart.addSelectionListener(new SelectionAdapter() {
@@ -215,20 +221,8 @@ public class ConfigScreen extends Composite{
 					wagon.setRations(1);
 				} else {
 					wagon.setRations(2);
-				}
-
-
-//				System.out.println("Leader: " + partyLeader.getName());
-//				System.out.println("Cash: " + partyLeader.getMoney());
-//				System.out.println("Profession: " + dropProfession.getText());
-//				System.out.println("Pace: " + dropPace.getText() + " (" + wagon.getPace() + ")");
-//				System.out.println("Rations: " + dropRations.getText() + " ("+ wagon.getRations() + ")");
-//				System.out.println("Member1: " + party1.getName());
-//				System.out.println("Member2: " + party2.getName());
-//				System.out.println("Member3: " + party3.getName());
-//				System.out.println("Member4: " + party4.getName());
-				
-				done = 1;
+				}				
+				done = true;
 			}
 		});
 		btnStart.setBounds(146, 220, 91, 25);
@@ -241,6 +235,10 @@ public class ConfigScreen extends Composite{
 		// Disable the check that prevents subclassing of SWT components
 	}
 	
+	/**
+	 * Getter for initialized wagon.
+	 * @return
+	 */
 	public Wagon getWagon(){
 		return wagon;
 	}

@@ -20,7 +20,7 @@ import org.eclipse.swt.events.SelectionEvent;
  */
 
 public class InventoryScreen extends Composite{
-	public int done = 0;
+	public boolean done = false;
 	private Item[]itemInventory;
 	private int length = 6;
 	
@@ -111,7 +111,7 @@ public class InventoryScreen extends Composite{
 		btnClose.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
-				done = 1;
+				done = true;
 			}
 		});
 		btnClose.setText("Close Inventory");
