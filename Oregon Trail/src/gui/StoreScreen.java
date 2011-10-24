@@ -186,7 +186,7 @@ public class StoreScreen extends Composite{
 					} catch (InsufficientFundsException e1) {
 						lblResponse.setText("Come back when you have enough money, you bum!");
 					} catch (WeightCapacityExceededException e2){
-						lblResponse.setText("Your wagon can't hold that!");
+						lblResponse.setText("What in tarnations! Your wagon can't hold that!");
 					}
 					lblWagonCapacity.setText(World.getWagon().getTotalWeight()+"/"+World.getWagon().getCapacity());
 				} else {
