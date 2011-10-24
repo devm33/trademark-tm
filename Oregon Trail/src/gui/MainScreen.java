@@ -94,7 +94,7 @@ public class MainScreen {
 		shell.open();
 
 		/*Create config, town, and store screens*/
-		config = new ConfigScreen(contentPanel, SWT.NONE);
+		config = new ConfigScreen(contentPanel, SWT.NONE, wagon);
 		town = new TownScreen(contentPanel, SWT.NONE);
 		store = new StoreScreen(contentPanel, SWT.NONE);;
 		inventory = new InventoryScreen(contentPanel, SWT.NONE);
