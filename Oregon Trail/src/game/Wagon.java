@@ -7,7 +7,6 @@ import java.util.ArrayList;
  * Wagon class.
  * 
  * @author Devraj Mehta
- * NEED TO ADD MEMBERS
  */
 
 public class Wagon {
@@ -200,10 +199,19 @@ public class Wagon {
 		return str;
 	}
 	
+	/**
+	 * 
+	 * @return the amount of money the leader of this wagon has.
+	 */
 	public String getCash(){
 		String total = Integer.toString(leader.getMoney());
 		return total;
 	}
+	
+	/**
+	 * 
+	 * @return the current weight of the wagon.
+	 */
 	public int getTotalWeight(){
 		return totalWeight;
 	}
