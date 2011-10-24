@@ -1,4 +1,6 @@
-package game;
+package people;
+
+import exceptions.InsufficentFundsException;
 
 /**
  * Abstract class to implement basic functions of all leader classes.

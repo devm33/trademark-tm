@@ -1,4 +1,4 @@
-package game;
+package items;
 
 /**
  * Abstract class for all Items.

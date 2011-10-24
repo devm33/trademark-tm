@@ -1,7 +1,16 @@
 package game;
 
+import items.Item;
+
 import java.util.List;
 import java.util.ArrayList;
+
+import exceptions.ItemNotFoundException;
+import exceptions.WeightCapacityExceededException;
+
+import people.Leader;
+import people.Person;
+import people.Traveler;
 
 /**
  * Wagon class.
@@ -34,7 +43,7 @@ public class Wagon {
 		this.leader = leader;
 		this.members = members;
 		totalWeight = 0;
-		inventory = new Inventory(new Water(),new Food(), new Ammo());
+		//inventory = new Inventory(new Water(),new Food(), new Ammo());
 	}
 
 	/**

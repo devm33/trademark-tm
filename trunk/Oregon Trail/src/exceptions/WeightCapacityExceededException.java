@@ -1,4 +1,4 @@
-package game;
+package exceptions;
 
 /**
  * Exception class for wagon capacity errors.

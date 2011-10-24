@@ -1,4 +1,4 @@
-package game;
+package exceptions;
 
 /**
  * Class to throw when there is an accounting error.

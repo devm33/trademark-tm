@@ -1,4 +1,4 @@
-package game;
+package items;
 /**
  * class for wheel item
  * @author Jaron

@@ -9,6 +9,13 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.wb.swt.SWTResourceManager;
 import org.eclipse.swt.widgets.Button;
+
+import people.Banker;
+import people.Carpenter;
+import people.Farmer;
+import people.Leader;
+import people.Traveler;
+
 import java.util.List;
 import java.util.ArrayList;
 

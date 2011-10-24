@@ -1,4 +1,4 @@
-package game;
+package items;
 /**
  * Class to implement the ammunition item.
  * 
