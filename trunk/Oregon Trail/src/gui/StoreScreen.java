@@ -1,6 +1,8 @@
 package gui;
 
 import items.Ammo;
+import items.Food;
+import items.Medicine;
 
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.SWT;
@@ -114,7 +116,7 @@ public class StoreScreen extends Composite{
 					lblPrice.setText("$5");
 					lblDesc.setText("Durable canned foodstuff.");
 				} else if(list.getSelectionIndex()==2){
-					//If Water is selected in the list
+					//If Medicine is selected in the list
 					lblName.setText("Medicine");
 					lblWeight.setText("1 lb");
 					lblPrice.setText("$10");
@@ -152,7 +154,7 @@ public class StoreScreen extends Composite{
 					int total = buyNum*5;
 					try{
 						MainScreen.getWagon().getLeader().setMoney(availCash-total);
-						MainScreen.getWagon().addToInventory(new Ammo(), buyNum);
+						MainScreen.getWagon().addToInventory(new Food(), buyNum);
 					}
 					catch(InsufficentFundsException f){
 						
@@ -167,7 +169,7 @@ public class StoreScreen extends Composite{
 					int total = buyNum*10;
 					try{
 						MainScreen.getWagon().getLeader().setMoney(availCash-total);
-						MainScreen.getWagon().addToInventory(new Ammo(), buyNum);
+						MainScreen.getWagon().addToInventory(new Medicine(), buyNum);
 					}
 					catch(InsufficentFundsException f){
 						
