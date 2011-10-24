@@ -41,8 +41,21 @@ public abstract class Leader implements Person {
 	 * @return the Leader's current funds.
 	 * @throws InsufficentFundsException
 	 */
-	public int setMoney(int change) throws InsufficentFundsException {
+	public int addMoney(int change) throws InsufficentFundsException {
 		money += change;
+		if(money < 0)
+			throw new InsufficentFundsException();
+		return money;
+	}
+	
+	/**
+	 * Change the money
+	 * @param newmoney
+	 * @return
+	 * @throws InsufficentFundsException
+	 */
+	public int setMoney(int newmoney) throws InsufficentFundsException {
+		money = newmoney;
 		if(money < 0)
 			throw new InsufficentFundsException();
 		return money;
