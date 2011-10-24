@@ -106,7 +106,7 @@ public abstract class Item implements Comparable<Item> {
 	 * @param num the new number of items.
 	 */
 	public void setNumber(int num) {
-		number = num;
+		this.number = num;
 	}
 	
 	/**
