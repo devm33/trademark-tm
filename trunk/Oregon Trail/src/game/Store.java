@@ -39,7 +39,7 @@ public class Store {
 		int availCash = Integer.parseInt(World.getWagon().getCash());
 		int total = buyNum*price;
 		try{
-			World.getWagon().getLeader().setMoney(availCash-total);
+			World.getWagon().getLeader().setMoney(-1*(availCash-total));
 			World.getWagon().addToInventory(i, buyNum);
 		}
 		catch(InsufficentFundsException f){
