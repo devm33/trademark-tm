@@ -200,7 +200,7 @@ public class ConfigScreen extends Composite{
 
 				//add the people to the wagon
 				wagon.setMembers(memberList);
-				wagon.setLeader(leader);
+				wagon.setLeader(partyLeader);
 				
 				//Set initial pace of wagon to user selection
 				if(dropPace.getText().equals("Slow")){
