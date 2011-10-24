@@ -140,18 +140,21 @@ public class StoreScreen extends Composite{
 					lblWeight.setText("3 lbs");
 					lblPrice.setText("$2");
 					lblDesc.setText("A box of 20 hunting rifle rounds used for big game.");
+					lblResponse.setText("Don't blow your face off with these.");
 				} else if(list.getSelectionIndex()==1){
 					//If Food is selected in the list
 					lblName.setText("Food");
 					lblWeight.setText("5 lbs");
 					lblPrice.setText("$5");
 					lblDesc.setText("Durable canned foodstuff.");
+					lblResponse.setText("Better than my wife's poor excuse for cooking.");
 				} else if(list.getSelectionIndex()==2){
 					//If Medicine is selected in the list
 					lblName.setText("Medicine");
 					lblWeight.setText("1000 lbs");
 					lblPrice.setText("$10");
 					lblDesc.setText("A large container of medicine.");
+					lblResponse.setText("It's great for headaches and heroin addicts.");
 				} else {
 					
 				}
@@ -164,28 +167,32 @@ public class StoreScreen extends Composite{
 			public void widgetSelected(SelectionEvent e) {
 				needUpdate = true;
 				
-				try {
-					if(list.getSelectionIndex()==0){
-						//If Ammunition is selected in the list
-						currentStore.buy(new Ammo(), Integer.parseInt(txtAmount.getText()), 2);
-						lblResponse.setText("Thank you for your purchase!");
-					} else if(list.getSelectionIndex()==1){
-						//If Food is selected in the list
-						currentStore.buy(new Food(), Integer.parseInt(txtAmount.getText()), 5);
-						lblResponse.setText("Thank you for your purchase!");
-					} else if(list.getSelectionIndex()==2){
-						//If Medicine is selected in the list
-						currentStore.buy(new Medicine(), Integer.parseInt(txtAmount.getText()), 10);
-						lblResponse.setText("Thank you for your purchase!");
-					} else {
-						lblResponse.setText("YOU NEED TO CHOOSE AN ITEM, FOOL!");
+				if(isInteger(txtAmount.getText())){
+					try {
+						if(list.getSelectionIndex()==0){
+							//If Ammunition is selected in the list
+							currentStore.buy(new Ammo(), Integer.parseInt(txtAmount.getText()), 2);
+							lblResponse.setText("Happy hunting, shooter!");
+						} else if(list.getSelectionIndex()==1){
+							//If Food is selected in the list
+							currentStore.buy(new Food(), Integer.parseInt(txtAmount.getText()), 5);
+							lblResponse.setText("It won't expire for another hour or two.");
+						} else if(list.getSelectionIndex()==2){
+							//If Medicine is selected in the list
+							currentStore.buy(new Medicine(), Integer.parseInt(txtAmount.getText()), 10);
+							lblResponse.setText("Don't tell the doctor where you got that...");
+						} else {
+							lblResponse.setText("You need to choose an item, fool!");
+						}
+					} catch (InsufficientFundsException e1) {
+						lblResponse.setText("Come back when you have enough money, you bum!");
+					} catch (WeightCapacityExceededException e2){
+						lblResponse.setText("Your wagon can't hold that!");
 					}
-				} catch (InsufficientFundsException e1) {
-					lblResponse.setText("AHAHAHAHA NOT ENOUGH CASH!");
-				} catch (WeightCapacityExceededException e2){
-					lblResponse.setText("Your wagon can't hold that!");
+					lblWagonCapacity.setText(World.getWagon().getTotalWeight()+"/"+World.getWagon().getCapacity());
+				} else {
+					lblResponse.setText("Try specifying a real quantity, dummy.");
 				}
-				lblWagonCapacity.setText(World.getWagon().getTotalWeight()+"/"+World.getWagon().getCapacity());
 			}
 		});
 		
@@ -197,6 +204,16 @@ public class StoreScreen extends Composite{
 			}
 		});
 	}
+	
+	public boolean isInteger(String input){  
+	   try{  
+	      Integer.parseInt(input);  
+	      return true;  
+	   }  
+	   catch(Exception e){  
+	      return false;  
+	   }  
+	} 
 	
 	@Override
 	protected void checkSubclass() {

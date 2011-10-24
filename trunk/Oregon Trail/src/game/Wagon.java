@@ -1,6 +1,5 @@
 package game;
 
-import gui.InventoryScreen;
 import items.Item;
 
 import java.util.List;
@@ -248,5 +247,13 @@ public class Wagon {
 	 */
 	public int getTotalWeight(){
 		return totalWeight;
+	}
+	
+	/**
+	 * set the current weight of the wagon
+	 * @param w the new weight of the wagon
+	 */
+	public void setTotalWeight(int w){
+		totalWeight = w;
 	}
 }
