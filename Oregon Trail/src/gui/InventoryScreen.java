@@ -70,7 +70,7 @@ public class InventoryScreen extends Composite{
 
 		
 		lblItems0amt = new Label(this, SWT.NONE);
-		lblItems0amt.setText("00");
+		lblItems0amt.setText("0000");
 		
 		lblItems1 = new Label(this, SWT.NONE);
 		lblItems1.setText(itemInventory[1].getName());
@@ -81,7 +81,7 @@ public class InventoryScreen extends Composite{
 
 		
 		lblItems1amt = new Label(this, SWT.NONE);
-		lblItems1amt.setText("00");
+		lblItems1amt.setText("0000");
 
 		
 		lblItems2 = new Label(this, SWT.NONE);
@@ -93,7 +93,7 @@ public class InventoryScreen extends Composite{
 
 		
 		lblItems2amt = new Label(this, SWT.NONE);
-		lblItems2amt.setText("00");
+		lblItems2amt.setText("0000");
 		new Label(this, SWT.NONE);
 		new Label(this, SWT.NONE);
 		new Label(this, SWT.NONE);
@@ -127,6 +127,9 @@ public class InventoryScreen extends Composite{
 	}
 	
 	public void update(){
+/*		lblItems0wt.setText(""+World.getWagon().getInventory().getItemInventory()[0].getWeight());
+		lblItems1wt.setText(""+World.getWagon().getInventory().getItemInventory()[1].getWeight());
+		lblItems2wt.setText(""+World.getWagon().getInventory().getItemInventory()[2].getWeight());*/
 		lblItems0amt.setText(""+World.getWagon().getInventory().getItemInventory()[0].getNumber());
 		lblItems1amt.setText(""+World.getWagon().getInventory().getItemInventory()[1].getNumber());
 		lblItems2amt.setText(""+World.getWagon().getInventory().getItemInventory()[2].getNumber());
