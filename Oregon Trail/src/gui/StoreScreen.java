@@ -25,6 +25,7 @@ import org.eclipse.wb.swt.SWTResourceManager;
  */
 public class StoreScreen extends Composite{
 	public boolean done = false;
+	public boolean needUpdate = false;
 	private Text txtAmount;
 	private Store currentStore;
 	private List list;
@@ -133,7 +134,6 @@ public class StoreScreen extends Composite{
 			public void widgetSelected(SelectionEvent e) {
 				//lblName.setText(list.getItem(list.getSelectionIndex()));
 				/*need to hold weight, price, and description in some database*/
-				
 				if(list.getSelectionIndex()==0){
 					//If Ammunition is selected in the list
 					lblName.setText("Ammunition");
@@ -162,7 +162,7 @@ public class StoreScreen extends Composite{
 		btnPurchase.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				
+				needUpdate = true;
 				if(list.getSelectionIndex()==0){
 					//If Ammunition is selected in the list
 					currentStore.buy(new Ammo(), Integer.parseInt(txtAmount.getText()), 2);

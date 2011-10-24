@@ -28,7 +28,7 @@ public class MainScreen {
 	 */
 	public static int currentScreen = 0;
 	public static boolean accessInventory = false;
-	
+
 	private Display display;
 	private Shell shell;
 	private Label lblCash;
@@ -51,16 +51,16 @@ public class MainScreen {
 		display = new Display();
 		shell = new Shell(display);
 		shell.setBounds(100, 100, 500, 400);
-		
+
 		lblCash = new Label(shell, SWT.NONE);
 		lblCash.setText("$0");
 		lblCash.setBounds(65, 15, 55, 15);
-		
+
 		lbl1 = new Label(shell, SWT.NONE);
 		lbl1.setAlignment(SWT.RIGHT);
 		lbl1.setBounds(15, 15, 44, 15);
 		lbl1.setText("Cash:");
-		
+
 		btnInventory = new Button(shell, SWT.NONE);
 		btnInventory.addSelectionListener(new SelectionAdapter() {
 			@Override
@@ -70,7 +70,7 @@ public class MainScreen {
 		});
 		btnInventory.setBounds(179, 10, 75, 25);
 		btnInventory.setText("Inventory");
-		
+
 		btnQuitGame = new Button(shell, SWT.NONE);
 		btnQuitGame.addSelectionListener(new SelectionAdapter() {
 			@Override
@@ -81,15 +81,15 @@ public class MainScreen {
 		});
 		btnQuitGame.setBounds(349, 10, 75, 25);
 		btnQuitGame.setText("Quit Game");
-		
+
 		/*Create the composite that the pages will share*/
 		contentPanel = new Composite(shell, SWT.BORDER);
 		contentPanel.setBounds(0, 50, 500, 300);
-		
+
 		/*
 		 * END INITIALIZATION OF CONTROLS
 		 */
-		
+
 		layout = new StackLayout();
 		contentPanel.setLayout(layout);
 		shell.open();
@@ -99,66 +99,70 @@ public class MainScreen {
 		town = new TownScreen(contentPanel, SWT.NONE);
 		store = new StoreScreen(contentPanel, SWT.NONE);;
 		inventory = new InventoryScreen(contentPanel, SWT.NONE);
-		
+
 		/*Put Config screen on top*/
 		layout.topControl = config;
 		contentPanel.layout();
 		shell.update();
 	}
-	
+
 	public boolean stepGame(){
 		if (!display.readAndDispatch())
 			display.sleep();
-		
-		/*Configuration Screen Continuation*/
-		if (config.done && !shell.isDisposed()){
-			lblCash.setText("$"+wagon.getCash());
-			config.done = false;
-			config.setVisible(false);
-			town.setVisible(true);
-			currentScreen = 1;
-			layout.topControl = town;
-			contentPanel.layout();
-			shell.update();
-		}
-		
-		/*Town Screen Continuation*/
-		if (town.choice == 2 && !shell.isDisposed()){
-			town.choice = 0;
-			town.setVisible(false);
-			store.setVisible(true);
-			currentScreen = 2;
-			layout.topControl = store;
-			contentPanel.layout();
-			shell.update();
-		}
-		
-		/*Store Screen Continuation*/
-		if (store.done && !shell.isDisposed()){
-			store.done = false;
-			store.setVisible(false);
-			town.setVisible(true);
-			currentScreen = 1;
-			layout.topControl = town;
-			contentPanel.layout();
-			shell.update();
+
+		if (!shell.isDisposed()){
+			/*Configuration Screen Continuation*/
+			if (config.done){
+				lblCash.setText("$"+wagon.getCash());
+				config.done = false;
+				config.setVisible(false);
+				town.setVisible(true);
+				currentScreen = 1;
+				layout.topControl = town;
+				contentPanel.layout();
+				shell.update();
+			}
+
+			/*Town Screen Continuation*/
+			if (town.choice == 2){
+				town.choice = 0;
+				town.setVisible(false);
+				store.setVisible(true);
+				currentScreen = 2;
+				layout.topControl = store;
+				contentPanel.layout();
+				shell.update();
+			}
+
+			/*Store Screen Continuation and Update*/
+			if (store.done){
+				store.done = false;
+				store.setVisible(false);
+				town.setVisible(true);
+				currentScreen = 1;
+				layout.topControl = town;
+				contentPanel.layout();
+				shell.update();
+			}
+			if (store.needUpdate){
+				store.needUpdate = false;
+				lblCash.setText("$"+World.getWagon().getCash());
+			}
 			
-		}
-		
-		/*Inventory Screen Continuation*/
-		if (accessInventory && !shell.isDisposed()){
-			accessInventory = false;
-			layout.topControl.setVisible(false);
-			inventory.setVisible(true);
-			layout.topControl = inventory;
-			layout.topControl.setVisible(true);
-			contentPanel.update();
-			shell.update();
-		}
-		if (inventory.done && !shell.isDisposed()){
-			inventory.done = false;
-			inventory.setVisible(false);
-			switch(currentScreen){
+			/*Inventory Screen Continuation*/
+			if (accessInventory){
+				accessInventory = false;
+				layout.topControl.setVisible(false);
+				inventory.setVisible(true);
+				layout.topControl = inventory;
+				layout.topControl.setVisible(true);
+				contentPanel.update();
+				shell.update();
+			}
+			if (inventory.done){
+				inventory.done = false;
+				inventory.setVisible(false);
+				switch(currentScreen){
 				case 0:
 					config.setVisible(true);
 					layout.topControl = config;
@@ -171,17 +175,18 @@ public class MainScreen {
 					store.setVisible(true);
 					layout.topControl = store;
 					break;
+				}
 			}
 			contentPanel.update();
 			shell.update();
 		}
 		return !shell.isDisposed();
 	}
-	
+
 	public void disposeDisplay(){
 		display.dispose();
 	}
-	
+
 	public void setStore(Store s){
 		store.setStore(s);
 	}
