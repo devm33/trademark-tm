@@ -11,7 +11,7 @@ import gui.MainScreen;
  */
 public class World {
 	
-	private Wagon theWagon; //the user's wagon class containing the leader, travellers, inventory, etc.
+	private static Wagon theWagon; //the user's wagon class containing the leader, travellers, inventory, etc.
 	private Store firstStore;
 	private Town firstTown; //hard-ish code for m6
 	
@@ -19,6 +19,8 @@ public class World {
 	
 	//private Map the Map; //GUI class for displaying the main map of the game.
 	//private List<Town> towns; //the list of towns in the game
+	
+	//private location of sorts?
 	
 	//this class should also contain the events and should run them periodically/randomly
 	
@@ -32,20 +34,30 @@ public class World {
 		firstTown = new Town();
 		firstStore = firstTown.getStore();
 		
-		//starting the main game loop
-		mainScreen = new MainScreen();
-		mainScreen.startGame();
+		//initialize the main gui
+		mainScreen = new MainScreen(theWagon);
 		
+		//set the first store as the first store for the store screen
+		mainScreen.setStore(firstStore);
 		
+		//start main game loop
+		boolean game_running = true;
+		while(game_running) {
+			
+			
+			game_running = mainScreen.stepGame();
+			
+			
+		//next map
 		
-		//next first town
+		}
 		
-		//next map (loop?)
+		//kill the gui now that we're done
+		mainScreen.disposeDisplay();
 	}
 	
-	public Wagon getWagon() {
+	public static Wagon getWagon(){
 		return theWagon;
 	}
-	
 
 }

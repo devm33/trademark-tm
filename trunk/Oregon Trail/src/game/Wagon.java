@@ -56,6 +56,14 @@ public class Wagon {
 		totalWeight = 0;
 		inventory = new Inventory();
 	}
+	
+	public void setLeader(Leader l){
+		leader = l;
+	}
+	
+	public void setMembers(List<Traveler> l) {
+		members = l;
+	}
 
 	/**
 	 * 
