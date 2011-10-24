@@ -69,7 +69,7 @@ public abstract class Item implements Comparable<Item> {
 	 * @return the weight of the item.
 	 */
 	public int getWeight() {
-		return weight*number;
+		return weight;
 	}
 	
 	/**
