@@ -1,4 +1,4 @@
-package game;
+package exceptions;
 
 /**
  * Exception class for inventory errors.

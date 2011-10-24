@@ -1,4 +1,4 @@
-package game;
+package people;
 
 /**
  * Class for inactive members of the wagon party.

@@ -6,6 +6,11 @@ package game;
  * @author Stephen Bentley
  */
 
+import items.Ammo;
+import items.Food;
+import items.Item;
+import items.Medicine;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;

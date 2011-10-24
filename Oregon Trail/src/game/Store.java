@@ -1,5 +1,7 @@
 package game;
 
+import items.Ammo;
+
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Text;
@@ -8,6 +10,9 @@ import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+
+import exceptions.InsufficentFundsException;
+import exceptions.WeightCapacityExceededException;
 /**
  * TODO: RESET UPON EXIT
  * @author Jaron
