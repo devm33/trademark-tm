@@ -73,7 +73,7 @@ public class MainScreen {
 		});
 		btnInventory.setBounds(179, 10, 75, 25);
 		btnInventory.setText("Inventory");
-
+		btnInventory.setEnabled(false);
 		btnQuitGame = new Button(shlOregonTrail, SWT.NONE);
 		btnQuitGame.addSelectionListener(new SelectionAdapter() {
 			@Override
@@ -117,6 +117,7 @@ public class MainScreen {
 		if (!shlOregonTrail.isDisposed()){
 			/*Configuration Screen Continuation*/
 			if (config.done){
+				btnInventory.setEnabled(true);
 				lblCash.setText("$"+wagon.getCash());
 				config.done = false;
 				config.setVisible(false);
