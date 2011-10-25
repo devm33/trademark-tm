@@ -1,6 +1,8 @@
 package game;
 
 import items.Item;
+import items.Food;
+import game.Inventory;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -270,7 +272,10 @@ public class Wagon {
 	 */
 	public void takeStep()
 	{
+		Food f = inventory.getFood();
+		
 		distance += pace;
-			
+		f.use();
+		f.setNumber(f.getNumber()-rations);		
 	}
 }
