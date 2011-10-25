@@ -30,7 +30,7 @@ public class MainScreen {
 	public static boolean accessInventory = false;
 
 	private Display display;
-	private Shell shell;
+	private Shell shlOregonTrail;
 	private Label lblCash;
 	private Label lbl1;
 	private Button btnInventory;
@@ -50,19 +50,20 @@ public class MainScreen {
 		 * BEGIN INITIALIZATION OF CONTROLS (buttons, labels, etc)
 		 */
 		display = new Display();
-		shell = new Shell(display);
-		shell.setBounds(100, 100, 500, 400);
+		shlOregonTrail = new Shell(display);
+		shlOregonTrail.setText("Oregon Trail");
+		shlOregonTrail.setBounds(100, 100, 500, 400);
 
-		lblCash = new Label(shell, SWT.NONE);
+		lblCash = new Label(shlOregonTrail, SWT.NONE);
 		lblCash.setText("$0");
 		lblCash.setBounds(65, 15, 55, 15);
 
-		lbl1 = new Label(shell, SWT.NONE);
+		lbl1 = new Label(shlOregonTrail, SWT.NONE);
 		lbl1.setAlignment(SWT.RIGHT);
 		lbl1.setBounds(15, 15, 44, 15);
 		lbl1.setText("Cash:");
 
-		btnInventory = new Button(shell, SWT.NONE);
+		btnInventory = new Button(shlOregonTrail, SWT.NONE);
 		btnInventory.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
@@ -72,11 +73,11 @@ public class MainScreen {
 		btnInventory.setBounds(179, 10, 75, 25);
 		btnInventory.setText("Inventory");
 
-		btnQuitGame = new Button(shell, SWT.NONE);
+		btnQuitGame = new Button(shlOregonTrail, SWT.NONE);
 		btnQuitGame.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
-				shell.dispose();
+				shlOregonTrail.dispose();
 				display.dispose();
 			}
 		});
@@ -84,7 +85,7 @@ public class MainScreen {
 		btnQuitGame.setText("Quit Game");
 
 		/*Create the composite that the pages will share*/
-		contentPanel = new Composite(shell, SWT.BORDER);
+		contentPanel = new Composite(shlOregonTrail, SWT.BORDER);
 		contentPanel.setBounds(0, 50, 500, 300);
 
 		/*
@@ -93,7 +94,7 @@ public class MainScreen {
 
 		layout = new StackLayout();
 		contentPanel.setLayout(layout);
-		shell.open();
+		shlOregonTrail.open();
 
 		/*Create config, town, and store screens*/
 		config = new ConfigScreen(contentPanel, SWT.NONE);
@@ -105,14 +106,14 @@ public class MainScreen {
 		/*Put Config screen on top*/
 		layout.topControl = config;
 		contentPanel.layout();
-		shell.update();
+		shlOregonTrail.update();
 	}
 
 	public boolean stepGame(){
 		if (!display.readAndDispatch())
 			display.sleep();
 
-		if (!shell.isDisposed()){
+		if (!shlOregonTrail.isDisposed()){
 			/*Configuration Screen Continuation*/
 			if (config.done){
 				lblCash.setText("$"+wagon.getCash());
@@ -122,7 +123,7 @@ public class MainScreen {
 				currentScreen = 1;
 				layout.topControl = town;
 				contentPanel.layout();
-				shell.update();
+				shlOregonTrail.update();
 			}
 
 			/*Town Screen Continuation*/
@@ -133,7 +134,7 @@ public class MainScreen {
 				currentScreen = 2;
 				layout.topControl = store;
 				contentPanel.layout();
-				shell.update();
+				shlOregonTrail.update();
 			}
 			else if(town.choice == 3){
 				town.choice = 0;
@@ -142,7 +143,7 @@ public class MainScreen {
 				currentScreen = 3;
 				layout.topControl = wagonView;
 				contentPanel.layout();
-				shell.update();
+				shlOregonTrail.update();
 			}
 
 			/*Store Screen Continuation and Update*/
@@ -153,7 +154,7 @@ public class MainScreen {
 				currentScreen = 1;
 				layout.topControl = town;
 				contentPanel.layout();
-				shell.update();
+				shlOregonTrail.update();
 			}
 			if (store.needUpdate){
 				store.needUpdate = false;
@@ -169,7 +170,7 @@ public class MainScreen {
 				layout.topControl = inventory;
 				layout.topControl.setVisible(true);
 				contentPanel.update();
-				shell.update();
+				shlOregonTrail.update();
 			}
 			if (inventory.done){
 				inventory.done = false;
@@ -190,9 +191,9 @@ public class MainScreen {
 				}
 			}
 			contentPanel.update();
-			shell.update();
+			shlOregonTrail.update();
 		}
-		return !shell.isDisposed();
+		return !shlOregonTrail.isDisposed();
 	}
 
 	public void disposeDisplay(){
