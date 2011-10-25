@@ -53,6 +53,7 @@ public class TownScreen extends Composite{
 		btnLeaveTown.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
+				choice = 3;
 			}
 		});
 		btnLeaveTown.setText("Leave Town");
