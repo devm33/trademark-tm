@@ -122,14 +122,7 @@ public class WagonScreen extends Composite {
 		
 		rations.setBounds(68, 83, 94, 22);
 		rations.setText("Normal");
-		
-		txtPace = new Text(this, SWT.BORDER);
-		txtPace.setText("Pace:");
-		txtPace.setBounds(0, 145, 64, 19);
-		
-		txtRations = new Text(this, SWT.BORDER);
-		txtRations.setText("Rations:");
-		txtRations.setBounds(0, 84, 64, 19);
+
 		
 		pace.setItems(new String[] {"Stopped", "Leisurely", "Steady", "Grueling"});
 		pace.setBounds(68, 144, 94, 22);
@@ -140,17 +133,11 @@ public class WagonScreen extends Composite {
 		
 		paceDescript = new Text(this, SWT.BORDER);
 		paceDescript.setBounds(174, 145, 210, 42);
-		
-		txtFoodRemaining = new Text(this, SWT.BORDER);
-		txtFoodRemaining.setText("Food remaining:");
-		txtFoodRemaining.setBounds(157, 10, 94, 19);
+	
 		
 		food = new Text(this, SWT.BORDER);
 		food.setBounds(257, 10, 64, 19);
 		
-		txtDistanceRemaining = new Text(this, SWT.BORDER);
-		txtDistanceRemaining.setText("Distance remaining:");
-		txtDistanceRemaining.setBounds(157, 42, 115, 19);
 		
 		distance = new Text(this, SWT.BORDER);
 		distance.setBounds(278, 42, 64, 19);
@@ -188,48 +175,40 @@ public class WagonScreen extends Composite {
 		return null;
 	}
 	private int rations(String r) {
-		switch(r) {
-		case 0:
-			return "None";
-		case 1:
-			return "Barebones";
-		case 2:
-			return "Meager";
-		case 3:
-			return "Normal";
-		case "Wellfed":
+		if(r.equals("None"))
+			return 0;
+		else if(r.equals("Barebones"))
+			return 1;
+		else if(r.equals("Meager"))
+			return 2;
+		else if(r.equals("Normal"))
+			return 3;
+		else if(r.equals("Wellfed"))
 			return 4;
-		}
-		reutnr -1;
+		return -1;
 	}
 	private String pace(int p) {
-		switch(r) {
+		switch(p) {
 		case 0:
-			return "None";
-		case 1:
-			return "Barebones";
-		case 2:
-			return "Meager";
-		case 3:
-			return "Normal";
-		case 4:
-			return "Wellfed";
+			return "Stopped";
+		case 5:
+			return "Leisurely";
+		case 10:
+			return "Steady";
+		case 15:
+			return "Grueling";
 		}
 		return null;
 	}
 	private int pace(String p) {
-		switch(r) {
-		case 0:
-			return "None";
-		case 1:
-			return "Barebones";
-		case 2:
-			return "Meager";
-		case 3:
-			return "Normal";
-		case 4:
-			return "Wellfed";
-		}
+		if(p.equals("Stopped"))
+			return 0;
+		else if(p.equals("Leisurely"))
+			return 5;
+		else if(p.equals("Steady"))
+			return 10;
+		else if(p.equals("Grueling"))
+			return 15;
 		return -1;
 	}
 }
