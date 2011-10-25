@@ -144,10 +144,6 @@ public class MainScreen {
 				contentPanel.layout();
 				shell.update();
 			}
-				
-				
-				
-			}
 
 			/*Store Screen Continuation and Update*/
 			if (store.done){
@@ -164,7 +160,7 @@ public class MainScreen {
 				inventory.update();
 				lblCash.setText("$"+World.getWagon().getCash());
 			}
-			
+
 			/*Inventory Screen Continuation*/
 			if (accessInventory){
 				accessInventory = false;
