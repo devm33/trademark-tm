@@ -112,5 +112,18 @@ public class Inventory {
 		}
 		return null;
 	}
+	
+	/**
+	 * Returns the Water object in Inventory if it exists, if not, returns null
+	 * @return Water or null depending on presence of a Water object in inventory
+	 */
+	public Water getWater(){
+		for (int f=0; f<length; f++){
+			if (itemInventory[f].equals(new Water())){
+				return (Water) itemInventory[f];
+			}
+		}
+		return null;
+	}
 
 }
