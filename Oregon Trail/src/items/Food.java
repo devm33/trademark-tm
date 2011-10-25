@@ -10,14 +10,18 @@ public class Food extends Item {
 	 */
 	public Food() {
 		super(5, 0, "Food");
-		// TODO Auto-generated constructor stub
+		int excess;
 	}
 	/**
 	 * Method for using food with input ration used
 	 * @param used the number of lbs of food used (increments of 5lbs) 
 	 */
 	public void use(int used) {
-		// TODO Auto-generated method stub
+		
+		//for loop to adjust number of used lbs based on people dead
+		//increment excess based on number of lbs not eaten
+		//if # of lbs unused reaches 5, available num of food units will increase by 1
+		//if above triggered, set excess to 0 and begin again
 		
 		try {
 			if (this.getNumber()>=used) {
@@ -29,8 +33,7 @@ public class Food extends Item {
 				throw new InsufficientFoodException();
 			}
 		} catch (InsufficientFoodException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 	}
 	/**
@@ -38,6 +41,12 @@ public class Food extends Item {
 	 */
 	@Override
 	public void use() {
+		
+		//for loop to adjust number of used lbs based on people dead
+		//increment excess based on number of lbs not eaten
+		//if # of lbs unused reaches 5, available num of food units will increase by 1
+		//if above triggered, set excess to 0 and begin again
+		
 		int used =World.getWagon().getRations();
 		try {
 			if (this.getNumber()>=used) {
@@ -49,8 +58,7 @@ public class Food extends Item {
 				throw new InsufficientFoodException();
 			}
 		} catch (InsufficientFoodException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 		
 	}
