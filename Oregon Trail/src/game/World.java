@@ -4,7 +4,7 @@ import gui.MainScreen;
 
 /**
  * The World class holds the overarching organization for the Oregon Trail Game
- * 
+ * Should hold towns, stores, buildings, events, RIVERS
  * 
  * @author Devraj Mehta
  *

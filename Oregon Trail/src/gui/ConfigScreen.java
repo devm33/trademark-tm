@@ -134,14 +134,14 @@ public class ConfigScreen extends Composite{
 		dropProfession.setText("Farmer");
 
 		dropRations = new Combo(this, SWT.READ_ONLY);
-		dropRations.setItems(new String[] {"Meager", "Normal", "Filling"});
+		dropRations.setItems(new String[] {"Bare-Bones", "Meager", "Normal", "WellFed"});
 		dropRations.setBounds(256, 171, 91, 23);
-		dropRations.setText("Meager");
+		dropRations.setText("Normal");
 
 		dropPace = new Combo(this, SWT.READ_ONLY);
-		dropPace.setItems(new String[] {"Slow", "Medium", "Fast"});
+		dropPace.setItems(new String[] {"Leisurely", "Steady", "Grueling"});
 		dropPace.setBounds(256, 117, 91, 23);
-		dropPace.setText("Slow");
+		dropPace.setText("Steady");
 
 		btnStart = new Button(this, SWT.NONE);
 
@@ -204,21 +204,23 @@ public class ConfigScreen extends Composite{
 				wagon.setLeader(partyLeader);
 				
 				//Set initial pace of wagon to user selection
-				if(dropPace.getText().equals("Slow")){
-					wagon.setPace(0);
-				} else if(dropPace.getText().equals("Medium")){
-					wagon.setPace(1);
+				if(dropPace.getText().equals("Leisurely")){
+					wagon.setPace(5);
+				} else if(dropPace.getText().equals("Steady")){
+					wagon.setPace(10);
 				} else {
-					wagon.setPace(2);
+					wagon.setPace(15);
 				}
 
 				//Set initial ration rate based on user selection.
-				if(dropRations.getText().equals("Meager")){
-					wagon.setRations(0);
-				} else if(dropRations.getText().equals("Normal")){
+				if(dropRations.getText().equals("Bare-Bones")){
 					wagon.setRations(1);
-				} else {
+				} else if(dropRations.getText().equals("Meager")){
 					wagon.setRations(2);
+				} else if(dropRations.getText().equals("Normal")){
+					wagon.setRations(3);
+				} else {
+					wagon.setRations(4);
 				}
 				
 				done = true;
