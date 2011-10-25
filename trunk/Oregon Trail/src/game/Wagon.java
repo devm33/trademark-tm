@@ -2,6 +2,7 @@ package game;
 
 import items.Item;
 import items.Food;
+import items.Water;
 import game.Inventory;
 
 import java.util.List;
@@ -267,15 +268,18 @@ public class Wagon {
 	}
 	
 	/**
-	 * Updates the distance that the wagon has traveled based on pace
+	 * Updates the distance, food amount, and water amount for the Wagon
+	 * based on the pace, ration rate, and water rate respectively
 	 * 
 	 */
 	public void takeStep()
 	{
 		Food f = inventory.getFood();
+		Water w = inventory.getWater();
 		
 		distance += pace;
 		f.use();
-		f.setNumber(f.getNumber()-rations);		
+		w.use();
+		
 	}
 }
