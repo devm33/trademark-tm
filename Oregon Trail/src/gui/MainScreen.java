@@ -41,6 +41,7 @@ public class MainScreen {
 	private TownScreen town;
 	private StoreScreen store;
 	private InventoryScreen inventory;
+	private WagonScreen wagonView;
 	private Wagon wagon;
 
 	public MainScreen() {
@@ -97,7 +98,8 @@ public class MainScreen {
 		/*Create config, town, and store screens*/
 		config = new ConfigScreen(contentPanel, SWT.NONE);
 		town = new TownScreen(contentPanel, SWT.NONE);
-		store = new StoreScreen(contentPanel, SWT.NONE);;
+		store = new StoreScreen(contentPanel, SWT.NONE);
+		wagonView = new WagonScreen(contentPanel,SWT.NONE); 
 		inventory = new InventoryScreen(contentPanel, SWT.NONE);
 
 		/*Put Config screen on top*/
@@ -132,6 +134,19 @@ public class MainScreen {
 				layout.topControl = store;
 				contentPanel.layout();
 				shell.update();
+			}
+			else if(town.choice == 3){
+				town.choice = 0;
+				wagonView.setVisible(false);
+				wagonView.setVisible(true);
+				currentScreen = 3;
+				layout.topControl = wagonView;
+				contentPanel.layout();
+				shell.update();
+			}
+				
+				
+				
 			}
 
 			/*Store Screen Continuation and Update*/
