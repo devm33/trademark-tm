@@ -100,5 +100,17 @@ public class Inventory {
 		}
 		return false;
 	}
+	/**
+	 * Returns the Food object in the Inventory if it exists, if not returns null
+	 * @return Food or null depending on the presence of a Food object in inventory
+	 */
+	public Food getFood(){
+		for (int f=0; f<length; f++){
+			if (itemInventory[f].equals(new Food())){
+				return (Food) itemInventory[f];
+			}
+		}
+		return null;
+	}
 
 }
