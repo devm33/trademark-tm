@@ -25,6 +25,7 @@ public class MainScreen {
 	 * 0 if current screen is Configuration Screen
 	 * 1 if current screen is Town Screen
 	 * 2 if current screen is Store Screen
+	 * 3 if current screen is Wagon Screen
 	 */
 	public static int currentScreen = 0;
 	public static boolean accessInventory = false;
@@ -138,7 +139,7 @@ public class MainScreen {
 			}
 			else if(town.choice == 3){
 				town.choice = 0;
-				wagonView.setVisible(false);
+				town.setVisible(false);
 				wagonView.setVisible(true);
 				currentScreen = 3;
 				layout.topControl = wagonView;
@@ -177,16 +178,24 @@ public class MainScreen {
 				inventory.setVisible(false);
 				switch(currentScreen){
 				case 0:
+					/*if previous screen was config*/
 					config.setVisible(true);
 					layout.topControl = config;
 					break;
 				case 1:
+					/*if previous screen was town*/
 					town.setVisible(true);
 					layout.topControl = town;
 					break;
 				case 2:
+					/*if previous screen was store*/
 					store.setVisible(true);
 					layout.topControl = store;
+					break;
+				case 3:
+					/*if previous screen was wagon view*/
+					wagonView.setVisible(true);
+					layout.topControl = wagonView;
 					break;
 				}
 			}

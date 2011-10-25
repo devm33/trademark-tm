@@ -46,15 +46,6 @@ public class StoreScreen extends Composite{
 	private Label lblResponse;
 	
 	/**
-	 * Change the store of the store screen.
-	 * 
-	 * @param s the new store to access
-	 */
-	public void setStore(Store s) {
-		currentStore = s;
-	}
-	
-	/**
 	 * Create the composite.
 	 * @param parent
 	 * @param style
@@ -62,8 +53,73 @@ public class StoreScreen extends Composite{
 	public StoreScreen(Composite parent, int style){
 		super(parent,style);
 		
+		initializeControls();
+
+		//When user selects an item in the store inventory list.
+		list.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				if(list.getSelectionIndex()==0){
+					//If Ammunition is selected in the list
+					displayAmmunition();
+				} else if(list.getSelectionIndex()==1){
+					//If Food is selected in the list
+					displayFood();
+				} else if(list.getSelectionIndex()==2){
+					//If Medicine is selected in the list
+					displayMedicine();
+				} else {
+					
+				}
+			}
+		});
+		
+		//When user clicks the purchase button.
+		btnPurchase.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				needUpdate = true;
+				if(isInteger(txtAmount.getText())){
+					try {
+						if(list.getSelectionIndex()==0){
+							//If Ammunition is selected in the list
+							buyAmmunition();
+						} else if(list.getSelectionIndex()==1){
+							//If Food is selected in the list
+							buyFood();
+
+						} else if(list.getSelectionIndex()==2){
+							//If Medicine is selected in the list
+							buyMedicine();
+						} else {
+							lblResponse.setText("You need to choose an item, fool!");
+						}
+					} catch (InsufficientFundsException e1) {
+						lblResponse.setText("Come back when you have enough money, you bum!");
+					} catch (WeightCapacityExceededException e2){
+						lblResponse.setText("What in tarnations! Your wagon can't hold that!");
+					}
+					lblWagonCapacity.setText(World.getWagon().getTotalWeight()+"/"+World.getWagon().getCapacity());
+				} else {
+					lblResponse.setText("Try specifying a real quantity, dummy.");
+				}
+			}
+		});
+		
+		//When user clicks the exit store button
+		btnExitStore.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				done = true;
+			}
+		});
+	}
+	
+	private void initializeControls(){
 		list = new List(this, SWT.BORDER);
-		list.setItems(new String[] {"Ammunition", "Food", "Medicine"});
+		list.setItems(new String[] {"Oxen", "Food", "Clothing", 
+									"Ammunition", "Medicine", "Water",
+									"Wagon Wheel", "Wagon Axle", "Wagon Tongue"});
 		list.setBounds(33, 10, 141, 229);
 		
 		lbl1 = new Label(this, SWT.NONE);
@@ -127,84 +183,57 @@ public class StoreScreen extends Composite{
 		lblResponse.setAlignment(SWT.CENTER);
 		lblResponse.setBounds(43, 249, 352, 41);
 		lblResponse.setText("Welcome to the Independence Store!");
-
-		//When user selects an item in the store inventory list.
-		list.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent e) {
-				/*need to hold weight, price, and description in some database*/
-				if(list.getSelectionIndex()==0){
-					//If Ammunition is selected in the list
-					lblName.setText("Ammunition");
-					lblWeight.setText("3 lbs");
-					lblPrice.setText("$2");
-					lblDesc.setText("A box of 20 hunting rifle rounds used for big game.");
-					lblResponse.setText("Don't blow your face off with these.");
-				} else if(list.getSelectionIndex()==1){
-					//If Food is selected in the list
-					lblName.setText("Food");
-					lblWeight.setText("5 lbs");
-					lblPrice.setText("$5");
-					lblDesc.setText("Durable canned foodstuff.");
-					lblResponse.setText("Better than my wife's poor excuse for cooking.");
-				} else if(list.getSelectionIndex()==2){
-					//If Medicine is selected in the list
-					lblName.setText("Medicine");
-					lblWeight.setText("1000 lbs");
-					lblPrice.setText("$10");
-					lblDesc.setText("A large container of medicine.");
-					lblResponse.setText("It's great for headaches and heroin addicts.");
-				} else {
-					
-				}
-			}
-		});
-		
-		//When user clicks the purchase button.
-		btnPurchase.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent e) {
-				needUpdate = true;
-				
-				if(isInteger(txtAmount.getText())){
-					try {
-						if(list.getSelectionIndex()==0){
-							//If Ammunition is selected in the list
-							currentStore.buy(new Ammo(), Integer.parseInt(txtAmount.getText()), 2, 3);
-							lblResponse.setText("Happy hunting, shooter!");
-						} else if(list.getSelectionIndex()==1){
-							//If Food is selected in the list
-							currentStore.buy(new Food(), Integer.parseInt(txtAmount.getText()), 5, 5);
-							lblResponse.setText("It won't expire for another hour or two.");
-						} else if(list.getSelectionIndex()==2){
-							//If Medicine is selected in the list
-							currentStore.buy(new Medicine(), Integer.parseInt(txtAmount.getText()), 10, 1000);
-							lblResponse.setText("Don't tell the doctor where you got that...");
-						} else {
-							lblResponse.setText("You need to choose an item, fool!");
-						}
-					} catch (InsufficientFundsException e1) {
-						lblResponse.setText("Come back when you have enough money, you bum!");
-					} catch (WeightCapacityExceededException e2){
-						lblResponse.setText("What in tarnations! Your wagon can't hold that!");
-					}
-					lblWagonCapacity.setText(World.getWagon().getTotalWeight()+"/"+World.getWagon().getCapacity());
-				} else {
-					lblResponse.setText("Try specifying a real quantity, dummy.");
-				}
-			}
-		});
-		
-		//When user clicks the exit store button
-		btnExitStore.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent e) {
-				done = true;
-			}
-		});
 	}
 	
-	public boolean isInteger(String input){  
+	private void displayAmmunition(){
+		lblName.setText("Ammunition");
+		lblWeight.setText("3 lbs");
+		lblPrice.setText("$2");
+		lblDesc.setText("A box of 20 hunting rifle rounds used for big game.");
+		lblResponse.setText("Don't blow your face off with these.");
+	}
+	
+	private void displayFood(){
+		lblName.setText("Food");
+		lblWeight.setText("5 lbs");
+		lblPrice.setText("$5");
+		lblDesc.setText("Durable canned foodstuff.");
+		lblResponse.setText("Better than my wife's poor excuse for cooking.");
+	}
+	
+	private void displayMedicine(){
+		lblName.setText("Medicine");
+		lblWeight.setText("1000 lbs");
+		lblPrice.setText("$10");
+		lblDesc.setText("A large container of medicine.");
+		lblResponse.setText("It's great for headaches and heroin addicts.");
+	}
+	
+	private void buyAmmunition() throws InsufficientFundsException, WeightCapacityExceededException{
+		currentStore.buy(new Ammo(), Integer.parseInt(txtAmount.getText()), 2, 3);
+		lblResponse.setText("Happy hunting, shooter!");
+	}
+	
+	private void buyFood() throws InsufficientFundsException, WeightCapacityExceededException{
+		currentStore.buy(new Food(), Integer.parseInt(txtAmount.getText()), 5, 5);
+		lblResponse.setText("It won't expire for another hour or two.");
+	}
+	
+	private void buyMedicine() throws InsufficientFundsException, WeightCapacityExceededException{
+		currentStore.buy(new Medicine(), Integer.parseInt(txtAmount.getText()), 10, 1000);
+		lblResponse.setText("Don't tell the doctor where you got that...");
+	}
+	
+	/**
+	 * Change the store of the store screen.
+	 * 
+	 * @param s the new store to access
+	 */
+	public void setStore(Store s) {
+		currentStore = s;
+	}
+	
+	private boolean isInteger(String input){  
 	   try{  
 	      Integer.parseInt(input);  
 	      return true;  
