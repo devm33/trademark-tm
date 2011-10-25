@@ -20,7 +20,7 @@ import people.Traveler;
 
 public class Wagon {
 	
-	private int pace, rations, capacity;
+	private int pace, rations, capacity, distance;
 	private int totalWeight;
 	private Inventory inventory;
 	private List<Traveler> members;
@@ -32,6 +32,7 @@ public class Wagon {
 	 */
 	public Wagon() {
 		capacity = 3500; //this should just stay here.
+		distance = 0;
 		totalWeight = 0;
 		inventory = new Inventory();
 	}
@@ -52,6 +53,7 @@ public class Wagon {
 		this.capacity = capacity;
 		this.leader = leader;
 		this.members = members;
+		distance = 0;
 		totalWeight = 0;
 		inventory = new Inventory();
 	}
@@ -73,6 +75,10 @@ public class Wagon {
 	}
 	
 	/**
+	 * @0 miles traveled a day - Stopped Pace
+	 * @5 miles traveled a day - Leisurely Pace
+	 * @10 miles traveled a day - Steady Pace
+	 * @15 miles traveled a day - Grueling Pace
 	 * 
 	 * @param pace the Wagon's new pace setting.
 	 */
@@ -110,6 +116,15 @@ public class Wagon {
 	 */
 	public void setCapacity(int capacity) {
 		this.capacity = capacity;
+	}
+	
+	/**
+	 * 
+	 * @return the distance the Wagon has traveled
+	 */
+	public int getDistance()
+	{
+		return distance;
 	}
 	
 	/**
@@ -247,5 +262,15 @@ public class Wagon {
 	 */
 	public int getTotalWeight(){
 		return totalWeight;
+	}
+	
+	/**
+	 * Updates the distance that the wagon has traveled based on pace
+	 * 
+	 */
+	public void takeStep()
+	{
+		distance += pace;
+			
 	}
 }
