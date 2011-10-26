@@ -1,6 +1,5 @@
 package game;
 
-import people.Person;
 import gui.MainScreen;
 
 /**
