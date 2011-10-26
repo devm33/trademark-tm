@@ -277,6 +277,11 @@ public class Wagon {
 		Food f = inventory.getFood();
 		Water w = inventory.getWater();
 		
+		leader.live();
+		for(Traveler t : members) {
+			t.live();
+		}
+		
 		distance += pace;
 		f.use();
 		w.use();
