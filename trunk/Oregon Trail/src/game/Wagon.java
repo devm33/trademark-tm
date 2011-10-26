@@ -282,6 +282,16 @@ public class Wagon {
 			t.live();
 		}
 		
+		//check if anyone's still alive
+		boolean alive = false;
+		for(Person p : this.getPassengers())
+			if(p.getHealth() > 0)
+				alive = true;
+		if(!alive) {
+			System.out.println("Everyone died. You lose.");
+			System.exit(0);
+		}
+		
 		distance += pace;
 		f.use();
 		w.use();
