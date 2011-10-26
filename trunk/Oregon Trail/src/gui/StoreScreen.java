@@ -298,7 +298,7 @@ public class StoreScreen extends Composite{
 		lblWeight.setText("75 lbs");
 		lblPrice.setText("$10");
 		lblDesc.setText("A big, round wooden wagon wheel.");
-		lblResponse.setText("Big and round like me and my wife.");
+		lblResponse.setText("Big and round like my wife.");
 	}
 	
 	private void displayAxle(){
