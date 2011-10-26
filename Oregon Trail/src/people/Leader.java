@@ -127,6 +127,8 @@ public abstract class Leader implements Person {
 		if(hunger >= 100) {
 			hunger = 100;
 			health -= 15;
+			if(health < 0)
+				die();
 		}
 	}
 	
