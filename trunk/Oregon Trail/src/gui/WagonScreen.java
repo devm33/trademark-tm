@@ -37,9 +37,7 @@ public class WagonScreen extends Composite {
 	private Combo pace;
 	private Label lblWagon;
 	
-	
-	
-	private Wagon wagon;
+	private static Wagon wagon;
 
 	public WagonScreen(Composite arg0, int arg1) {
 		super(arg0, arg1);
@@ -50,8 +48,8 @@ public class WagonScreen extends Composite {
 		btnTakeTurn.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {	
-				
 				wagon.takeStep();
+				update();
 			}
 		});
 		btnTakeTurn.setBounds(20, 37, 94, 28);
@@ -78,7 +76,7 @@ public class WagonScreen extends Composite {
 		
 		pace = new Combo(this, SWT.NONE);
 		pace.setItems(new String[] {"Stopped", "Leisurely", "Steady", "Grueling"});
-		pace.setBounds(68, 144, 94, 22);
+		pace.setBounds(68, 131, 94, 22);
 		pace.setText("Steady");
 		pace.addSelectionListener(new SelectionAdapter() {
 			@Override
@@ -95,34 +93,35 @@ public class WagonScreen extends Composite {
 			}
 		});
 		
-		rationsDescript = new Label(this, SWT.NONE);
+		rationsDescript = new Label(this, SWT.BORDER);
 		rationsDescript.setBounds(174, 83, 266, 42);
 		
-		paceDescript = new Label(this, SWT.NONE);
-		paceDescript.setBounds(174, 145, 266, 42);
+		paceDescript = new Label(this, SWT.BORDER);
+		paceDescript.setBounds(174, 132, 266, 42);
 		
-		food = new Label(this, SWT.NONE);
-		food.setBounds(258, 16, 64, 12);
+		food = new Label(this, SWT.BORDER);
+		food.setBounds(247, 16, 75, 16);
 		
-		distance = new Label(this, SWT.NONE);
-		distance.setBounds(278, 45, 64, 16);
+		distance = new Label(this, SWT.BORDER);
+		distance.setBounds(278, 45, 120, 16);
+		distance.setText("0");
 		
-		leader = new Label(this, SWT.NONE);
-		leader.setBounds(0, 211, 200, 19);
+		leader = new Label(this, SWT.BORDER);
+		leader.setBounds(0, 180, 450, 19);
 		
-		traveler0 = new Label(this, SWT.NONE);
-		traveler0.setBounds(0, 241, 200, 19);
+		traveler0 = new Label(this, SWT.BORDER);
+		traveler0.setBounds(0, 205, 450, 19);
 		
-		traveler1 = new Label(this, SWT.NONE);
-		traveler1.setBounds(0, 271, 200, 19);
+		traveler1 = new Label(this, SWT.BORDER);
+		traveler1.setBounds(0, 230, 450, 19);
 		
-		traveler2 = new Label(this, SWT.NONE);
-		traveler2.setBounds(219, 224, 200, 19);
+		traveler2 = new Label(this, SWT.BORDER);
+		traveler2.setBounds(0, 255, 450, 19);
 		
-		traveler3 = new Label(this, SWT.NONE);
-		traveler3.setBounds(219, 257, 200, 19);
+		traveler3 = new Label(this, SWT.BORDER);
+		traveler3.setBounds(0, 281, 450, 19);
 		
-		lblWagon = new Label(this, SWT.NONE);
+		lblWagon = new Label(this, SWT.BORDER);
 		lblWagon.setFont(SWTResourceManager.getFont("Tahoma", 14, SWT.NORMAL));
 		lblWagon.setBounds(10, 5, 75, 28);
 		lblWagon.setText("Wagon"); //This is myWagon. There are many like it, but this one is mine.
@@ -140,12 +139,13 @@ public class WagonScreen extends Composite {
 		lblRatiions.setText("Rations:");
 		
 		Label lblPace = new Label(this, SWT.NONE);
-		lblPace.setBounds(20, 147, 49, 13);
+		lblPace.setBounds(20, 134, 49, 13);
 		lblPace.setText("Pace:");
 		
 	}
 	
 	public void update() {
+		
 		rations.setText(rations(wagon.getRations()));
 		
 		pace.setText(pace(wagon.getPace()));
@@ -212,7 +212,7 @@ public class WagonScreen extends Composite {
 	private String rationsDescript(int r) {
 		switch(r) {
 		case 0:
-			return "Starvation and death occur after a few days.";
+			return "You gonna die.";
 		case 1:
 			return "1 pound of food per person per day.";
 		case 2:
@@ -266,13 +266,13 @@ public class WagonScreen extends Composite {
 	private String paceDescript(int p) {
 		switch(p) {
 		case 0:
-			return "0 miles pers day restful. Recover from exhaustion faster.";
+			return "0 miles pers day restful.\n Recover from exhaustion faster.";
 		case 5:
-			return "5 miles per day slow and restful. Helps recover from exhaustion.";
+			return "5 miles per day slow and restful.\n Helps recover from exhaustion.";
 		case 10:
-			return "10 miles per day basic pace. Normal fatigue.";
+			return "10 miles per day basic pace.\n Normal fatigue.";
 		case 15:
-			return "15 miles per day hard pace. Oxen and people rapidly become tired, then exhausted.";
+			return "15 miles per day hard pace.\n Oxen and people rapidly become tired, then exhausted.";
 		}
 		return null;
 	}
