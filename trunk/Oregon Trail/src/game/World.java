@@ -1,5 +1,6 @@
 package game;
 
+import people.Person;
 import gui.MainScreen;
 
 /**
@@ -49,8 +50,16 @@ public class World {
 			game_running = mainScreen.stepGame();
 			
 			
-		//next map
-		
+			
+			//check if anyone's still alive
+			boolean alive = false;
+			for(Person p : theWagon.getPassengers())
+				if(p.getHealth() > 0)
+					alive = true;
+			if(!alive) {
+				System.out.println("Everyone died. You lose.");
+				game_running = false;
+			}
 		}
 		
 		//kill the gui now that we're done
