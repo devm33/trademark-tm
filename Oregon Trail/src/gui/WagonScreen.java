@@ -93,35 +93,35 @@ public class WagonScreen extends Composite {
 			}
 		});
 		
-		rationsDescript = new Label(this, SWT.BORDER);
+		rationsDescript = new Label(this, SWT.NONE);
 		rationsDescript.setBounds(174, 83, 266, 42);
 		
-		paceDescript = new Label(this, SWT.BORDER);
+		paceDescript = new Label(this, SWT.NONE);
 		paceDescript.setBounds(174, 132, 266, 42);
 		
-		food = new Label(this, SWT.BORDER);
+		food = new Label(this, SWT.NONE);
 		food.setBounds(247, 16, 75, 16);
 		
-		distance = new Label(this, SWT.BORDER);
+		distance = new Label(this, SWT.NONE);
 		distance.setBounds(278, 45, 120, 16);
 		distance.setText("0");
 		
-		leader = new Label(this, SWT.BORDER);
+		leader = new Label(this, SWT.NONE);
 		leader.setBounds(0, 180, 450, 19);
 		
-		traveler0 = new Label(this, SWT.BORDER);
+		traveler0 = new Label(this, SWT.NONE);
 		traveler0.setBounds(0, 205, 450, 19);
 		
-		traveler1 = new Label(this, SWT.BORDER);
+		traveler1 = new Label(this, SWT.NONE);
 		traveler1.setBounds(0, 230, 450, 19);
 		
-		traveler2 = new Label(this, SWT.BORDER);
+		traveler2 = new Label(this, SWT.NONE);
 		traveler2.setBounds(0, 255, 450, 19);
 		
-		traveler3 = new Label(this, SWT.BORDER);
+		traveler3 = new Label(this, SWT.NONE);
 		traveler3.setBounds(0, 281, 450, 19);
 		
-		lblWagon = new Label(this, SWT.BORDER);
+		lblWagon = new Label(this, SWT.NONE);
 		lblWagon.setFont(SWTResourceManager.getFont("Tahoma", 14, SWT.NORMAL));
 		lblWagon.setBounds(10, 5, 75, 28);
 		lblWagon.setText("Wagon"); //This is myWagon. There are many like it, but this one is mine.
