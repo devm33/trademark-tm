@@ -132,7 +132,7 @@ public class WagonScreen extends Composite {
 		
 		Label lblDistanceRemaining = new Label(this, SWT.NONE);
 		lblDistanceRemaining.setBounds(143, 45, 120, 13);
-		lblDistanceRemaining.setText("Distance Remaining:");
+		lblDistanceRemaining.setText("Distance Traveled:");
 		
 		Label lblRatiions = new Label(this, SWT.NONE);
 		lblRatiions.setBounds(13, 91, 49, 13);
