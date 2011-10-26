@@ -62,7 +62,31 @@ public class ConfigScreen extends Composite{
 	public ConfigScreen(Composite parent, int style) {
 		super(parent, style);
 		wagon = World.getWagon();
+		
+		initializeContents();
 
+		//When user clicks the "Start Journey" button.
+		btnStart.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				//Set leader name and profession
+				initializeLeader();
+
+				//Create party members
+				initializeParty();
+				
+				//Set initial pace of wagon to user selection
+				setPace();
+
+				//Set initial ration rate based on user selection.
+				setRations();
+				
+				done = true;
+			}
+		});		
+	}
+	
+	private void initializeContents(){
 		txtLeaderName = new Text(this, SWT.BORDER);
 		txtLeaderName.setText("Jonathan");
 		txtLeaderName.setBounds(71, 65, 76, 21);
@@ -144,91 +168,88 @@ public class ConfigScreen extends Composite{
 		dropPace.setText("Steady");
 
 		btnStart = new Button(this, SWT.NONE);
-
-		//When user clicks the "Start Journey" button.
-		btnStart.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent e) {
-				//Leader is named by user or defaults to Jonathan
-				String leaderName = "";
-				leaderName = txtLeaderName.getText();
-				if(leaderName.equals(""))
-					leaderName = "Jonathan";
-
-				//Set leader profession (Farmer, Banker, or Carpenter)
-				if(dropProfession.getText().equals("Farmer")){
-					partyLeader = new Farmer(leaderName);
-				} else if(dropProfession.getText().equals("Banker")){
-					partyLeader = new Banker(leaderName);
-				} else {
-					partyLeader = new Carpenter(leaderName);
-				}
-
-				//First party member is named or defaults to Wilson
-				if(txtName1.getText().equals("")){
-					party1 = new Traveler("Wilson");
-				} else {
-					party1 = new Traveler(txtName1.getText());
-				}
-
-				//Second party member is named or defaults to Sarah
-				if(txtName2.getText().equals("")){
-					party2 = new Traveler("Sarah");
-				} else {
-					party2 = new Traveler(txtName2.getText());
-				}
-
-				//Third party member is named or defaults to Sebastian
-				if(txtName3.getText().equals("")){
-					party3 = new Traveler("Sebastian");
-				} else {
-					party3 = new Traveler(txtName3.getText());
-				}
-
-				//Fourth party member is named or defaults to Elizabeth
-				if(txtName4.getText().equals("")){
-					party4 = new Traveler("Elizabeth");
-				} else {
-					party4 = new Traveler(txtName4.getText());
-				}
-
-				//Add all party members to the party member list.
-				memberList = new ArrayList<Traveler>();
-				memberList.add(party1);
-				memberList.add(party2);
-				memberList.add(party3);
-				memberList.add(party4);
-
-				//add the people to the wagon
-				wagon.setMembers(memberList);
-				wagon.setLeader(partyLeader);
-				
-				//Set initial pace of wagon to user selection
-				if(dropPace.getText().equals("Leisurely")){
-					wagon.setPace(5);
-				} else if(dropPace.getText().equals("Steady")){
-					wagon.setPace(10);
-				} else {
-					wagon.setPace(15);
-				}
-
-				//Set initial ration rate based on user selection.
-				if(dropRations.getText().equals("Bare-Bones")){
-					wagon.setRations(1);
-				} else if(dropRations.getText().equals("Meager")){
-					wagon.setRations(2);
-				} else if(dropRations.getText().equals("Normal")){
-					wagon.setRations(3);
-				} else {
-					wagon.setRations(4);
-				}
-				
-				done = true;
-			}
-		});
 		btnStart.setBounds(146, 220, 91, 25);
 		btnStart.setText("Start Journey");
+	}
+	
+	private void initializeLeader(){
+		//Leader is named by user or defaults to Jonathan
+		String leaderName = "";
+		leaderName = txtLeaderName.getText();
+		if(leaderName.equals(""))
+			leaderName = "Jonathan";
+
+		//Set leader profession (Farmer, Banker, or Carpenter)
+		if(dropProfession.getText().equals("Farmer")){
+			partyLeader = new Farmer(leaderName);
+		} else if(dropProfession.getText().equals("Banker")){
+			partyLeader = new Banker(leaderName);
+		} else {
+			partyLeader = new Carpenter(leaderName);
+		}
+	}
+	
+	private void initializeParty(){
+		//First party member is named or defaults to Wilson
+		if(txtName1.getText().equals("")){
+			party1 = new Traveler("Wilson");
+		} else {
+			party1 = new Traveler(txtName1.getText());
+		}
+
+		//Second party member is named or defaults to Sarah
+		if(txtName2.getText().equals("")){
+			party2 = new Traveler("Sarah");
+		} else {
+			party2 = new Traveler(txtName2.getText());
+		}
+
+		//Third party member is named or defaults to Sebastian
+		if(txtName3.getText().equals("")){
+			party3 = new Traveler("Sebastian");
+		} else {
+			party3 = new Traveler(txtName3.getText());
+		}
+
+		//Fourth party member is named or defaults to Elizabeth
+		if(txtName4.getText().equals("")){
+			party4 = new Traveler("Elizabeth");
+		} else {
+			party4 = new Traveler(txtName4.getText());
+		}
 		
+		//Add all party members to the party member list.
+		memberList = new ArrayList<Traveler>();
+		memberList.add(party1);
+		memberList.add(party2);
+		memberList.add(party3);
+		memberList.add(party4);
+
+		//add the people to the wagon
+		wagon.setMembers(memberList);
+		wagon.setLeader(partyLeader);
+	}
+	
+	private void setPace(){
+		if(dropPace.getText().equals("Leisurely")){
+			wagon.setPace(5);
+		} else if(dropPace.getText().equals("Steady")){
+			wagon.setPace(10);
+		} else {
+			wagon.setPace(15);
+		}
+	}
+	
+	private void setRations(){
+		if(dropRations.getText().equals("Bare-Bones")){
+			wagon.setRations(1);
+		} else if(dropRations.getText().equals("Meager")){
+			wagon.setRations(2);
+		} else if(dropRations.getText().equals("Normal")){
+			wagon.setRations(3);
+		} else {
+			wagon.setRations(4);
+		}
 	}
 
 	@Override
