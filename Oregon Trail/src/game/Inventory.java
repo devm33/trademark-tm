@@ -7,6 +7,9 @@ import items.Medicine;
 import items.Water;
 import items.Clothing;
 import items.Wheel;
+import items.Axle;
+import items.Oxen;
+import items.Tongue;
 
 /**
  * Backend for Inventory GUI
@@ -175,6 +178,45 @@ public class Inventory {
 		for (int f=0; f<length; f++){
 			if (itemInventory[f].equals(new Wheel())){
 				return (Wheel) itemInventory[f];
+			}
+		}
+		return null;
+	}
+	
+	/**
+	 * Returns the Axle object in the Inventory if it exists, if not returns null
+	 * @return Axle or null depending on the presence of a Axle object in inventory
+	 */
+	public Axle getAxle(){
+		for (int f=0; f<length; f++){
+			if (itemInventory[f].equals(new Axle())){
+				return (Axle) itemInventory[f];
+			}
+		}
+		return null;
+	}
+	
+	/**
+	 * Returns the Oxen object in the Inventory if it exists, if not returns null
+	 * @return Oxen or null depending on the presence of a Oxen object in inventory
+	 */
+	public Oxen getOxen(){
+		for (int f=0; f<length; f++){
+			if (itemInventory[f].equals(new Oxen())){
+				return (Oxen) itemInventory[f];
+			}
+		}
+		return null;
+	}
+	
+	/**
+	 * Returns the Tongue object in the Inventory if it exists, if not returns null
+	 * @return Tongue or null depending on the presence of a Tongue object in inventory
+	 */
+	public Tongue getTongue(){
+		for (int f=0; f<length; f++){
+			if (itemInventory[f].equals(new Tongue())){
+				return (Tongue) itemInventory[f];
 			}
 		}
 		return null;
