@@ -175,86 +175,86 @@ public class ConfigScreen extends Composite{
 	private void createContents(){
 		txtLeaderName = new Text(this, SWT.BORDER);
 		txtLeaderName.setText("Jonathan");
-		txtLeaderName.setBounds(71, 65, 76, 21);
+		txtLeaderName.setBounds(98, 65, 76, 21);
 
 		txtName1 = new Text(this, SWT.BORDER);
 		txtName1.setText("Wilson");
-		txtName1.setBounds(71, 90, 76, 21);
+		txtName1.setBounds(98, 90, 76, 21);
 
 		txtName2 = new Text(this, SWT.BORDER);
 		txtName2.setText("Sarah");
-		txtName2.setBounds(71, 117, 76, 21);
+		txtName2.setBounds(98, 117, 76, 21);
 
 		txtName3 = new Text(this, SWT.BORDER);
 		txtName3.setText("Sebastian");
-		txtName3.setBounds(71, 144, 76, 21);
+		txtName3.setBounds(98, 144, 76, 21);
 
 		Label lblNewLabel = new Label(this, SWT.NONE);
 		lblNewLabel.setAlignment(SWT.RIGHT);
-		lblNewLabel.setBounds(10, 68, 55, 15);
+		lblNewLabel.setBounds(37, 68, 55, 15);
 		lblNewLabel.setText("Leader:");
 
 		Label lblConfig = new Label(this, SWT.NONE);
 		lblConfig.setFont(SWTResourceManager.getFont("Segoe UI", 18, SWT.BOLD));
-		lblConfig.setBounds(146, 10, 91, 32);
+		lblConfig.setBounds(173, 10, 91, 32);
 		lblConfig.setText("CONFIG");
 
 		txtName4 = new Text(this, SWT.BORDER);
 		txtName4.setText("Elizabeth");
-		txtName4.setBounds(71, 171, 76, 21);
+		txtName4.setBounds(98, 171, 76, 21);
 
 		Label lblParty = new Label(this, SWT.NONE);
 		lblParty.setAlignment(SWT.RIGHT);
-		lblParty.setBounds(10, 90, 55, 15);
+		lblParty.setBounds(37, 90, 55, 15);
 		lblParty.setText("Party 1:");
 
 		Label lblParty_3 = new Label(this, SWT.NONE);
 		lblParty_3.setAlignment(SWT.RIGHT);
 		lblParty_3.setText("Party 2:");
-		lblParty_3.setBounds(10, 117, 55, 15);
+		lblParty_3.setBounds(37, 117, 55, 15);
 
 		Label lblParty_2 = new Label(this, SWT.NONE);
 		lblParty_2.setAlignment(SWT.RIGHT);
 		lblParty_2.setText("Party 3:");
-		lblParty_2.setBounds(10, 144, 55, 15);
+		lblParty_2.setBounds(37, 144, 55, 15);
 
 		Label lblParty_1 = new Label(this, SWT.NONE);
 		lblParty_1.setAlignment(SWT.RIGHT);
 		lblParty_1.setText("Party 4:");
-		lblParty_1.setBounds(10, 171, 55, 15);
+		lblParty_1.setBounds(37, 171, 55, 15);
 
 		Label lblNewLabel_1 = new Label(this, SWT.NONE);
 		lblNewLabel_1.setAlignment(SWT.RIGHT);
-		lblNewLabel_1.setBounds(184, 68, 66, 15);
+		lblNewLabel_1.setBounds(211, 68, 66, 15);
 		lblNewLabel_1.setText("Profession:");
 
 		Label lblNewLabel_2 = new Label(this, SWT.NONE);
 		lblNewLabel_2.setAlignment(SWT.RIGHT);
-		lblNewLabel_2.setBounds(195, 120, 55, 15);
+		lblNewLabel_2.setBounds(222, 120, 55, 15);
 		lblNewLabel_2.setText("Pace:");
 
 		Label lblNewLabel_3 = new Label(this, SWT.NONE);
 		lblNewLabel_3.setAlignment(SWT.RIGHT);
-		lblNewLabel_3.setBounds(195, 174, 55, 15);
+		lblNewLabel_3.setBounds(222, 174, 55, 15);
 		lblNewLabel_3.setText("Rations:");
 
 		dropProfession = new Combo(this, SWT.READ_ONLY);
 		dropProfession.setItems(new String[] {"Farmer", "Banker", "Carpenter"});
-		dropProfession.setBounds(256, 65, 91, 23);
+		dropProfession.setBounds(283, 65, 91, 23);
 		dropProfession.setText("Farmer");
 
 		dropRations = new Combo(this, SWT.READ_ONLY);
 		dropRations.setItems(new String[] {"Bare-Bones", "Meager", "Normal", "WellFed"});
-		dropRations.setBounds(256, 171, 91, 23);
+		dropRations.setBounds(283, 171, 91, 23);
 		dropRations.setText("Normal");
 
 		dropPace = new Combo(this, SWT.READ_ONLY);
 		dropPace.setItems(new String[] {"Leisurely", "Steady", "Grueling"});
-		dropPace.setBounds(256, 117, 91, 23);
+		dropPace.setBounds(283, 117, 91, 23);
 		dropPace.setText("Steady");
 
 		btnStart = new Button(this, SWT.NONE);
-		btnStart.setBounds(146, 220, 91, 25);
+		btnStart.setBounds(173, 220, 91, 25);
 		btnStart.setText("Start Journey");
 	}
 }

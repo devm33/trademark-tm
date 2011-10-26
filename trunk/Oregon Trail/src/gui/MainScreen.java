@@ -12,6 +12,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Label;
 
 /**
@@ -35,7 +36,8 @@ public class MainScreen {
 	private Wagon wagon;
 	
 	private Display display;
-	private Shell shlOregonTrail;
+	private Shell shell;
+	private Image icon;
 	private Label lblCash;
 	private Label lblDate;
 	private Label lblDay;
@@ -79,12 +81,12 @@ public class MainScreen {
 		btnQuitGame.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
-				shlOregonTrail.dispose();
+				shell.dispose();
 				display.dispose();
 			}
 		});
 		
-		shlOregonTrail.open();
+		shell.open();
 
 		/*Create config, town, store, inventory, and wagonView screens*/
 		createScreens();
@@ -92,7 +94,7 @@ public class MainScreen {
 		/*Put Config screen on top*/
 		layout.topControl = config;
 		contentPanel.layout();
-		shlOregonTrail.update();
+		shell.update();
 	}
 	
 	private void createScreens(){
@@ -107,7 +109,7 @@ public class MainScreen {
 		if (!display.readAndDispatch())
 			display.sleep();
 
-		if (!shlOregonTrail.isDisposed()){
+		if (!shell.isDisposed()){
 			/*Configuration Screen Continuation*/
 			continueConfig();
 
@@ -127,10 +129,10 @@ public class MainScreen {
 			updateInventoryAndCash();
 			
 			contentPanel.update();
-			shlOregonTrail.update();
+			shell.update();
 		}
 		
-		return !shlOregonTrail.isDisposed();
+		return !shell.isDisposed();
 	}
 	
 	private void updateInventoryAndCash(){
@@ -155,7 +157,7 @@ public class MainScreen {
 			currentScreen = 1;
 			layout.topControl = town;
 			contentPanel.layout();
-			shlOregonTrail.update();
+			shell.update();
 		}
 	}
 	
@@ -175,7 +177,7 @@ public class MainScreen {
 			currentScreen = 2;
 			layout.topControl = store;
 			contentPanel.layout();
-			shlOregonTrail.update();
+			shell.update();
 		}
 		//Player chooses LEAVE TOWN
 		else if(town.choice == 3){
@@ -186,7 +188,7 @@ public class MainScreen {
 			currentScreen = 3;
 			layout.topControl = wagonView;
 			contentPanel.layout();
-			shlOregonTrail.update();
+			shell.update();
 		}
 	}
 	
@@ -201,7 +203,7 @@ public class MainScreen {
 			currentScreen = 1;
 			layout.topControl = town;
 			contentPanel.layout();
-			shlOregonTrail.update();
+			shell.update();
 		}
 	}
 	
@@ -216,7 +218,7 @@ public class MainScreen {
 			layout.topControl = inventory;
 			layout.topControl.setVisible(true);
 			contentPanel.update();
-			shlOregonTrail.update();
+			shell.update();
 		}
 		if (inventory.done){
 			inventory.done = false;
@@ -254,7 +256,7 @@ public class MainScreen {
 			layout.topControl = wagonView;
 			layout.topControl.setVisible(true);
 			contentPanel.update();
-			shlOregonTrail.update();
+			shell.update();
 		}
 		if (wagonView.done){
 			wagonView.done = false;
@@ -302,49 +304,51 @@ public class MainScreen {
 	 */
 	private void createContents(){
 		display = new Display();
-		shlOregonTrail = new Shell(display);
-		shlOregonTrail.setSize(646, 402);
-		shlOregonTrail.setText("Oregon Trail");
-		shlOregonTrail.setBounds(100, 100, 500, 400);
+		shell = new Shell(display);
+		shell.setSize(470, 390);
+		shell.setText("Oregon Trail");
+		shell.setBounds(400, 200, 470, 390);
+		icon = new Image(display,getClass().getResourceAsStream("images/icon.ico"));
+		shell.setImage(icon);
 
-		lblCash = new Label(shlOregonTrail, SWT.NONE);
+		lblCash = new Label(shell, SWT.NONE);
 		lblCash.setText("$0");
 		lblCash.setBounds(223, 8, 55, 15);
 		
-		lblDate = new Label(shlOregonTrail, SWT.NONE);
+		lblDate = new Label(shell, SWT.NONE);
 		lblDate.setText("May 32, 2658");
 		lblDate.setBounds(10, 8, 131, 15);
 		
-		lblDay = new Label(shlOregonTrail, SWT.NONE);
+		lblDay = new Label(shell, SWT.NONE);
 		lblDay.setText("123");
 		lblDay.setBounds(39, 29, 37, 15);
 
-		lbl1 = new Label(shlOregonTrail, SWT.NONE);
+		lbl1 = new Label(shell, SWT.NONE);
 		lbl1.setAlignment(SWT.RIGHT);
 		lbl1.setBounds(173, 8, 44, 15);
 		lbl1.setText("Cash:");
 		
-		lbl2 = new Label(shlOregonTrail, SWT.NONE);
+		lbl2 = new Label(shell, SWT.NONE);
 		lbl2.setBounds(10, 29, 23, 15);
 		lbl2.setText("Day:");
 
-		btnInventory = new Button(shlOregonTrail, SWT.NONE);
+		btnInventory = new Button(shell, SWT.NONE);
 		btnInventory.setBounds(224, 24, 75, 25);
 		btnInventory.setText("Inventory");
 		btnInventory.setEnabled(false);
 		
-		btnQuitGame = new Button(shlOregonTrail, SWT.NONE);
-		btnQuitGame.setBounds(399, 24, 75, 25);
+		btnQuitGame = new Button(shell, SWT.NONE);
+		btnQuitGame.setBounds(375, 24, 75, 25);
 		btnQuitGame.setText("Quit Game");
 
-		btnWagon = new Button(shlOregonTrail, SWT.NONE);
+		btnWagon = new Button(shell, SWT.NONE);
 		btnWagon.setBounds(150, 24, 68, 25);
 		btnWagon.setText("Wagon");
 		btnWagon.setEnabled(false);
 		
 		/*Create the composite that the pages will share*/
-		contentPanel = new Composite(shlOregonTrail, SWT.BORDER);
-		contentPanel.setBounds(0, 50, 500, 300);
+		contentPanel = new Composite(shell, SWT.BORDER);
+		contentPanel.setBounds(2, 50, 450, 300);
 		
 		layout = new StackLayout();
 		contentPanel.setLayout(layout);

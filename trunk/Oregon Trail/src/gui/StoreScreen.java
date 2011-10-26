@@ -149,7 +149,7 @@ public class StoreScreen extends Composite{
 							buyTongue();
 							break;
 						default:
-							lblResponse.setText("You need to choose an item, fool!");
+							lblResponse.setText("Huh?");
 							break;
 						}
 					} catch (InsufficientFundsException e1) {
@@ -159,7 +159,11 @@ public class StoreScreen extends Composite{
 					}
 					lblWagonCapacity.setText(World.getWagon().getTotalWeight()+"/"+World.getWagon().getCapacity());
 				} else {
-					lblResponse.setText("Try specifying a real quantity, dummy.");
+					if(list.getSelectionIndex() == -1){
+						lblResponse.setText("You need to choose an item, fool!");
+					} else {
+						lblResponse.setText("Try specifying a real quantity, dummy.");
+					}
 				}
 			}
 		});
@@ -242,7 +246,7 @@ public class StoreScreen extends Composite{
 		lblWeight.setText("100 lbs");
 		lblPrice.setText("$10");
 		lblDesc.setText("A wooden wagon tongue.");
-		lblResponse.setText("It's the newest in Oxen-containing technology.");
+		lblResponse.setText("It's the newest in oxen-containing technology.");
 	}
 	
 	private void buyOxen() throws InsufficientFundsException, WeightCapacityExceededException{
