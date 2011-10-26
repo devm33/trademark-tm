@@ -202,8 +202,8 @@ public class StoreScreen extends Composite{
 		lblName.setText("No Item Selected");
 		lblName.setBounds(239, 45, 101, 15);
 		
-		lblWeight = new Label(this, SWT.NONE);
-		lblWeight.setBounds(245, 67, 50, 15);
+		lblWeight = new Label(this, SWT.WRAP);
+		lblWeight.setBounds(245, 67, 195, 15);
 		
 		lblPrice = new Label(this, SWT.NONE);
 		lblPrice.setBounds(233, 91, 47, 15);
@@ -242,12 +242,12 @@ public class StoreScreen extends Composite{
 		lblResponse.setFont(SWTResourceManager.getFont("Segoe UI", 11, SWT.BOLD));
 		lblResponse.setAlignment(SWT.CENTER);
 		lblResponse.setBounds(43, 249, 352, 41);
-		lblResponse.setText("Welcome to the Independence Store!");
+		lblResponse.setText("Welcome to the store!");
 	}
 	
 	private void displayOxen(){
 		lblName.setText("Oxen");
-		lblWeight.setText("Does not affect wagon weight.");
+		lblWeight.setText("Does not affect wagon weight");
 		lblPrice.setText("$40");
 		lblDesc.setText("A pair of strong animals used to pull your wagon.");
 		lblResponse.setText("Freshly stolen from my neighbor's ranch.");
@@ -257,7 +257,7 @@ public class StoreScreen extends Composite{
 		lblName.setText("Food");
 		lblWeight.setText("5 lbs");
 		lblPrice.setText("$5");
-		lblDesc.setText("Durable canned foodstuff.");
+		lblDesc.setText("A durable canned foodstuff.");
 		lblResponse.setText("Better than my wife's poor excuse for cooking.");
 	}
 	
@@ -265,8 +265,8 @@ public class StoreScreen extends Composite{
 		lblName.setText("Clothing");
 		lblWeight.setText("2 lbs");
 		lblPrice.setText("$10");
-		lblDesc.setText("DESCRIPTION");
-		lblResponse.setText("INSERT WITTY RESPONSE");
+		lblDesc.setText("A handknit cotton outfit");
+		lblResponse.setText("Wow your oxen with the latest 1848 rag fashion.");
 	}
 	
 	private void displayAmmunition(){
@@ -290,31 +290,31 @@ public class StoreScreen extends Composite{
 		lblWeight.setText("6 lbs");
 		lblPrice.setText("$2");
 		lblDesc.setText("A bucket of drinkable water.");
-		lblResponse.setText("INSERT WITTY RESPONSE");
+		lblResponse.setText("Clean....maybe not. Drinkable....yes.");
 	}
 	
 	private void displayWheel(){
 		lblName.setText("Wagon Wheel");
 		lblWeight.setText("75 lbs");
 		lblPrice.setText("$10");
-		lblDesc.setText("DESCRIPTION");
-		lblResponse.setText("INSERT WITTY RESPONSE");
+		lblDesc.setText("A big, round wooden wagon wheel.");
+		lblResponse.setText("Big and round like me and my wife.");
 	}
 	
 	private void displayAxle(){
 		lblName.setText("Wagon Axle");
 		lblWeight.setText("125 lbs");
 		lblPrice.setText("$10");
-		lblDesc.setText("DESCRIPTION");
-		lblResponse.setText("INSERT WITTY RESPONSE");
+		lblDesc.setText("A long, heavy wooden wagon axle.");
+		lblResponse.setText("Long and heavy like my di...wagon axles.");
 	}
 	
 	private void displayTongue(){
 		lblName.setText("Wagon Tongue");
 		lblWeight.setText("100 lbs");
 		lblPrice.setText("$10");
-		lblDesc.setText("DESCRIPTION");
-		lblResponse.setText("INSERT WITTY RESPONSE");
+		lblDesc.setText("A wooden wagon tongue.");
+		lblResponse.setText("It's the newest in Oxen-containing technology.");
 	}
 	
 	private void buyOxen() throws InsufficientFundsException, WeightCapacityExceededException{
@@ -330,7 +330,7 @@ public class StoreScreen extends Composite{
 	
 	private void buyClothing() throws InsufficientFundsException, WeightCapacityExceededException{
 		currentStore.buy(new Clothing(), Integer.parseInt(txtAmount.getText()), 10, 2);
-		lblResponse.setText("clothes are better than nude");
+		lblResponse.setText("That brown matches well with your brown.");
 	}
 	
 	private void buyAmmunition() throws InsufficientFundsException, WeightCapacityExceededException{
@@ -345,22 +345,22 @@ public class StoreScreen extends Composite{
 	
 	private void buyWater() throws InsufficientFundsException, WeightCapacityExceededException{
 		currentStore.buy(new Water(), Integer.parseInt(txtAmount.getText()), 2, 6);
-		lblResponse.setText("water is better than no water");
+		lblResponse.setText("A bucket per day keeps death away.");
 	}
 	
 	private void buyWheel() throws InsufficientFundsException, WeightCapacityExceededException{
 		currentStore.buy(new Wheel(), Integer.parseInt(txtAmount.getText()), 10, 75);
-		lblResponse.setText("wheel is better than no wheel");
+		lblResponse.setText("Spike attachments sold separately.");
 	}
 	
 	private void buyAxle() throws InsufficientFundsException, WeightCapacityExceededException{
 		currentStore.buy(new Axle(), Integer.parseInt(txtAmount.getText()), 10, 125);
-		lblResponse.setText("axle is better than no axle");
+		lblResponse.setText("You sure that's enough? You can never have too many heavy axles.");
 	}
 	
 	private void buyTongue() throws InsufficientFundsException, WeightCapacityExceededException{
 		currentStore.buy(new Tongue(), Integer.parseInt(txtAmount.getText()), 10, 100);
-		lblResponse.setText("tongue better than no tongue");
+		lblResponse.setText("Your Ox will thank you for forcing them to wear that.");
 	}
 	
 	/**

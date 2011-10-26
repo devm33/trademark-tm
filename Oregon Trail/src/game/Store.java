@@ -16,14 +16,14 @@ public class Store {
 	 * constructor for the default store, Independence General Store
 	 */
 	public Store(){
-		this.name = "Independence General Store";
+		this.setName("Independence General Store");
 	}
 	/**
 	 * constructor for a store
 	 * @param name the name of the store
 	 */
 	public Store(String name){
-		this.name = name;
+		this.setName(name);
 		
 	}
 	/**
@@ -48,6 +48,22 @@ public class Store {
 		} else {
 			throw new WeightCapacityExceededException();
 		}
+	}
+	
+	/**
+	 * setter for store name
+	 * @param name
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	/**
+	 * getter for store name
+	 * @return
+	 */
+	public String getName() {
+		return name;
 	}
 
 }
