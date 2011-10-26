@@ -6,7 +6,7 @@ public class Water extends Item {
 
 
 	public Water() {
-		super(7, 0, "Water");
+		super(6, 0, "Water");
 		// TODO Auto-generated constructor stub
 	}
 
