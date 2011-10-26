@@ -4,8 +4,15 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.events.PaintEvent;
+import org.eclipse.swt.events.PaintListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.graphics.ImageData;
+
+import javax.swing.ImageIcon;
+import org.eclipse.swt.widgets.Canvas;
 
 /**
  * Town screen composite
@@ -23,10 +30,6 @@ public class TownScreen extends Composite{
 	 */
 	public TownScreen(Composite parent, int style){
 		super(parent,style);
-		
-		Label lblTown = new Label(this, SWT.NONE);
-		lblTown.setText("I'm a Town");
-		lblTown.setBounds(10, 10, 201, 13);
 		
 		
 		Button btnInn = new Button(this, SWT.NONE);
@@ -59,6 +62,17 @@ public class TownScreen extends Composite{
 		btnLeaveTown.setText("Leave Town");
 		btnLeaveTown.setBounds(323, 240, 109, 23);
 		
+		
+		Canvas canvas = new Canvas(this, SWT.NONE);
+		
+		final Image image = new Image(getDisplay(),getClass().getResourceAsStream("images/town.jpg"));
+		canvas.setBounds(0, 0, 450, 234);
+		
+		canvas.addPaintListener(new PaintListener() {
+	        public void paintControl(PaintEvent e) {
+	         e.gc.drawImage(image,0,0);
+	        }
+	    });
 	}
 
 	/**
