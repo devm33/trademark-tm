@@ -37,7 +37,7 @@ public class Traveler implements Person {
 	}
 
 	@Override
-	public int setHealth(int change) {
+	public int addHealth(int change) {
 		health += change;
 		if(health < 0)
 			health = 0;

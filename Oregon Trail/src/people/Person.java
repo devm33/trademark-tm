@@ -28,7 +28,7 @@ public interface Person {
 	 * @param change the amount the person's health is to change.
 	 * @return integer representing person's current health.
 	 */
-	public int setHealth(int change);
+	public int addHealth(int change);
 	
 	/**
 	 * Designate this person as sick. Further implementation details to come.
