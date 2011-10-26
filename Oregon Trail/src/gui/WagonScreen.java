@@ -23,6 +23,7 @@ import people.Person;
  *
  */
 public class WagonScreen extends Composite {
+	public boolean done = false;
 	private Label rationsDescript;
 	private Label paceDescript;
 	private Label food;
@@ -32,10 +33,15 @@ public class WagonScreen extends Composite {
 	private Label traveler1;
 	private Label traveler2;
 	private Label traveler3;
+	private Label lblWagon;
+	private Label lblFoodRemaining;
+	private Label lblDistanceRemaining;
+	private Label lblRations;
+	private Label lblPace;
 	private Button btnTakeTurn;
+	private Button btnDone;
 	private Combo rations;
 	private Combo pace;
-	private Label lblWagon;
 	
 	private static Wagon wagon;
 
@@ -44,7 +50,9 @@ public class WagonScreen extends Composite {
 		
 		wagon = World.getWagon();
 		
-		btnTakeTurn = new Button(this, SWT.NONE);
+		createContents();
+		
+		//Logic when user clicks the Take Turn button
 		btnTakeTurn.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {	
@@ -52,13 +60,8 @@ public class WagonScreen extends Composite {
 				update();
 			}
 		});
-		btnTakeTurn.setBounds(20, 37, 94, 28);
-		btnTakeTurn.setText("Take Turn");
 		
-		rations = new Combo(this, SWT.NONE);
-		rations.setItems(new String[] {"None", "Bare-Bones", "Meager", "Normal", "Wellfed"});
-		rations.setBounds(68, 83, 94, 22);
-		rations.setText("Normal");
+		//Logic when user selects a new item from the rations drop down
 		rations.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -74,10 +77,7 @@ public class WagonScreen extends Composite {
 			}
 		});
 		
-		pace = new Combo(this, SWT.NONE);
-		pace.setItems(new String[] {"Stopped", "Leisurely", "Steady", "Grueling"});
-		pace.setBounds(68, 131, 94, 22);
-		pace.setText("Steady");
+		//Logic when user selects a new item from the pace drop down
 		pace.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -93,55 +93,13 @@ public class WagonScreen extends Composite {
 			}
 		});
 		
-		rationsDescript = new Label(this, SWT.NONE);
-		rationsDescript.setBounds(174, 83, 266, 42);
-		
-		paceDescript = new Label(this, SWT.NONE);
-		paceDescript.setBounds(174, 132, 266, 42);
-		
-		food = new Label(this, SWT.NONE);
-		food.setBounds(247, 16, 75, 16);
-		
-		distance = new Label(this, SWT.NONE);
-		distance.setBounds(278, 45, 120, 16);
-		distance.setText("0");
-		
-		leader = new Label(this, SWT.NONE);
-		leader.setBounds(0, 180, 450, 19);
-		
-		traveler0 = new Label(this, SWT.NONE);
-		traveler0.setBounds(0, 205, 450, 19);
-		
-		traveler1 = new Label(this, SWT.NONE);
-		traveler1.setBounds(0, 230, 450, 19);
-		
-		traveler2 = new Label(this, SWT.NONE);
-		traveler2.setBounds(0, 255, 450, 19);
-		
-		traveler3 = new Label(this, SWT.NONE);
-		traveler3.setBounds(0, 281, 450, 19);
-		
-		lblWagon = new Label(this, SWT.NONE);
-		lblWagon.setFont(SWTResourceManager.getFont("Tahoma", 14, SWT.NORMAL));
-		lblWagon.setBounds(10, 5, 75, 28);
-		lblWagon.setText("Wagon"); //This is myWagon. There are many like it, but this one is mine.
-		
-		Label lblFoodRemaining = new Label(this, SWT.NONE);
-		lblFoodRemaining.setBounds(143, 16, 108, 13);
-		lblFoodRemaining.setText("Food Remaining:");
-		
-		Label lblDistanceRemaining = new Label(this, SWT.NONE);
-		lblDistanceRemaining.setBounds(143, 45, 120, 13);
-		lblDistanceRemaining.setText("Distance Traveled:");
-		
-		Label lblRatiions = new Label(this, SWT.NONE);
-		lblRatiions.setBounds(13, 91, 49, 13);
-		lblRatiions.setText("Rations:");
-		
-		Label lblPace = new Label(this, SWT.NONE);
-		lblPace.setBounds(20, 134, 49, 13);
-		lblPace.setText("Pace:");
-		
+		//Logic when user clicks the done button
+		btnDone.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent arg0) {
+				done = true;
+			}
+		});
 	}
 	
 	public void update() {
@@ -275,5 +233,77 @@ public class WagonScreen extends Composite {
 			return "15 miles per day hard pace.\n Oxen and people rapidly become tired, then exhausted.";
 		}
 		return null;
+	}
+	
+	/**
+	 * create composite controls
+	 */
+	private void createContents(){
+		btnTakeTurn = new Button(this, SWT.NONE);
+		btnTakeTurn.setBounds(20, 37, 94, 28);
+		btnTakeTurn.setText("Take Turn");
+		
+		rations = new Combo(this, SWT.NONE);
+		rations.setItems(new String[] {"None", "Bare-Bones", "Meager", "Normal", "Wellfed"});
+		rations.setBounds(68, 83, 94, 22);
+		rations.setText("Normal");
+		
+		pace = new Combo(this, SWT.NONE);
+		pace.setItems(new String[] {"Stopped", "Leisurely", "Steady", "Grueling"});
+		pace.setBounds(68, 131, 94, 22);
+		pace.setText("Steady");
+
+		rationsDescript = new Label(this, SWT.NONE);
+		rationsDescript.setBounds(174, 83, 266, 42);
+		
+		paceDescript = new Label(this, SWT.NONE);
+		paceDescript.setBounds(174, 132, 266, 42);
+		
+		food = new Label(this, SWT.NONE);
+		food.setBounds(247, 16, 75, 16);
+		
+		distance = new Label(this, SWT.NONE);
+		distance.setBounds(278, 45, 120, 16);
+		distance.setText("0");
+		
+		leader = new Label(this, SWT.NONE);
+		leader.setBounds(0, 180, 450, 19);
+		
+		traveler0 = new Label(this, SWT.NONE);
+		traveler0.setBounds(0, 205, 450, 19);
+		
+		traveler1 = new Label(this, SWT.NONE);
+		traveler1.setBounds(0, 230, 450, 19);
+		
+		traveler2 = new Label(this, SWT.NONE);
+		traveler2.setBounds(0, 255, 450, 19);
+		
+		traveler3 = new Label(this, SWT.NONE);
+		traveler3.setBounds(0, 281, 450, 19);
+		
+		lblWagon = new Label(this, SWT.NONE);
+		lblWagon.setFont(SWTResourceManager.getFont("Tahoma", 14, SWT.NORMAL));
+		lblWagon.setBounds(10, 5, 75, 28);
+		lblWagon.setText("Wagon"); //This is myWagon. There are many like it, but this one is mine.
+		
+		lblFoodRemaining = new Label(this, SWT.NONE);
+		lblFoodRemaining.setBounds(143, 16, 108, 16);
+		lblFoodRemaining.setText("Food Remaining:");
+		
+		lblDistanceRemaining = new Label(this, SWT.NONE);
+		lblDistanceRemaining.setBounds(143, 45, 120, 13);
+		lblDistanceRemaining.setText("Distance Traveled:");
+		
+		lblRations = new Label(this, SWT.NONE);
+		lblRations.setBounds(13, 91, 49, 13);
+		lblRations.setText("Rations:");
+		
+		lblPace = new Label(this, SWT.NONE);
+		lblPace.setBounds(20, 134, 49, 13);
+		lblPace.setText("Pace:");
+		
+		btnDone = new Button(this, SWT.NONE);
+		btnDone.setBounds(344, 11, 75, 25);
+		btnDone.setText("Return");
 	}
 }
