@@ -19,7 +19,7 @@ import items.Tongue;
  */
 public class Inventory {
 	private Item[]itemInventory;
-	private int length = 6;
+	private int length = 9;
 	/**
 	 * Constructor for empty game items in Inventory
 	 */
@@ -50,8 +50,11 @@ public class Inventory {
 	 * @param item3 an item to go in the Inventory
 	 * @param item4 an item to go in the Inventory
 	 * @param item5 an item to go in the Inventory
+	 * @param item6 an item to go in the Inventory
+	 * @param item7 an item to go in the Inventory
+	 * @param item8 an item to go in the Inventory
 	 */
-	public Inventory(Item item0,Item item1, Item item2, Item item3, Item item4, Item item5){
+	public Inventory(Item item0,Item item1, Item item2, Item item3, Item item4, Item item5, Item item6, Item item7, Item item8){
 		itemInventory = new Item[length];
 		itemInventory[0] = item0;
 		itemInventory[1] = item1;
@@ -59,6 +62,9 @@ public class Inventory {
 		itemInventory[3] = item3;
 		itemInventory[4] = item4;
 		itemInventory[5] = item5;
+		itemInventory[6] = item6;
+		itemInventory[7] = item7;
+		itemInventory[8] = item8;
 	}
 	/**
 	 * Method to check the length of Inventory
