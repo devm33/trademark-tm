@@ -20,7 +20,6 @@ public class Food extends Item {
 	 */
 	public void use(int ration) {
 		int partyLiving = 0;
-		int dead = 0;
 
 		for (Person m:World.getWagon().getPassengers()){
 			if (m.getHealth()>0){
