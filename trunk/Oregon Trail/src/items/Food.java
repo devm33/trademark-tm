@@ -87,6 +87,16 @@ public class Food extends Item {
 						setNumber(getNumber() + 1);
 					}
 					for(Person p : World.getWagon().getPassengers()){
+						if (ration>2){
+							for(Person r : World.getWagon().getPassengers()){
+								r.addHealth(5);
+							}
+							if(ration>3){
+								for(Person q : World.getWagon().getPassengers()){
+									q.addHealth(5);
+								}
+							}
+						}
 						p.eatFood(ration*5);
 						p.drinkWater(30);
 					}
