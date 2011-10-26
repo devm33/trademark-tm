@@ -29,6 +29,11 @@ public class Inventory {
 		itemInventory[1] = new Food();
 		itemInventory[2] = new Medicine();
 		itemInventory[3] = new Water();
+		itemInventory[4] = new Axle();
+		itemInventory[5] = new Clothing();
+		itemInventory[6] = new Oxen();
+		itemInventory[7] = new Tongue();
+		itemInventory[8] = new Wheel();
 	}
 	/**
 	 * Constructor for 3 specific items in Inventory
@@ -116,6 +121,9 @@ public class Inventory {
 	 * @return Food or null depending on the presence of a Food object in inventory
 	 */
 	public Food getFood(){
+		if(itemInventory[1].equals(new Food()))
+			return (Food) itemInventory[1];
+		
 		for (int f=0; f<length; f++){
 			if (itemInventory[f].equals(new Food())){
 				return (Food) itemInventory[f];
@@ -129,6 +137,9 @@ public class Inventory {
 	 * @return Water or null depending on presence of a Water object in inventory
 	 */
 	public Water getWater(){
+		if(itemInventory[3].equals(new Water()))
+			return (Water) itemInventory[3];
+		
 		for (int f=0; f<length; f++){
 			if (itemInventory[f].equals(new Water())){
 				return (Water) itemInventory[f];
@@ -142,6 +153,9 @@ public class Inventory {
 	 * @return Ammo or null depending on the presence of a Ammo object in inventory
 	 */
 	public Ammo getAmmo(){
+		if(itemInventory[0].equals(new Ammo()))
+			return (Ammo) itemInventory[0];
+		
 		for (int f=0; f<length; f++){
 			if (itemInventory[f].equals(new Ammo())){
 				return (Ammo) itemInventory[f];
@@ -155,6 +169,9 @@ public class Inventory {
 	 * @return Clothing or null depending on the presence of a Clothing object in inventory
 	 */
 	public Clothing getClothing(){
+		if(itemInventory[5].equals(new Clothing()))
+			return (Clothing) itemInventory[5];
+		
 		for (int f=0; f<length; f++){
 			if (itemInventory[f].equals(new Clothing())){
 				return (Clothing) itemInventory[f];
@@ -168,6 +185,9 @@ public class Inventory {
 	 * @return Medicine or null depending on the presence of a Medicine object in inventory
 	 */
 	public Medicine getMedicine(){
+		if(itemInventory[2].equals(new Medicine()))
+			return (Medicine) itemInventory[2];
+		
 		for (int f=0; f<length; f++){
 			if (itemInventory[f].equals(new Medicine())){
 				return (Medicine) itemInventory[f];
@@ -181,6 +201,9 @@ public class Inventory {
 	 * @return Wheel or null depending on the presence of a Wheel object in inventory
 	 */
 	public Wheel getWheel(){
+		if(itemInventory[8].equals(new Wheel()))
+			return (Wheel) itemInventory[8];
+		
 		for (int f=0; f<length; f++){
 			if (itemInventory[f].equals(new Wheel())){
 				return (Wheel) itemInventory[f];
@@ -194,6 +217,9 @@ public class Inventory {
 	 * @return Axle or null depending on the presence of a Axle object in inventory
 	 */
 	public Axle getAxle(){
+		if(itemInventory[4].equals(new Axle()))
+			return (Axle) itemInventory[4];
+		
 		for (int f=0; f<length; f++){
 			if (itemInventory[f].equals(new Axle())){
 				return (Axle) itemInventory[f];
@@ -207,6 +233,9 @@ public class Inventory {
 	 * @return Oxen or null depending on the presence of a Oxen object in inventory
 	 */
 	public Oxen getOxen(){
+		if(itemInventory[6].equals(new Oxen()))
+			return (Oxen) itemInventory[6];
+		
 		for (int f=0; f<length; f++){
 			if (itemInventory[f].equals(new Oxen())){
 				return (Oxen) itemInventory[f];
@@ -220,6 +249,9 @@ public class Inventory {
 	 * @return Tongue or null depending on the presence of a Tongue object in inventory
 	 */
 	public Tongue getTongue(){
+		if(itemInventory[7].equals(new Tongue()))
+			return (Tongue) itemInventory[7];
+		
 		for (int f=0; f<length; f++){
 			if (itemInventory[f].equals(new Tongue())){
 				return (Tongue) itemInventory[f];
