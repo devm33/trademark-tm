@@ -56,7 +56,7 @@ public class Food extends Item {
 		}
 		else{
 			for(Person p : World.getWagon().getPassengers()){
-				p.addHealth(p.getHealth()-15);
+				p.addHealth(-15);
 				p.drinkWater(60);
 			}
 		}
@@ -114,7 +114,7 @@ public class Food extends Item {
 		}
 		else{
 			for(Person p : World.getWagon().getPassengers()){
-				p.addHealth(p.getHealth()-15);
+				p.addHealth(-15);
 				p.drinkWater(60);
 			}
 		}
