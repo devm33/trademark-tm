@@ -305,11 +305,11 @@ public class MainScreen {
 		lblCash.setBounds(223, 8, 55, 15);
 		
 		lblDate = new Label(shlOregonTrail, SWT.NONE);
-		lblDate.setText("May 1, 1848");
+		lblDate.setText("May 32, 2658");
 		lblDate.setBounds(10, 8, 131, 15);
 		
 		lblDay = new Label(shlOregonTrail, SWT.NONE);
-		lblDay.setText("32");
+		lblDay.setText("123");
 		lblDay.setBounds(39, 29, 37, 15);
 
 		lbl1 = new Label(shlOregonTrail, SWT.NONE);
