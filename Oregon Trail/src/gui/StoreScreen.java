@@ -31,7 +31,6 @@ import org.eclipse.wb.swt.SWTResourceManager;
  */
 public class StoreScreen extends Composite{
 	public boolean done = false;
-	public boolean needUpdate = false;
 	private Text txtAmount;
 	private Store currentStore;
 	private List list;
@@ -110,7 +109,6 @@ public class StoreScreen extends Composite{
 		btnPurchase.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				needUpdate = true;
 				if(isInteger(txtAmount.getText())){
 					try {
 						switch(list.getSelectionIndex()){

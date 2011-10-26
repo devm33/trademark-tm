@@ -123,10 +123,22 @@ public class MainScreen {
 			/*Wagon Screen Continuation*/
 			continueWagon();
 			
+			/*Update items in inventory and player cash*/
+			updateInventoryAndCash();
+			
 			contentPanel.update();
 			shlOregonTrail.update();
 		}
+		
 		return !shlOregonTrail.isDisposed();
+	}
+	
+	private void updateInventoryAndCash(){
+		
+		inventory.update();
+		if(World.getWagon().getLeader()!=null && World.getWagon().getCash()!=null){
+		lblCash.setText("$"+World.getWagon().getCash());
+		}
 	}
 	
 	/**
@@ -190,11 +202,6 @@ public class MainScreen {
 			layout.topControl = town;
 			contentPanel.layout();
 			shlOregonTrail.update();
-		}
-		if (store.needUpdate){
-			store.needUpdate = false;
-			inventory.update();
-			lblCash.setText("$"+World.getWagon().getCash());
 		}
 	}
 	
