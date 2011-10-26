@@ -51,6 +51,10 @@ public class Food extends Item {
 				}
 			} catch (InsufficientFoodException e) {
 				//e.printStackTrace();
+				for(Person p : World.getWagon().getPassengers()){
+					p.setHealth(p.getHealth()-15);
+					p.drinkWater(60);
+				}
 			}
 		}
 		else{
@@ -99,6 +103,10 @@ public class Food extends Item {
 				
 			} catch (InsufficientFoodException e) {
 				//e.printStackTrace();
+				for(Person p : World.getWagon().getPassengers()){
+					p.setHealth(p.getHealth()-15);
+					p.drinkWater(60);
+				}
 			}
 		}
 		else{
