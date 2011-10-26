@@ -47,7 +47,60 @@ public class InventoryScreen extends Composite{
 		itemInventory[0] = new Ammo();
 		itemInventory[1] = new Food();
 		itemInventory[2] = new Medicine();
+		
+		createContents();
+		
+		//Logic when user clicks the Close Inventory button
+		btnClose.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent arg0) {
+				done = true;
+			}
+		});
+	}
 	
+	public void update(){
+/*		lblItems0wt.setText(""+World.getWagon().getInventory().getItemInventory()[0].getWeight());
+		lblItems1wt.setText(""+World.getWagon().getInventory().getItemInventory()[1].getWeight());
+		lblItems2wt.setText(""+World.getWagon().getInventory().getItemInventory()[2].getWeight());*/
+		lblItems0amt.setText(""+World.getWagon().getInventory().getItemInventory()[0].getNumber());
+		lblItems1amt.setText(""+World.getWagon().getInventory().getItemInventory()[1].getNumber());
+		lblItems2amt.setText(""+World.getWagon().getInventory().getItemInventory()[2].getNumber());
+	}
+
+	public boolean contains(Item i) {
+		// TODO Auto-generated method stub
+		for (int x=0; x<length; x++){
+			if (itemInventory[x].getName()==i.getName()){
+				return true;
+			}
+			
+		}
+		return false;
+	}
+	
+	public int getLength(){
+		return length;
+	}
+	
+	public Item getItem(int x){
+		return itemInventory[x];
+	}
+	
+	public void setItemNum(int item, int num){
+		itemInventory[item].setNumber(num);
+	}
+	
+	public Item[] getItemInventory(){
+		return itemInventory;
+	}
+	
+	@Override
+	protected void checkSubclass() {
+		// Disable the check that prevents subclassing of SWT components
+	}
+	
+	private void createContents(){
 		this.setLayout(new GridLayout(3, true));
 		
 		lblItem = new Label(this, SWT.NONE);
@@ -100,55 +153,7 @@ public class InventoryScreen extends Composite{
 		new Label(this, SWT.NONE);
 		
 		btnClose = new Button(this, SWT.NONE);
-		btnClose.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent arg0) {
-				done = true;
-			}
-		});
 		btnClose.setText("Close Inventory");
 		new Label(this, SWT.NONE);
 	}
-
-	public int getLength(){
-		return length;
-	}
-	
-	public Item getItem(int x){
-		return itemInventory[x];
-	}
-	
-	public void setItemNum(int item, int num){
-		itemInventory[item].setNumber(num);
-	}
-	
-	public Item[] getItemInventory(){
-		return itemInventory;
-	}
-	
-	public void update(){
-/*		lblItems0wt.setText(""+World.getWagon().getInventory().getItemInventory()[0].getWeight());
-		lblItems1wt.setText(""+World.getWagon().getInventory().getItemInventory()[1].getWeight());
-		lblItems2wt.setText(""+World.getWagon().getInventory().getItemInventory()[2].getWeight());*/
-		lblItems0amt.setText(""+World.getWagon().getInventory().getItemInventory()[0].getNumber());
-		lblItems1amt.setText(""+World.getWagon().getInventory().getItemInventory()[1].getNumber());
-		lblItems2amt.setText(""+World.getWagon().getInventory().getItemInventory()[2].getNumber());
-	}
-
-	public boolean contains(Item i) {
-		// TODO Auto-generated method stub
-		for (int x=0; x<length; x++){
-			if (itemInventory[x].getName()==i.getName()){
-				return true;
-			}
-			
-		}
-		return false;
-	}
-	
-	@Override
-	protected void checkSubclass() {
-		// Disable the check that prevents subclassing of SWT components
-	}
-
 }
