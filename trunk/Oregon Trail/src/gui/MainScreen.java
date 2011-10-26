@@ -268,6 +268,11 @@ public class MainScreen {
 				store.setVisible(true);
 				layout.topControl = store;
 				break;
+			case 3:
+				/*if previous screen was wagon screen*/
+				wagonView.setVisible(true);
+				layout.topControl = wagonView;
+				break;
 			case 4:
 				/*if previous screen was inventory*/
 				inventory.setVisible(true);
