@@ -24,6 +24,7 @@ public class World {
 	
 	//this class should also contain the events and should run them periodically/randomly
 	
+	@SuppressWarnings("unused")
 	public static void main(String[] args) {
 		World thisWorld = new World();
 	}
