@@ -53,6 +53,7 @@ public class MainScreen {
 		 */
 		display = new Display();
 		shlOregonTrail = new Shell(display);
+		shlOregonTrail.setSize(646, 402);
 		shlOregonTrail.setText("Oregon Trail");
 		shlOregonTrail.setBounds(100, 100, 500, 400);
 
@@ -72,7 +73,7 @@ public class MainScreen {
 				accessInventory = true;
 			}
 		});
-		btnInventory.setBounds(257, 10, 75, 25);
+		btnInventory.setBounds(326, 5, 75, 25);
 		btnInventory.setText("Inventory");
 		btnInventory.setEnabled(false);
 		
@@ -92,16 +93,16 @@ public class MainScreen {
 				accessWagon = true;
 			}
 		});
-		btnWagon.setBounds(171, 10, 68, 23);
+		btnWagon.setBounds(252, 5, 68, 25);
 		btnWagon.setText("Wagon");
 		btnWagon.setEnabled(false);
 		
-		btnQuitGame.setBounds(349, 10, 75, 25);
+		btnQuitGame.setBounds(407, 5, 75, 25);
 		btnQuitGame.setText("Quit Game");
 
 		/*Create the composite that the pages will share*/
 		contentPanel = new Composite(shlOregonTrail, SWT.BORDER);
-		contentPanel.setBounds(0, 50, 500, 300);
+		contentPanel.setBounds(0, 41, 500, 300);
 
 		/*
 		 * END INITIALIZATION OF CONTROLS
