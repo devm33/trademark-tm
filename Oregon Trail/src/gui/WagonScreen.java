@@ -58,7 +58,7 @@ public class WagonScreen extends Composite {
 		btnTakeTurn.setText("Take Turn");
 		
 		rations = new Combo(this, SWT.NONE);
-		rations.setItems(new String[] {"None", "bare-bones", "Meager", "Normal", "Wellfed"});
+		rations.setItems(new String[] {"None", "Bare-Bones", "Meager", "Normal", "Wellfed"});
 		rations.setBounds(68, 83, 94, 22);
 		rations.setText("Normal");
 		rations.addSelectionListener(new SelectionAdapter() {
@@ -158,10 +158,8 @@ public class WagonScreen extends Composite {
 		
 		distance.setText("" + wagon.getDistance());
 		
-		leader.setText(wagon.getLeader().toString());
-		
 		List<Person> pass = wagon.getPassengers();
-		Label[] labels = {traveler0, traveler1, traveler2, traveler3};
+		Label[] labels = {leader, traveler0, traveler1, traveler2, traveler3};
 		int i = 0;
 		for(Person p : pass) {
 			labels[i].setText(p.toString());
@@ -178,7 +176,7 @@ public class WagonScreen extends Composite {
 		case 0:
 			return "None";
 		case 1:
-			return "Barebones";
+			return "Bare-Bones";
 		case 2:
 			return "Meager";
 		case 3:
@@ -196,7 +194,7 @@ public class WagonScreen extends Composite {
 	private int rations(String r) {
 		if(r.equals("None"))
 			return 0;
-		else if(r.equals("Barebones"))
+		else if(r.equals("Bare-Bones"))
 			return 1;
 		else if(r.equals("Meager"))
 			return 2;
