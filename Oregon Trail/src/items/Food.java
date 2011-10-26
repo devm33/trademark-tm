@@ -19,10 +19,7 @@ public class Food extends Item {
 	 * @param used the number of lbs of food used (increments of 5lbs) 
 	 */
 	public void use(int ration) {
-		while (this.excess > 5) {
-			this.excess -= 5;
-			setNumber(getNumber() + 1);
-		}
+		
 		if (ration!=0) {
 			int partyLiving = 0;
 			for (Person m : World.getWagon().getPassengers()) {
@@ -33,14 +30,10 @@ public class Food extends Item {
 			}
 			int foodUsed = ration * partyLiving;
 			try {
-				if (this.getNumber() >= (int) (Math
-						.ceil((this.getNumber() - foodUsed) / 5.0))) {
+				if (this.getNumber() >= (int) (Math.ceil((this.getNumber() - foodUsed) / 5.0))) {
 					//this.setNumber(this.getNumber() - (ration*partyLiving));
-					setNumber(getNumber()
-							- (int) (Math
-									.ceil((this.getNumber() - foodUsed) / 5.0)));
-					int unitUsed = (int) (Math
-							.ceil((this.getNumber() - foodUsed) / 5.0));
+					setNumber(getNumber() - (int) (Math.ceil((this.getNumber() - foodUsed) / 5.0)));
+					int unitUsed = (int) (Math.ceil((this.getNumber() - foodUsed) / 5.0));
 					this.excess = (5 * unitUsed) - (partyLiving * ration);
 					while (this.excess > 5) {
 						this.excess -= 5;
@@ -73,10 +66,7 @@ public class Food extends Item {
 	 */
 	@Override
 	public void use() {
-		while (this.excess > 5) {
-			this.excess -= 5;
-			setNumber(getNumber() + 1);
-		}
+		
 		if (World.getWagon().getRations()!=0) {
 			int ration = World.getWagon().getRations();
 			int partyLiving = 0;
@@ -88,14 +78,10 @@ public class Food extends Item {
 			}
 			int foodUsed = ration * partyLiving;
 			try {
-				if (this.getNumber() >= (int) (Math
-						.ceil((this.getNumber() - foodUsed) / 5.0))) {
+				if (this.getNumber() >= (int) (Math.ceil((this.getNumber() - foodUsed) / 5.0))) {
 					//this.setNumber(this.getNumber() - (ration*partyLiving));
-					setNumber(getNumber()
-							- (int) (Math
-									.ceil((this.getNumber() - foodUsed) / 5.0)));
-					int unitUsed = (int) (Math
-							.ceil((this.getNumber() - foodUsed) / 5.0));
+					setNumber(getNumber() - (int) (Math.ceil((this.getNumber() - foodUsed) / 5.0)));
+					int unitUsed = (int) (Math.ceil((this.getNumber() - foodUsed) / 5.0));
 					this.excess = (5 * unitUsed) - (partyLiving * ration);
 					while (this.excess > 5) {
 						this.excess -= 5;
