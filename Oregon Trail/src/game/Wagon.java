@@ -277,7 +277,7 @@ public class Wagon {
 		Food f = inventory.getFood();
 		Water w = inventory.getWater();
 		
-		leader.live();
+		leader.live(); //Live dammnit LIVE!
 		for(Traveler t : members) {
 			t.live();
 		}
