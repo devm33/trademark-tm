@@ -65,5 +65,20 @@ public interface Person {
 	 * @return String representing this person class.
 	 */
 	public String toString();
+
+	/**
+	 * @return the thirst of this person 0 to 100
+	 */
+	int getThirst();
+	
+	/**
+	 * @return the hunger of this person 0 to 100
+	 */
+	int getHunger();
+	
+	/**
+	 * increment hunger, thirst and possibly decrement health.
+	 */
+	void live();
 	
 }
