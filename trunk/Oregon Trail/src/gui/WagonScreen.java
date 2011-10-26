@@ -96,10 +96,10 @@ public class WagonScreen extends Composite {
 		});
 		
 		rationsDescript = new Label(this, SWT.NONE);
-		rationsDescript.setBounds(174, 83, 210, 42);
+		rationsDescript.setBounds(174, 83, 266, 42);
 		
 		paceDescript = new Label(this, SWT.NONE);
-		paceDescript.setBounds(174, 145, 210, 42);
+		paceDescript.setBounds(174, 145, 266, 42);
 		
 		food = new Label(this, SWT.NONE);
 		food.setBounds(258, 16, 64, 12);
@@ -127,13 +127,13 @@ public class WagonScreen extends Composite {
 		lblWagon.setBounds(10, 5, 75, 28);
 		lblWagon.setText("Wagon"); //This is myWagon. There are many like it, but this one is mine.
 		
-		Label lblFoodRemaing = new Label(this, SWT.NONE);
-		lblFoodRemaing.setBounds(163, 16, 88, 13);
-		lblFoodRemaing.setText("Food Remaing:");
+		Label lblFoodRemaining = new Label(this, SWT.NONE);
+		lblFoodRemaining.setBounds(143, 16, 108, 13);
+		lblFoodRemaining.setText("Food Remaining:");
 		
-		Label lblDistanceRemaing = new Label(this, SWT.NONE);
-		lblDistanceRemaing.setBounds(163, 45, 100, 13);
-		lblDistanceRemaing.setText("Distance Remaing:");
+		Label lblDistanceRemaining = new Label(this, SWT.NONE);
+		lblDistanceRemaining.setBounds(143, 45, 120, 13);
+		lblDistanceRemaining.setText("Distance Remaining:");
 		
 		Label lblRatiions = new Label(this, SWT.NONE);
 		lblRatiions.setBounds(13, 91, 49, 13);
