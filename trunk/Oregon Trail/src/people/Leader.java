@@ -132,7 +132,7 @@ public abstract class Leader implements Person {
 	
 	@Override
 	public String toString(){
-		return name;
+		return name+": health = "+health+", hunger = "+hunger+", thirst = "+thirst;
 	}
 	
 	@Override
