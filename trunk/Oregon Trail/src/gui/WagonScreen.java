@@ -54,9 +54,6 @@ public class WagonScreen extends Composite {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {	
 				
-				
-				
-				
 				wagon.takeStep();
 			}
 		});
@@ -149,7 +146,6 @@ public class WagonScreen extends Composite {
 		lblPace.setBounds(20, 147, 49, 13);
 		lblPace.setText("Pace:");
 		
-		this.update();
 	}
 	
 	public void update() {
@@ -175,7 +171,11 @@ public class WagonScreen extends Composite {
 			i++;
 		}
 	}
-	
+	/**
+	 * Returns a string naming the given rations setting
+	 * @param r the rations setting
+	 * @return the string naming the rations setting or null if r not valid
+	 */
 	private String rations(int r) {
 		switch(r) {
 		case 0:
@@ -191,6 +191,11 @@ public class WagonScreen extends Composite {
 		}
 		return null;
 	}
+	/**
+	 * Returns the integer associated with the given string
+	 * @param r the string representing rations
+	 * @return the integer for rations or -1 if r not valid
+	 */
 	private int rations(String r) {
 		if(r.equals("None"))
 			return 0;
@@ -204,6 +209,11 @@ public class WagonScreen extends Composite {
 			return 4;
 		return -1;
 	}
+	/**
+	 * Returns a description of the given rations setting
+	 * @param r the rations setting
+	 * @return the string description or null if r not valid
+	 */
 	private String rationsDescript(int r) {
 		switch(r) {
 		case 0:
@@ -219,6 +229,11 @@ public class WagonScreen extends Composite {
 		}
 		return null;
 	}
+	/**
+	 * Returns the string associated with the integer for pace
+	 * @param p the integer for pace
+	 * @return the string pace or null if p not valid
+	 */
 	private String pace(int p) {
 		switch(p) {
 		case 0:
@@ -232,6 +247,11 @@ public class WagonScreen extends Composite {
 		}
 		return null;
 	}
+	/**
+	 * Returns the integer associated with the string pace
+	 * @param p the pace in string form
+	 * @return integer with the pace or -1 if not valid
+	 */
 	private int pace(String p) {
 		if(p.equals("Stopped"))
 			return 0;
