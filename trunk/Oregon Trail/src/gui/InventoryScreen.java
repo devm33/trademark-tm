@@ -45,9 +45,14 @@ public class InventoryScreen extends Composite{
 		
 		itemInventory = new Item[length];
 		itemInventory[0] = new Ammo();
+		//itemInventory[1] = new Axle();
+		//itemInventory[2] = new Clothing();
 		itemInventory[1] = new Food();
 		itemInventory[2] = new Medicine();
-		
+		//itemInventory[5] = new Oxen();
+		//itemInventory[6] = new Tongue();
+		//itemInventory[7] = new Water();
+		//itemInventory[8] = new Wheel();
 		createContents();
 		
 		//Logic when user clicks the Close Inventory button
