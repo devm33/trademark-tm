@@ -72,7 +72,17 @@ public abstract class Leader implements Person {
 	public int getHealth() {
 		return health;
 	}
+	
+	@Override
+	public int getThirst() {
+		return thirst;
+	}
 
+	@Override
+	public int getHunger() {
+		return hunger;
+	}
+	
 	@Override
 	public int setHealth(int change) {
 		health += change;
@@ -104,6 +114,22 @@ public abstract class Leader implements Person {
 		//TODO update health
 	}
 
+	@Override
+	public void live() {
+		if(health <= 0)
+			return; //I ain't living.
+		thirst += 30;
+		if(thirst >= 100) {
+			thirst = 100;
+			die();
+		}
+		hunger += 15;
+		if(hunger >= 100) {
+			hunger = 100;
+			health -= 15;
+		}
+	}
+	
 	@Override
 	public String toString(){
 		return name;

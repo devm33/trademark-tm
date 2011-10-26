@@ -11,6 +11,7 @@ package people;
 public class Traveler implements Person {
 	
 	private int health, thirst, hunger;
+
 	private String name;
 	
 	/**
@@ -54,7 +55,17 @@ public class Traveler implements Person {
 	public void die() {
 		health = 0;
 	}
+	
+	@Override
+	public int getThirst() {
+		return thirst;
+	}
 
+	@Override
+	public int getHunger() {
+		return hunger;
+	}
+	
 	@Override
 	public void eatFood(int amount) {
 		hunger -= amount;
@@ -69,6 +80,22 @@ public class Traveler implements Person {
 		if(thirst < 0)
 			thirst = 0;
 		//TODO update health
+	}
+	
+	@Override
+	public void live() {
+		if(health <= 0)
+			return; //I ain't living.
+		thirst += 30;
+		if(thirst >= 100) {
+			thirst = 100;
+			die();
+		}
+		hunger += 15;
+		if(hunger >= 100) {
+			hunger = 100;
+			health -= 15;
+		}
 	}
 	
 	@Override
