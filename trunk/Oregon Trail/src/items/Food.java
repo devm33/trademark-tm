@@ -15,12 +15,12 @@ public class Food extends Item {
 		
 	}
 	/**
-	 * Method for using food with input ration used which automatically conpensates for dead party members
-	 * @param used the number of lbs of food used (increments of 5lbs) 
+	 * Method for using food with input ration used which automatically compensates for dead party members
+	 * @param ration int used the number of lbs of food used (increments of 5lbs) 
 	 */
 	public void use(int ration) {
 		
-		if (ration!=0) {
+		if (World.getWagon().getRations()!=0) {
 			int partyLiving = 0;
 			for (Person m : World.getWagon().getPassengers()) {
 				if (m.getHealth() > 0) {
@@ -29,11 +29,10 @@ public class Food extends Item {
 				}
 			}
 			int foodUsed = ration * partyLiving;
+			int unitUsed = (int) Math.ceil(foodUsed/5.0);
 			try {
-				if (this.getNumber() >= (int) (Math.ceil((this.getNumber() - foodUsed) / 5.0))) {
-					//this.setNumber(this.getNumber() - (ration*partyLiving));
-					setNumber(getNumber() - (int) (Math.ceil((this.getNumber() - foodUsed) / 5.0)));
-					int unitUsed = (int) (Math.ceil((this.getNumber() - foodUsed) / 5.0));
+				if (this.getNumber() >= unitUsed) {
+					setNumber(getNumber() - unitUsed);
 					this.excess = (5 * unitUsed) - (partyLiving * ration);
 					while (this.excess > 5) {
 						this.excess -= 5;
@@ -46,17 +45,18 @@ public class Food extends Item {
 				} else {
 					throw new InsufficientFoodException();
 				}
+				
 			} catch (InsufficientFoodException e) {
 				//e.printStackTrace();
 				for(Person p : World.getWagon().getPassengers()){
-					p.setHealth(p.getHealth()-15);
+					p.addHealth(-15);
 					p.drinkWater(60);
 				}
 			}
 		}
 		else{
 			for(Person p : World.getWagon().getPassengers()){
-				p.setHealth(p.getHealth()-15);
+				p.addHealth(p.getHealth()-15);
 				p.drinkWater(60);
 			}
 		}
@@ -77,11 +77,10 @@ public class Food extends Item {
 				}
 			}
 			int foodUsed = ration * partyLiving;
+			int unitUsed = (int) Math.ceil(foodUsed/5.0);
 			try {
-				if (this.getNumber() >= (int) (Math.ceil((this.getNumber() - foodUsed) / 5.0))) {
-					//this.setNumber(this.getNumber() - (ration*partyLiving));
-					setNumber(getNumber() - (int) (Math.ceil((this.getNumber() - foodUsed) / 5.0)));
-					int unitUsed = (int) (Math.ceil((this.getNumber() - foodUsed) / 5.0));
+				if (this.getNumber() >= unitUsed) {
+					setNumber(getNumber() - unitUsed);
 					this.excess = (5 * unitUsed) - (partyLiving * ration);
 					while (this.excess > 5) {
 						this.excess -= 5;
@@ -98,14 +97,14 @@ public class Food extends Item {
 			} catch (InsufficientFoodException e) {
 				//e.printStackTrace();
 				for(Person p : World.getWagon().getPassengers()){
-					p.setHealth(p.getHealth()-15);
+					p.addHealth(-15);
 					p.drinkWater(60);
 				}
 			}
 		}
 		else{
 			for(Person p : World.getWagon().getPassengers()){
-				p.setHealth(p.getHealth()-15);
+				p.addHealth(p.getHealth()-15);
 				p.drinkWater(60);
 			}
 		}
