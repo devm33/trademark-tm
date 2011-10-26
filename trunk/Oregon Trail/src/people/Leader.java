@@ -84,12 +84,13 @@ public abstract class Leader implements Person {
 	}
 	
 	@Override
-	public int setHealth(int change) {
+	public int addHealth(int change) {
 		health += change;
 		if(health < 0)
 			health = 0;
 		if(health > 100)
 			health = 100;
+		System.out.println("health was just change by "+change+" health is now "+health);
 		return health;
 	}
 
@@ -124,9 +125,12 @@ public abstract class Leader implements Person {
 			die();
 		}
 		hunger += 15;
+		System.out.println("my hunger is "+hunger);
 		if(hunger >= 100) {
+			System.out.println("inside the if loop");
 			hunger = 100;
 			health -= 15;
+			System.out.println("health is "+health);
 			if(health < 0)
 				die();
 		}
