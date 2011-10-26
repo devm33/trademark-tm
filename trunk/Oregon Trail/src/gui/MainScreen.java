@@ -71,7 +71,7 @@ public class MainScreen {
 				accessInventory = true;
 			}
 		});
-		btnInventory.setBounds(179, 10, 75, 25);
+		btnInventory.setBounds(179, 10, 89, 25);
 		btnInventory.setText("Inventory");
 		btnInventory.setEnabled(false);
 		btnQuitGame = new Button(shlOregonTrail, SWT.NONE);
@@ -82,7 +82,7 @@ public class MainScreen {
 				display.dispose();
 			}
 		});
-		btnQuitGame.setBounds(349, 10, 75, 25);
+		btnQuitGame.setBounds(335, 10, 89, 25);
 		btnQuitGame.setText("Quit Game");
 
 		/*Create the composite that the pages will share*/
