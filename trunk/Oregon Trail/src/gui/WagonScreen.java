@@ -1,5 +1,7 @@
 package gui;
 
+import java.util.List;
+
 import game.Wagon;
 import game.World;
 
@@ -14,6 +16,8 @@ import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.wb.swt.SWTResourceManager;
+
+import people.Person;
 /**
  * Screen to display the wagon contents and controls.
  * 
@@ -22,18 +26,19 @@ import org.eclipse.wb.swt.SWTResourceManager;
  *
  */
 public class WagonScreen extends Composite {
-	private Text rationsDescript;
-	private Text paceDescript;
-	private Text food;
-	private Text distance;
-	private Text leader;
-	private Text traveler0;
-	private Text traveler1;
-	private Text traveler2;
-	private Text traveler3;
+	private Label rationsDescript;
+	private Label paceDescript;
+	private Label food;
+	private Label distance;
+	private Label leader;
+	private Label traveler0;
+	private Label traveler1;
+	private Label traveler2;
+	private Label traveler3;
 	private Button btnTakeTurn;
 	private Combo rations;
 	private Combo pace;
+	private Label lblWagon;
 	
 	
 	
@@ -47,8 +52,7 @@ public class WagonScreen extends Composite {
 		btnTakeTurn = new Button(this, SWT.NONE);
 		btnTakeTurn.addSelectionListener(new SelectionAdapter() {
 			@Override
-			public void widgetSelected(SelectionEvent arg0) {
-				if(rations.get)
+			public void widgetSelected(SelectionEvent arg0) {	
 				
 				
 				
@@ -63,43 +67,71 @@ public class WagonScreen extends Composite {
 		rations.setItems(new String[] {"None", "bare-bones", "Meager", "Normal", "Wellfed"});
 		rations.setBounds(68, 83, 94, 22);
 		rations.setText("Normal");
+		rations.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				int cur_rations = rations(rations.getText());
+				if(cur_rations < 0) {
+					System.out.println("wtf happened? \n crashing from confusion.");
+					System.exit(1);
+				}
+				if(cur_rations != wagon.getRations()) {
+					wagon.setRations(cur_rations);
+					rationsDescript.setText(rationsDescript(wagon.getRations()));
+				}
+			}
+		});
 		
 		pace = new Combo(this, SWT.NONE);
 		pace.setItems(new String[] {"Stopped", "Leisurely", "Steady", "Grueling"});
 		pace.setBounds(68, 144, 94, 22);
 		pace.setText("Steady");
+		pace.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				int cur_pace = pace(pace.getText());
+				if(cur_pace < 0) {
+					System.out.println("wtf happened? \n crashing from confusion.");
+					System.exit(1);
+				}
+				if(cur_pace != wagon.getPace()) {
+					wagon.setPace(cur_pace);
+					paceDescript.setText(paceDescript(wagon.getPace()));
+				}
+			}
+		});
 		
-		rationsDescript = new Text(this, SWT.BORDER);
+		rationsDescript = new Label(this, SWT.NONE);
 		rationsDescript.setBounds(174, 83, 210, 42);
 		
-		paceDescript = new Text(this, SWT.BORDER);
+		paceDescript = new Label(this, SWT.NONE);
 		paceDescript.setBounds(174, 145, 210, 42);
 		
-		food = new Text(this, SWT.BORDER);
-		food.setBounds(257, 10, 64, 19);
+		food = new Label(this, SWT.NONE);
+		food.setBounds(258, 16, 64, 12);
 		
-		distance = new Text(this, SWT.BORDER);
-		distance.setBounds(278, 42, 64, 19);
+		distance = new Label(this, SWT.NONE);
+		distance.setBounds(278, 45, 64, 16);
 		
-		leader = new Text(this, SWT.BORDER);
+		leader = new Label(this, SWT.NONE);
 		leader.setBounds(0, 211, 200, 19);
 		
-		traveler0 = new Text(this, SWT.BORDER);
+		traveler0 = new Label(this, SWT.NONE);
 		traveler0.setBounds(0, 241, 200, 19);
 		
-		traveler1 = new Text(this, SWT.BORDER);
+		traveler1 = new Label(this, SWT.NONE);
 		traveler1.setBounds(0, 271, 200, 19);
 		
-		traveler2 = new Text(this, SWT.BORDER);
+		traveler2 = new Label(this, SWT.NONE);
 		traveler2.setBounds(219, 224, 200, 19);
 		
-		traveler3 = new Text(this, SWT.BORDER);
+		traveler3 = new Label(this, SWT.NONE);
 		traveler3.setBounds(219, 257, 200, 19);
 		
-		Label lblWagon = new Label(this, SWT.NONE);
+		lblWagon = new Label(this, SWT.NONE);
 		lblWagon.setFont(SWTResourceManager.getFont("Tahoma", 14, SWT.NORMAL));
 		lblWagon.setBounds(10, 5, 75, 28);
-		lblWagon.setText("WAGON");
+		lblWagon.setText("Wagon"); //This is myWagon. There are many like it, but this one is mine.
 		
 		Label lblFoodRemaing = new Label(this, SWT.NONE);
 		lblFoodRemaing.setBounds(163, 16, 88, 13);
@@ -116,48 +148,33 @@ public class WagonScreen extends Composite {
 		Label lblPace = new Label(this, SWT.NONE);
 		lblPace.setBounds(20, 147, 49, 13);
 		lblPace.setText("Pace:");
+		
+		this.update();
 	}
 	
 	public void update() {
+		rations.setText(rations(wagon.getRations()));
 		
-		rations.setBounds(68, 83, 94, 22);
-		rations.setText("Normal");
-
+		pace.setText(pace(wagon.getPace()));
 		
-		pace.setItems(new String[] {"Stopped", "Leisurely", "Steady", "Grueling"});
-		pace.setBounds(68, 144, 94, 22);
-		pace.setText("Steady");
+		rationsDescript.setText(rationsDescript(wagon.getRations()));
 		
-		rationsDescript = new Text(this, SWT.BORDER);
-		rationsDescript.setBounds(174, 83, 210, 42);
+		paceDescript.setText(paceDescript(wagon.getPace()));
 		
-		paceDescript = new Text(this, SWT.BORDER);
-		paceDescript.setBounds(174, 145, 210, 42);
-	
+		food.setText("" + wagon.getInventory().getFood().getNumber());
 		
-		food = new Text(this, SWT.BORDER);
-		food.setBounds(257, 10, 64, 19);
+		distance.setText("" + wagon.getDistance());
 		
+		leader.setText(wagon.getLeader().toString());
 		
-		distance = new Text(this, SWT.BORDER);
-		distance.setBounds(278, 42, 64, 19);
-		
-		leader = new Text(this, SWT.BORDER);
-		leader.setBounds(0, 211, 200, 19);
-		
-		traveler0 = new Text(this, SWT.BORDER);
-		traveler0.setBounds(0, 241, 200, 19);
-		
-		traveler1 = new Text(this, SWT.BORDER);
-		traveler1.setBounds(0, 271, 200, 19);
-		
-		traveler2 = new Text(this, SWT.BORDER);
-		traveler2.setBounds(219, 224, 200, 19);
-		
-		traveler3 = new Text(this, SWT.BORDER);
-		traveler3.setBounds(219, 257, 200, 19);
+		List<Person> pass = wagon.getPassengers();
+		Label[] labels = {traveler0, traveler1, traveler2, traveler3};
+		int i = 0;
+		for(Person p : pass) {
+			labels[i].setText(p.toString());
+			i++;
+		}
 	}
-	
 	
 	private String rations(int r) {
 		switch(r) {
@@ -187,6 +204,21 @@ public class WagonScreen extends Composite {
 			return 4;
 		return -1;
 	}
+	private String rationsDescript(int r) {
+		switch(r) {
+		case 0:
+			return "Starvation and death occur after a few days.";
+		case 1:
+			return "1 pound of food per person per day.";
+		case 2:
+			return "2 pounds of food per person per day.";
+		case 3:
+			return "3 pounds of food per person per day.";
+		case 4:
+			return "4 pounds of food per person per day.";
+		}
+		return null;
+	}
 	private String pace(int p) {
 		switch(p) {
 		case 0:
@@ -210,5 +242,23 @@ public class WagonScreen extends Composite {
 		else if(p.equals("Grueling"))
 			return 15;
 		return -1;
+	}
+	/**
+	 * Returns a string describing the current pace selection.
+	 * @param p the pace to describe.
+	 * @return description or null if invalid pace.
+	 */
+	private String paceDescript(int p) {
+		switch(p) {
+		case 0:
+			return "0 miles pers day restful. Recover from exhaustion faster.";
+		case 5:
+			return "5 miles per day slow and restful. Helps recover from exhaustion.";
+		case 10:
+			return "10 miles per day basic pace. Normal fatigue.";
+		case 15:
+			return "15 miles per day hard pace. Oxen and people rapidly become tired, then exhausted.";
+		}
+		return null;
 	}
 }
