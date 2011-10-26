@@ -41,14 +41,14 @@ public interface Person {
 	public void die();
 	
 	/**
-	 * Given an amount of food the person eats it and updates its health.
+	 * Given an amount of food the person eats it and updates its hunger (0 to 100).
 	 * 
 	 * @param amount the amount of food to eat.
 	 */
 	public void eatFood(int amount);
 	
 	/**
-	 * Given an amount of water the person drinks it and updates its health.
+	 * Given an amount of water the person drinks it and updates its thirst (0 to 100).
 	 * 
 	 * @param amount the amount of water to drink.
 	 */
