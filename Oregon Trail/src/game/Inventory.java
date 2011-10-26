@@ -5,6 +5,8 @@ import items.Food;
 import items.Item;
 import items.Medicine;
 import items.Water;
+import items.Clothing;
+import items.Wheel;
 
 /**
  * Backend for Inventory GUI
@@ -121,6 +123,58 @@ public class Inventory {
 		for (int f=0; f<length; f++){
 			if (itemInventory[f].equals(new Water())){
 				return (Water) itemInventory[f];
+			}
+		}
+		return null;
+	}
+	
+	/**
+	 * Returns the Ammo object in the Inventory if it exists, if not returns null
+	 * @return Ammo or null depending on the presence of a Ammo object in inventory
+	 */
+	public Ammo getAmmo(){
+		for (int f=0; f<length; f++){
+			if (itemInventory[f].equals(new Ammo())){
+				return (Ammo) itemInventory[f];
+			}
+		}
+		return null;
+	}
+	
+	/**
+	 * Returns the Clothing object in the Inventory if it exists, if not returns null
+	 * @return Clothing or null depending on the presence of a Clothing object in inventory
+	 */
+	public Clothing getClothing(){
+		for (int f=0; f<length; f++){
+			if (itemInventory[f].equals(new Clothing())){
+				return (Clothing) itemInventory[f];
+			}
+		}
+		return null;
+	}
+	
+	/**
+	 * Returns the Medicine object in the Inventory if it exists, if not returns null
+	 * @return Medicine or null depending on the presence of a Medicine object in inventory
+	 */
+	public Medicine getMedicine(){
+		for (int f=0; f<length; f++){
+			if (itemInventory[f].equals(new Medicine())){
+				return (Medicine) itemInventory[f];
+			}
+		}
+		return null;
+	}
+	
+	/**
+	 * Returns the Wheel object in the Inventory if it exists, if not returns null
+	 * @return Wheel or null depending on the presence of a Wheel object in inventory
+	 */
+	public Wheel getWheel(){
+		for (int f=0; f<length; f++){
+			if (itemInventory[f].equals(new Wheel())){
+				return (Wheel) itemInventory[f];
 			}
 		}
 		return null;
