@@ -19,34 +19,45 @@ public class Food extends Item {
 	 * @param used the number of lbs of food used (increments of 5lbs) 
 	 */
 	public void use(int ration) {
-		int partyLiving = 0;
-
-		for (Person m:World.getWagon().getPassengers()){
-			if (m.getHealth()>0){
-				partyLiving++;
-			}
-			else{
-			}
-		}
-		
-		int foodUsed = ration*partyLiving;
-		
-		try {
-			if (this.getNumber()>=(int)(Math.ceil((this.getNumber()-foodUsed)/5.0))) {
-				//this.setNumber(this.getNumber() - (ration*partyLiving));
-				setNumber(getNumber()-(int)(Math.ceil((this.getNumber()-foodUsed)/5.0)));
-				int unitUsed = (int)(Math.ceil((this.getNumber()-foodUsed)/5.0));
-				this.excess = (5*unitUsed)-(partyLiving*ration);
-				while (this.excess>5){
-					this.excess -=5;
-					setNumber(getNumber()+1);
+		if (ration!=0) {
+			int partyLiving = 0;
+			for (Person m : World.getWagon().getPassengers()) {
+				if (m.getHealth() > 0) {
+					partyLiving++;
+				} else {
 				}
 			}
-			else {
-				throw new InsufficientFoodException();
+			int foodUsed = ration * partyLiving;
+			try {
+				if (this.getNumber() >= (int) (Math
+						.ceil((this.getNumber() - foodUsed) / 5.0))) {
+					//this.setNumber(this.getNumber() - (ration*partyLiving));
+					setNumber(getNumber()
+							- (int) (Math
+									.ceil((this.getNumber() - foodUsed) / 5.0)));
+					int unitUsed = (int) (Math
+							.ceil((this.getNumber() - foodUsed) / 5.0));
+					this.excess = (5 * unitUsed) - (partyLiving * ration);
+					while (this.excess > 5) {
+						this.excess -= 5;
+						setNumber(getNumber() + 1);
+					}
+					for(Person p : World.getWagon().getPassengers()){
+						p.eatFood(ration*5);
+						p.drinkWater(30);
+					}
+				} else {
+					throw new InsufficientFoodException();
+				}
+			} catch (InsufficientFoodException e) {
+				//e.printStackTrace();
 			}
-		} catch (InsufficientFoodException e) {
-			//e.printStackTrace();
+		}
+		else{
+			for(Person p : World.getWagon().getPassengers()){
+				p.setHealth(p.getHealth()-15);
+				p.drinkWater(60);
+			}
 		}
 	}
 	/**
@@ -54,35 +65,47 @@ public class Food extends Item {
 	 */
 	@Override
 	public void use() {
-		int ration = World.getWagon().getRations();
-		int partyLiving = 0;
-
-		for (Person m:World.getWagon().getPassengers()){
-			if (m.getHealth()>0){
-				partyLiving++;
-			}
-			else{
-			}
-		}
-		
-		int foodUsed = ration*partyLiving;
-		
-		try {
-			if (this.getNumber()>=(int)(Math.ceil((this.getNumber()-foodUsed)/5.0))) {
-				//this.setNumber(this.getNumber() - (ration*partyLiving));
-				setNumber(getNumber()-(int)(Math.ceil((this.getNumber()-foodUsed)/5.0)));
-				int unitUsed = (int)(Math.ceil((this.getNumber()-foodUsed)/5.0));
-				this.excess = (5*unitUsed)-(partyLiving*ration);
-				while (this.excess>5){
-					this.excess -=5;
-					setNumber(getNumber()+1);
+		if (World.getWagon().getRations()!=0) {
+			int ration = World.getWagon().getRations();
+			int partyLiving = 0;
+			for (Person m : World.getWagon().getPassengers()) {
+				if (m.getHealth() > 0) {
+					partyLiving++;
+				} else {
 				}
 			}
-			else {
-				throw new InsufficientFoodException();
+			int foodUsed = ration * partyLiving;
+			try {
+				if (this.getNumber() >= (int) (Math
+						.ceil((this.getNumber() - foodUsed) / 5.0))) {
+					//this.setNumber(this.getNumber() - (ration*partyLiving));
+					setNumber(getNumber()
+							- (int) (Math
+									.ceil((this.getNumber() - foodUsed) / 5.0)));
+					int unitUsed = (int) (Math
+							.ceil((this.getNumber() - foodUsed) / 5.0));
+					this.excess = (5 * unitUsed) - (partyLiving * ration);
+					while (this.excess > 5) {
+						this.excess -= 5;
+						setNumber(getNumber() + 1);
+					}
+					for(Person p : World.getWagon().getPassengers()){
+						p.eatFood(ration*5);
+						p.drinkWater(30);
+					}
+				} else {
+					throw new InsufficientFoodException();
+				}
+				
+			} catch (InsufficientFoodException e) {
+				//e.printStackTrace();
 			}
-		} catch (InsufficientFoodException e) {
-			//e.printStackTrace();
+		}
+		else{
+			for(Person p : World.getWagon().getPassengers()){
+				p.setHealth(p.getHealth()-15);
+				p.drinkWater(60);
+			}
 		}
 		
 	}
