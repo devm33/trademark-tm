@@ -29,7 +29,8 @@ public class MainScreen {
 	 */
 	public static int currentScreen = 0;
 	public static boolean accessInventory = false;
-
+	public static boolean accessWagon = false;
+	
 	private Display display;
 	private Shell shlOregonTrail;
 	private Label lblCash;
@@ -71,9 +72,10 @@ public class MainScreen {
 				accessInventory = true;
 			}
 		});
-		btnInventory.setBounds(179, 10, 89, 25);
+		btnInventory.setBounds(257, 10, 75, 25);
 		btnInventory.setText("Inventory");
 		btnInventory.setEnabled(false);
+		
 		btnQuitGame = new Button(shlOregonTrail, SWT.NONE);
 		btnQuitGame.addSelectionListener(new SelectionAdapter() {
 			@Override
@@ -82,7 +84,19 @@ public class MainScreen {
 				display.dispose();
 			}
 		});
-		btnQuitGame.setBounds(335, 10, 89, 25);
+		
+		Button btnWagon = new Button(shlOregonTrail, SWT.NONE);
+		btnWagon.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent arg0){
+				accessWagon = true;
+			}
+		});
+		btnWagon.setBounds(171, 10, 68, 23);
+		btnWagon.setText("Wagon");
+		btnWagon.setEnabled(false);
+		
+		btnQuitGame.setBounds(349, 10, 75, 25);
 		btnQuitGame.setText("Quit Game");
 
 		/*Create the composite that the pages will share*/
@@ -106,6 +120,8 @@ public class MainScreen {
 
 		/*Put Config screen on top*/
 		layout.topControl = config;
+		
+		
 		contentPanel.layout();
 		shlOregonTrail.update();
 	}
@@ -142,6 +158,7 @@ public class MainScreen {
 				town.choice = 0;
 				town.setVisible(false);
 				wagonView.setVisible(true);
+				wagonView.update();
 				currentScreen = 3;
 				layout.topControl = wagonView;
 				contentPanel.layout();
