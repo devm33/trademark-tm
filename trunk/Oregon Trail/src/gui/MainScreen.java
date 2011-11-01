@@ -21,17 +21,14 @@ import org.eclipse.swt.widgets.Label;
  *
  */
 public class MainScreen {	
-	/*
-	 * currentScreen is:
-	 * 0 if current screen is Configuration Screen
-	 * 1 if current screen is Town Screen
-	 * 2 if current screen is Store Screen
-	 * 3 if current screen is Wagon Screen
-	 * 4 if current screen is Inventory Screen
-	 */
-	public static int currentScreen = 0;
+
+	public enum screen{
+		CONFIG, TOWN, INN, STORE, WAGON, INVENTORY, MAP
+	}
+	public static screen currentScreen = screen.CONFIG;
 	public static boolean accessInventory = false;
 	public static boolean accessWagon = false;
+	public static boolean accessMap = false;
 	
 	private Wagon wagon;
 	
@@ -152,7 +149,7 @@ public class MainScreen {
 			config.done = false;
 			config.setVisible(false);
 			town.setVisible(true);
-			currentScreen = 1;
+			currentScreen = screen.TOWN;
 			layout.topControl = town;
 			contentPanel.layout();
 			shell.update();
@@ -172,7 +169,7 @@ public class MainScreen {
 			town.choice = 0;
 			town.setVisible(false);
 			store.setVisible(true);
-			currentScreen = 2;
+			currentScreen = screen.STORE;
 			layout.topControl = store;
 			contentPanel.layout();
 			shell.update();
@@ -183,7 +180,7 @@ public class MainScreen {
 			town.setVisible(false);
 			wagonView.setVisible(true);
 			wagonView.update();
-			currentScreen = 3;
+			currentScreen = screen.WAGON;
 			layout.topControl = wagonView;
 			contentPanel.layout();
 			shell.update();
@@ -198,7 +195,7 @@ public class MainScreen {
 			store.done = false;
 			store.setVisible(false);
 			town.setVisible(true);
-			currentScreen = 1;
+			currentScreen = screen.TOWN;
 			layout.topControl = town;
 			contentPanel.layout();
 			shell.update();
@@ -222,25 +219,20 @@ public class MainScreen {
 			inventory.done = false;
 			inventory.setVisible(false);
 			switch(currentScreen){
-			case 0:
+			case CONFIG:
 				/*if previous screen was config*/
 				config.setVisible(true);
 				layout.topControl = config;
 				break;
-			case 1:
+			case TOWN:
 				/*if previous screen was town*/
 				town.setVisible(true);
 				layout.topControl = town;
 				break;
-			case 2:
+			case STORE:
 				/*if previous screen was store*/
 				store.setVisible(true);
 				layout.topControl = store;
-				break;
-			case 3:
-				/*if previous screen was wagon view*/
-				wagonView.setVisible(true);
-				layout.topControl = wagonView;
 				break;
 			}
 		}
@@ -260,33 +252,27 @@ public class MainScreen {
 			wagonView.done = false;
 			wagonView.setVisible(false);
 			switch(currentScreen){
-			case 0:
+			case CONFIG:
 				/*if previous screen was config*/
 				config.setVisible(true);
 				layout.topControl = config;
 				break;
-			case 1:
+			case TOWN:
 				/*if previous screen was town*/
 				town.setVisible(true);
 				layout.topControl = town;
 				break;
-			case 2:
+			case STORE:
 				/*if previous screen was store*/
 				store.setVisible(true);
 				layout.topControl = store;
 				break;
-			case 3:
-				/*if previous screen was wagon screen*/
-				wagonView.setVisible(true);
-				layout.topControl = wagonView;
-				break;
-			case 4:
-				/*if previous screen was inventory*/
-				inventory.setVisible(true);
-				layout.topControl = inventory;
-				break;
 			}
 		}
+	}
+	
+	private void continueMap(){
+		
 	}
 	
 	public void disposeDisplay(){
