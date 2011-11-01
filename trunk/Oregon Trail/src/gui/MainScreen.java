@@ -23,7 +23,7 @@ import org.eclipse.swt.widgets.Label;
 public class MainScreen {	
 
 	public enum screen{
-		CONFIG, TOWN, INN, STORE, WAGON, INVENTORY, MAP
+		CONFIG, TOWN, INN, STORE, FIELD, WAGON, INVENTORY, MAP
 	}
 	public static screen currentScreen = screen.CONFIG;
 	public static boolean accessInventory = false;
