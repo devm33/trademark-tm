@@ -9,8 +9,9 @@ Feature Slice requirements (currently M8):
 
 Bugs:
 1. Fix displayed Date and Day
-4. Clear store between towns
-5. Update inventory weight
+2. Clear store between towns
+3. Update inventory weight
+4. Store's constuctor needs dynamic name (currently fixed as Independence)
 
 Create the following screens:
 1. WinScreen
