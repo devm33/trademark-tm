@@ -32,13 +32,12 @@ public class World {
 		theMap = new Map();
 		//start off in a town
 		currentTown = new Town();
-		firstStore = currentTown.getStore();
 		
 		//initialize the main gui
 		mainScreen = new MainScreen();
 		
 		//set the first store as the first store for the store screen
-		mainScreen.setStore(firstStore);
+		mainScreen.setStore(currentTown.getStore());
 		
 		//start main game loop
 		boolean game_running = true;
