@@ -9,6 +9,8 @@ import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Canvas;
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.wb.swt.SWTResourceManager;
 
 /**
  * Town screen composite
@@ -24,6 +26,7 @@ public class TownScreen extends Composite{
 	private Button btnLeaveTown;
 	private Canvas canvas;
 	private Image image;
+	private Label lblWelcomeToIndependence;
 	
 	/**
 	 * Create the composite.
@@ -84,6 +87,11 @@ public class TownScreen extends Composite{
 		
 		image = new Image(getDisplay(),getClass().getResourceAsStream("images/town.jpg"));
 		canvas.setBounds(0, 0, 450, 234);
+		
+		lblWelcomeToIndependence = new Label(this, SWT.NONE);
+		lblWelcomeToIndependence.setFont(SWTResourceManager.getFont("Tahoma", 14, SWT.BOLD | SWT.ITALIC));
+		lblWelcomeToIndependence.setBounds(10, 269, 388, 21);
+		lblWelcomeToIndependence.setText("Welcome to Independence!!");
 		
 		canvas.addPaintListener(new PaintListener() {
 	        public void paintControl(PaintEvent e) {
