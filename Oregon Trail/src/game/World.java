@@ -12,14 +12,12 @@ import gui.MainScreen;
 public class World {
 	
 	private static Wagon theWagon; //the user's wagon class containing the leader, travellers, inventory, etc.
-	private Store firstStore;
-	private Town firstTown;
 	
-	private MainScreen mainScreen; //GUI class
+	private Town currentTown; //the next town coming up or the one that we're currently in
+	
+	private MainScreen mainScreen; //the main GUI class
 	
 	private Map theMap;
-	
-	//private location of sorts?
 	
 	//this class should also contain the events and should run them periodically/randomly
 	
@@ -33,8 +31,8 @@ public class World {
 		theWagon = new Wagon();
 		theMap = new Map();
 		//start off in a town
-		firstTown = new Town();
-		firstStore = firstTown.getStore();
+		currentTown = new Town();
+		firstStore = currentTown.getStore();
 		
 		//initialize the main gui
 		mainScreen = new MainScreen();
@@ -51,7 +49,10 @@ public class World {
 			
 			//check if there is a town
 			Town temp = theMap.getNextTown(theWagon.getDistance());
-			mainScreen.setStore(temp.getStore());
+			if(temp != currentTown) { // && wagon has left currentTown 
+				mainScreen.setStore(temp.getStore());
+				currentTown = temp;
+			}
 			//check if we're in oregon
 			if(theWagon.getDistance() >= 1909) {
 				System.out.println("Welcome to Oregon! You Win!");
