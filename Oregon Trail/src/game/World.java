@@ -48,7 +48,7 @@ public class World {
 			
 			//check if there is a town
 			Town temp = theMap.getNextTown(theWagon.getDistance());
-			if(temp != currentTown) { // && wagon has left currentTown 
+			if(temp != currentTown && temp != null && !mainScreen.inTown()) { 
 				mainScreen.setStore(temp.getStore());
 				currentTown = temp;
 			}
