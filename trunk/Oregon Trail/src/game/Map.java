@@ -36,9 +36,8 @@ public class Map {
 			index = line.indexOf(',');
 			int distance = Integer.parseInt(line.substring(0, index));
 			line = line.substring(index+1);
-			index = line.indexOf(',');
 			Town temp;
-			if(line.substring(0, index).equals("yes"))
+			if(line.equals("Yes"))
 				temp = new Town(name);
 			else
 				temp = new Town(name, null);
