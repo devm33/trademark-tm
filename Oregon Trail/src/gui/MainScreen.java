@@ -44,7 +44,7 @@ public class MainScreen {
 	private Label lbl1;
 	private Label lbl2;
 	private Button btnInventory;
-	private Button btnQuitGame;
+	private Button btnMap;
 	private Button btnWagon;
 	
 	private Composite contentPanel;
@@ -78,11 +78,9 @@ public class MainScreen {
 		});
 		
 		//Logic when user clicks the Quit Game button
-		btnQuitGame.addSelectionListener(new SelectionAdapter() {
+		btnMap.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
-				shell.dispose();
-				display.dispose();
 			}
 		});
 		
@@ -337,9 +335,9 @@ public class MainScreen {
 		btnInventory.setText("Inventory");
 		btnInventory.setEnabled(false);
 		
-		btnQuitGame = new Button(shell, SWT.NONE);
-		btnQuitGame.setBounds(375, 24, 75, 25);
-		btnQuitGame.setText("Quit Game");
+		btnMap = new Button(shell, SWT.NONE);
+		btnMap.setBounds(375, 24, 75, 25);
+		btnMap.setText("Map");
 
 		btnWagon = new Button(shell, SWT.NONE);
 		btnWagon.setBounds(150, 24, 68, 25);
