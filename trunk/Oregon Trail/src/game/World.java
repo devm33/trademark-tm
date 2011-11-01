@@ -13,12 +13,11 @@ public class World {
 	
 	private static Wagon theWagon; //the user's wagon class containing the leader, travellers, inventory, etc.
 	private Store firstStore;
-	private Town firstTown; //hard-ish code for m6
+	private Town firstTown;
 	
-	private MainScreen mainScreen;
+	private MainScreen mainScreen; //GUI class
 	
-	//private Map the Map; //GUI class for displaying the main map of the game.
-	//private List<Town> towns; //the list of towns in the game
+	private Map theMap;
 	
 	//private location of sorts?
 	
@@ -32,6 +31,8 @@ public class World {
 	public World() {
 		//initialize first town and store as well as a wagon to be passed to 
 		theWagon = new Wagon();
+		theMap = new Map();
+		//start off in a town
 		firstTown = new Town();
 		firstStore = firstTown.getStore();
 		
@@ -48,7 +49,14 @@ public class World {
 			
 			game_running = mainScreen.stepGame();
 			
-			
+			//check if there is a town
+			Town temp = theMap.getNextTown(theWagon.getDistance());
+			mainScreen.setStore(temp.getStore());
+			//check if we're in oregon
+			if(theWagon.getDistance() >= 1909) {
+				System.out.println("Welcome to Oregon! You Win!");
+				System.exit(0);
+			}
 		}
 		
 		//kill the gui now that we're done
