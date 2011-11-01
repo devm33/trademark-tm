@@ -311,7 +311,7 @@ public class MainScreen {
 
 		lblCash = new Label(shell, SWT.NONE);
 		lblCash.setText("$0");
-		lblCash.setBounds(223, 8, 55, 15);
+		lblCash.setBounds(117, 29, 55, 15);
 		
 		lblDate = new Label(shell, SWT.NONE);
 		lblDate.setText("May 32, 2658");
@@ -323,7 +323,7 @@ public class MainScreen {
 
 		lbl1 = new Label(shell, SWT.NONE);
 		lbl1.setAlignment(SWT.RIGHT);
-		lbl1.setBounds(173, 8, 44, 15);
+		lbl1.setBounds(67, 29, 44, 15);
 		lbl1.setText("Cash:");
 		
 		lbl2 = new Label(shell, SWT.NONE);
@@ -331,16 +331,16 @@ public class MainScreen {
 		lbl2.setText("Day:");
 
 		btnInventory = new Button(shell, SWT.NONE);
-		btnInventory.setBounds(224, 24, 75, 25);
+		btnInventory.setBounds(297, 23, 75, 25);
 		btnInventory.setText("Inventory");
 		btnInventory.setEnabled(false);
 		
 		btnMap = new Button(shell, SWT.NONE);
-		btnMap.setBounds(375, 24, 75, 25);
+		btnMap.setBounds(377, 23, 75, 25);
 		btnMap.setText("Map");
 
 		btnWagon = new Button(shell, SWT.NONE);
-		btnWagon.setBounds(150, 24, 68, 25);
+		btnWagon.setBounds(223, 23, 68, 25);
 		btnWagon.setText("Wagon");
 		btnWagon.setEnabled(false);
 		
