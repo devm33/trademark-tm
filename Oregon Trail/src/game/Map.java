@@ -21,7 +21,7 @@ public class Map {
 		
 		//Read in the town list
 		try {
-			scan = new Scanner(new File("townlist.txt"));
+			scan = new Scanner(new File("src/game/townlist.txt"));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 			System.exit(0);
