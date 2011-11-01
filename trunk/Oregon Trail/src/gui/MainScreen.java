@@ -29,6 +29,7 @@ public class MainScreen {
 	public static boolean accessInventory = false;
 	public static boolean accessWagon = false;
 	public static boolean accessMap = false;
+	private static boolean Townstate = true;
 	
 	private Wagon wagon;
 	
@@ -43,7 +44,6 @@ public class MainScreen {
 	private Button btnInventory;
 	private Button btnMap;
 	private Button btnWagon;
-	
 	private Composite contentPanel;
 	private StackLayout layout;
 	
@@ -52,6 +52,8 @@ public class MainScreen {
 	private StoreScreen store;
 	private InventoryScreen inventory;
 	private WagonScreen wagonView;
+	
+	
 
 	public MainScreen() {
 		wagon = World.getWagon();
@@ -176,6 +178,7 @@ public class MainScreen {
 		}
 		//Player chooses LEAVE TOWN
 		else if(town.choice == 3){
+			Townstate=false;
 			town.choice = 0;
 			town.setVisible(false);
 			wagonView.setVisible(true);
@@ -336,5 +339,8 @@ public class MainScreen {
 		
 		layout = new StackLayout();
 		contentPanel.setLayout(layout);
+	}
+	public boolean inTown(){
+		return Townstate;
 	}
 }
