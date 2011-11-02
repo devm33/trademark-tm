@@ -23,7 +23,7 @@ import org.eclipse.swt.widgets.Label;
 public class MainScreen {	
 
 	public enum screen{
-		CONFIG, TOWN, INN, STORE, FIELD, WAGON, INVENTORY, MAP
+		CONFIG, TOWN, INN, STORE, FIELD, WAGON, INVENTORY, MAP, HUNT, RIVER
 	}
 	public static screen currentScreen = screen.CONFIG;
 	public static boolean accessInventory = false;
@@ -49,11 +49,12 @@ public class MainScreen {
 	
 	private ConfigScreen config;
 	private TownScreen town;
+	private InnScreen inn;
 	private StoreScreen store;
+	private FieldScreen field;
 	private InventoryScreen inventory;
 	private WagonScreen wagonView;
-	
-	
+	private WinScreen winView;
 
 	public MainScreen() {
 		wagon = World.getWagon();
@@ -97,9 +98,12 @@ public class MainScreen {
 	private void createScreens(){
 		config = new ConfigScreen(contentPanel, SWT.NONE);
 		town = new TownScreen(contentPanel, SWT.NONE);
+		inn = new InnScreen(contentPanel, SWT.NONE);
 		store = new StoreScreen(contentPanel, SWT.NONE);
+		field = new FieldScreen(contentPanel, SWT.NONE);
 		inventory = new InventoryScreen(contentPanel, SWT.NONE);
-		wagonView = new WagonScreen(contentPanel,SWT.NONE); 
+		wagonView = new WagonScreen(contentPanel,SWT.NONE);
+		winView = new WinScreen(contentPanel,SWT.NONE);
 	}
 
 	public boolean stepGame(){
