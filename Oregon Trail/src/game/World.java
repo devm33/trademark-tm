@@ -13,7 +13,7 @@ public class World {
 	
 	private static Wagon theWagon; //the user's wagon class containing the leader, travellers, inventory, etc.
 	
-	private Town currentTown; //the next town coming up or the one that we're currently in
+	private static Town currentTown; //the next town coming up or the one that we're currently in
 	
 	private MainScreen mainScreen; //the main GUI class
 	
@@ -66,5 +66,7 @@ public class World {
 	public static Wagon getWagon(){
 		return theWagon;
 	}
-
+	public static Town getTown(){
+		return currentTown;
+	}
 }
