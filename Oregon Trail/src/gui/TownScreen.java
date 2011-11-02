@@ -1,5 +1,8 @@
 package gui;
 
+import game.World;
+
+
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.SWT;
@@ -20,13 +23,13 @@ import org.eclipse.wb.swt.SWTResourceManager;
 public class TownScreen extends Composite{
 	//0 is default, 1 is Inn, 2 is Store, 3 is Leave Town
 	public int choice = 0;
-	
 	private Button btnInn;
 	private Button btnStore;
 	private Button btnLeaveTown;
 	private Canvas canvas;
 	private Image image;
-	private Label lblWelcomeToIndependence;
+	private Label lblWelcome;
+	private Label lblTownName;
 	
 	/**
 	 * Create the composite.
@@ -88,10 +91,15 @@ public class TownScreen extends Composite{
 		image = new Image(getDisplay(),getClass().getResourceAsStream("images/town.jpg"));
 		canvas.setBounds(0, 0, 450, 234);
 		
-		lblWelcomeToIndependence = new Label(this, SWT.NONE);
-		lblWelcomeToIndependence.setFont(SWTResourceManager.getFont("Tahoma", 14, SWT.BOLD | SWT.ITALIC));
-		lblWelcomeToIndependence.setBounds(10, 269, 388, 21);
-		lblWelcomeToIndependence.setText("Welcome to Independence!!");
+		lblWelcome = new Label(this, SWT.NONE);
+		lblWelcome.setFont(SWTResourceManager.getFont("Tahoma", 14, SWT.BOLD | SWT.ITALIC));
+		lblWelcome.setBounds(10, 269, 122, 21);
+		lblWelcome.setText("Welcome to");
+
+		lblTownName = new Label(this, SWT.NONE);
+		lblTownName.setText(World.getTown().getTownName());
+		lblTownName.setFont(SWTResourceManager.getFont("Tahoma", 14, SWT.BOLD | SWT.ITALIC));
+		lblTownName.setBounds(131, 269, 301, 21);
 		
 		canvas.addPaintListener(new PaintListener() {
 	        public void paintControl(PaintEvent e) {
