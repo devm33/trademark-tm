@@ -141,7 +141,7 @@ public class MainScreen {
 	}
 	
 	private void updateMap(){
-		
+		map.update();
 	}
 	
 	/**
