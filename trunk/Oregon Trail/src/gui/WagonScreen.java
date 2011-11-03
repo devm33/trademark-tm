@@ -23,7 +23,7 @@ import people.Person;
  *
  */
 public class WagonScreen extends Composite {
-	public boolean done = false;
+	private boolean done = false;
 	private Label rationsDescript;
 	private Label paceDescript;
 	private Label food;
@@ -233,6 +233,19 @@ public class WagonScreen extends Composite {
 			return "15 miles per day hard pace.\n Oxen and people rapidly become tired, then exhausted.";
 		}
 		return null;
+	}
+	
+	public boolean isDone(){
+		return done;
+	}
+	
+	public void resetDone(){
+		done = false;
+	}
+	
+	@Override
+	protected void checkSubclass() {
+		// Disable the check that prevents subclassing of SWT components
 	}
 	
 	/**

@@ -9,6 +9,7 @@ import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 
 public class InnScreen extends Composite {
+	private boolean done = false;
 	private Label lbl1;
 	private Button btnRest;
 	private Button btnLeave;
@@ -26,6 +27,7 @@ public class InnScreen extends Composite {
 		btnRest.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
+				System.out.println("PLACEHOLDER RESPONSE");
 			}
 		});
 		
@@ -33,10 +35,19 @@ public class InnScreen extends Composite {
 		btnLeave.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
+				done = true;
 			}
 		});
 	}
 
+	public boolean isDone(){
+		return done;
+	}
+	
+	public void resetDone(){
+		done = false;
+	}
+	
 	@Override
 	protected void checkSubclass() {
 		// Disable the check that prevents subclassing of SWT components

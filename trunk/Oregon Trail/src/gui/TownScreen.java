@@ -22,7 +22,7 @@ import org.eclipse.wb.swt.SWTResourceManager;
  */
 public class TownScreen extends Composite{
 	//0 is default, 1 is Inn, 2 is Store, 3 is Leave Town
-	public int choice = 0;
+	private int choice = 0;
 	private Button btnInn;
 	private Button btnStore;
 	private Button btnLeaveTown;
@@ -64,7 +64,15 @@ public class TownScreen extends Composite{
 			}
 		});
 	}
+	
+	public int getChoice(){
+		return choice;
+	}
 
+	public void resetChoice(){
+		choice = 0;
+	}
+	
 	@Override
 	protected void checkSubclass() {
 		// Disable the check that prevents subclassing of SWT components

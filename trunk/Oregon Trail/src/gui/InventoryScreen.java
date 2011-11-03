@@ -21,7 +21,7 @@ import org.eclipse.swt.events.SelectionEvent;
  */
 
 public class InventoryScreen extends Composite{
-	public boolean done = false;
+	private boolean done = false;
 	private Item[]itemInventory;
 	private int length = 6;
 	
@@ -98,6 +98,14 @@ public class InventoryScreen extends Composite{
 	
 	public Item[] getItemInventory(){
 		return itemInventory;
+	}
+	
+	public boolean isDone(){
+		return done;
+	}
+	
+	public void resetDone(){
+		done = false;
 	}
 	
 	@Override
