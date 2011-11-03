@@ -11,6 +11,8 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.ProgressBar;
 import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 
 /**
  * Screen which displays route Map
@@ -20,10 +22,21 @@ import org.eclipse.swt.widgets.Button;
  */
 
 public class MapScreen extends Composite {
-
-
+	private boolean done = false;
 	
+	private Canvas canvas;
 	private Image image;
+	private Button btnCloseMap;
+	private Label lblDest;
+	private Label lblDepart;
+	private Label lblDistanceRemaining;
+	private Label lblGameDistanceRemaining;
+	private Label lblStart;
+	private Label lblOregon;
+	private Label label_1;
+	private Label lblTownDistanceRemaining;
+	private ProgressBar townProgressBar;
+	private ProgressBar gameProgressBar;
 	
 	private int townDistanceRemaining;
 	private int gameDistanceRemaining;
@@ -33,36 +46,53 @@ public class MapScreen extends Composite {
 	public MapScreen(Composite parent, int style) {
 		super(parent, style);
 		
-		Label lblDest = new Label(this, SWT.NONE);
+		createContents();
+	}
+
+	public boolean isDone(){
+		return done;
+	}
+	
+	public void resetDone(){
+		done = false;
+	}
+	
+	@Override
+	protected void checkSubclass() {
+		// Disable the check that prevents subclassing of SWT components
+	}
+	
+	private void createContents(){
+		lblDest = new Label(this, SWT.NONE);
 		lblDest.setBounds(377, 170, 63, 13);
 		lblDest.setText("Ft. Kearny");
 		
-		Label lbldepart = new Label(this, SWT.NONE);
-		lbldepart.setBounds(10, 170, 82, 13);
-		lbldepart.setText("Independence");
+		lblDepart = new Label(this, SWT.NONE);
+		lblDepart.setBounds(10, 170, 82, 13);
+		lblDepart.setText("Independence");
 		
 		
 		//townDistanceRemaining = Map.distanceToTown();
-		Label lblDistanceRemaining = new Label(this, SWT.NONE);
+		lblDistanceRemaining = new Label(this, SWT.NONE);
 		lblDistanceRemaining.setBounds(132, 266, 97, 13);
 		lblDistanceRemaining.setText("Distance Remaining:");
 		
-		ProgressBar townProgressBar = new ProgressBar(this, SWT.NONE);
+		townProgressBar = new ProgressBar(this, SWT.NONE);
 		townProgressBar.setMaximum(10);
 		townProgressBar.setBounds(10, 189, 430, 18);
 		//townProgressBar.setMaximum();
 		
 		gameDistanceRemaining = totalGameDistance - World.getWagon().getDistance();
-		Label lblGameDistanceRemaining = new Label(this, SWT.NONE);
+		lblGameDistanceRemaining = new Label(this, SWT.NONE);
 		lblGameDistanceRemaining.setBounds(235, 266, 49, 13);
 		lblGameDistanceRemaining.setText(Integer.toString(gameDistanceRemaining));
 		
-		ProgressBar gameProgressBar = new ProgressBar(this, SWT.NONE);
+		gameProgressBar = new ProgressBar(this, SWT.NONE);
 		gameProgressBar.setBounds(10, 242, 430, 18);
 		gameProgressBar.setMaximum(totalGameDistance);
 		
 		
-		Canvas canvas = new Canvas(this, SWT.NONE);
+		canvas = new Canvas(this, SWT.NONE);
 		image = new Image(getDisplay(),getClass().getResourceAsStream("images/map1.jpg"));
 		canvas.setBounds(10, 10, 430, 154);
 		
@@ -72,31 +102,31 @@ public class MapScreen extends Composite {
 	        }
 	    });
 		
-		Button btnCloseMap = new Button(this, SWT.NONE);
+		btnCloseMap = new Button(this, SWT.NONE);
+		btnCloseMap.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent arg0) {
+				done = true;
+			}
+		});
 		btnCloseMap.setBounds(371, 267, 68, 23);
 		btnCloseMap.setText("Close Map");
 		
 		
-		Label lblStart = new Label(this, SWT.NONE);
+		lblStart = new Label(this, SWT.NONE);
 		lblStart.setBounds(10, 223, 49, 13);
 		lblStart.setText("Start");
 		
-		Label lblOregon = new Label(this, SWT.NONE);
+		lblOregon = new Label(this, SWT.NONE);
 		lblOregon.setBounds(391, 223, 49, 13);
 		lblOregon.setText("Oregon");
 		
-		Label label_1 = new Label(this, SWT.NONE);
+		label_1 = new Label(this, SWT.NONE);
 		label_1.setText("Distance Remaining:");
 		label_1.setBounds(132, 213, 97, 13);
 		
-		Label lblTownDistanceRemaining = new Label(this, SWT.NONE);
+		lblTownDistanceRemaining = new Label(this, SWT.NONE);
 		lblTownDistanceRemaining.setText("0000");
 		lblTownDistanceRemaining.setBounds(235, 213, 49, 13);
-
-	}
-
-	@Override
-	protected void checkSubclass() {
-		// Disable the check that prevents subclassing of SWT components
 	}
 }
