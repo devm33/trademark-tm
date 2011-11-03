@@ -7,7 +7,7 @@ import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 
 public class RiverScreen extends Composite {
-	public boolean done = false;
+	private boolean done = false;
 	private Button btnQuit;
 	/**
 	 * Create the composite.
@@ -26,6 +26,14 @@ public class RiverScreen extends Composite {
 				done = true;
 			}
 		});
+	}
+	
+	public boolean isDone(){
+		return done;
+	}
+	
+	public void resetDone(){
+		done = false;
 	}
 
 	@Override

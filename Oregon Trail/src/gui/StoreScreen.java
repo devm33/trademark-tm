@@ -30,7 +30,7 @@ import org.eclipse.wb.swt.SWTResourceManager;
  *
  */
 public class StoreScreen extends Composite{
-	public boolean done = false;
+	private boolean done = false;
 	private Text txtAmount;
 	private Store currentStore;
 	private List list;
@@ -313,6 +313,14 @@ public class StoreScreen extends Composite{
 	      return false;  
 	   }  
 	} 
+	
+	public boolean isDone(){
+		return done;
+	}
+	
+	public void resetDone(){
+		done = false;
+	}
 	
 	@Override
 	protected void checkSubclass() {

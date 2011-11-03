@@ -32,7 +32,7 @@ public class ConfigScreen extends Composite{
 	/**
 	 * done is set to 1 upon exit of configuration screen
 	 */
-	public boolean done = false;
+	private boolean done = false;
 	
 	private Text txtName4;
 	private Text txtLeaderName;
@@ -165,7 +165,15 @@ public class ConfigScreen extends Composite{
 			wagon.setRations(4);
 		}
 	}
+	
+	public boolean isDone(){
+		return done;
+	}
 
+	public void resetDone(){
+		done = false;
+	}
+	
 	@Override
 	protected void checkSubclass() {
 		// Disable the check that prevents subclassing of SWT components

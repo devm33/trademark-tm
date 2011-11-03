@@ -23,16 +23,22 @@ import org.eclipse.swt.widgets.Label;
 public class MainScreen {	
 
 	public enum screen{
-		CONFIG, TOWN, INN, STORE, FIELD, WAGON, INVENTORY, MAP, HUNT, RIVER
+		CONFIG, TOWN, INN, STORE, FIELD, HUNT, RIVER
 	}
 	public static screen currentScreen = screen.CONFIG;
+	
 	public static boolean accessInventory = false;
 	public static boolean accessWagon = false;
 	public static boolean accessMap = false;
+	public static boolean accessHunt = false;
+	public static boolean accessRiver = false;
+	public static boolean win = false;
+	public static boolean lose = false;
+	private static boolean newGame = false;
+	
 	private static boolean Townstate = true;
 	
 	private Wagon wagon;
-	
 	private Display display;
 	private Shell shell;
 	private Image icon;
@@ -54,45 +60,54 @@ public class MainScreen {
 	private FieldScreen field;
 	private InventoryScreen inventory;
 	private WagonScreen wagonView;
+	private MapScreen map;
+	private HuntingScreen hunt;
+	private RiverScreen river;
 	private WinScreen winView;
+	private LoseScreen loseView;
 
 	public MainScreen() {
 		wagon = World.getWagon();
 
-		createContents();
-		
-		//Logic when user clicks the Inventory button
-		btnInventory.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent arg0) {
-				accessInventory = true;
-			}
-		});
-		
-		//Logic when user clicks the Wagon button
-		btnWagon.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent arg0){
-				accessWagon = true;
-			}
-		});
-		
-		//Logic when user clicks the Quit Game button
-		btnMap.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent arg0) {
-			}
-		});
-		
+		createContents();		
 		shell.open();
 
-		/*Create config, town, store, inventory, and wagonView screens*/
 		createScreens();
 
-		/*Put Config screen on top*/
 		layout.topControl = config;
 		contentPanel.layout();
 		shell.update();
+	}
+
+	public boolean stepGame(){
+		if (!display.readAndDispatch())
+			display.sleep();
+
+		if (!shell.isDisposed()){
+			/*Screen Continuation*/
+		
+			continueConfig();
+			continueTown();
+			continueInn();
+			continueStore();
+			continueField();
+			continueInventory();
+			continueWagon();
+			continueMap();
+			continueHunting();
+			continueRiver();
+			continueWin();
+			continueLose();
+		
+			updateCash();
+			updateWagon();
+			updateInventory();
+			updateMap();
+			
+			refresh(contentPanel,shell);
+		}
+		
+		return !shell.isDisposed();
 	}
 	
 	private void createScreens(){
@@ -103,62 +118,45 @@ public class MainScreen {
 		field = new FieldScreen(contentPanel, SWT.NONE);
 		inventory = new InventoryScreen(contentPanel, SWT.NONE);
 		wagonView = new WagonScreen(contentPanel,SWT.NONE);
+		map = new MapScreen(contentPanel,SWT.NONE);
+		hunt = new HuntingScreen(contentPanel,SWT.NONE);
+		river = new RiverScreen(contentPanel,SWT.NONE);
 		winView = new WinScreen(contentPanel,SWT.NONE);
-	}
-
-	public boolean stepGame(){
-		if (!display.readAndDispatch())
-			display.sleep();
-
-		if (!shell.isDisposed()){
-			/*Configuration Screen Continuation*/
-			continueConfig();
-
-			/*Town Screen Continuation*/
-			continueTown();
-
-			/*Store Screen Continuation and Update*/
-			continueStore();
-
-			/*Inventory Screen Continuation*/
-			continueInventory();
-			
-			/*Wagon Screen Continuation*/
-			continueWagon();
-			
-			/*Update items in inventory and player cash*/
-			updateInventoryAndCash();
-			
-			contentPanel.update();
-			shell.update();
-		}
-		
-		return !shell.isDisposed();
+		loseView = new LoseScreen(contentPanel,SWT.NONE);
 	}
 	
-	private void updateInventoryAndCash(){
-		
-		inventory.update();
+	private void updateCash(){
 		if(World.getWagon().getLeader()!=null && World.getWagon().getCash()!=null){
 		lblCash.setText("$"+World.getWagon().getCash());
 		}
+	}
+	
+	private void updateWagon(){
+		if(World.getWagon().getLeader()!=null)
+			wagonView.update();
+	}
+	
+	private void updateInventory(){
+		inventory.update();
+	}
+	
+	private void updateMap(){
+		
 	}
 	
 	/**
 	 * logic for handling post-config screens
 	 */
 	private void continueConfig(){
-		if (config.done){
+		if (config.isDone()){
 			btnInventory.setEnabled(true);
 			btnWagon.setEnabled(true);
 			lblCash.setText("$"+wagon.getCash());
-			config.done = false;
+			config.resetDone();
 			config.setVisible(false);
 			town.setVisible(true);
 			currentScreen = screen.TOWN;
 			layout.topControl = town;
-			contentPanel.layout();
-			shell.update();
 		}
 	}
 	
@@ -167,30 +165,34 @@ public class MainScreen {
 	 */
 	private void continueTown(){
 		//Player chooses INN
-		if(town.choice == 1){
-			//INN LOGIC
+		if(town.getChoice() == 1){
+			town.resetChoice();
+			screenTransition(town,inn);
+			currentScreen = screen.INN;
 		}
 		//Player chooses STORE
-		else if(town.choice == 2){
-			town.choice = 0;
-			town.setVisible(false);
-			store.setVisible(true);
+		else if(town.getChoice() == 2){
+			town.resetChoice();
+			screenTransition(town,store);
 			currentScreen = screen.STORE;
-			layout.topControl = store;
-			contentPanel.layout();
-			shell.update();
 		}
 		//Player chooses LEAVE TOWN
-		else if(town.choice == 3){
+		else if(town.getChoice() == 3){
 			Townstate=false;
-			town.choice = 0;
-			town.setVisible(false);
-			wagonView.setVisible(true);
-			wagonView.update();
-			currentScreen = screen.WAGON;
-			layout.topControl = wagonView;
-			contentPanel.layout();
-			shell.update();
+			town.resetChoice();
+			screenTransition(town,field);
+			currentScreen = screen.FIELD;
+		}
+	}
+	
+	/**
+	 * logic for handling post-inn screens
+	 */
+	private void continueInn(){
+		if (inn.isDone()){
+			inn.resetDone();
+			screenTransition(inn,town);
+			currentScreen = screen.TOWN;
 		}
 	}
 	
@@ -198,14 +200,25 @@ public class MainScreen {
 	 * logic for handling post-store screens and updating cash for purchases
 	 */
 	private void continueStore(){
-		if (store.done){
-			store.done = false;
-			store.setVisible(false);
-			town.setVisible(true);
+		if (store.isDone()){
+			store.resetDone();
+			screenTransition(store,town);
 			currentScreen = screen.TOWN;
-			layout.topControl = town;
-			contentPanel.layout();
-			shell.update();
+		}
+	}
+	
+	/**
+	 * logic for handling post-Field screens
+	 */
+	private void continueField(){
+		if (accessHunt){
+			accessHunt = false;
+		}
+		if (accessRiver){
+			accessRiver = false;
+		}
+		if (Townstate){
+			
 		}
 	}
 	
@@ -215,71 +228,81 @@ public class MainScreen {
 	private void continueInventory(){
 		if (accessInventory){
 			accessInventory = false;
-			layout.topControl.setVisible(false);
-			inventory.setVisible(true);
-			layout.topControl = inventory;
-			layout.topControl.setVisible(true);
-			contentPanel.update();
-			shell.update();
+			screenTransition(getCurrentComposite(),inventory);
 		}
-		if (inventory.done){
-			inventory.done = false;
-			inventory.setVisible(false);
-			switch(currentScreen){
-			case CONFIG:
-				/*if previous screen was config*/
-				config.setVisible(true);
-				layout.topControl = config;
-				break;
-			case TOWN:
-				/*if previous screen was town*/
-				town.setVisible(true);
-				layout.topControl = town;
-				break;
-			case STORE:
-				/*if previous screen was store*/
-				store.setVisible(true);
-				layout.topControl = store;
-				break;
-			}
+		if (inventory.isDone()){
+			inventory.resetDone();
+			screenTransition(inventory,getCurrentComposite());
 		}
 	}
 	
 	private void continueWagon(){
 		if (accessWagon){
 			accessWagon = false;
-			layout.topControl.setVisible(false);
-			wagonView.setVisible(true);
-			layout.topControl = wagonView;
-			layout.topControl.setVisible(true);
-			contentPanel.update();
-			shell.update();
+			screenTransition(getCurrentComposite(),wagonView);
 		}
-		if (wagonView.done){
-			wagonView.done = false;
-			wagonView.setVisible(false);
-			switch(currentScreen){
-			case CONFIG:
-				/*if previous screen was config*/
-				config.setVisible(true);
-				layout.topControl = config;
-				break;
-			case TOWN:
-				/*if previous screen was town*/
-				town.setVisible(true);
-				layout.topControl = town;
-				break;
-			case STORE:
-				/*if previous screen was store*/
-				store.setVisible(true);
-				layout.topControl = store;
-				break;
-			}
+		if (wagonView.isDone()){
+			wagonView.resetDone();
+			screenTransition(wagonView,getCurrentComposite());
 		}
 	}
 	
+	/**
+	 * logic for handling post-map screens
+	 */
 	private void continueMap(){
+		if (accessMap){
+			accessMap = false;
+			screenTransition(getCurrentComposite(),map);
+			refresh(contentPanel,shell);
+		}
+		if (map.isDone()){
+			map.resetDone();
+			screenTransition(map,getCurrentComposite());
+		}
+	}
+	
+	/**
+	 * logic for handling post-hunting screens
+	 */
+	private void continueHunting(){
+		if(hunt.isDone()){
+			hunt.resetDone();
+		}
+	}
+	
+	/**
+	 * logic for handling post-river screens
+	 */
+	private void continueRiver(){
+		if(river.isDone()){
+			river.resetDone();
+		}
+	}
+	
+	/**
+	 * logic for handling post-win screens (either new game or quit)
+	 */
+	private void continueWin(){
 		
+	}
+	
+	/**
+	 * logic for handling post-lose screens (either new game or quit)
+	 */
+	private void continueLose(){
+		
+	}
+	
+	private void screenTransition(Composite oldScreen, Composite newScreen){
+		oldScreen.setVisible(false);
+		newScreen.setVisible(true);
+		layout.topControl = newScreen;
+	}
+	
+	private void refresh(Composite panel, Shell sh){
+		panel.update();
+		sh.update();
 	}
 	
 	public void disposeDisplay(){
@@ -288,6 +311,37 @@ public class MainScreen {
 
 	public void setStore(Store s){
 		store.setStore(s);
+	}
+	
+	private Composite getCurrentComposite(){
+		Composite comp;
+		switch(currentScreen){
+		case CONFIG:
+			comp = config;
+			break;
+		case TOWN:
+			comp = town;
+			break;
+		case INN:
+			comp = inn;
+			break;
+		case STORE:
+			comp = store;
+			break;
+		case FIELD:
+			comp = field;
+			break;
+		case HUNT:
+			comp = hunt;
+			break;
+		case RIVER:
+			comp = river;
+			break;
+		default:
+			comp = config;
+			break;
+		}
+		return comp;
 	}
 	
 	/**
@@ -327,15 +381,36 @@ public class MainScreen {
 		btnInventory.setBounds(297, 23, 75, 25);
 		btnInventory.setText("Inventory");
 		btnInventory.setEnabled(false);
+		//Logic when user clicks the Inventory button
+		btnInventory.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent arg0) {
+				accessInventory = true;
+			}
+		});
 		
 		btnMap = new Button(shell, SWT.NONE);
 		btnMap.setBounds(377, 23, 75, 25);
 		btnMap.setText("Map");
+		//Logic when user clicks the Map button
+		btnMap.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent arg0) {
+				accessMap = true;
+			}
+		});
 
 		btnWagon = new Button(shell, SWT.NONE);
 		btnWagon.setBounds(223, 23, 68, 25);
 		btnWagon.setText("Wagon");
 		btnWagon.setEnabled(false);
+		//Logic when user clicks the Wagon button
+		btnWagon.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent arg0){
+				accessWagon = true;
+			}
+		});
 		
 		/*Create the composite that the pages will share*/
 		contentPanel = new Composite(shell, SWT.BORDER);
@@ -344,6 +419,7 @@ public class MainScreen {
 		layout = new StackLayout();
 		contentPanel.setLayout(layout);
 	}
+	
 	public boolean inTown(){
 		return Townstate;
 	}

@@ -7,7 +7,7 @@ import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 
 public class HuntingScreen extends Composite {
-	public boolean done = false;
+	private boolean done = false;
 	private Button btnReturn;
 	/**
 	 * Create the composite.
@@ -28,6 +28,14 @@ public class HuntingScreen extends Composite {
 		});
 	}
 
+	public boolean isDone(){
+		return done;
+	}
+	
+	public void resetDone(){
+		done = false;
+	}
+	
 	@Override
 	protected void checkSubclass() {
 		// Disable the check that prevents subclassing of SWT components
