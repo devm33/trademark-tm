@@ -12,6 +12,7 @@ Bugs:
 2. Clear store between towns
 3. Update inventory weight
 4. Store's constuctor needs dynamic name (currently fixed as Independence)
+5. Implement conditional update (currently everything updates constantly)
 
 Complete following Screens:
 1. FieldScreen
@@ -19,5 +20,5 @@ Complete following Screens:
 3. InnScreen
 4. LoseScreen
 5. MapScreen
-6. RiverScreen
+6. RiverScreen (extra credit)
 7. WinScreen

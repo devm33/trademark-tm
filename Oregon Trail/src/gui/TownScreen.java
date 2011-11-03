@@ -45,6 +45,7 @@ public class TownScreen extends Composite{
 		btnInn.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
+				choice = 1;
 			}
 		});
 		

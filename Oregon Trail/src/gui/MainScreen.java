@@ -82,12 +82,11 @@ public class MainScreen {
 		btnSuper.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
-				World.getWagon().setCapacity(999999);
+				World.getWagon().setCapacity(99999999);
 				try {
 					World.getWagon().addToInventory(new Food(), 99999);
 				} catch (WeightCapacityExceededException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
 				}
 			}
 		});
@@ -234,7 +233,6 @@ public class MainScreen {
 			accessRiver = false;
 		}
 		if (Townstate){
-			
 		}
 	}
 	
@@ -361,7 +359,6 @@ public class MainScreen {
 		}
 		return comp;
 	}
-	
 	/**
 	 * create display, shell, and controls
 	 */
