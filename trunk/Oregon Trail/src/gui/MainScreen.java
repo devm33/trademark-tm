@@ -104,7 +104,7 @@ public class MainScreen {
 			updateInventory();
 			updateMap();
 			
-			refresh(contentPanel,shell);
+			refresh();
 		}
 		
 		return !shell.isDisposed();
@@ -254,7 +254,6 @@ public class MainScreen {
 		if (accessMap){
 			accessMap = false;
 			screenTransition(getCurrentComposite(),map);
-			refresh(contentPanel,shell);
 		}
 		if (map.isDone()){
 			map.resetDone();
@@ -295,14 +294,17 @@ public class MainScreen {
 	}
 	
 	private void screenTransition(Composite oldScreen, Composite newScreen){
+		map.setVisible(false);
+		inventory.setVisible(false);
+		wagonView.setVisible(false);
 		oldScreen.setVisible(false);
 		newScreen.setVisible(true);
 		layout.topControl = newScreen;
 	}
 	
-	private void refresh(Composite panel, Shell sh){
-		panel.update();
-		sh.update();
+	private void refresh(){
+		contentPanel.update();
+		shell.update();
 	}
 	
 	public void disposeDisplay(){
