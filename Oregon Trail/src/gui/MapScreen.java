@@ -10,9 +10,10 @@ import org.eclipse.swt.widgets.Button;
 public class MapScreen extends Composite {
 
 	/**
-	 * Create the composite.
-	 * @param parent
-	 * @param style
+	 * Screen which displays route Map
+	 * 
+	 * 
+	 * @author - David Byas-Smith
 	 */
 	public MapScreen(Composite parent, int style) {
 		super(parent, style);
@@ -26,7 +27,7 @@ public class MapScreen extends Composite {
 		lblIndependence.setText("Independence");
 		
 		ProgressBar progressBar = new ProgressBar(this, SWT.NONE);
-		progressBar.setBounds(30, 146, 386, 18);
+		progressBar.setBounds(10, 146, 430, 18);
 		
 		Label lblDistanceRemaining = new Label(this, SWT.NONE);
 		lblDistanceRemaining.setBounds(156, 170, 97, 13);
@@ -40,7 +41,7 @@ public class MapScreen extends Composite {
 		canvas.setBounds(10, 10, 430, 108);
 		
 		Canvas canvas_1 = new Canvas(this, SWT.NONE);
-		canvas_1.setBounds(10, 190, 430, 71);
+		canvas_1.setBounds(10, 189, 430, 71);
 		
 		Button btnNewButton = new Button(this, SWT.NONE);
 		btnNewButton.setBounds(185, 267, 68, 23);
