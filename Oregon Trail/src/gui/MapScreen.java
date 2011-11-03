@@ -61,6 +61,10 @@ public class MapScreen extends Composite {
 	protected void checkSubclass() {
 		// Disable the check that prevents subclassing of SWT components
 	}
+	public void update(){
+		gameProgressBar.setSelection(World.getWagon().getDistance());
+		//gameProgressBar.redraw();
+	}
 	
 	private void createContents(){
 		lblDest = new Label(this, SWT.NONE);
@@ -90,7 +94,7 @@ public class MapScreen extends Composite {
 		gameProgressBar = new ProgressBar(this, SWT.NONE);
 		gameProgressBar.setBounds(10, 242, 430, 18);
 		gameProgressBar.setMaximum(totalGameDistance);
-		
+
 		
 		canvas = new Canvas(this, SWT.NONE);
 		image = new Image(getDisplay(),getClass().getResourceAsStream("images/map1.jpg"));
