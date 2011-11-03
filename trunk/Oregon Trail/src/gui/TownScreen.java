@@ -91,6 +91,12 @@ public class TownScreen extends Composite{
 		image = new Image(getDisplay(),getClass().getResourceAsStream("images/town.jpg"));
 		canvas.setBounds(0, 0, 450, 234);
 		
+		canvas.addPaintListener(new PaintListener() {
+	        public void paintControl(PaintEvent e) {
+	         e.gc.drawImage(image,0,0);
+	        }
+	    });
+		
 		lblWelcome = new Label(this, SWT.NONE);
 		lblWelcome.setFont(SWTResourceManager.getFont("Tahoma", 14, SWT.BOLD | SWT.ITALIC));
 		lblWelcome.setBounds(10, 269, 122, 21);
@@ -101,10 +107,6 @@ public class TownScreen extends Composite{
 		lblTownName.setFont(SWTResourceManager.getFont("Tahoma", 14, SWT.BOLD | SWT.ITALIC));
 		lblTownName.setBounds(131, 269, 301, 21);
 		
-		canvas.addPaintListener(new PaintListener() {
-	        public void paintControl(PaintEvent e) {
-	         e.gc.drawImage(image,0,0);
-	        }
-	    });
+
 	}
 }
