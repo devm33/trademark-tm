@@ -1,5 +1,7 @@
 package gui;
 
+import items.Food;
+import exceptions.WeightCapacityExceededException;
 import game.Store;
 import game.Wagon;
 import game.World;
@@ -75,6 +77,22 @@ public class MainScreen {
 		createScreens();
 
 		layout.topControl = config;
+		
+		Button btnSuper = new Button(shell, SWT.NONE);
+		btnSuper.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent arg0) {
+				World.getWagon().setCapacity(999999);
+				try {
+					World.getWagon().addToInventory(new Food(), 99999);
+				} catch (WeightCapacityExceededException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
+		btnSuper.setBounds(142, 8, 75, 25);
+		btnSuper.setText("super");
 		contentPanel.layout();
 		shell.update();
 	}
@@ -151,12 +169,10 @@ public class MainScreen {
 		if (config.isDone()){
 			btnInventory.setEnabled(true);
 			btnWagon.setEnabled(true);
-			lblCash.setText("$"+wagon.getCash());
+			btnMap.setEnabled(true);
 			config.resetDone();
-			config.setVisible(false);
-			town.setVisible(true);
+			screenTransition(config, town);
 			currentScreen = screen.TOWN;
-			layout.topControl = town;
 		}
 	}
 	
@@ -392,6 +408,7 @@ public class MainScreen {
 		});
 		
 		btnMap = new Button(shell, SWT.NONE);
+		btnMap.setEnabled(false);
 		btnMap.setBounds(377, 23, 75, 25);
 		btnMap.setText("Map");
 		//Logic when user clicks the Map button
