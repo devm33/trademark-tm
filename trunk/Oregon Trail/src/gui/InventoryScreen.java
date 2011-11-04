@@ -65,9 +65,9 @@ public class InventoryScreen extends Composite{
 	}
 	
 	public void update(){
-/*		lblItems0wt.setText(""+World.getWagon().getInventory().getItemInventory()[0].getWeight());
-		lblItems1wt.setText(""+World.getWagon().getInventory().getItemInventory()[1].getWeight());
-		lblItems2wt.setText(""+World.getWagon().getInventory().getItemInventory()[2].getWeight());*/
+		lblItems0wt.setText(""+World.getWagon().getInventory().getItemInventory()[0].getWeight()*World.getWagon().getInventory().getItemInventory()[0].getNumber());
+		lblItems1wt.setText(""+World.getWagon().getInventory().getItemInventory()[1].getWeight()*World.getWagon().getInventory().getItemInventory()[1].getNumber());
+		lblItems2wt.setText(""+World.getWagon().getInventory().getItemInventory()[2].getWeight()*World.getWagon().getInventory().getItemInventory()[2].getNumber());
 		lblItems0amt.setText(""+World.getWagon().getInventory().getItemInventory()[0].getNumber());
 		lblItems1amt.setText(""+World.getWagon().getInventory().getItemInventory()[1].getNumber());
 		lblItems2amt.setText(""+World.getWagon().getInventory().getItemInventory()[2].getNumber());
