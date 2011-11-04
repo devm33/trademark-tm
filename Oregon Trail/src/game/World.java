@@ -17,7 +17,7 @@ public class World {
 	
 	private MainScreen mainScreen; //the main GUI class
 	
-	private Map theMap;
+	private static Map theMap;
 	
 	//this class should also contain the events and should run them periodically/randomly
 	
@@ -52,6 +52,7 @@ public class World {
 				mainScreen.setStore(temp.getStore());
 				currentTown = temp;
 			}
+			if(theWagon.to)
 			//check if we're in oregon
 			if(theWagon.getDistance() >= 1909) {
 				System.out.println("Welcome to Oregon! You Win!");
@@ -68,5 +69,8 @@ public class World {
 	}
 	public static Town getTown(){
 		return currentTown;
+	}
+	public static Map getMap(){
+		return theMap;
 	}
 }
