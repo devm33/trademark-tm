@@ -10,6 +10,7 @@ import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.wb.swt.SWTResourceManager;
 
 public class FieldScreen extends Composite {
 	private Combo dropRations;
@@ -19,6 +20,9 @@ public class FieldScreen extends Composite {
 	private Button btnTakeTurn;
 	private Label lbl1;
 	private Label lbl2;
+	private Label lbl3;
+	private Label lblDistance;
+	private Label lblNotify;
 	int passedTowns = 0;
 	
 	private static Wagon wagon;
@@ -48,37 +52,50 @@ public class FieldScreen extends Composite {
 					System.exit(0);
 				} else if(World.getWagon().getDistance()>=1789&& passedTowns <11){
 					System.out.println("You've reached Fort Walla Walla!");
+					lblNotify.setText("You've reached Fort Walla Walla!");
 					passedTowns++;
 				} else if(World.getWagon().getDistance()>=1734&& passedTowns <10){
 					System.out.println("You've reached the Blue Mountains!");
+					lblNotify.setText("You've reached the Blue Mountains!");
 					passedTowns++;
 				} else if(World.getWagon().getDistance()>=1572&& passedTowns <9){
 					System.out.println("You've reached Fort Boise!");
+					lblNotify.setText("You've reached Fort Boise!");
 					passedTowns++;
 				} else if(World.getWagon().getDistance()>=1276 && passedTowns <8){
 					System.out.println("You've reached Fort Hall!");
+					lblNotify.setText("You've reached Fort Hall!");
 					passedTowns++;
 				} else if(World.getWagon().getDistance()>=1219&& passedTowns <7){
 					passedTowns++;
 					System.out.println("You'ved reached Soda Springs!");
+					lblNotify.setText("You'ved reached Soda Springs!");
 				} else if(World.getWagon().getDistance()>=1057&& passedTowns <6){
 					passedTowns++;
 					System.out.println("You've reached Fort Bridger!");
+					lblNotify.setText("You've reached Fort Bridger!");
 				} else if(World.getWagon().getDistance()>=932&& passedTowns <5){
 					passedTowns++;
 					System.out.println("You've reached South Pass!");
+					lblNotify.setText("You've reached South Pass!");
 				} else if(World.getWagon().getDistance()>=830 && passedTowns <4){
 					passedTowns++;
 					System.out.println("You've reached Independence Rock!");
+					lblNotify.setText("You've reached Independence Rock!");
 				} else if(World.getWagon().getDistance()>=640 && passedTowns <3){
 					passedTowns++;
 					System.out.println("You've reached Fort Laramie!");
+					lblNotify.setText("You've reached Fort Laramie!");
 				} else if(World.getWagon().getDistance()>=554 && passedTowns <2){
 					passedTowns++;
 					System.out.println("You've reached Chimney Rock!");
+					lblNotify.setText("You've reached Chimney Rock!");
 				} else if(World.getWagon().getDistance()>=304 && passedTowns <1){
 					System.out.println("You've reached Fort Kearny!");
+					lblNotify.setText("You've reached Fort Kearny!");
 					passedTowns++;
+				} else {
+					lblNotify.setText("");
 				}
 				
 			}
@@ -228,7 +245,7 @@ public class FieldScreen extends Composite {
 	}
 	
 	public void update(){
-		switch(wagon.getRations()){
+/*		switch(wagon.getRations()){
 		case 1:
 			dropRations.setText("Bare-Bones");
 			rationsDescript.setText("1 pound of food per person per day.");
@@ -260,7 +277,16 @@ public class FieldScreen extends Composite {
 			dropPace.setText("Grueling");
 			paceDescript.setText("15 miles per day hard pace.\n Oxen and people rapidly become tired, then exhausted.");
 			break;
-		}
+		}*/
+		dropRations.setText(rations(wagon.getRations()));
+		
+		dropPace.setText(pace(wagon.getPace()));
+		
+		rationsDescript.setText(rationsDescript(wagon.getRations()));
+		
+		paceDescript.setText(paceDescript(wagon.getPace()));
+		
+		lblDistance.setText("" + wagon.getDistance());
 	}
 	
 	@Override
@@ -271,28 +297,44 @@ public class FieldScreen extends Composite {
 	private void createContents(){
 		btnTakeTurn = new Button(this, SWT.NONE);
 		btnTakeTurn.setText("Take Turn");
-		btnTakeTurn.setBounds(299, 241, 94, 28);
+		btnTakeTurn.setBounds(346, 241, 94, 28);
 		
 		dropRations = new Combo(this, SWT.NONE);
 		dropRations.setItems(new String[] {"None", "Bare-Bones", "Meager", "Normal", "Wellfed"});
-		dropRations.setBounds(65, 197, 94, 23);
+		dropRations.setBounds(65, 246, 94, 23);
 		
 		dropPace = new Combo(this, SWT.NONE);
 		dropPace.setItems(new String[] {"Stopped", "Leisurely", "Steady", "Grueling"});
-		dropPace.setBounds(65, 245, 94, 23);
+		dropPace.setBounds(65, 209, 94, 23);
 		
 		lbl1 = new Label(this, SWT.NONE);
 		lbl1.setText("Rations:");
-		lbl1.setBounds(10, 205, 49, 13);
+		lbl1.setBounds(10, 249, 49, 13);
 		
 		lbl2 = new Label(this, SWT.NONE);
 		lbl2.setText("Pace:");
-		lbl2.setBounds(17, 248, 49, 13);
+		lbl2.setBounds(10, 212, 49, 13);
 		
-		rationsDescript = new Label(this, SWT.NONE);
-		rationsDescript.setBounds(174, 142, 266, 42);
+		lbl3 = new Label(this, SWT.NONE);
+		lbl3.setBounds(182, 10, 49, 15);
+		lbl3.setText("Distance:");
 		
-		paceDescript = new Label(this, SWT.NONE);
-		paceDescript.setBounds(147, 83, 266, 42);
+		lblDistance = new Label(this, SWT.NONE);
+		lblDistance.setText("0");
+		lblDistance.setBounds(235,10,32,13);
+		
+		rationsDescript = new Label(this, SWT.WRAP);
+		rationsDescript.setFont(SWTResourceManager.getFont("Segoe UI", 7, SWT.NORMAL));
+		rationsDescript.setBounds(165, 248, 175, 23);
+		
+		paceDescript = new Label(this, SWT.WRAP);
+		paceDescript.setFont(SWTResourceManager.getFont("Segoe UI", 7, SWT.NORMAL));
+		paceDescript.setBounds(165, 209, 273, 26);
+		
+		lblNotify = new Label(this, SWT.WRAP);
+		lblNotify.setAlignment(SWT.CENTER);
+		lblNotify.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.BOLD));
+		lblNotify.setBounds(10, 31, 430, 35);
+		lblNotify.setText("The Journey Begins!");
 	}
 }
