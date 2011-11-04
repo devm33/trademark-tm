@@ -52,12 +52,6 @@ public class World {
 				mainScreen.setStore(temp.getStore());
 				currentTown = temp;
 			}
-
-			//check if we're in oregon
-			if(theWagon.getDistance() >= 1909) {
-				System.out.println("Welcome to Oregon! You Win!");
-				System.exit(0);
-			} 
 		}
 		
 		//kill the gui now that we're done
