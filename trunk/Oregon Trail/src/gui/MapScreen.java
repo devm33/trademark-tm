@@ -63,26 +63,26 @@ public class MapScreen extends Composite {
 	}
 	public void update(){
 		gameProgressBar.setSelection(World.getWagon().getDistance());
-		//gameProgressBar.redraw();
+		townProgressBar.setSelection(World.getWagon().getTownDistance());
 	}
 	
 	private void createContents(){
 		lblDest = new Label(this, SWT.NONE);
-		lblDest.setBounds(377, 170, 63, 13);
+		lblDest.setBounds(377, 170, 63, 15);
 		lblDest.setText("Ft. Kearny");
 		
 		lblDepart = new Label(this, SWT.NONE);
-		lblDepart.setBounds(10, 170, 82, 13);
+		lblDepart.setBounds(10, 170, 82, 15);
 		lblDepart.setText("Independence");
 		
 		
 		//townDistanceRemaining = Map.distanceToTown();
 		lblDistanceRemaining = new Label(this, SWT.NONE);
-		lblDistanceRemaining.setBounds(132, 266, 97, 13);
+		lblDistanceRemaining.setBounds(121, 266, 108, 15);
 		lblDistanceRemaining.setText("Distance Remaining:");
 		
 		townProgressBar = new ProgressBar(this, SWT.NONE);
-		townProgressBar.setMaximum(10);
+		townProgressBar.setMaximum(World.getMap().distanceToTown(World.getWagon().getTownDistance()));
 		townProgressBar.setBounds(10, 189, 430, 18);
 		//townProgressBar.setMaximum();
 		
@@ -118,16 +118,16 @@ public class MapScreen extends Composite {
 		
 		
 		lblStart = new Label(this, SWT.NONE);
-		lblStart.setBounds(10, 223, 49, 13);
+		lblStart.setBounds(10, 223, 49, 15);
 		lblStart.setText("Start");
 		
 		lblOregon = new Label(this, SWT.NONE);
-		lblOregon.setBounds(391, 223, 49, 13);
+		lblOregon.setBounds(391, 223, 49, 15);
 		lblOregon.setText("Oregon");
 		
 		label_1 = new Label(this, SWT.NONE);
 		label_1.setText("Distance Remaining:");
-		label_1.setBounds(132, 213, 97, 13);
+		label_1.setBounds(121, 213, 108, 15);
 		
 		lblTownDistanceRemaining = new Label(this, SWT.NONE);
 		lblTownDistanceRemaining.setText("0000");
