@@ -1,6 +1,7 @@
 package gui;
 
 import game.World;
+import game.Inventory;
 import items.Ammo;
 import items.Food;
 import items.Item;
@@ -65,12 +66,24 @@ public class InventoryScreen extends Composite{
 	}
 	
 	public void update(){
-		lblItems0wt.setText(""+World.getWagon().getInventory().getItemInventory()[0].getWeight()*World.getWagon().getInventory().getItemInventory()[0].getNumber());
-		lblItems1wt.setText(""+World.getWagon().getInventory().getItemInventory()[1].getWeight()*World.getWagon().getInventory().getItemInventory()[1].getNumber());
-		lblItems2wt.setText(""+World.getWagon().getInventory().getItemInventory()[2].getWeight()*World.getWagon().getInventory().getItemInventory()[2].getNumber());
-		lblItems0amt.setText(""+World.getWagon().getInventory().getItemInventory()[0].getNumber());
-		lblItems1amt.setText(""+World.getWagon().getInventory().getItemInventory()[1].getNumber());
-		lblItems2amt.setText(""+World.getWagon().getInventory().getItemInventory()[2].getNumber());
+		
+		int inventoryLength = World.getWagon().getInventory().getLength();
+		Inventory inv = World.getWagon().getInventory();
+		int[] amounts = new int[inventoryLength];
+		int[] weights = new int[inventoryLength];
+		
+		for(int i=0; i<inventoryLength; i++)
+		{
+			amounts[i] = inv.getItemInventory()[i].getNumber();
+			weights[i] = inv.getItemInventory()[i].getWeight();
+		}
+			
+			lblItems0wt.setText(""+weights[0]*amounts[0]);
+			lblItems1wt.setText(""+weights[1]*amounts[1]);
+			lblItems2wt.setText(""+weights[2]*amounts[2]);
+			lblItems0amt.setText(""+amounts[0]);
+			lblItems1amt.setText(""+amounts[1]);
+			lblItems2amt.setText(""+amounts[2]);
 	}
 
 	public boolean contains(Item i) {
