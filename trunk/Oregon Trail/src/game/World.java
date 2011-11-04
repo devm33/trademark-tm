@@ -52,7 +52,10 @@ public class World {
 				mainScreen.setStore(temp.getStore());
 				currentTown = temp;
 			}
-			if(theWagon.to)
+			if(theWagon.getTownDistance() > theMap.distanceToTown(theWagon.getTownDistance())){
+				System.out.println("You've reached " + "bleh" +"!");
+				theWagon.setTownDistance(0);
+			}
 			//check if we're in oregon
 			if(theWagon.getDistance() >= 1909) {
 				System.out.println("Welcome to Oregon! You Win!");

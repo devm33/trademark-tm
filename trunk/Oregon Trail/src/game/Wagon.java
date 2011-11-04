@@ -23,7 +23,7 @@ import people.Traveler;
 
 public class Wagon {
 	
-	private int pace, rations, capacity, distance;
+	private int pace, rations, capacity, distance, townDistance;
 	private int totalWeight;
 	private Inventory inventory;
 	private List<Traveler> members;
@@ -128,6 +128,14 @@ public class Wagon {
 	public int getDistance()
 	{
 		return distance;
+	}
+	
+	public int getTownDistance(){
+		return townDistance;
+	}
+	
+	public void setTownDistance(int a){
+		townDistance = a;
 	}
 	
 	/**
@@ -293,6 +301,7 @@ public class Wagon {
 		}
 		
 		distance += pace;
+		townDistance += pace;
 		f.use();
 		w.use();
 		
