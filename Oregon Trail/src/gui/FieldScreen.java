@@ -1,5 +1,8 @@
 package gui;
 
+import game.Wagon;
+import game.World;
+
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.SWT;
@@ -15,6 +18,8 @@ public class FieldScreen extends Composite {
 	private Label lbl1;
 	private Label lbl2;
 	
+	private static Wagon wagon;
+	
 	/**
 	 * Create the composite.
 	 * @param parent
@@ -23,12 +28,16 @@ public class FieldScreen extends Composite {
 	public FieldScreen(Composite parent, int style) {
 		super(parent, style);
 		
+		wagon = World.getWagon();
+		
 		createContents();
 		
 		//logic for Take Turn button
 		btnTakeTurn.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
+				wagon.takeStep();
+				update();
 			}
 		});
 	}
