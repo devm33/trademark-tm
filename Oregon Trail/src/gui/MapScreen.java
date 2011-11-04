@@ -64,7 +64,7 @@ public class MapScreen extends Composite {
 	public void update(){
 		gameProgressBar.setSelection(World.getWagon().getDistance());
 		townProgressBar.setSelection(World.getWagon().getTownDistance());
-		lblTownDistanceRemaining.setText(Integer.toString(World.getMap().distanceToRiver(World.getWagon().getTownDistance())));
+		lblTownDistanceRemaining.setText(Integer.toString(World.getMap().distanceToTown(World.getWagon().getTownDistance())));
 	}
 	
 	private void createContents(){

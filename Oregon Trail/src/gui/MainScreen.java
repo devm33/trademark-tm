@@ -90,7 +90,7 @@ public class MainScreen {
 				}
 			}
 		});
-		btnSuper.setBounds(142, 8, 75, 25);
+		btnSuper.setBounds(147, 3, 75, 25);
 		btnSuper.setText("super");
 		contentPanel.layout();
 		shell.update();
@@ -172,6 +172,7 @@ public class MainScreen {
 			config.resetDone();
 			screenTransition(config, town);
 			currentScreen = screen.TOWN;
+			field.update();
 		}
 	}
 	

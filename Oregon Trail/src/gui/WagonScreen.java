@@ -52,7 +52,7 @@ public class WagonScreen extends Composite {
 		
 		createContents();
 		
-		//Logic when user clicks the Take Turn button
+/*		//Logic when user clicks the Take Turn button
 		btnTakeTurn.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {	
@@ -91,7 +91,7 @@ public class WagonScreen extends Composite {
 					paceDescript.setText(paceDescript(wagon.getPace()));
 				}
 			}
-		});
+		});*/
 		
 		//Logic when user clicks the done button
 		btnDone.addSelectionListener(new SelectionAdapter() {
@@ -104,13 +104,13 @@ public class WagonScreen extends Composite {
 	
 	public void update() {
 		
-		rations.setText(rations(wagon.getRations()));
+/*		rations.setText(rations(wagon.getRations()));
 		
 		pace.setText(pace(wagon.getPace()));
 		
 		rationsDescript.setText(rationsDescript(wagon.getRations()));
 		
-		paceDescript.setText(paceDescript(wagon.getPace()));
+		paceDescript.setText(paceDescript(wagon.getPace()));*/
 		
 		food.setText("" + wagon.getInventory().getFood().getNumber());
 		
@@ -252,7 +252,7 @@ public class WagonScreen extends Composite {
 	 * create composite controls
 	 */
 	private void createContents(){
-		btnTakeTurn = new Button(this, SWT.NONE);
+		/*btnTakeTurn = new Button(this, SWT.NONE);
 		btnTakeTurn.setEnabled(false);
 		btnTakeTurn.setBounds(20, 37, 94, 28);
 		btnTakeTurn.setText("Take Turn");
@@ -275,7 +275,7 @@ public class WagonScreen extends Composite {
 		
 		paceDescript = new Label(this, SWT.NONE);
 		paceDescript.setEnabled(false);
-		paceDescript.setBounds(174, 132, 266, 42);
+		paceDescript.setBounds(174, 132, 266, 42);*/
 		
 		food = new Label(this, SWT.NONE);
 		food.setBounds(247, 16, 75, 16);
