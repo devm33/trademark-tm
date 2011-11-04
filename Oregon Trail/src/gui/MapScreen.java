@@ -64,16 +64,17 @@ public class MapScreen extends Composite {
 	public void update(){
 		gameProgressBar.setSelection(World.getWagon().getDistance());
 		townProgressBar.setSelection(World.getWagon().getTownDistance());
+		lblTownDistanceRemaining.setText(Integer.toString(World.getMap().distanceToRiver(World.getWagon().getTownDistance())));
 	}
 	
 	private void createContents(){
 		lblDest = new Label(this, SWT.NONE);
 		lblDest.setBounds(377, 170, 63, 15);
-		lblDest.setText("Ft. Kearny");
+		lblDest.setText("Next Town");
 		
 		lblDepart = new Label(this, SWT.NONE);
 		lblDepart.setBounds(10, 170, 82, 15);
-		lblDepart.setText("Independence");
+		lblDepart.setText("Past Town");
 		
 		
 		//townDistanceRemaining = Map.distanceToTown();
