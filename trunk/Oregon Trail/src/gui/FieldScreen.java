@@ -19,6 +19,7 @@ public class FieldScreen extends Composite {
 	private Button btnTakeTurn;
 	private Label lbl1;
 	private Label lbl2;
+	int passedTowns = 0;
 	
 	private static Wagon wagon;
 	
@@ -40,7 +41,46 @@ public class FieldScreen extends Composite {
 			public void widgetSelected(SelectionEvent arg0) {
 				wagon.takeStep();
 				update();
-				System.out.println(World.getMap().distanceToTown(wagon.getTownDistance()));
+				System.out.println(wagon.getTownDistance());
+				//check if we're in oregon
+				if(World.getWagon().getDistance() >= 1909) {
+					System.out.println("Welcome to Oregon! You Win!");
+					System.exit(0);
+				} else if(World.getWagon().getDistance()>=1789&& passedTowns <11){
+					System.out.println("You've reached Fort Walla Walla!");
+					passedTowns++;
+				} else if(World.getWagon().getDistance()>=1734&& passedTowns <10){
+					System.out.println("You've reached the Blue Mountains!");
+					passedTowns++;
+				} else if(World.getWagon().getDistance()>=1572&& passedTowns <9){
+					System.out.println("You've reached Fort Boise!");
+					passedTowns++;
+				} else if(World.getWagon().getDistance()>=1276 && passedTowns <8){
+					System.out.println("You've reached Fort Hall!");
+					passedTowns++;
+				} else if(World.getWagon().getDistance()>=1219&& passedTowns <7){
+					passedTowns++;
+					System.out.println("You'ved reached Soda Springs!");
+				} else if(World.getWagon().getDistance()>=1057&& passedTowns <6){
+					passedTowns++;
+					System.out.println("You've reached Fort Bridger!");
+				} else if(World.getWagon().getDistance()>=932&& passedTowns <5){
+					passedTowns++;
+					System.out.println("You've reached South Pass!");
+				} else if(World.getWagon().getDistance()>=830 && passedTowns <4){
+					passedTowns++;
+					System.out.println("You've reached Independence Rock!");
+				} else if(World.getWagon().getDistance()>=640 && passedTowns <3){
+					passedTowns++;
+					System.out.println("You've reached Fort Laramie!");
+				} else if(World.getWagon().getDistance()>=554 && passedTowns <2){
+					passedTowns++;
+					System.out.println("You've reached Chimney Rock!");
+				} else if(World.getWagon().getDistance()>=304 && passedTowns <1){
+					System.out.println("You've reached Fort Kearny!");
+					passedTowns++;
+				}
+				
 			}
 		});
 		

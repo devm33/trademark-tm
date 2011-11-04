@@ -145,7 +145,7 @@ public class InventoryScreen extends Composite{
 
 		
 		lblItems0wt = new Label(this, SWT.NONE);
-		lblItems0wt.setText(display+itemInventory[0].getWeight());
+		lblItems0wt.setText("0000");
 
 		
 		lblItems0amt = new Label(this, SWT.NONE);
@@ -156,7 +156,7 @@ public class InventoryScreen extends Composite{
 
 		
 		lblItems1wt = new Label(this, SWT.NONE);
-		lblItems1wt.setText(display+itemInventory[1].getWeight());
+		lblItems1wt.setText("0000");
 
 		
 		lblItems1amt = new Label(this, SWT.NONE);
@@ -168,7 +168,7 @@ public class InventoryScreen extends Composite{
 
 		
 		lblItems2wt = new Label(this, SWT.NONE);
-		lblItems2wt.setText(display+itemInventory[2].getWeight());
+		lblItems2wt.setText("0000");
 
 		
 		lblItems2amt = new Label(this, SWT.NONE);
