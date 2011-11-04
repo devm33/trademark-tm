@@ -253,23 +253,28 @@ public class WagonScreen extends Composite {
 	 */
 	private void createContents(){
 		btnTakeTurn = new Button(this, SWT.NONE);
+		btnTakeTurn.setEnabled(false);
 		btnTakeTurn.setBounds(20, 37, 94, 28);
 		btnTakeTurn.setText("Take Turn");
 		
 		rations = new Combo(this, SWT.NONE);
+		rations.setEnabled(false);
 		rations.setItems(new String[] {"None", "Bare-Bones", "Meager", "Normal", "Wellfed"});
 		rations.setBounds(68, 83, 94, 22);
 		rations.setText("Normal");
 		
 		pace = new Combo(this, SWT.NONE);
+		pace.setEnabled(false);
 		pace.setItems(new String[] {"Stopped", "Leisurely", "Steady", "Grueling"});
 		pace.setBounds(68, 131, 94, 22);
 		pace.setText("Steady");
 
 		rationsDescript = new Label(this, SWT.NONE);
+		rationsDescript.setEnabled(false);
 		rationsDescript.setBounds(174, 83, 266, 42);
 		
 		paceDescript = new Label(this, SWT.NONE);
+		paceDescript.setEnabled(false);
 		paceDescript.setBounds(174, 132, 266, 42);
 		
 		food = new Label(this, SWT.NONE);
@@ -308,10 +313,12 @@ public class WagonScreen extends Composite {
 		lblDistanceRemaining.setText("Distance Traveled:");
 		
 		lblRations = new Label(this, SWT.NONE);
+		lblRations.setEnabled(false);
 		lblRations.setBounds(13, 91, 49, 13);
 		lblRations.setText("Rations:");
 		
 		lblPace = new Label(this, SWT.NONE);
+		lblPace.setEnabled(false);
 		lblPace.setBounds(20, 134, 49, 13);
 		lblPace.setText("Pace:");
 		
