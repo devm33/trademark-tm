@@ -76,8 +76,9 @@ public class Map {
 	 */
 	public int distanceToTown(int distance) {
 		for(TownPair t : towns) {
-			if(t.distance > distance)
+			if(t.distance > distance){
 				return t.distance - distance;
+			}
 		}
 		return 0;
 	}

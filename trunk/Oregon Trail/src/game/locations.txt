@@ -1,7 +1,7 @@
 T,Independence,0,Yes
 R,Kansas River,102,No
 R,Big Blue,83,No
-T,Fort Kearny,304,Yes
+T,Fort Kearny,119,Yes
 T,Chimney Rock,250,No
 T,Fort Laramie,86,Yes
 T,Independence Rock,190,No

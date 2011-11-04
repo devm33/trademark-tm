@@ -40,6 +40,7 @@ public class FieldScreen extends Composite {
 			public void widgetSelected(SelectionEvent arg0) {
 				wagon.takeStep();
 				update();
+				System.out.println(World.getMap().distanceToTown(wagon.getTownDistance()));
 			}
 		});
 		
@@ -186,6 +187,42 @@ public class FieldScreen extends Composite {
 		return null;
 	}
 	
+	public void update(){
+		switch(wagon.getRations()){
+		case 1:
+			dropRations.setText("Bare-Bones");
+			rationsDescript.setText("1 pound of food per person per day.");
+			break;
+		case 2:
+			dropRations.setText("Meager");
+			rationsDescript.setText("2 pounds of food per person per day.");
+			break;
+		case 3: 
+			dropRations.setText("Normal");
+			rationsDescript.setText("3 pounds of food per person per day.");
+			break;
+		case 4: 
+			dropRations.setText("Wellfed");
+			rationsDescript.setText("4 pounds of food per person per day.");
+			break;
+		}
+		
+		switch(wagon.getPace()){
+		case 5:
+			dropPace.setText("Leisurely");
+			paceDescript.setText("5 miles per day slow and restful.\n Helps recover from exhaustion.");
+			break;
+		case 10:
+			dropPace.setText("Steady");
+			paceDescript.setText("10 miles per day basic pace.\n Normal fatigue.");
+			break;
+		case 15:
+			dropPace.setText("Grueling");
+			paceDescript.setText("15 miles per day hard pace.\n Oxen and people rapidly become tired, then exhausted.");
+			break;
+		}
+	}
+	
 	@Override
 	protected void checkSubclass() {
 		// Disable the check that prevents subclassing of SWT components
@@ -199,12 +236,10 @@ public class FieldScreen extends Composite {
 		dropRations = new Combo(this, SWT.NONE);
 		dropRations.setItems(new String[] {"None", "Bare-Bones", "Meager", "Normal", "Wellfed"});
 		dropRations.setBounds(65, 197, 94, 23);
-		dropRations.setText("Normal");
 		
 		dropPace = new Combo(this, SWT.NONE);
 		dropPace.setItems(new String[] {"Stopped", "Leisurely", "Steady", "Grueling"});
 		dropPace.setBounds(65, 245, 94, 23);
-		dropPace.setText("Steady");
 		
 		lbl1 = new Label(this, SWT.NONE);
 		lbl1.setText("Rations:");
