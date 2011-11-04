@@ -10,9 +10,8 @@ Feature Slice requirements (currently M8):
 Bugs:
 1. Fix displayed Date and Day
 2. Clear store between towns
-3. Inventory weight updates correctly.  Label needs to be longer to display two and three digit weights.
-4. Store's constuctor needs dynamic name (currently fixed as Independence)
-5. Implement conditional update (currently everything updates constantly)
+3. Store's constuctor needs dynamic name (currently fixed as Independence)
+4. Implement conditional update (currently everything updates constantly)
 
 Complete following Screens:
 1. FieldScreen
