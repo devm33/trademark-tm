@@ -51,6 +51,11 @@ public class FieldScreen extends Composite {
 					System.out.println("Welcome to Oregon! You Win!");
 					System.exit(0);
 				}
+				if(World.getMap().distanceToRiver(World.getWagon().getDistance()) < World.getWagon().getPace()) {
+					String name = World.getMap().getNextRiver(World.getWagon().getDistance()).getName();
+					System.out.println("You've reached " + name);
+					lblNotify.setText("You've reached " + name);
+				}
 				System.out.println("You've reached " + World.getTown().getTownName());
 				lblNotify.setText("You've reached " + World.getTown().getTownName());
 			}
