@@ -2,16 +2,11 @@
 
 Feature Slice requirements (currently M8):
 1. Create a map with locations
-2. Wagon travels between points on map
-3. Game ends when reaching Oregon
-4. Player is notified at towns or Oregon
-5. Javadoc/comment all files
 
 Bugs:
 1. Fix displayed Date and Day
 2. Clear store between towns
-3. Store's constuctor needs dynamic name (currently fixed as Independence)
-4. Implement conditional update (currently everything updates constantly)
+3. Implement conditional update (currently everything updates constantly)
 
 Complete following Screens:
 1. FieldScreen
