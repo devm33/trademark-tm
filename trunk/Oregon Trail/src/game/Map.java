@@ -70,6 +70,21 @@ public class Map {
 	}
 	
 	/**
+	 * Return the last town to be visited
+	 * @return the last town
+	 */
+	public Town geLastTown() {
+		int distance = World.getWagon().getDistance();
+		Town tlast = towns.get(0).town;
+		for(TownPair t : towns) {
+			if(t.distance > distance)
+				return tlast;
+			tlast = t.town;
+		}
+		return null;
+	}
+	
+	/**
 	 * Return the distance to the next town.
 	 * @return the distance to the next town
 	 */
