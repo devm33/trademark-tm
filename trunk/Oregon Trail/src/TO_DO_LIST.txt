@@ -7,6 +7,7 @@ Bugs:
 1. Fix displayed Date and Day
 2. Clear store between towns
 3. Implement conditional update (currently everything updates constantly)
+4. Progress bar
 
 Complete following Screens:
 1. FieldScreen
