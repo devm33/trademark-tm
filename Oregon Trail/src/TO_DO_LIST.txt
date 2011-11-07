@@ -12,6 +12,7 @@ Bugs:
 2. Clear store between towns
 3. Store's constuctor needs dynamic name (currently fixed as Independence)
 4. Implement conditional update (currently everything updates constantly)
+5. Fix town spam
 
 Complete following Screens:
 1. FieldScreen
