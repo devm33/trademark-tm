@@ -45,10 +45,10 @@ public class World {
 			
 			
 			game_running = mainScreen.stepGame();
-			theWagon.setTownDistance(theMap.distanceToTown(theWagon.getDistance()));
+			theWagon.setTownDistance(theMap.distanceToTown());
 			
 			//check if there is a town
-			Town temp = theMap.getNextTown(theWagon.getDistance());
+			Town temp = theMap.getNextTown();
 			if(temp != currentTown && temp != null && !mainScreen.inTown()) { 
 				mainScreen.setStore(temp.getStore());
 				currentTown = temp;
