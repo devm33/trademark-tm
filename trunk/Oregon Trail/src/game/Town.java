@@ -30,7 +30,7 @@ public class Town {
 	 * Default constructor for the town and store, Independence
 	 */
 	public Town(){
-		this.townName = "Indpendence";
+		this.townName = "Independence";
 		this.townStore = new Store();
 	}
 	/**

@@ -115,13 +115,13 @@ public class TownScreen extends Composite{
 		
 		lblWelcome = new Label(this, SWT.NONE);
 		lblWelcome.setFont(SWTResourceManager.getFont("Tahoma", 14, SWT.BOLD | SWT.ITALIC));
-		lblWelcome.setBounds(10, 269, 122, 21);
+		lblWelcome.setBounds(10, 269, 122, 24);
 		lblWelcome.setText("Welcome to");
 
 		lblTownName = new Label(this, SWT.NONE);
 		lblTownName.setText(World.getTown().getTownName());
 		lblTownName.setFont(SWTResourceManager.getFont("Tahoma", 14, SWT.BOLD | SWT.ITALIC));
-		lblTownName.setBounds(131, 269, 301, 21);
+		lblTownName.setBounds(131, 269, 301, 24);
 		
 
 	}

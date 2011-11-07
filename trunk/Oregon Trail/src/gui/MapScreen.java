@@ -94,12 +94,13 @@ public class MapScreen extends Composite {
 	 * creates controls for composite
 	 */
 	private void createContents(){
-		lblDest = new Label(this, SWT.NONE);
-		lblDest.setBounds(377, 170, 63, 15);
+		lblDest = new Label(this, SWT.WRAP);
+		lblDest.setAlignment(SWT.RIGHT);
+		lblDest.setBounds(268, 170, 172, 15);
 		lblDest.setText("Next Town");
 		
-		lblDepart = new Label(this, SWT.NONE);
-		lblDepart.setBounds(10, 170, 82, 15);
+		lblDepart = new Label(this, SWT.WRAP);
+		lblDepart.setBounds(10, 170, 130, 15);
 		lblDepart.setText("Past Town");
 		
 		

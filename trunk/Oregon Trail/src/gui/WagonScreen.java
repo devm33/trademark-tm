@@ -99,42 +99,53 @@ public class WagonScreen extends Composite {
 	private void createContents(){
 		
 		food = new Label(this, SWT.NONE);
-		food.setBounds(247, 16, 75, 16);
+		food.setFont(SWTResourceManager.getFont("Segoe UI", 12, SWT.NORMAL));
+		food.setBounds(174, 44, 88, 24);
 		
 		distance = new Label(this, SWT.NONE);
-		distance.setBounds(278, 45, 120, 16);
+		distance.setFont(SWTResourceManager.getFont("Segoe UI", 12, SWT.NORMAL));
+		distance.setBounds(174, 74, 88, 26);
 		distance.setText("0");
 		
 		leader = new Label(this, SWT.NONE);
-		leader.setBounds(0, 180, 450, 19);
+		leader.setFont(SWTResourceManager.getFont("Segoe UI", 12, SWT.NORMAL));
+		leader.setBounds(43, 117, 360, 24);
 		
 		traveler0 = new Label(this, SWT.NONE);
-		traveler0.setBounds(0, 205, 450, 19);
+		traveler0.setFont(SWTResourceManager.getFont("Segoe UI", 12, SWT.NORMAL));
+		traveler0.setBounds(43, 154, 360, 24);
 		
 		traveler1 = new Label(this, SWT.NONE);
-		traveler1.setBounds(0, 230, 450, 19);
+		traveler1.setFont(SWTResourceManager.getFont("Segoe UI", 12, SWT.NORMAL));
+		traveler1.setBounds(43, 193, 360, 24);
 		
 		traveler2 = new Label(this, SWT.NONE);
-		traveler2.setBounds(0, 255, 450, 19);
+		traveler2.setFont(SWTResourceManager.getFont("Segoe UI", 12, SWT.NORMAL));
+		traveler2.setBounds(43, 232, 360, 24);
 		
 		traveler3 = new Label(this, SWT.NONE);
-		traveler3.setBounds(0, 281, 450, 19);
+		traveler3.setFont(SWTResourceManager.getFont("Segoe UI", 12, SWT.NORMAL));
+		traveler3.setBounds(43, 271, 360, 24);
 		
 		lblWagon = new Label(this, SWT.NONE);
-		lblWagon.setFont(SWTResourceManager.getFont("Tahoma", 14, SWT.NORMAL));
-		lblWagon.setBounds(10, 5, 75, 28);
-		lblWagon.setText("Wagon"); //This is myWagon. There are many like it, but this one is mine.
+		lblWagon.setAlignment(SWT.CENTER);
+		lblWagon.setFont(SWTResourceManager.getFont("Tahoma", 16, SWT.NORMAL));
+		lblWagon.setBounds(10, 10, 430, 28);
+		lblWagon.setText("Wagon Status"); //This is myWagon. There are many like it, but this one is mine.
 		
 		lblFoodRemaining = new Label(this, SWT.NONE);
-		lblFoodRemaining.setBounds(143, 16, 108, 16);
+		lblFoodRemaining.setFont(SWTResourceManager.getFont("Segoe UI", 12, SWT.NORMAL));
+		lblFoodRemaining.setBounds(43, 44, 117, 24);
 		lblFoodRemaining.setText("Food Remaining:");
 		
 		lblDistanceRemaining = new Label(this, SWT.NONE);
-		lblDistanceRemaining.setBounds(143, 45, 120, 13);
+		lblDistanceRemaining.setFont(SWTResourceManager.getFont("Segoe UI", 12, SWT.NORMAL));
+		lblDistanceRemaining.setBounds(43, 74, 125, 26);
 		lblDistanceRemaining.setText("Distance Traveled:");
 		
 		btnDone = new Button(this, SWT.NONE);
-		btnDone.setBounds(344, 11, 75, 25);
+		btnDone.setFont(SWTResourceManager.getFont("Segoe UI", 12, SWT.NORMAL));
+		btnDone.setBounds(268, 44, 98, 56);
 		btnDone.setText("Return");
 	}
 }
