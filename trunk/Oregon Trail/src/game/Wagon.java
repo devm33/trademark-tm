@@ -318,6 +318,8 @@ public class Wagon {
 		
 		distance += pace;
 		townDistance += pace;
+		World.nextDay();
+		
 		f.use();
 		w.use();
 		
