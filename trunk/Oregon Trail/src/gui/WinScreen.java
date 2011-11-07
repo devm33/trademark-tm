@@ -8,6 +8,11 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 
+/**
+ * Screen that shows when the user wins the game
+ * @author Jaron
+ *
+ */
 public class WinScreen extends Composite {
 	private Label lbl1;
 	private Button btnNewGame;
@@ -44,6 +49,9 @@ public class WinScreen extends Composite {
 		// Disable the check that prevents subclassing of SWT components
 	}
 
+	/**
+	 * creates controls for composite
+	 */
 	private void createContents(){
 		lbl1 = new Label(this, SWT.NONE);
 		lbl1.setFont(SWTResourceManager.getFont("Segoe UI", 40, SWT.NORMAL));

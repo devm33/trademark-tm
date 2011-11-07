@@ -61,16 +61,24 @@ public class Wagon {
 		inventory = new Inventory();
 	}
 	
+	/**
+	 * set a new leader
+	 * @param l the new leader object
+	 */
 	public void setLeader(Leader l){
 		leader = l;
 	}
 	
+	/**
+	 * set party to a new list of members
+	 * @param l the list of new party members
+	 */
 	public void setMembers(List<Traveler> l) {
 		members = l;
 	}
 
 	/**
-	 * 
+	 * returns the wagon's current pace
 	 * @return the Wagon's current pace setting.
 	 */
 	public int getPace() {
@@ -130,10 +138,18 @@ public class Wagon {
 		return distance;
 	}
 	
+	/**
+	 * gets the current distance from previous town to next town
+	 * @return the distance to next town from previous town
+	 */
 	public int getTownDistance(){
 		return townDistance;
 	}
 	
+	/**
+	 * sets the current distance after previous town
+	 * @param a the new distance after previous town
+	 */
 	public void setTownDistance(int a){
 		townDistance = a;
 	}

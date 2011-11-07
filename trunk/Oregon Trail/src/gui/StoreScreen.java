@@ -177,6 +177,9 @@ public class StoreScreen extends Composite{
 		});
 	}
 	
+	/**
+	 * when user selects oxen in the menu
+	 */
 	private void displayOxen(){
 		lblName.setText("Oxen");
 		lblWeight.setText("Does not affect wagon weight");
@@ -185,6 +188,9 @@ public class StoreScreen extends Composite{
 		lblResponse.setText("Freshly stolen from my neighbor's ranch.");
 	}
 	
+	/**
+	 * when user selects food in the menu
+	 */
 	private void displayFood(){
 		lblName.setText("Food");
 		lblWeight.setText("5 lbs");
@@ -193,6 +199,9 @@ public class StoreScreen extends Composite{
 		lblResponse.setText("Better than my wife's poor excuse for cooking.");
 	}
 	
+	/**
+	 * when user selects clothing in the menu
+	 */
 	private void displayClothing(){
 		lblName.setText("Clothing");
 		lblWeight.setText("2 lbs");
@@ -201,6 +210,9 @@ public class StoreScreen extends Composite{
 		lblResponse.setText("Wow your oxen with the latest 1848 rag fashion.");
 	}
 	
+	/**
+	 * when user selects ammo in the menu
+	 */
 	private void displayAmmunition(){
 		lblName.setText("Ammunition");
 		lblWeight.setText("3 lbs");
@@ -209,6 +221,9 @@ public class StoreScreen extends Composite{
 		lblResponse.setText("Don't blow your face off with these.");
 	}
 	
+	/**
+	 * when user selects medicine in the menu
+	 */
 	private void displayMedicine(){
 		lblName.setText("Medicine");
 		lblWeight.setText("1 lb");
@@ -217,6 +232,9 @@ public class StoreScreen extends Composite{
 		lblResponse.setText("It's great for headaches and heroin addicts.");
 	}
 	
+	/**
+	 * when user selects water in the menu
+	 */
 	private void displayWater(){
 		lblName.setText("Water");
 		lblWeight.setText("6 lbs");
@@ -225,6 +243,9 @@ public class StoreScreen extends Composite{
 		lblResponse.setText("Clean....maybe not. Drinkable....yes.");
 	}
 	
+	/**
+	 * when user selects wagon wheel in the menu
+	 */
 	private void displayWheel(){
 		lblName.setText("Wagon Wheel");
 		lblWeight.setText("75 lbs");
@@ -233,6 +254,9 @@ public class StoreScreen extends Composite{
 		lblResponse.setText("Big and round like my wife.");
 	}
 	
+	/**
+	 * when user selects wagon axle in the menu
+	 */
 	private void displayAxle(){
 		lblName.setText("Wagon Axle");
 		lblWeight.setText("125 lbs");
@@ -241,6 +265,9 @@ public class StoreScreen extends Composite{
 		lblResponse.setText("Long and heavy like my di...wagon axles.");
 	}
 	
+	/**
+	 * when user selects wagon tongue in the menu
+	 */
 	private void displayTongue(){
 		lblName.setText("Wagon Tongue");
 		lblWeight.setText("100 lbs");
@@ -249,47 +276,74 @@ public class StoreScreen extends Composite{
 		lblResponse.setText("It's the newest in oxen-containing technology.");
 	}
 	
+	/**
+	 * when user buys oxen in the menu
+	 */
 	private void buyOxen() throws InsufficientFundsException, WeightCapacityExceededException{
 		currentStore.buy(new Oxen(), Integer.parseInt(txtAmount.getText()), 20, 0);
 		currentStore.buy(new Oxen(), Integer.parseInt(txtAmount.getText()), 20, 0);
 		lblResponse.setText("Don't worry, I only stole the good ones.");
 	}	
 	
+	/**
+	 * when user buys food in the menu
+	 */
 	private void buyFood() throws InsufficientFundsException, WeightCapacityExceededException{
 		currentStore.buy(new Food(), Integer.parseInt(txtAmount.getText()), 5, 5);
 		lblResponse.setText("It won't expire for another hour or two.");
 	}
 	
+	/**
+	 * when user buys clothes in the menu
+	 */
 	private void buyClothing() throws InsufficientFundsException, WeightCapacityExceededException{
 		currentStore.buy(new Clothing(), Integer.parseInt(txtAmount.getText()), 10, 2);
 		lblResponse.setText("That brown matches well with your brown.");
 	}
 	
+	/**
+	 * when user buys ammo in the menu
+	 */
 	private void buyAmmunition() throws InsufficientFundsException, WeightCapacityExceededException{
 		currentStore.buy(new Ammo(), Integer.parseInt(txtAmount.getText()), 2, 3);
 		lblResponse.setText("Happy hunting, shooter!");
 	}
 	
+	/**
+	 * when user buys medicine in the menu
+	 */
 	private void buyMedicine() throws InsufficientFundsException, WeightCapacityExceededException{
 		currentStore.buy(new Medicine(), Integer.parseInt(txtAmount.getText()), 10, 1);
 		lblResponse.setText("Don't tell the doctor where you got that...");
 	}
 	
+	/**
+	 * when user buys water in the menu
+	 */
 	private void buyWater() throws InsufficientFundsException, WeightCapacityExceededException{
 		currentStore.buy(new Water(), Integer.parseInt(txtAmount.getText()), 2, 6);
 		lblResponse.setText("A bucket per day keeps death away.");
 	}
 	
+	/**
+	 * when user buys wagon wheels in the menu
+	 */
 	private void buyWheel() throws InsufficientFundsException, WeightCapacityExceededException{
 		currentStore.buy(new Wheel(), Integer.parseInt(txtAmount.getText()), 10, 75);
 		lblResponse.setText("Spike attachments sold separately.");
 	}
 	
+	/**
+	 * when user buys wagon axles in the menu
+	 */
 	private void buyAxle() throws InsufficientFundsException, WeightCapacityExceededException{
 		currentStore.buy(new Axle(), Integer.parseInt(txtAmount.getText()), 10, 125);
 		lblResponse.setText("You sure that's enough? You can never have too many heavy axles.");
 	}
 	
+	/**
+	 * when user buys wagon tongues in the menu
+	 */
 	private void buyTongue() throws InsufficientFundsException, WeightCapacityExceededException{
 		currentStore.buy(new Tongue(), Integer.parseInt(txtAmount.getText()), 10, 100);
 		lblResponse.setText("Your Ox will thank you for forcing them to wear that.");
@@ -304,6 +358,11 @@ public class StoreScreen extends Composite{
 		currentStore = s;
 	}
 	
+	/**
+	 * turns string into int
+	 * @param input a number string
+	 * @return the integer version of that number string
+	 */
 	private boolean isInteger(String input){  
 	   try{  
 	      Integer.parseInt(input);  
@@ -314,10 +373,17 @@ public class StoreScreen extends Composite{
 	   }  
 	} 
 	
+	/**
+	 * check if user is exiting the store
+	 * @return
+	 */
 	public boolean isDone(){
 		return done;
 	}
 	
+	/**
+	 * reset done boolean so user can re-enter store
+	 */
 	public void resetDone(){
 		done = false;
 	}
@@ -327,6 +393,9 @@ public class StoreScreen extends Composite{
 		// Disable the check that prevents subclassing of SWT components
 	}
 	
+	/**
+	 * creates controls for the composite
+	 */
 	private void createContents(){
 		list = new List(this, SWT.BORDER);
 		list.setItems(new String[] {"Oxen", "Food", "Clothing", 

@@ -6,6 +6,11 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 
+/**
+ * River crossing choice/minigame
+ * @author Jaron
+ *
+ */
 public class RiverScreen extends Composite {
 	private boolean done = false;
 	private Button btnQuit;
@@ -28,10 +33,17 @@ public class RiverScreen extends Composite {
 		});
 	}
 	
+	/**
+	 * check if user is finished with river screen
+	 * @return
+	 */
 	public boolean isDone(){
 		return done;
 	}
 	
+	/**
+	 * reset done variable so user can re-enter river screen
+	 */
 	public void resetDone(){
 		done = false;
 	}
@@ -41,6 +53,9 @@ public class RiverScreen extends Composite {
 		// Disable the check that prevents subclassing of SWT components
 	}
 
+	/**
+	 * creates controls for the composite
+	 */
 	private void createContents(){
 		btnQuit = new Button(this, SWT.NONE);
 		btnQuit.setBounds(162, 265, 84, 25);

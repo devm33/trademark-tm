@@ -86,6 +86,9 @@ public class ConfigScreen extends Composite{
 		});		
 	}
 	
+	/**
+	 * names and creates a leader
+	 */
 	private void initializeLeader(){
 		//Leader is named by user or defaults to Jonathan
 		String leaderName = "";
@@ -103,6 +106,9 @@ public class ConfigScreen extends Composite{
 		}
 	}
 	
+	/**
+	 * names and creates four party members
+	 */
 	private void initializeParty(){
 		//First party member is named or defaults to Wilson
 		if(txtName1.getText().equals("")){
@@ -144,6 +150,9 @@ public class ConfigScreen extends Composite{
 		wagon.setLeader(partyLeader);
 	}
 	
+	/**
+	 * sets the pace rate of the wagon
+	 */
 	private void setPace(){
 		if(dropPace.getText().equals("Leisurely")){
 			wagon.setPace(5);
@@ -154,6 +163,9 @@ public class ConfigScreen extends Composite{
 		}
 	}
 	
+	/**
+	 * sets the rations rate of the wagon
+	 */
 	private void setRations(){
 		if(dropRations.getText().equals("Bare-Bones")){
 			wagon.setRations(1);
@@ -166,10 +178,17 @@ public class ConfigScreen extends Composite{
 		}
 	}
 	
+	/**
+	 * checks if the user is finished with the configuration screen
+	 * @return if the user is done with the configuration screen
+	 */
 	public boolean isDone(){
 		return done;
 	}
 
+	/**
+	 * resets the done boolean for revisit to the configuration screen
+	 */
 	public void resetDone(){
 		done = false;
 	}
@@ -179,7 +198,9 @@ public class ConfigScreen extends Composite{
 		// Disable the check that prevents subclassing of SWT components
 	}
 	
-	
+	/**
+	 * creates controls for the configuration screen
+	 */
 	private void createContents(){
 		txtLeaderName = new Text(this, SWT.BORDER);
 		txtLeaderName.setText("Jonathan");

@@ -12,6 +12,14 @@ import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.wb.swt.SWTResourceManager;
 
+/**
+ * The screen where the party travels outside of towns
+ * and encounters events.
+ * 
+ * May initialize hunting or river crossing mini games.
+ * @author Jaron
+ *
+ */
 public class FieldScreen extends Composite {
 	private Combo dropRations;
 	private Combo dropPace;
@@ -52,20 +60,25 @@ public class FieldScreen extends Composite {
 					System.exit(0);
 				}
 				
+				//Checks if the party has reached a river or town
 				if(World.getMap().distanceToRiver(World.getWagon().getDistance()) <= World.getWagon().getPace() && 
 					World.getMap().getNextRiver(World.getWagon().getDistance()) != null){
+					/*Checks distance to next river based upon current pace and if a next river exists*/
 						String name = World.getMap().getNextRiver(World.getWagon().getDistance()).getName();
 						System.out.println("You've reached " + name);
 						lblNotify.setText("You've reached " + name);
 				} else if(World.getMap().distanceToTown(World.getWagon().getDistance()) <= World.getWagon().getPace()){
+					/*Checks distance to next town based upon current pace*/
 					System.out.println("You've reached " + World.getTown().getTownName());
 					lblNotify.setText("You've reached " + World.getTown().getTownName());
 				} else {
+					/*clears label to prevent notification spamming*/
 					lblNotify.setText("");
 				}
 			}
 		});
 		
+		//logic for ration drop down menu
 		dropRations.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -209,40 +222,11 @@ public class FieldScreen extends Composite {
 		return null;
 	}
 	
+	/**
+	 * updates labels and drop menus based on previous user selection
+	 * in configuration screen
+	 */
 	public void update(){
-/*		switch(wagon.getRations()){
-		case 1:
-			dropRations.setText("Bare-Bones");
-			rationsDescript.setText("1 pound of food per person per day.");
-			break;
-		case 2:
-			dropRations.setText("Meager");
-			rationsDescript.setText("2 pounds of food per person per day.");
-			break;
-		case 3: 
-			dropRations.setText("Normal");
-			rationsDescript.setText("3 pounds of food per person per day.");
-			break;
-		case 4: 
-			dropRations.setText("Wellfed");
-			rationsDescript.setText("4 pounds of food per person per day.");
-			break;
-		}
-		
-		switch(wagon.getPace()){
-		case 5:
-			dropPace.setText("Leisurely");
-			paceDescript.setText("5 miles per day slow and restful.\n Helps recover from exhaustion.");
-			break;
-		case 10:
-			dropPace.setText("Steady");
-			paceDescript.setText("10 miles per day basic pace.\n Normal fatigue.");
-			break;
-		case 15:
-			dropPace.setText("Grueling");
-			paceDescript.setText("15 miles per day hard pace.\n Oxen and people rapidly become tired, then exhausted.");
-			break;
-		}*/
 		dropRations.setText(rations(wagon.getRations()));
 		
 		dropPace.setText(pace(wagon.getPace()));
@@ -259,6 +243,9 @@ public class FieldScreen extends Composite {
 		// Disable the check that prevents subclassing of SWT components
 	}
 
+	/**
+	 * creates the controls for the composite
+	 */
 	private void createContents(){
 		btnTakeTurn = new Button(this, SWT.NONE);
 		btnTakeTurn.setText("Take Turn");

@@ -68,6 +68,9 @@ public class MainScreen {
 	private WinScreen winView;
 	private LoseScreen loseView;
 
+	/**
+	 * creates the main window of the game
+	 */
 	public MainScreen() {
 		wagon = World.getWagon();
 
@@ -78,6 +81,7 @@ public class MainScreen {
 
 		layout.topControl = config;
 		
+		/*SUPER BUTTON*/ 
 		Button btnSuper = new Button(shell, SWT.NONE);
 		btnSuper.addSelectionListener(new SelectionAdapter() {
 			@Override
@@ -86,16 +90,21 @@ public class MainScreen {
 				try {
 					World.getWagon().addToInventory(new Food(), 99999);
 				} catch (WeightCapacityExceededException e) {
-					// TODO Auto-generated catch block
 				}
 			}
 		});
 		btnSuper.setBounds(147, 3, 75, 25);
 		btnSuper.setText("super");
+		/*END SUPER BUTTON*/
+		
 		contentPanel.layout();
 		shell.update();
 	}
 
+	/**
+	 * Handles screen continuation and screen refresh/updates
+	 * @return if the game window is still open
+	 */
 	public boolean stepGame(){
 		if (!display.readAndDispatch())
 			display.sleep();
@@ -122,11 +131,13 @@ public class MainScreen {
 			updateMap();
 			
 			refresh();
-		}
-		
+		}	
 		return !shell.isDisposed();
 	}
 	
+	/**
+	 * creates all the screens of the game
+	 */
 	private void createScreens(){
 		config = new ConfigScreen(contentPanel, SWT.NONE);
 		town = new TownScreen(contentPanel, SWT.NONE);
@@ -142,21 +153,33 @@ public class MainScreen {
 		loseView = new LoseScreen(contentPanel,SWT.NONE);
 	}
 	
+	/**
+	 * update cash display
+	 */
 	private void updateCash(){
 		if(World.getWagon().getLeader()!=null && World.getWagon().getCash()!=null){
 		lblCash.setText("$"+World.getWagon().getCash());
 		}
 	}
 	
+	/**
+	 * update wagon screen
+	 */
 	private void updateWagon(){
 		if(World.getWagon().getLeader()!=null)
 			wagonView.update();
 	}
 	
+	/**
+	 * update inventory screen
+	 */
 	private void updateInventory(){
 		inventory.update();
 	}
 	
+	/**
+	 * update map screen
+	 */
 	private void updateMap(){
 		map.update();
 	}
@@ -251,6 +274,9 @@ public class MainScreen {
 		}
 	}
 	
+	/**
+	 * logic for handling which screen is shown upon opening/closing wagon status
+	 */
 	private void continueWagon(){
 		if (accessWagon){
 			accessWagon = false;
@@ -308,6 +334,11 @@ public class MainScreen {
 		
 	}
 	
+	/**
+	 * transitions from one screen to next one
+	 * @param oldScreen the screen to transfer from
+	 * @param newScreen the screen to tranfer to
+	 */
 	private void screenTransition(Composite oldScreen, Composite newScreen){
 		map.setVisible(false);
 		inventory.setVisible(false);
@@ -317,19 +348,33 @@ public class MainScreen {
 		layout.topControl = newScreen;
 	}
 	
+	/**
+	 * refresh screen
+	 */
 	private void refresh(){
 		contentPanel.update();
 		shell.update();
 	}
 	
+	/**
+	 * close the display
+	 */
 	public void disposeDisplay(){
 		display.dispose();
 	}
 
+	/**
+	 * set current game store
+	 * @param s the store to set to
+	 */
 	public void setStore(Store s){
 		store.setStore(s);
 	}
 	
+	/**
+	 * Returns the screen before the user visited the map/inventory/ or wagon status
+	 * @return the screen needed to return to upon closing pop-up menu
+	 */
 	private Composite getCurrentComposite(){
 		Composite comp;
 		switch(currentScreen){
@@ -360,6 +405,7 @@ public class MainScreen {
 		}
 		return comp;
 	}
+	
 	/**
 	 * create display, shell, and controls
 	 */
@@ -377,7 +423,7 @@ public class MainScreen {
 		lblCash.setBounds(117, 29, 55, 15);
 		
 		lblDate = new Label(shell, SWT.NONE);
-		lblDate.setText("May 1, 1984");
+		lblDate.setText("May 1, 1858");
 		lblDate.setBounds(10, 8, 131, 15);
 		
 		lblDay = new Label(shell, SWT.NONE);

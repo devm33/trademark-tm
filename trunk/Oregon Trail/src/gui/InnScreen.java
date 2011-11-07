@@ -40,10 +40,17 @@ public class InnScreen extends Composite {
 		});
 	}
 
+	/**
+	 * checks if the user is leaving the inn
+	 * @return
+	 */
 	public boolean isDone(){
 		return done;
 	}
 	
+	/**
+	 * resets done boolean so user can enter inn again
+	 */
 	public void resetDone(){
 		done = false;
 	}
@@ -53,6 +60,9 @@ public class InnScreen extends Composite {
 		// Disable the check that prevents subclassing of SWT components
 	}
 
+	/**
+	 * creates controls for the composite
+	 */
 	private void createContents(){
 		lbl1 = new Label(this, SWT.NONE);
 		lbl1.setAlignment(SWT.CENTER);

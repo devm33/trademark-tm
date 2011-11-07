@@ -20,7 +20,6 @@ import org.eclipse.swt.events.SelectionEvent;
  * 
  * @author Stephen Bentley
  */
-
 public class InventoryScreen extends Composite{
 	private boolean done = false;
 	private Item[]itemInventory;
@@ -41,6 +40,11 @@ public class InventoryScreen extends Composite{
 	private Button btnClose;
 	private String display="";
 	
+	/**
+	 * Creates a new inventory screen and inventory items
+	 * @param parent
+	 * @param style
+	 */
 	public InventoryScreen(Composite parent, int style){
 		super(parent,style);
 		
@@ -65,6 +69,9 @@ public class InventoryScreen extends Composite{
 		});
 	}
 	
+	/**
+	 * updates the item names, weight, and amounts
+	 */
 	public void update(){
 		
 		int inventoryLength = World.getWagon().getInventory().getLength();
@@ -86,37 +93,65 @@ public class InventoryScreen extends Composite{
 			lblItems2amt.setText(""+amounts[2]);
 	}
 
+	/**
+	 * check if inventory contains a certain item
+	 * @param i the item to check for
+	 * @return if the item exists in inventory
+	 */
 	public boolean contains(Item i) {
-		// TODO Auto-generated method stub
 		for (int x=0; x<length; x++){
 			if (itemInventory[x].getName()==i.getName()){
 				return true;
 			}
-			
 		}
 		return false;
 	}
 	
+	/**
+	 * returns capacity of inventory
+	 * @return
+	 */
 	public int getLength(){
 		return length;
 	}
 	
+	/**
+	 * returns the item at index x
+	 * @param x the index of the item to return
+	 * @return the item at index x
+	 */
 	public Item getItem(int x){
 		return itemInventory[x];
 	}
 	
+	/**
+	 * sets quantity of an item in inventory
+	 * @param item the item index
+	 * @param num the new number of the item
+	 */
 	public void setItemNum(int item, int num){
 		itemInventory[item].setNumber(num);
 	}
 	
+	/**
+	 * returns an array of the Items in the inventory
+	 * @return
+	 */
 	public Item[] getItemInventory(){
 		return itemInventory;
 	}
 	
+	/**
+	 * check if user is finished with inventory screen
+	 * @return
+	 */
 	public boolean isDone(){
 		return done;
 	}
 	
+	/**
+	 * reset done variable so user can re-enter inventory screen
+	 */
 	public void resetDone(){
 		done = false;
 	}
@@ -126,6 +161,9 @@ public class InventoryScreen extends Composite{
 		// Disable the check that prevents subclassing of SWT components
 	}
 	
+	/**
+	 * creates controls for the composite
+	 */
 	private void createContents(){
 		this.setLayout(new GridLayout(3, true));
 		

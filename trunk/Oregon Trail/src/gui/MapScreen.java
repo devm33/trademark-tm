@@ -42,17 +42,28 @@ public class MapScreen extends Composite {
 	private int gameDistanceRemaining;
 	private final int totalGameDistance = 1909;
 	
-	
+	/**
+	 * creates the map screen
+	 * @param parent
+	 * @param style
+	 */
 	public MapScreen(Composite parent, int style) {
 		super(parent, style);
 		
 		createContents();
 	}
 
+	/**
+	 * check if user is finished with map screen
+	 * @return
+	 */
 	public boolean isDone(){
 		return done;
 	}
 	
+	/**
+	 * reset done variable so user can re-enter map screen
+	 */
 	public void resetDone(){
 		done = false;
 	}
@@ -61,12 +72,19 @@ public class MapScreen extends Composite {
 	protected void checkSubclass() {
 		// Disable the check that prevents subclassing of SWT components
 	}
+	
+	/**
+	 * updates map screen
+	 */
 	public void update(){
 		gameProgressBar.setSelection(World.getWagon().getDistance());
 		townProgressBar.setSelection(World.getWagon().getTownDistance());
 		lblTownDistanceRemaining.setText(Integer.toString(World.getMap().distanceToTown(World.getWagon().getTownDistance())));
 	}
 	
+	/**
+	 * creates controls for composite
+	 */
 	private void createContents(){
 		lblDest = new Label(this, SWT.NONE);
 		lblDest.setBounds(377, 170, 63, 15);
