@@ -3,11 +3,25 @@
 Feature Slice requirements (currently M8):
 1. Create a map with locations
 
+M9:
+1. When arriving at a location with a river crossing, present the user with the three options for crossing.
+2. User selects one option and the appropriate action is taken.
+3. A disaster check is made and action taken if wagon flips for instance.
+4. When at a location with a store, allow the player to enter the store and buy additional supplies.
+5. Money and weight limits are enforced on purchases.
+
+M10:
+1. At game start-up, the player should be given the option to load a previous game.
+2. During game play, after the wagon departs Independence, there should be a way for the player to save the game.
+3. After saving, the player may continue to play, or exit the game.
+4. Each turn (move) of the wagon, there should be a check for a random event.
+5. If the event happens, the appropriate action should be taken.
+
+
 Bugs:
 1. Fix displayed Date and Day
 2. Clear store between towns
 3. Implement conditional update (currently everything updates constantly)
-4. Progress bar
 
 Complete following Screens:
 1. FieldScreen
