@@ -58,12 +58,26 @@ public class World {
 		mainScreen.disposeDisplay();
 	}
 	
+	/**
+	 * returns the game wagon
+	 * @return the game wagon
+	 */
 	public static Wagon getWagon(){
 		return theWagon;
 	}
+	
+	/**
+	 * returns the current town
+	 * @return the current town
+	 */
 	public static Town getTown(){
 		return currentTown;
 	}
+	
+	/**
+	 * returns the game map
+	 * @return the game map
+	 */
 	public static Map getMap(){
 		return theMap;
 	}

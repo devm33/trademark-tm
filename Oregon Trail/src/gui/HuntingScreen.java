@@ -6,6 +6,11 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 
+/**
+ * Hunting screen minigame GUI
+ * @author Jaron
+ *
+ */
 public class HuntingScreen extends Composite {
 	private boolean done = false;
 	private Button btnReturn;
@@ -28,10 +33,17 @@ public class HuntingScreen extends Composite {
 		});
 	}
 
+	/**
+	 * checks if user is finished with the hunting minigame
+	 * @return
+	 */
 	public boolean isDone(){
 		return done;
 	}
 	
+	/**
+	 * reset done boolean so user can re-enter the hunting minigame
+	 */
 	public void resetDone(){
 		done = false;
 	}
@@ -41,6 +53,9 @@ public class HuntingScreen extends Composite {
 		// Disable the check that prevents subclassing of SWT components
 	}
 	
+	/**
+	 * creates controls for the composite
+	 */
 	private void createContents(){
 		btnReturn = new Button(this, SWT.NONE);
 		btnReturn.setBounds(164, 265, 104, 25);

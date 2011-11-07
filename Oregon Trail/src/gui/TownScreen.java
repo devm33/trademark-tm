@@ -66,10 +66,17 @@ public class TownScreen extends Composite{
 		});
 	}
 	
+	/**
+	 * checks which path the user picked (inn/store/leave)
+	 * @return
+	 */
 	public int getChoice(){
 		return choice;
 	}
 
+	/**
+	 * reset choice so user can re-enter town
+	 */
 	public void resetChoice(){
 		choice = 0;
 	}

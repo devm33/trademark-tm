@@ -8,7 +8,6 @@ import game.World;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Button;
-import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Label;
@@ -24,8 +23,6 @@ import people.Person;
  */
 public class WagonScreen extends Composite {
 	private boolean done = false;
-	private Label rationsDescript;
-	private Label paceDescript;
 	private Label food;
 	private Label distance;
 	private Label leader;
@@ -36,62 +33,21 @@ public class WagonScreen extends Composite {
 	private Label lblWagon;
 	private Label lblFoodRemaining;
 	private Label lblDistanceRemaining;
-	private Label lblRations;
-	private Label lblPace;
-	private Button btnTakeTurn;
 	private Button btnDone;
-	private Combo rations;
-	private Combo pace;
 	
 	private static Wagon wagon;
 
+	/**
+	 * creats the wagon status composite
+	 * @param arg0
+	 * @param arg1
+	 */
 	public WagonScreen(Composite arg0, int arg1) {
 		super(arg0, arg1);
 		
 		wagon = World.getWagon();
 		
 		createContents();
-		
-/*		//Logic when user clicks the Take Turn button
-		btnTakeTurn.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent arg0) {	
-				wagon.takeStep();
-				update();
-			}
-		});
-		
-		//Logic when user selects a new item from the rations drop down
-		rations.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent e) {
-				int cur_rations = rations(rations.getText());
-				if(cur_rations < 0) {
-					System.out.println("wtf happened? \n crashing from confusion.");
-					System.exit(1);
-				}
-				if(cur_rations != wagon.getRations()) {
-					wagon.setRations(cur_rations);
-					rationsDescript.setText(rationsDescript(wagon.getRations()));
-				}
-			}
-		});
-		
-		//Logic when user selects a new item from the pace drop down
-		pace.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent e) {
-				int cur_pace = pace(pace.getText());
-				if(cur_pace < 0) {
-					System.out.println("wtf happened? \n crashing from confusion.");
-					System.exit(1);
-				}
-				if(cur_pace != wagon.getPace()) {
-					wagon.setPace(cur_pace);
-					paceDescript.setText(paceDescript(wagon.getPace()));
-				}
-			}
-		});*/
 		
 		//Logic when user clicks the done button
 		btnDone.addSelectionListener(new SelectionAdapter() {
@@ -103,14 +59,6 @@ public class WagonScreen extends Composite {
 	}
 	
 	public void update() {
-		
-/*		rations.setText(rations(wagon.getRations()));
-		
-		pace.setText(pace(wagon.getPace()));
-		
-		rationsDescript.setText(rationsDescript(wagon.getRations()));
-		
-		paceDescript.setText(paceDescript(wagon.getPace()));*/
 		
 		food.setText("" + wagon.getInventory().getFood().getNumber());
 		
@@ -124,121 +72,18 @@ public class WagonScreen extends Composite {
 			i++;
 		}
 	}
-	/**
-	 * Returns a string naming the given rations setting
-	 * @param r the rations setting
-	 * @return the string naming the rations setting or null if r not valid
-	 */
-	private String rations(int r) {
-		switch(r) {
-		case 0:
-			return "None";
-		case 1:
-			return "Bare-Bones";
-		case 2:
-			return "Meager";
-		case 3:
-			return "Normal";
-		case 4:
-			return "Wellfed";
-		}
-		return null;
-	}
-	/**
-	 * Returns the integer associated with the given string
-	 * @param r the string representing rations
-	 * @return the integer for rations or -1 if r not valid
-	 */
-	private int rations(String r) {
-		if(r.equals("None"))
-			return 0;
-		else if(r.equals("Bare-Bones"))
-			return 1;
-		else if(r.equals("Meager"))
-			return 2;
-		else if(r.equals("Normal"))
-			return 3;
-		else if(r.equals("Wellfed"))
-			return 4;
-		return -1;
-	}
-	/**
-	 * Returns a description of the given rations setting
-	 * @param r the rations setting
-	 * @return the string description or null if r not valid
-	 */
-	private String rationsDescript(int r) {
-		switch(r) {
-		case 0:
-			return "You gonna die.";
-		case 1:
-			return "1 pound of food per person per day.";
-		case 2:
-			return "2 pounds of food per person per day.";
-		case 3:
-			return "3 pounds of food per person per day.";
-		case 4:
-			return "4 pounds of food per person per day.";
-		}
-		return null;
-	}
-	/**
-	 * Returns the string associated with the integer for pace
-	 * @param p the integer for pace
-	 * @return the string pace or null if p not valid
-	 */
-	private String pace(int p) {
-		switch(p) {
-		case 0:
-			return "Stopped";
-		case 5:
-			return "Leisurely";
-		case 10:
-			return "Steady";
-		case 15:
-			return "Grueling";
-		}
-		return null;
-	}
-	/**
-	 * Returns the integer associated with the string pace
-	 * @param p the pace in string form
-	 * @return integer with the pace or -1 if not valid
-	 */
-	private int pace(String p) {
-		if(p.equals("Stopped"))
-			return 0;
-		else if(p.equals("Leisurely"))
-			return 5;
-		else if(p.equals("Steady"))
-			return 10;
-		else if(p.equals("Grueling"))
-			return 15;
-		return -1;
-	}
-	/**
-	 * Returns a string describing the current pace selection.
-	 * @param p the pace to describe.
-	 * @return description or null if invalid pace.
-	 */
-	private String paceDescript(int p) {
-		switch(p) {
-		case 0:
-			return "0 miles pers day restful.\n Recover from exhaustion faster.";
-		case 5:
-			return "5 miles per day slow and restful.\n Helps recover from exhaustion.";
-		case 10:
-			return "10 miles per day basic pace.\n Normal fatigue.";
-		case 15:
-			return "15 miles per day hard pace.\n Oxen and people rapidly become tired, then exhausted.";
-		}
-		return null;
-	}
 	
+	/**
+	 * checks if user is leaving the wagon status screen
+	 * @return
+	 */
 	public boolean isDone(){
 		return done;
 	}
 	
+	/**
+	 * reset done boolean so user can re-enter wagon status screen
+	 */
 	public void resetDone(){
 		done = false;
 	}
@@ -252,30 +97,6 @@ public class WagonScreen extends Composite {
 	 * create composite controls
 	 */
 	private void createContents(){
-		/*btnTakeTurn = new Button(this, SWT.NONE);
-		btnTakeTurn.setEnabled(false);
-		btnTakeTurn.setBounds(20, 37, 94, 28);
-		btnTakeTurn.setText("Take Turn");
-		
-		rations = new Combo(this, SWT.NONE);
-		rations.setEnabled(false);
-		rations.setItems(new String[] {"None", "Bare-Bones", "Meager", "Normal", "Wellfed"});
-		rations.setBounds(68, 83, 94, 22);
-		rations.setText("Normal");
-		
-		pace = new Combo(this, SWT.NONE);
-		pace.setEnabled(false);
-		pace.setItems(new String[] {"Stopped", "Leisurely", "Steady", "Grueling"});
-		pace.setBounds(68, 131, 94, 22);
-		pace.setText("Steady");
-
-		rationsDescript = new Label(this, SWT.NONE);
-		rationsDescript.setEnabled(false);
-		rationsDescript.setBounds(174, 83, 266, 42);
-		
-		paceDescript = new Label(this, SWT.NONE);
-		paceDescript.setEnabled(false);
-		paceDescript.setBounds(174, 132, 266, 42);*/
 		
 		food = new Label(this, SWT.NONE);
 		food.setBounds(247, 16, 75, 16);
@@ -311,16 +132,6 @@ public class WagonScreen extends Composite {
 		lblDistanceRemaining = new Label(this, SWT.NONE);
 		lblDistanceRemaining.setBounds(143, 45, 120, 13);
 		lblDistanceRemaining.setText("Distance Traveled:");
-		
-		lblRations = new Label(this, SWT.NONE);
-		lblRations.setEnabled(false);
-		lblRations.setBounds(13, 91, 49, 13);
-		lblRations.setText("Rations:");
-		
-		lblPace = new Label(this, SWT.NONE);
-		lblPace.setEnabled(false);
-		lblPace.setBounds(20, 134, 49, 13);
-		lblPace.setText("Pace:");
 		
 		btnDone = new Button(this, SWT.NONE);
 		btnDone.setBounds(344, 11, 75, 25);

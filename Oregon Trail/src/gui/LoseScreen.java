@@ -42,6 +42,9 @@ public class LoseScreen extends Composite {
 		// Disable the check that prevents subclassing of SWT components
 	}
 	
+	/**
+	 * creates controls for the composite
+	 */
 	private void createContents(){
 		lbl1 = new Label(this, SWT.NONE);
 		lbl1.setFont(SWTResourceManager.getFont("Segoe UI", 29, SWT.NORMAL));
