@@ -1,5 +1,7 @@
 package gui;
 
+import game.World;
+
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.SWT;
@@ -28,6 +30,7 @@ public class InnScreen extends Composite {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
 				System.out.println("PLACEHOLDER RESPONSE");
+				World.nextDay();
 			}
 		});
 		

@@ -1,5 +1,7 @@
 package game;
 
+import java.util.Calendar;
+
 import gui.MainScreen;
 
 /**
@@ -19,6 +21,10 @@ public class World {
 	
 	private static Map theMap;
 	
+	private static Calendar calendar;
+	
+	private static int days;
+	
 	//this class should also contain the events and should run them periodically/randomly
 	
 	@SuppressWarnings("unused")
@@ -27,6 +33,11 @@ public class World {
 	}
 	
 	public World() {
+		//set initial date and days
+		calendar = Calendar.getInstance();
+		calendar.set(1848, 5, 1);
+		days = 1;
+		
 		//initialize first town and store as well as a wagon to be passed to 
 		theWagon = new Wagon();
 		theMap = new Map();
@@ -60,6 +71,14 @@ public class World {
 	}
 	
 	/**
+	 * increment days each time user moves
+	 */
+	public static void nextDay(){
+		days++;
+		calendar.add(Calendar.DATE, 1);
+	}
+	
+	/**
 	 * returns the game wagon
 	 * @return the game wagon
 	 */
@@ -81,5 +100,61 @@ public class World {
 	 */
 	public static Map getMap(){
 		return theMap;
+	}
+	
+	/**
+	 * returns number of days traveled
+	 * @return
+	 */
+	public static int getDays(){
+		return days;
+	}
+
+	public static String getDate(){
+		String date = " "+calendar.get(Calendar.DATE)+", "+calendar.get(Calendar.YEAR);
+		String month = "";
+		switch(calendar.get(Calendar.MONTH)){
+		case 1:
+			month = "January";
+			break;
+		case 2:
+			month = "February";
+			break;
+		case 3:
+			month = "March";
+			break;
+		case 4: 
+			month = "April";
+			break;
+		case 5: 
+			month = "May";
+			break;
+		case 6: 
+			month = "June";
+			break;
+		case 7:
+			month = "July";
+			break;
+		case 8:
+			month = "August";
+			break;
+		case 9:
+			month = "September";
+			break;
+		case 10:
+			month = "October";
+			break;
+		case 11:
+			month = "November";
+			break;
+		case 12: 
+			month = "December";
+			break;
+		default:
+			month = "HURRR";
+			break;
+		}
+		date = month + date;
+		return date;
 	}
 }
