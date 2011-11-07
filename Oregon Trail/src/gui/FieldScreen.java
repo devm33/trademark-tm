@@ -21,6 +21,7 @@ import org.eclipse.wb.swt.SWTResourceManager;
  *
  */
 public class FieldScreen extends Composite {
+	private boolean atRiver = false, atTown = false;
 	private Combo dropRations;
 	private Combo dropPace;
 	private Label rationsDescript;
@@ -60,20 +61,19 @@ public class FieldScreen extends Composite {
 					System.exit(0);
 				}
 				
+				handleRiverOrTown();
+				
 				//Checks if the party has reached a river or town
 				if(World.getMap().distanceToRiver() <= World.getWagon().getPace() && 
 					World.getMap().getNextRiver() != null){
 					/*Checks distance to next river based upon current pace and if a next river exists*/
-						String name = World.getMap().getNextRiver().getName();
-						System.out.println("You've reached " + name);
-						lblNotify.setText("You've reached " + name);
+					String name = World.getMap().getNextRiver().getName();
+					System.out.println("You've reached " + name);
+					lblNotify.setText("You've reached " + name);
+					//atRiver = true;
 				} else if(World.getMap().distanceToTown() <= World.getWagon().getPace()){
 					/*Checks distance to next town based upon current pace*/
-					System.out.println("You've reached " + World.getTown().getTownName());
-					lblNotify.setText("You've reached " + World.getTown().getTownName());
-				} else {
-					/*clears label to prevent notification spamming*/
-					lblNotify.setText("");
+					atTown = true;
 				}
 			}
 		});
@@ -109,6 +109,25 @@ public class FieldScreen extends Composite {
 				}
 			}
 		});
+	}
+	
+	/**
+	 * logic for reaching a river or town
+	 */
+	private void handleRiverOrTown(){
+		if(atRiver){
+/*			String name = World.getMap().getNextRiver().getName();
+			System.out.println("You've reached " + name);
+			lblNotify.setText("You've reached " + name);
+			atRiver = false;*/
+		} else if(atTown){
+			System.out.println("You've reached " + World.getTown().getTownName());
+			lblNotify.setText("You've reached " + World.getTown().getTownName());
+			atTown = false;
+		} else {
+			/*clears label to prevent notification spamming*/
+			lblNotify.setText("");
+		}
 	}
 
 	/**
