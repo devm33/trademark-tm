@@ -38,7 +38,7 @@ public class MapScreen extends Composite {
 	private ProgressBar townProgressBar;
 	private ProgressBar gameProgressBar;
 	
-	private int townDistanceRemaining;
+//	private int townDistanceRemaining;
 	private int gameDistanceRemaining;
 	private final int totalGameDistance = 1909;
 	
@@ -77,9 +77,14 @@ public class MapScreen extends Composite {
 	 * updates map screen
 	 */
 	public void update(){
+		//update town distance
+		townProgressBar.setMaximum(World.getMap().totalDistanceToTown());
+		townProgressBar.setSelection((World.getMap().totalDistanceToTown()-World.getMap().distanceToTown()));
+		lblTownDistanceRemaining.setText(Integer.toString(World.getMap().distanceToTown()));
+		//update game distance
 		gameProgressBar.setSelection(World.getWagon().getDistance());
-		townProgressBar.setSelection(World.getWagon().getTownDistance());
-		lblTownDistanceRemaining.setText(Integer.toString(World.getMap().distanceToTown(World.getWagon().getTownDistance())));
+		gameDistanceRemaining = totalGameDistance - World.getWagon().getDistance();
+		lblGameDistanceRemaining.setText(Integer.toString(gameDistanceRemaining));
 	}
 	
 	/**
@@ -101,9 +106,8 @@ public class MapScreen extends Composite {
 		lblDistanceRemaining.setText("Distance Remaining:");
 		
 		townProgressBar = new ProgressBar(this, SWT.NONE);
-		townProgressBar.setMaximum(World.getMap().distanceToTown(World.getWagon().getTownDistance()));
+		townProgressBar.setMaximum(World.getMap().totalDistanceToTown());
 		townProgressBar.setBounds(10, 189, 430, 18);
-		//townProgressBar.setMaximum();
 		
 		gameDistanceRemaining = totalGameDistance - World.getWagon().getDistance();
 		lblGameDistanceRemaining = new Label(this, SWT.NONE);
@@ -149,7 +153,7 @@ public class MapScreen extends Composite {
 		label_1.setBounds(121, 213, 108, 15);
 		
 		lblTownDistanceRemaining = new Label(this, SWT.NONE);
-		lblTownDistanceRemaining.setText("0000");
+		lblTownDistanceRemaining.setText(Integer.toString(World.getMap().distanceToTown()));
 		lblTownDistanceRemaining.setBounds(235, 213, 49, 13);
 	}
 }

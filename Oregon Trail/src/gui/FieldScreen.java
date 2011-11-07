@@ -61,13 +61,13 @@ public class FieldScreen extends Composite {
 				}
 				
 				//Checks if the party has reached a river or town
-				if(World.getMap().distanceToRiver(World.getWagon().getDistance()) <= World.getWagon().getPace() && 
-					World.getMap().getNextRiver(World.getWagon().getDistance()) != null){
+				if(World.getMap().distanceToRiver() <= World.getWagon().getPace() && 
+					World.getMap().getNextRiver() != null){
 					/*Checks distance to next river based upon current pace and if a next river exists*/
-						String name = World.getMap().getNextRiver(World.getWagon().getDistance()).getName();
+						String name = World.getMap().getNextRiver().getName();
 						System.out.println("You've reached " + name);
 						lblNotify.setText("You've reached " + name);
-				} else if(World.getMap().distanceToTown(World.getWagon().getDistance()) <= World.getWagon().getPace()){
+				} else if(World.getMap().distanceToTown() <= World.getWagon().getPace()){
 					/*Checks distance to next town based upon current pace*/
 					System.out.println("You've reached " + World.getTown().getTownName());
 					lblNotify.setText("You've reached " + World.getTown().getTownName());

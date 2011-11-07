@@ -58,10 +58,10 @@ public class Map {
 	
 	/**
 	 * Return the next town to this distance
-	 * @param distance
 	 * @return the next closest town
 	 */
-	public Town getNextTown(int distance) {
+	public Town getNextTown() {
+		int distance = World.getWagon().getDistance();
 		for(TownPair t : towns) {
 			if(t.distance > distance)
 				return t.town;
@@ -71,10 +71,10 @@ public class Map {
 	
 	/**
 	 * Return the distance to the next town.
-	 * @param distance the distance already traveled
 	 * @return the distance to the next town
 	 */
-	public int distanceToTown(int distance) {
+	public int distanceToTown() {
+		int distance = World.getWagon().getDistance();
 		for(TownPair t : towns) {
 			if(t.distance > distance){
 				return t.distance - distance;
@@ -84,11 +84,26 @@ public class Map {
 	}
 	
 	/**
+	 * @return an int representing the total distance to the next town from the last town.
+	 */
+	public int totalDistanceToTown() {
+		int tlast = 0;
+		int distance = World.getWagon().getDistance();
+		for(TownPair t : towns) {
+			if(t.distance > distance){
+				return t.distance - tlast;
+			}
+			tlast = t.distance;
+		}
+		return 0;
+	}
+	
+	/**
 	 * Return the next river to this distance
-	 * @param distance
 	 * @return the next closest river
 	 */
-	public River getNextRiver(int distance) {
+	public River getNextRiver() {
+		int distance = World.getWagon().getDistance();
 		for(RiverPair t : rivers) {
 			if(t.distance > distance)
 				return t.river;
@@ -98,10 +113,10 @@ public class Map {
 	
 	/**
 	 * Return the distance to the next river.
-	 * @param distance the distance already traveled
 	 * @return the distance to the next town
 	 */
-	public int distanceToRiver(int distance) {
+	public int distanceToRiver() {
+		int distance = World.getWagon().getDistance();
 		for(RiverPair t : rivers) {
 			if(t.distance > distance)
 				return t.distance - distance;
@@ -142,5 +157,4 @@ public class Map {
 			this.river = river;
 		}
 	}
-	
 }
