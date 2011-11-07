@@ -423,7 +423,7 @@ public class MainScreen {
 		lblCash.setBounds(117, 29, 55, 15);
 		
 		lblDate = new Label(shell, SWT.NONE);
-		lblDate.setText("May 1, 1858");
+		lblDate.setText("May 1, 1848");
 		lblDate.setBounds(10, 8, 131, 15);
 		
 		lblDay = new Label(shell, SWT.NONE);
