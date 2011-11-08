@@ -5,6 +5,11 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.widgets.Canvas;
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.wb.swt.SWTResourceManager;
+import org.eclipse.swt.widgets.Combo;
+import org.eclipse.jface.viewers.ComboViewer;
 
 /**
  * River crossing choice/minigame
@@ -13,7 +18,6 @@ import org.eclipse.swt.events.SelectionEvent;
  */
 public class RiverScreen extends Composite {
 	private boolean done = false;
-	private Button btnQuit;
 	/**
 	 * Create the composite.
 	 * @param parent
@@ -23,14 +27,6 @@ public class RiverScreen extends Composite {
 		super(parent, style);
 		
 		createContents();
-		
-		//logic for the Quit Crossing button
-		btnQuit.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent arg0) {
-				done = true;
-			}
-		});
 	}
 	
 	/**
@@ -57,8 +53,36 @@ public class RiverScreen extends Composite {
 	 * creates controls for the composite
 	 */
 	private void createContents(){
-		btnQuit = new Button(this, SWT.NONE);
-		btnQuit.setBounds(162, 265, 84, 25);
-		btnQuit.setText("Quit Crossing");
+		
+		Canvas canvas = new Canvas(this, SWT.NONE);
+		canvas.setBounds(271, 10, 169, 255);
+		
+		Label lblWeNeedTo = new Label(this, SWT.NONE);
+		lblWeNeedTo.setFont(SWTResourceManager.getFont("Tahoma", 14, SWT.NORMAL));
+		lblWeNeedTo.setBounds(24, 40, 231, 25);
+		lblWeNeedTo.setText("we need to cross the river!");
+		
+		Label lblWhatWeGonna = new Label(this, SWT.NONE);
+		lblWhatWeGonna.setFont(SWTResourceManager.getFont("Tahoma", 14, SWT.NORMAL));
+		lblWhatWeGonna.setBounds(24, 64, 222, 25);
+		lblWhatWeGonna.setText("What we gonna do?!?");
+		
+		ComboViewer comboViewer = new ComboViewer(this, SWT.NONE);
+		Combo combo = comboViewer.getCombo();
+		combo.setItems(new String[] {"Take Ferry", "Ford", "Caulk"});
+		combo.setBounds(80, 133, 92, 21);
+		
+		Label lblNewLabel = new Label(this, SWT.NONE);
+		lblNewLabel.setBounds(24, 168, 49, 13);
+		lblNewLabel.setText("New Label");
+		
+		Button btnNewButton = new Button(this, SWT.NONE);
+		btnNewButton.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent arg0) {
+			}
+		});
+		btnNewButton.setBounds(80, 231, 78, 34);
+		btnNewButton.setText("CROSS");
 	}
 }
