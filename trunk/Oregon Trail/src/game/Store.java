@@ -73,6 +73,7 @@ public class Store {
 	
 	public Inventory getInventory() {
 		//TODO
+		return null;
 	}
 
 }
