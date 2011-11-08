@@ -65,5 +65,14 @@ public class Store {
 	public String getName() {
 		return name;
 	}
+	
+	public void setInventory(int sum_distance) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	public Inventory getInventory() {
+		//TODO
+	}
 
 }
