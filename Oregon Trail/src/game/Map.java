@@ -73,7 +73,7 @@ public class Map {
 	 * Return the last town to be visited
 	 * @return the last town
 	 */
-	public Town geLastTown() {
+	public Town getLastTown() {
 		int distance = World.getWagon().getDistance();
 		Town tlast = towns.get(0).town;
 		for(TownPair t : towns) {
