@@ -1,18 +1,9 @@
 package gui;
 
+import items.Item;
 import game.Inventory;
 import game.Store;
 import game.World;
-import items.Ammo;
-import items.Axle;
-import items.Clothing;
-import items.Food;
-import items.Item;
-import items.Medicine;
-import items.Oxen;
-import items.Tongue;
-import items.Water;
-import items.Wheel;
 
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.SWT;
