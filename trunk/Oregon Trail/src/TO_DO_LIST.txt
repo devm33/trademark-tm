@@ -22,6 +22,8 @@ Bugs:
 1. Fix displayed Date and Day
 2. Clear store between towns
 3. Implement conditional update (currently everything updates constantly)
+4. IMPLEMENT OXENS, NIGGA
+5. IMPLEMENT INN REPLENISHES THIRST AND HEALTH, NIGGA
 
 Complete following Screens:
 1. FieldScreen
