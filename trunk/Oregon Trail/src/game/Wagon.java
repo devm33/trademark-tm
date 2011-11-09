@@ -22,7 +22,7 @@ import people.Traveler;
  */
 
 public class Wagon {
-	
+	private boolean lose = false;
 	private int pace, rations, capacity, distance, townDistance;
 	private int totalWeight;
 	private Inventory inventory;
@@ -292,6 +292,21 @@ public class Wagon {
 	}
 	
 	/**
+	 * check lose boolean
+	 * @return
+	 */
+	public boolean getLose(){
+		return lose;
+	}
+	
+	/**
+	 * reset lose boolean so user can play again
+	 */
+	public void resetLose(){
+		lose = false;
+	}
+	
+	/**
 	 * Updates the distance, food amount, and water amount for the Wagon
 	 * based on the pace, ration rate, and water rate respectively
 	 * 
@@ -313,7 +328,7 @@ public class Wagon {
 				alive = true;
 		if(!alive) {
 			System.out.println("Everyone died. You lose.");
-			System.exit(0);
+			lose = true;
 		}
 		
 		distance += pace;

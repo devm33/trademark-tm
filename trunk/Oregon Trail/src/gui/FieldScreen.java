@@ -21,7 +21,7 @@ import org.eclipse.wb.swt.SWTResourceManager;
  *
  */
 public class FieldScreen extends Composite {
-	private boolean atRiver = false, atTown = false;
+	private boolean atRiver = false, atTown = false, win = false;
 	private Combo dropRations;
 	private Combo dropPace;
 	private Label rationsDescript;
@@ -32,7 +32,6 @@ public class FieldScreen extends Composite {
 	private Label lbl3;
 	private Label lblDistance;
 	private Label lblNotify;
-	int passedTowns = 0;
 	
 	private static Wagon wagon;
 	
@@ -54,11 +53,11 @@ public class FieldScreen extends Composite {
 			public void widgetSelected(SelectionEvent arg0) {
 				wagon.takeStep();
 				update();
-				System.out.println(wagon.getTownDistance());
+				System.out.println(wagon.getDistance());
 				//check if we're in oregon
 				if(World.getWagon().getDistance() >= 1909) {
 					System.out.println("Welcome to Oregon! You Win!");
-					System.exit(0);
+					win = true;
 				}
 				
 				handleRiverOrTown();
@@ -112,6 +111,22 @@ public class FieldScreen extends Composite {
 	}
 	
 	/**
+	 * check if user won the game
+	 * @return
+	 */
+	public boolean getWin(){
+		return win;
+	}
+	
+	/**
+	 * reset win boolean so user can play again
+	 * @param b
+	 */
+	public void resetWin(){
+		win = false;
+	}
+	
+	/**
 	 * logic for reaching a river or town
 	 */
 	private void handleRiverOrTown(){
@@ -121,8 +136,10 @@ public class FieldScreen extends Composite {
 			lblNotify.setText("You've reached " + name);
 			atRiver = false;*/
 		} else if(atTown){
-			System.out.println("You've reached " + World.getMap().getLastTown().getTownName()); //NOTE: not sure what's happening here -dev
-			lblNotify.setText("You've reached " + World.getMap().getLastTown().getTownName());
+			if(World.getMap().getNextTown()!=null){
+				System.out.println("You've reached " + World.getMap().getLastTown().getTownName()); //NOTE: not sure what's happening here -dev
+				lblNotify.setText("You've reached " + World.getMap().getLastTown().getTownName());
+			}
 			atTown = false;
 		} else {
 			/*clears label to prevent notification spamming*/

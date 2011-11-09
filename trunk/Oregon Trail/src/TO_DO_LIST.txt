@@ -22,9 +22,10 @@ Bugs:
 1. Fix displayed Date and Day
 2. Clear store between towns
 3. Implement conditional update (currently everything updates constantly)
-4. IMPLEMENT OXENS, NIGGA
-5. IMPLEMENT INN REPLENISHES THIRST AND HEALTH, NIGGA
+4. IMPLEMENT OXENS
+5. IMPLEMENT INN REPLENISHES THIRST AND HEALTH
 6. Implement code in ford() and caulk() that take items away from wagon.
+7. Game crashes at South Pass
 
 Complete following Screens:
 1. FieldScreen

@@ -36,10 +36,10 @@ public class MainScreen {
 	public static boolean accessRiver = false;
 	public static boolean win = false;
 	public static boolean lose = false;
-	private static boolean newGame = false;
 	
 	private static boolean Townstate = true;
 	
+	@SuppressWarnings("unused")
 	private Wagon wagon;
 	private Display display;
 	private Shell shell;
@@ -72,6 +72,13 @@ public class MainScreen {
 	 * creates the main window of the game
 	 */
 	public MainScreen() {
+		initialize();
+	}
+
+	/**
+	 * start the game
+	 */
+	private void initialize(){
 		wagon = World.getWagon();
 
 		createContents();		
@@ -100,7 +107,6 @@ public class MainScreen {
 		contentPanel.layout();
 		shell.update();
 	}
-
 	/**
 	 * Handles screen continuation and screen refresh/updates
 	 * @return if the game window is still open
@@ -122,8 +128,7 @@ public class MainScreen {
 			continueMap();
 			continueHunting();
 			continueRiver();
-			continueWin();
-			continueLose();
+
 		
 			updateCash();
 			updateWagon();
@@ -131,6 +136,8 @@ public class MainScreen {
 			updateMap();
 			updateDate();
 			
+			continueWin();
+			continueLose();
 			refresh();
 		}	
 		return !shell.isDisposed();
@@ -193,6 +200,7 @@ public class MainScreen {
 		lblDay.setText(""+World.getDays());
 	}
 	
+	/*SCREEN CONTINUATION PORTION*/
 	/**
 	 * logic for handling post-config screens
 	 */
@@ -267,6 +275,18 @@ public class MainScreen {
 		}
 		if (Townstate){
 		}
+		if (wagon.getLose()){
+			wagon.resetLose();
+			screenTransition(field,loseView);
+			disableButtons();
+			currentScreen = screen.CONFIG;
+		}
+		if (field.getWin()){
+			field.resetWin();
+			screenTransition(field,winView);
+			disableButtons();
+			currentScreen = screen.CONFIG;
+		}
 	}
 	
 	/**
@@ -333,14 +353,30 @@ public class MainScreen {
 	 * logic for handling post-win screens (either new game or quit)
 	 */
 	private void continueWin(){
-		
+		switch(winView.getChoice()){
+		case 1:
+			winView.resetChoice();
+			initialize();
+			break;
+		case 2:
+			shell.dispose();
+			display.dispose();
+		}
 	}
 	
 	/**
 	 * logic for handling post-lose screens (either new game or quit)
 	 */
 	private void continueLose(){
-		
+		switch(loseView.getChoice()){
+		case 1:
+			loseView.resetChoice();
+			initialize();
+			break;
+		case 2:
+			shell.dispose();
+			display.dispose();
+		}
 	}
 	
 	/**
@@ -372,6 +408,15 @@ public class MainScreen {
 		display.dispose();
 	}
 
+	/**
+	 * disables the pop-up buttons
+	 */
+	private void disableButtons(){
+		btnMap.setEnabled(false);
+		btnWagon.setEnabled(false);
+		btnInventory.setEnabled(false);
+	}
+	
 	/**
 	 * set current game store
 	 * @param s the store to set to
