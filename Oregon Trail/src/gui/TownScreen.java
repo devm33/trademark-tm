@@ -134,5 +134,7 @@ public class TownScreen extends Composite{
 		
 		if(currentTown == null || currentTown.getStore() == null)
 			btnStore.setEnabled(false);
+		else
+			btnStore.setEnabled(true);
 	}
 }
