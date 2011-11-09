@@ -33,10 +33,7 @@ public class MainScreen {
 	public static boolean accessWagon = false;
 	public static boolean accessMap = false;
 	public static boolean accessHunt = false;
-	public static boolean accessRiver = false;
-	public static boolean win = false;
-	public static boolean lose = false;
-	
+	public static boolean accessRiver = false;	
 	private static boolean Townstate = true;
 	
 	@SuppressWarnings("unused")
@@ -128,7 +125,8 @@ public class MainScreen {
 			continueMap();
 			continueHunting();
 			continueRiver();
-
+			continueWin();
+			continueLose();
 		
 			updateCash();
 			updateWagon();
@@ -136,68 +134,9 @@ public class MainScreen {
 			updateMap();
 			updateDate();
 			
-			continueWin();
-			continueLose();
 			refresh();
 		}	
 		return !shell.isDisposed();
-	}
-	
-	/**
-	 * creates all the screens of the game
-	 */
-	private void createScreens(){
-		config = new ConfigScreen(contentPanel, SWT.NONE);
-		town = new TownScreen(contentPanel, SWT.NONE);
-		inn = new InnScreen(contentPanel, SWT.NONE);
-		store = new StoreScreen(contentPanel, SWT.NONE);
-		field = new FieldScreen(contentPanel, SWT.NONE);
-		inventory = new InventoryScreen(contentPanel, SWT.NONE);
-		wagonView = new WagonScreen(contentPanel,SWT.NONE);
-		map = new MapScreen(contentPanel,SWT.NONE);
-		hunt = new HuntingScreen(contentPanel,SWT.NONE);
-		river = new RiverScreen(contentPanel,SWT.NONE);
-		winView = new WinScreen(contentPanel,SWT.NONE);
-		loseView = new LoseScreen(contentPanel,SWT.NONE);
-	}
-	
-	/**
-	 * update cash display
-	 */
-	private void updateCash(){
-		if(World.getWagon().getLeader()!=null && World.getWagon().getCash()!=null){
-		lblCash.setText("$"+World.getWagon().getCash());
-		}
-	}
-	
-	/**
-	 * update wagon screen
-	 */
-	private void updateWagon(){
-		if(World.getWagon().getLeader()!=null)
-			wagonView.update();
-	}
-	
-	/**
-	 * update inventory screen
-	 */
-	private void updateInventory(){
-		inventory.update();
-	}
-	
-	/**
-	 * update map screen
-	 */
-	private void updateMap(){
-		map.update();
-	}
-	
-	/**
-	 * update date and days;
-	 */
-	private void updateDate(){
-		lblDate.setText(World.getDate());
-		lblDay.setText(""+World.getDays());
 	}
 	
 	/*SCREEN CONTINUATION PORTION*/
@@ -273,7 +212,11 @@ public class MainScreen {
 		if (accessRiver){
 			accessRiver = false;
 		}
-		if (Townstate){
+		if (field.checkAtTown()){
+			field.resetAtTown();
+			Townstate = true;
+			screenTransition(field,town);
+			currentScreen = screen.TOWN;
 		}
 		if (wagon.getLose()){
 			wagon.resetLose();
@@ -378,6 +321,7 @@ public class MainScreen {
 			display.dispose();
 		}
 	}
+	/*END SCREEN CONTINUATION PORTION*/
 	
 	/**
 	 * transitions from one screen to next one
@@ -391,6 +335,63 @@ public class MainScreen {
 		oldScreen.setVisible(false);
 		newScreen.setVisible(true);
 		layout.topControl = newScreen;
+	}
+	
+	/**
+	 * creates all the screens of the game
+	 */
+	private void createScreens(){
+		config = new ConfigScreen(contentPanel, SWT.NONE);
+		town = new TownScreen(contentPanel, SWT.NONE);
+		inn = new InnScreen(contentPanel, SWT.NONE);
+		store = new StoreScreen(contentPanel, SWT.NONE);
+		field = new FieldScreen(contentPanel, SWT.NONE);
+		inventory = new InventoryScreen(contentPanel, SWT.NONE);
+		wagonView = new WagonScreen(contentPanel,SWT.NONE);
+		map = new MapScreen(contentPanel,SWT.NONE);
+		hunt = new HuntingScreen(contentPanel,SWT.NONE);
+		river = new RiverScreen(contentPanel,SWT.NONE);
+		winView = new WinScreen(contentPanel,SWT.NONE);
+		loseView = new LoseScreen(contentPanel,SWT.NONE);
+	}
+	
+	/**
+	 * update cash display
+	 */
+	private void updateCash(){
+		if(World.getWagon().getLeader()!=null && World.getWagon().getCash()!=null){
+		lblCash.setText("$"+World.getWagon().getCash());
+		}
+	}
+	
+	/**
+	 * update wagon screen
+	 */
+	private void updateWagon(){
+		if(World.getWagon().getLeader()!=null)
+			wagonView.update();
+	}
+	
+	/**
+	 * update inventory screen
+	 */
+	private void updateInventory(){
+		inventory.update();
+	}
+	
+	/**
+	 * update map screen
+	 */
+	private void updateMap(){
+		map.update();
+	}
+	
+	/**
+	 * update date and days;
+	 */
+	private void updateDate(){
+		lblDate.setText(World.getDate());
+		lblDay.setText(""+World.getDays());
 	}
 	
 	/**
