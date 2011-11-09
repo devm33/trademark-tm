@@ -163,10 +163,12 @@ public class StoreScreen extends Composite{
 		list = new List(this, SWT.BORDER);
 		String[] items = {"Oxen", "Food", "Clothing", "Ammunition", "Medicine", "Water", "Wagon Wheel", "Wagon Axle", "Wagon Tongue"};
 		
-		Inventory tempInv = currentStore.getInventory();
-		items = new String[tempInv.getLength()];
-		for(int x = 0; x < tempInv.getLength(); x++) {
-			items[x] = tempInv.getItem(x).getName();
+		if(currentStore != null) {
+			Inventory tempInv = currentStore.getInventory();
+			items = new String[tempInv.getLength()];
+			for(int x = 0; x < tempInv.getLength(); x++) {
+				items[x] = tempInv.getItem(x).getName();
+			}
 		}
 		
 		list.setItems(items);
@@ -232,7 +234,8 @@ public class StoreScreen extends Composite{
 		lblResponse.setFont(SWTResourceManager.getFont("Segoe UI", 11, SWT.BOLD));
 		lblResponse.setAlignment(SWT.CENTER);
 		lblResponse.setBounds(43, 249, 352, 41);
-		lblResponse.setText("Welcome to "+currentStore.getName()+"!");
+		if(currentStore != null)
+			lblResponse.setText("Welcome to "+currentStore.getName()+"!");
 		
 		Label lbl7 = new Label(this, SWT.NONE);
 		lbl7.setBounds(311, 91, 59, 14);
