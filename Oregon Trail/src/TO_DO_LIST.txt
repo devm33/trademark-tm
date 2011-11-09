@@ -24,6 +24,7 @@ Bugs:
 3. Implement conditional update (currently everything updates constantly)
 4. IMPLEMENT OXENS, NIGGA
 5. IMPLEMENT INN REPLENISHES THIRST AND HEALTH, NIGGA
+6. Implement code in ford() and caulk() that take items away from wagon.
 
 Complete following Screens:
 1. FieldScreen
