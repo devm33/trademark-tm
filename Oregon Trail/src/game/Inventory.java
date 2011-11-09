@@ -314,7 +314,7 @@ public class Inventory {
 			if(i.getName().equals("Water")){
 				price = prices[3][1];
 			}
-			if(i.getName().equals("Axel")){
+			if(i.getName().equals("Axle")){
 				price = prices[4][1];
 			}
 			if(i.getName().equals("Clothing")){

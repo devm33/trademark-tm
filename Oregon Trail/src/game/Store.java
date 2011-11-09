@@ -8,6 +8,7 @@ package game;
  */
 import exceptions.InsufficientFundsException;
 import exceptions.WeightCapacityExceededException;
+import items.*;
 import items.Item;
 
 public class Store {
@@ -39,21 +40,35 @@ public class Store {
 	 * constructor for a store
 	 * @param name the name of the store
 	 */
-	public Store(String name){
+	public Store(String name, int distance){
 		this.setName(name);
-		this.storeInventory = new Inventory();
+		this.offset = (distance/100);
+		
+		if(offset<=6){
+			this.storeInventory = new Inventory();
+		}
+		if(6<offset&&offset<=11){
+			this.storeInventory = new Inventory(new Ammo(),new Food(),new Medicine(),new Water(),new Axle(),new Oxen(),new Tongue());
+		}
+		if(11<offset&&offset<=15){
+			this.storeInventory = new Inventory(new Ammo(),new Food(),new Axle(),new Wheel(),new Clothing());
+		}
+		if(15<offset){
+			this.storeInventory = new Inventory(new Food(),new Oxen(),new Medicine());
+		}
+		
 		for (int y=0;y<9;y++){
 			prices[y][0] = y;
 		}
 		prices[0][1] =(int) (2*(.5*offset));
 		prices[1][1] =(int) (5*(.5*offset));
-		prices[2][1] =10;
-		prices[3][1] =0;
-		prices[4][1] =10;
-		prices[5][1] =10;
-		prices[6][1] =40;
-		prices[7][1] =10;
-		prices[8][1] =10;
+		prices[2][1] =(int) (10*(.5*offset));
+		prices[3][1] =(int) (0*(.5*offset));
+		prices[4][1] =(int) (10*(.5*offset));
+		prices[5][1] =(int) (10*(.5*offset));
+		prices[6][1] =(int) (40*(.5*offset));
+		prices[7][1] =(int) (10*(.5*offset));
+		prices[8][1] =(int) (10*(.5*offset));
 
 	
 	}
@@ -122,11 +137,7 @@ public class Store {
 		return name;
 	}
 	
-	public void setInventory(int sum_distance) {
-		this.offset = (sum_distance/100);
-		
-	}
-	
+
 	public Inventory getInventory() {
 		//TODO
 		return storeInventory;
