@@ -2,7 +2,7 @@ package gui;
 
 import items.Food;
 import exceptions.WeightCapacityExceededException;
-import game.Store;
+import game.Town;
 import game.Wagon;
 import game.World;
 
@@ -376,8 +376,9 @@ public class MainScreen {
 	 * set current game store
 	 * @param s the store to set to
 	 */
-	public void setStore(Store s){
-		store.setStore(s);
+	public void setTownAndStore(Town t){
+		store.setStore(t.getStore());
+		town.setTown(t);
 	}
 	
 	/**

@@ -1,6 +1,6 @@
 package gui;
 
-import game.World;
+import game.Town;
 
 
 import org.eclipse.swt.widgets.Composite;
@@ -30,6 +30,7 @@ public class TownScreen extends Composite{
 	private Image image;
 	private Label lblWelcome;
 	private Label lblTownName;
+	private Town currentTown;
 	
 	/**
 	 * Create the composite.
@@ -86,6 +87,11 @@ public class TownScreen extends Composite{
 		// Disable the check that prevents subclassing of SWT components
 	}
 	
+	public void setTown(Town t) {
+		currentTown = t;
+		createContents();
+	}
+	
 	/**
 	 * Create contents of the window.
 	 */
@@ -119,10 +125,14 @@ public class TownScreen extends Composite{
 		lblWelcome.setText("Welcome to");
 
 		lblTownName = new Label(this, SWT.NONE);
-		lblTownName.setText(World.getTown().getTownName());
+		lblTownName.setText("Independence");
 		lblTownName.setFont(SWTResourceManager.getFont("Tahoma", 14, SWT.BOLD | SWT.ITALIC));
 		lblTownName.setBounds(131, 269, 301, 24);
 		
-
+		if(currentTown != null)
+			lblTownName.setText(currentTown.getTownName());
+		
+		if(currentTown == null || currentTown.getStore() == null)
+			btnStore.setEnabled(false);
 	}
 }
