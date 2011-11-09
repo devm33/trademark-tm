@@ -46,8 +46,7 @@ public class Map {
 			if(townOrRiver.equals("T")) {
 				Town temp;
 				if(line.equals("Yes")) {
-					temp = new Town(name);
-					temp.getStore().setInventory(sum_distance);
+					temp = new Town(name, sum_distance);
 				}
 				else
 					temp = new Town(name, null);

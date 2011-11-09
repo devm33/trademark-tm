@@ -27,4 +27,22 @@ public class Water extends Item {
 		
 	}
 
+
+	@Override
+	public String getDescription() {
+		return "A bucket of drinkable water.";
+	}
+
+
+	@Override
+	public String getResponse() {
+		return "Clean....maybe not. Drinkable....yes.";
+	}
+
+
+	@Override
+	public String getBoughtResponse() {
+		return "A bucket per day keeps death away.";
+	}
+
 }

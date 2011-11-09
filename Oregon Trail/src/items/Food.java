@@ -122,5 +122,17 @@ public class Food extends Item {
 		}
 		
 	}
+	@Override
+	public String getDescription() {
+		return "A durable canned foodstuff.";
+	}
+	@Override
+	public String getResponse() {
+		return "Better than my wife's poor excuse for cooking.";
+	}
+	@Override
+	public String getBoughtResponse() {
+		return "It won't expire for another hour or two.";
+	}
 
 }

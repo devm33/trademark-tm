@@ -18,4 +18,19 @@ public class Tongue extends Item{
 		if(getNumber() > 0)
 			setNumber(getNumber()-1);
 	}
+
+	@Override
+	public String getDescription() {
+		return "A wooden wagon tongue.";
+	}
+
+	@Override
+	public String getResponse() {
+		return "It's the latest and greatest in oxen-containing technology.";
+	}
+
+	@Override
+	public String getBoughtResponse() {
+		return "Your Ox will thank you for forcing them to wear that.";
+	}
 }

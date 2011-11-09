@@ -48,5 +48,20 @@ public class Medicine extends Item {
 		if(uses % num_uses == 0)
 			super.setNumber(getNumber()-1);
 	}
+
+	@Override
+	public String getDescription() {
+		return "A large container of medicine.";
+	}
+
+	@Override
+	public String getResponse() {
+		return "It's great for headaches and heroin addicts.";
+	}
+
+	@Override
+	public String getBoughtResponse() {
+		return "Don't tell the doctor where you got that...";
+	}
 	
 }

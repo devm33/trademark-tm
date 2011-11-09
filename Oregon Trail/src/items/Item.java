@@ -139,4 +139,20 @@ public abstract class Item implements Comparable<Item> {
 	public int compareTo(Item o) {
 		return name.compareTo(o.getName());
 	}
+	
+	/**
+	 * Methods for describing this item in store.
+	 */
+	/**
+	 * @return a string describing this item.
+	 */
+	public abstract String getDescription();
+	/**
+	 * @return a string response before buying this item.
+	 */
+	public abstract String getResponse();
+	/**
+	 * @return a string response after buying this item.
+	 */
+	public abstract String getBoughtResponse();
 }

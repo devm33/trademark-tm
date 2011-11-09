@@ -18,4 +18,19 @@ public class Axle extends Item{
 		if(getNumber() > 0)
 			setNumber(getNumber()-1);
 	}
+
+	@Override
+	public String getDescription() {
+		return "A long, heavy wooden wagon axle.";
+	}
+
+	@Override
+	public String getResponse() {
+		return "Long and heavy like my di...wagon axles.";
+	}
+
+	@Override
+	public String getBoughtResponse() {
+		return "You sure that's enough? You can never have too many heavy axles.";
+	}
 }
