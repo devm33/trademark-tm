@@ -107,7 +107,7 @@ public class RiverScreen extends Composite {
 					}
 					catch(InsufficientFundsException f)
 					{
-						
+						// TODO what to do when error is caught
 					}
 				}
 				if(crossMethods.getText() == "Ford")
@@ -144,6 +144,8 @@ public class RiverScreen extends Composite {
 	 */
 	public void ford(River r)
 	{
+		// TODO Take items off the wagon when crossing fails
+		
 		int fordChance = (int)(Math.random()*10 + 1);
 		
 		if(r.getDepth() >= 3 || fordChance > 7)
@@ -158,6 +160,8 @@ public class RiverScreen extends Composite {
 	 */
 	public void caulk(River r)
 	{
+		// TODO Take items off the wagon when crossing fails
+		
 		int caulkChance = (int)(Math.random()*10 + 1);
 		
 		if(caulkChance > 4)
