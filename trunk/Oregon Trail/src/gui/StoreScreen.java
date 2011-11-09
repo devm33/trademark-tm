@@ -1,11 +1,13 @@
 package gui;
 
+import game.Inventory;
 import game.Store;
 import game.World;
 import items.Ammo;
 import items.Axle;
 import items.Clothing;
 import items.Food;
+import items.Item;
 import items.Medicine;
 import items.Oxen;
 import items.Tongue;
@@ -34,10 +36,6 @@ public class StoreScreen extends Composite{
 	private Text txtAmount;
 	private Store currentStore;
 	private List list;
-	private Label lbl1;
-	private Label lbl2;
-	private Label lbl3;
-	private Label lbl4;
 	private Label lblName;
 	private Label lblWeight;
 	private Label lblPrice;
@@ -45,10 +43,9 @@ public class StoreScreen extends Composite{
 	private Button btnPurchase;
 	private Button btnExitStore;
 	private Label lblAmount;
-	private Label lbl5;
 	private Label lblWagonCapacity;
-	private Label lbl6;
 	private Label lblResponse;
+	private Label lblAvail;
 	
 	/**
 	 * Create the composite.
@@ -64,44 +61,7 @@ public class StoreScreen extends Composite{
 		list.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				switch(list.getSelectionIndex()){
-				case 0:
-					//if Oxen is selected
-					displayOxen();
-					break;
-				case 1:
-					//if Food is selected
-					displayFood();
-					break;
-				case 2:
-					//if Clothing is selected
-					displayClothing();
-					break;
-				case 3:
-					//if Ammunition is selected
-					displayAmmunition();
-					break;
-				case 4:
-					//if Medicine is selected
-					displayMedicine();
-					break;
-				case 5:
-					//if Water is selected
-					displayWater();
-					break;
-				case 6:
-					//if Wagon Wheel is selected
-					displayWheel();
-					break;
-				case 7:
-					//if Wagon Axle is selected
-					displayAxle();
-					break;
-				case 8: 
-					//if Wagon Tongue is selected
-					displayTongue();
-					break;
-				}
+				display(list.getSelectionIndex());
 			}
 		});
 		
@@ -111,47 +71,7 @@ public class StoreScreen extends Composite{
 			public void widgetSelected(SelectionEvent e) {
 				if(isInteger(txtAmount.getText())){
 					try {
-						switch(list.getSelectionIndex()){
-						case 0:
-							//if Oxen is selected
-							buyOxen();
-							break;
-						case 1:
-							//if Food is selected
-							buyFood();
-							break;
-						case 2:
-							//if Clothing is selected
-							buyClothing();
-							break;
-						case 3:
-							//if Ammunition is selected
-							buyAmmunition();
-							break;
-						case 4:
-							//if Medicine is selected
-							buyMedicine();
-							break;
-						case 5:
-							//if Water is selected
-							buyWater();
-							break;
-						case 6:
-							//if Wagon Wheel is selected
-							buyWheel();
-							break;
-						case 7:
-							//if Wagon Axle is selected
-							buyAxle();
-							break;
-						case 8: 
-							//if Wagon Tongue is selected
-							buyTongue();
-							break;
-						default:
-							lblResponse.setText("Huh?");
-							break;
-						}
+						buy(list.getSelectionIndex());
 					} catch (InsufficientFundsException e1) {
 						lblResponse.setText("Come back when you have enough money, you bum!");
 					} catch (WeightCapacityExceededException e2){
@@ -177,176 +97,26 @@ public class StoreScreen extends Composite{
 		});
 	}
 	
+	
 	/**
-	 * when user selects oxen in the menu
+	 * when user selects an item in the menu
 	 */
-	private void displayOxen(){
-		lblName.setText("Oxen");
-		lblWeight.setText("Does not affect wagon weight");
-		lblPrice.setText("$40");
-		lblDesc.setText("A pair of strong animals used to pull your wagon.");
-		lblResponse.setText("Freshly stolen from my neighbor's ranch.");
+	private void display(int i){
+		Item item = currentStore.getInventory().getItem(i);
+		lblName.setText(item.getName());
+		lblWeight.setText(""+item.getWeight()+" lbs");
+		lblPrice.setText("$"+currentStore.getPrice(item));
+		lblDesc.setText(item.getDescription());
+		lblResponse.setText(item.getResponse());
 	}
 	
 	/**
-	 * when user selects food in the menu
+	 * when user attempts to buy an item from inventory
 	 */
-	private void displayFood(){
-		lblName.setText("Food");
-		lblWeight.setText("5 lbs");
-		lblPrice.setText("$5");
-		lblDesc.setText("A durable canned foodstuff.");
-		lblResponse.setText("Better than my wife's poor excuse for cooking.");
-	}
-	
-	/**
-	 * when user selects clothing in the menu
-	 */
-	private void displayClothing(){
-		lblName.setText("Clothing");
-		lblWeight.setText("2 lbs");
-		lblPrice.setText("$10");
-		lblDesc.setText("A handknit cotton outfit");
-		lblResponse.setText("Wow your oxen with the latest 1848 rag fashion.");
-	}
-	
-	/**
-	 * when user selects ammo in the menu
-	 */
-	private void displayAmmunition(){
-		lblName.setText("Ammunition");
-		lblWeight.setText("3 lbs");
-		lblPrice.setText("$2");
-		lblDesc.setText("A box of 20 hunting rifle rounds used for big game.");
-		lblResponse.setText("Don't blow your face off with these.");
-	}
-	
-	/**
-	 * when user selects medicine in the menu
-	 */
-	private void displayMedicine(){
-		lblName.setText("Medicine");
-		lblWeight.setText("1 lb");
-		lblPrice.setText("$10");
-		lblDesc.setText("A large container of medicine.");
-		lblResponse.setText("It's great for headaches and heroin addicts.");
-	}
-	
-	/**
-	 * when user selects water in the menu
-	 */
-	private void displayWater(){
-		lblName.setText("Water");
-		lblWeight.setText("6 lbs");
-		lblPrice.setText("$2");
-		lblDesc.setText("A bucket of drinkable water.");
-		lblResponse.setText("Clean....maybe not. Drinkable....yes.");
-	}
-	
-	/**
-	 * when user selects wagon wheel in the menu
-	 */
-	private void displayWheel(){
-		lblName.setText("Wagon Wheel");
-		lblWeight.setText("75 lbs");
-		lblPrice.setText("$10");
-		lblDesc.setText("A big, round wooden wagon wheel.");
-		lblResponse.setText("Big and round like my wife.");
-	}
-	
-	/**
-	 * when user selects wagon axle in the menu
-	 */
-	private void displayAxle(){
-		lblName.setText("Wagon Axle");
-		lblWeight.setText("125 lbs");
-		lblPrice.setText("$10");
-		lblDesc.setText("A long, heavy wooden wagon axle.");
-		lblResponse.setText("Long and heavy like my di...wagon axles.");
-	}
-	
-	/**
-	 * when user selects wagon tongue in the menu
-	 */
-	private void displayTongue(){
-		lblName.setText("Wagon Tongue");
-		lblWeight.setText("100 lbs");
-		lblPrice.setText("$10");
-		lblDesc.setText("A wooden wagon tongue.");
-		lblResponse.setText("It's the newest in oxen-containing technology.");
-	}
-	
-	/**
-	 * when user buys oxen in the menu
-	 */
-	private void buyOxen() throws InsufficientFundsException, WeightCapacityExceededException{
-		currentStore.buy(new Oxen(), Integer.parseInt(txtAmount.getText()), 20, 0);
-		currentStore.buy(new Oxen(), Integer.parseInt(txtAmount.getText()), 20, 0);
-		lblResponse.setText("Don't worry, I only stole the good ones.");
-	}	
-	
-	/**
-	 * when user buys food in the menu
-	 */
-	private void buyFood() throws InsufficientFundsException, WeightCapacityExceededException{
-		currentStore.buy(new Food(), Integer.parseInt(txtAmount.getText()), 5, 5);
-		lblResponse.setText("It won't expire for another hour or two.");
-	}
-	
-	/**
-	 * when user buys clothes in the menu
-	 */
-	private void buyClothing() throws InsufficientFundsException, WeightCapacityExceededException{
-		currentStore.buy(new Clothing(), Integer.parseInt(txtAmount.getText()), 10, 2);
-		lblResponse.setText("That brown matches well with your brown.");
-	}
-	
-	/**
-	 * when user buys ammo in the menu
-	 */
-	private void buyAmmunition() throws InsufficientFundsException, WeightCapacityExceededException{
-		currentStore.buy(new Ammo(), Integer.parseInt(txtAmount.getText()), 2, 3);
-		lblResponse.setText("Happy hunting, shooter!");
-	}
-	
-	/**
-	 * when user buys medicine in the menu
-	 */
-	private void buyMedicine() throws InsufficientFundsException, WeightCapacityExceededException{
-		currentStore.buy(new Medicine(), Integer.parseInt(txtAmount.getText()), 10, 1);
-		lblResponse.setText("Don't tell the doctor where you got that...");
-	}
-	
-	/**
-	 * when user buys water in the menu
-	 */
-	private void buyWater() throws InsufficientFundsException, WeightCapacityExceededException{
-		currentStore.buy(new Water(), Integer.parseInt(txtAmount.getText()), 2, 6);
-		lblResponse.setText("A bucket per day keeps death away.");
-	}
-	
-	/**
-	 * when user buys wagon wheels in the menu
-	 */
-	private void buyWheel() throws InsufficientFundsException, WeightCapacityExceededException{
-		currentStore.buy(new Wheel(), Integer.parseInt(txtAmount.getText()), 10, 75);
-		lblResponse.setText("Spike attachments sold separately.");
-	}
-	
-	/**
-	 * when user buys wagon axles in the menu
-	 */
-	private void buyAxle() throws InsufficientFundsException, WeightCapacityExceededException{
-		currentStore.buy(new Axle(), Integer.parseInt(txtAmount.getText()), 10, 125);
-		lblResponse.setText("You sure that's enough? You can never have too many heavy axles.");
-	}
-	
-	/**
-	 * when user buys wagon tongues in the menu
-	 */
-	private void buyTongue() throws InsufficientFundsException, WeightCapacityExceededException{
-		currentStore.buy(new Tongue(), Integer.parseInt(txtAmount.getText()), 10, 100);
-		lblResponse.setText("Your Ox will thank you for forcing them to wear that.");
+	private void buy(int i) throws InsufficientFundsException, WeightCapacityExceededException{
+		Item item = currentStore.getInventory().getItem(i);
+		currentStore.buy(item, Integer.parseInt(txtAmount.getText()));
+		lblResponse.setText(item.getBoughtResponse());
 	}
 	
 	/**
@@ -356,6 +126,7 @@ public class StoreScreen extends Composite{
 	 */
 	public void setStore(Store s) {
 		currentStore = s;
+		createContents();
 	}
 	
 	/**
@@ -398,24 +169,31 @@ public class StoreScreen extends Composite{
 	 */
 	private void createContents(){
 		list = new List(this, SWT.BORDER);
-		list.setItems(new String[] {"Oxen", "Food", "Clothing", 
-									"Ammunition", "Medicine", "Water",
-									"Wagon Wheel", "Wagon Axle", "Wagon Tongue"});
+		String[] items = {"Oxen", "Food", "Clothing", "Ammunition", "Medicine", "Water", "Wagon Wheel", "Wagon Axle", "Wagon Tongue"};
+		if(currentStore != null) {
+			Inventory tempInv = currentStore.getInventory();
+			items = new String[tempInv.getLength()];
+			for(int x = 0; x < tempInv.getLength(); x++) {
+				items[x] = tempInv.getItem(x).getName();
+			}
+		}
+		
+		list.setItems(items);
 		list.setBounds(33, 10, 141, 229);
 		
-		lbl1 = new Label(this, SWT.NONE);
+		Label lbl1 = new Label(this, SWT.NONE);
 		lbl1.setText("Name:");
 		lbl1.setBounds(198, 45, 35, 15);
 		
-		lbl2 = new Label(this, SWT.NONE);
+		Label lbl2 = new Label(this, SWT.NONE);
 		lbl2.setText("Weight:");
 		lbl2.setBounds(198, 67, 41, 15);
 		
-		lbl3 = new Label(this, SWT.NONE);
+		Label lbl3 = new Label(this, SWT.NONE);
 		lbl3.setText("Price:");
 		lbl3.setBounds(198, 91, 29, 15);
 		
-		lbl4 = new Label(this, SWT.NONE);
+		Label lbl4 = new Label(this, SWT.NONE);
 		lbl4.setText("Description:");
 		lbl4.setBounds(198, 112, 63, 15);
 		
@@ -448,7 +226,7 @@ public class StoreScreen extends Composite{
 		lblAmount.setText("Amount:");
 		lblAmount.setBounds(214, 178, 47, 15);
 		
-		lbl5 = new Label(this, SWT.NONE);
+		Label lbl5 = new Label(this, SWT.NONE);
 		lbl5.setBounds(198, 10, 90, 17);
 		lbl5.setText("Wagon Capacity:");
 		
@@ -456,13 +234,22 @@ public class StoreScreen extends Composite{
 		lblWagonCapacity.setBounds(294, 10, 63, 13);
 		lblWagonCapacity.setText(World.getWagon().getTotalWeight()+"/"+World.getWagon().getCapacity());
 		
-		lbl6 = new Label(this, SWT.SEPARATOR | SWT.HORIZONTAL);
+		Label lbl6 = new Label(this, SWT.SEPARATOR | SWT.HORIZONTAL);
 		lbl6.setBounds(198, 23, 242, 16);
 		
 		lblResponse = new Label(this, SWT.WRAP);
 		lblResponse.setFont(SWTResourceManager.getFont("Segoe UI", 11, SWT.BOLD));
 		lblResponse.setAlignment(SWT.CENTER);
 		lblResponse.setBounds(43, 249, 352, 41);
-		lblResponse.setText("Welcome to the store!");
+		lblResponse.setText("Welcom to the store!");
+		if(currentStore != null)
+			lblResponse.setText("Welcome to "+currentStore.getName()+"!");
+		
+		Label lbl7 = new Label(this, SWT.NONE);
+		lbl7.setBounds(311, 91, 59, 14);
+		lbl7.setText("Available: ");
+		
+		lblAvail = new Label(this, SWT.NONE);
+		lblAvail.setBounds(376, 91, 59, 14);
 	}
 }

@@ -46,4 +46,22 @@ public class Ammo extends Item {
 		if(rounds % 20 == 0)
 			setNumber(getNumber()-1);
 	}
+
+
+	@Override
+	public String getDescription() {
+		return "A box of 20 hunting rifle rounds used for big game.";
+	}
+
+
+	@Override
+	public String getResponse() {
+		return "Don't blow your face off with these.";
+	}
+
+
+	@Override
+	public String getBoughtResponse() {
+		return "Happy hunting, shooter!";
+	}
 }

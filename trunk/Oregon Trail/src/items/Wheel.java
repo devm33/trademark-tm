@@ -11,7 +11,7 @@ public class Wheel extends Item {
 	 */
 	public Wheel()
 	{
-		super(75, 0, "Wheel");
+		super(75, 0, "Wagon Wheel");
 	}
 	
 	@Override
@@ -19,6 +19,21 @@ public class Wheel extends Item {
 	{
 		if(getNumber() > 0)
 			setNumber(getNumber()-1);
+	}
+
+	@Override
+	public String getDescription() {
+		return "A big, round wooden wagon wheel.";
+	}
+
+	@Override
+	public String getResponse() {
+		return "Big and round like my wife.";
+	}
+
+	@Override
+	public String getBoughtResponse() {
+		return "Spike attachments sold separately.";
 	}
 
 }
