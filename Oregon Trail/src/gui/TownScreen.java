@@ -89,7 +89,7 @@ public class TownScreen extends Composite{
 	
 	public void setTown(Town t) {
 		currentTown = t;
-		createContents();
+		update();
 	}
 	
 	/**
@@ -128,6 +128,13 @@ public class TownScreen extends Composite{
 		lblTownName.setText("Independence");
 		lblTownName.setFont(SWTResourceManager.getFont("Tahoma", 14, SWT.BOLD | SWT.ITALIC));
 		lblTownName.setBounds(131, 269, 301, 24);
+	
+	}
+	
+	/**
+	 * Update contents of window.
+	 */
+	public void update() {
 		
 		if(currentTown != null)
 			lblTownName.setText(currentTown.getTownName());
