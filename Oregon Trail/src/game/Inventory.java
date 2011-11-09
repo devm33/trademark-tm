@@ -306,36 +306,36 @@ public class Inventory {
 	 * @return price the int price value
 	 */
 	
-	public int getPrice(Item i, int[][] priceIn) {
+	public int getPrice(Item i, int[] priceIn) {
 		int price=666666;//returned when something bad happens
-		int[][] prices = priceIn;
+		int[] prices = priceIn;
 		for (int z=0;z<9;z++){
 			if(i.getName().equals("Ammo")){
-				price = prices[0][1];
+				price = prices[0];
 			}
 			if(i.getName().equals("Food")){
-				price = prices[1][1];
+				price = prices[1];
 			}
 			if(i.getName().equals("Medicine")){
-				price = prices[2][1];
+				price = prices[2];
 			}
 			if(i.getName().equals("Water")){
-				price = prices[3][1];
+				price = prices[3];
 			}
 			if(i.getName().equals("Axle")){
-				price = prices[4][1];
+				price = prices[4];
 			}
 			if(i.getName().equals("Clothing")){
-				price = prices[5][1];
+				price = prices[5];
 			}
 			if(i.getName().equals("Oxen")){
-				price = prices[6][1];
+				price = prices[6];
 			}
 			if(i.getName().equals("Tongue")){
-				price = prices[7][1];
+				price = prices[7];
 			}
 			if(i.getName().equals("Wheel")){
-				price = prices[8][1];
+				price = prices[8];
 			}
 		}
 		return price;

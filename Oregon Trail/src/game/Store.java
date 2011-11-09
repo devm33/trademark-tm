@@ -14,7 +14,7 @@ import items.Item;
 public class Store {
 	private String name;
 	private Inventory storeInventory;
-	private int[][] prices;
+	private int[] prices;
 	private int offset;
 	/**
 	 * constructor for the default store, Independence General Store
@@ -22,18 +22,16 @@ public class Store {
 	public Store(){
 		this.setName("Independence General Store");
 		this.storeInventory = new Inventory();
-		for (int y=0;y<9;y++){
-			prices[y][0] = y;
-		}
-		prices[0][1] =2;
-		prices[1][1] =5;
-		prices[2][1] =10;
-		prices[3][1] =0;
-		prices[4][1] =10;
-		prices[5][1] =10;
-		prices[6][1] =40;
-		prices[7][1] =10;
-		prices[8][1] =10;
+
+		prices[0]=2;
+		prices[1]=5;
+		prices[2]=10;
+		prices[3]=0;
+		prices[4]=10;
+		prices[5]=10;
+		prices[6]=40;
+		prices[7]=10;
+		prices[8]=10;
 
 	}
 	/**
@@ -58,18 +56,16 @@ public class Store {
 			this.storeInventory = new Inventory(new Food(),new Oxen(),new Medicine());
 		}
 		
-		for (int y=0;y<9;y++){
-			prices[y][0] = y;
-		}
-		prices[0][1] =(int) (2*(.5*offset));
-		prices[1][1] =(int) (5*(.5*offset));
-		prices[2][1] =(int) (10*(.5*offset));
-		prices[3][1] =(int) (0*(.5*offset));
-		prices[4][1] =(int) (10*(.5*offset));
-		prices[5][1] =(int) (10*(.5*offset));
-		prices[6][1] =(int) (40*(.5*offset));
-		prices[7][1] =(int) (10*(.5*offset));
-		prices[8][1] =(int) (10*(.5*offset));
+
+		prices[0]=(int) (2*(.5*offset));
+		prices[1]=(int) (5*(.5*offset));
+		prices[2]=(int) (10*(.5*offset));
+		prices[3]=(int) (0*(.5*offset));
+		prices[4]=(int) (10*(.5*offset));
+		prices[5]=(int) (10*(.5*offset));
+		prices[6]=(int) (40*(.5*offset));
+		prices[7]=(int) (10*(.5*offset));
+		prices[8]=(int) (10*(.5*offset));
 
 	
 	}
@@ -142,7 +138,7 @@ public class Store {
 		//TODO
 		return storeInventory;
 	}
-	public int[][] getPrices(){
+	public int[] getPrices(){
 		return prices;
 	}
 
