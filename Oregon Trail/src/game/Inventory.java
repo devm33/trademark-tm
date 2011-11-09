@@ -21,7 +21,7 @@ public class Inventory {
 	private Item[]itemInventory;
 	private int length = 9;
 	/**
-	 * Constructor for empty game items in Inventory
+	 * Default Constructor for empty game items in Inventory
 	 */
 	public Inventory(){
 		itemInventory = new Item[length];
@@ -34,18 +34,6 @@ public class Inventory {
 		itemInventory[6] = new Oxen();
 		itemInventory[7] = new Tongue();
 		itemInventory[8] = new Wheel();
-	}
-	/**
-	 * Constructor for 3 specific items in Inventory
-	 * @param item0 an item to go in the Inventory
-	 * @param item1 an item to go in the Inventory
-	 * @param item2 an item to go in the Inventory
-	 */
-	public Inventory(Item item0,Item item1, Item item2){
-		itemInventory = new Item[length];
-		itemInventory[0] = item0;
-		itemInventory[1] = item1;
-		itemInventory[2] = item2;
 	}
 	/**
 	 * Constructor for all items in Inventory
@@ -70,6 +58,57 @@ public class Inventory {
 		itemInventory[6] = item6;
 		itemInventory[7] = item7;
 		itemInventory[8] = item8;
+	}
+	/**
+	 * Constructor for 7 items in Inventory
+	 * @param item0 an item to go in the Inventory
+	 * @param item1 an item to go in the Inventory
+	 * @param item2 an item to go in the Inventory
+	 * @param item3 an item to go in the Inventory
+	 * @param item4 an item to go in the Inventory
+	 * @param item5 an item to go in the Inventory
+	 * @param item6 an item to go in the Inventory
+
+	 */
+	public Inventory(Item item0,Item item1, Item item2, Item item3, Item item4, Item item5, Item item6){
+		itemInventory = new Item[length];
+		itemInventory[0] = item0;
+		itemInventory[1] = item1;
+		itemInventory[2] = item2;
+		itemInventory[3] = item3;
+		itemInventory[4] = item4;
+		itemInventory[5] = item5;
+		itemInventory[6] = item6;
+
+	}
+	/**
+	 * Constructor for 5 items in Inventory
+	 * @param item0 an item to go in the Inventory
+	 * @param item1 an item to go in the Inventory
+	 * @param item2 an item to go in the Inventory
+	 * @param item3 an item to go in the Inventory
+	 * @param item4 an item to go in the Inventory
+
+	 */
+	public Inventory(Item item0,Item item1, Item item2, Item item3, Item item4){
+		itemInventory = new Item[length];
+		itemInventory[0] = item0;
+		itemInventory[1] = item1;
+		itemInventory[2] = item2;
+		itemInventory[3] = item3;
+		itemInventory[4] = item4;
+	}
+	/**
+	 * Constructor for 3 specific items in Inventory
+	 * @param item0 an item to go in the Inventory
+	 * @param item1 an item to go in the Inventory
+	 * @param item2 an item to go in the Inventory
+	 */
+	public Inventory(Item item0,Item item1, Item item2){
+		itemInventory = new Item[length];
+		itemInventory[0] = item0;
+		itemInventory[1] = item1;
+		itemInventory[2] = item2;
 	}
 	/**
 	 * Method to check the length of Inventory
@@ -258,6 +297,41 @@ public class Inventory {
 			}
 		}
 		return null;
+	}
+	public int getPrice(Item i, int[][] priceIn) {
+		int price=666666;//returned when something bad happens
+		int[][] prices = priceIn;
+		for (int z=0;z<9;z++){
+			if(i.getName().equals("Ammo")){
+				price = prices[0][1];
+			}
+			if(i.getName().equals("Food")){
+				price = prices[1][1];
+			}
+			if(i.getName().equals("Medicine")){
+				price = prices[2][1];
+			}
+			if(i.getName().equals("Water")){
+				price = prices[3][1];
+			}
+			if(i.getName().equals("Axel")){
+				price = prices[4][1];
+			}
+			if(i.getName().equals("Clothing")){
+				price = prices[5][1];
+			}
+			if(i.getName().equals("Oxen")){
+				price = prices[6][1];
+			}
+			if(i.getName().equals("Tongue")){
+				price = prices[7][1];
+			}
+			if(i.getName().equals("Wheel")){
+				price = prices[8][1];
+			}
+		}
+		return price;
+		
 	}
 
 }
