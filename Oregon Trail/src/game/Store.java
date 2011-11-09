@@ -14,7 +14,7 @@ import items.Item;
 public class Store {
 	private String name;
 	private Inventory storeInventory;
-	private int[] prices;
+	private int[] prices = new int[9];
 	private int offset;
 	/**
 	 * constructor for the default store, Independence General Store
