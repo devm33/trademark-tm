@@ -22,9 +22,9 @@ public class Town {
 	 * Constructor for a town that creates a store based on the town name
 	 * @param townName
 	 */
-	public Town(String townName){
+	public Town(String townName, int distance){
 		this.townName = townName;
-		this.townStore = new Store(townName+" General Store");
+		this.townStore = new Store(townName+" General Store", distance);
 	}
 	/**
 	 * Default constructor for the town and store, Independence
