@@ -105,7 +105,7 @@ public class StoreScreen extends Composite{
 		Item item = currentStore.getInventory().getItem(i);
 		lblName.setText(item.getName());
 		lblWeight.setText(""+item.getWeight()+" lbs");
-		lblPrice.setText("$"+currentStore.getPrice(item));
+		lblPrice.setText("$"+currentStore.getInventory().getPrice(item, currentStore.getPrices()));
 		lblDesc.setText(item.getDescription());
 		lblResponse.setText(item.getResponse());
 	}
