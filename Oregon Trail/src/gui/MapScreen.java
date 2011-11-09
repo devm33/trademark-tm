@@ -82,8 +82,10 @@ public class MapScreen extends Composite {
 		townProgressBar.setSelection((World.getMap().totalDistanceToTown()-World.getMap().distanceToTown()));
 		lblTownDistanceRemaining.setText(Integer.toString(World.getMap().distanceToTown()));
 		//update towns
-		lblDepart.setText(World.getMap().getLastTown().getTownName());
-		lblDest.setText(World.getMap().getNextTown().getTownName());
+		if(World.getMap().getNextTown()!=null){
+			lblDepart.setText(World.getMap().getLastTown().getTownName());
+			lblDest.setText(World.getMap().getNextTown().getTownName());
+		}
 		//update game distance
 		gameProgressBar.setSelection(World.getWagon().getDistance());
 		gameDistanceRemaining = totalGameDistance - World.getWagon().getDistance();

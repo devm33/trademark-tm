@@ -14,6 +14,7 @@ import org.eclipse.swt.events.SelectionEvent;
  *
  */
 public class WinScreen extends Composite {
+	private int choice = 0;
 	private Label lbl1;
 	private Button btnNewGame;
 	private Button btnQuitGame;
@@ -32,6 +33,7 @@ public class WinScreen extends Composite {
 		btnNewGame.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
+				choice = 1;
 			}
 		});
 
@@ -39,11 +41,26 @@ public class WinScreen extends Composite {
 		btnQuitGame.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
-				
+				choice = 2;
 			}
 		});
 	}
 
+	/**
+	 * return user choice. 1 for NEW GAME, 2 for QUIT GAME
+	 * @return
+	 */
+	public int getChoice(){
+		return choice;
+	}
+	
+	/**
+	 * reset choice so user can play again
+	 */
+	public void resetChoice(){
+		choice = 0;
+	}
+	
 	@Override
 	protected void checkSubclass() {
 		// Disable the check that prevents subclassing of SWT components
