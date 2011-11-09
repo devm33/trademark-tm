@@ -121,8 +121,8 @@ public class FieldScreen extends Composite {
 			lblNotify.setText("You've reached " + name);
 			atRiver = false;*/
 		} else if(atTown){
-			System.out.println("You've reached " + World.getTown().getTownName());
-			lblNotify.setText("You've reached " + World.getTown().getTownName());
+			System.out.println("You've reached " + World.getMap().getLastTown().getTownName()); //NOTE: not sure what's happening here -dev
+			lblNotify.setText("You've reached " + World.getMap().getLastTown().getTownName());
 			atTown = false;
 		} else {
 			/*clears label to prevent notification spamming*/

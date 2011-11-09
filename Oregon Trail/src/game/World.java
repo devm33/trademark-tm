@@ -15,7 +15,7 @@ public class World {
 	
 	private static Wagon theWagon; //the user's wagon class containing the leader, travellers, inventory, etc.
 	
-	private static Town currentTown; //the next town coming up or the one that we're currently in
+	private Town currentTown; //the next town coming up or the one that we're currently in
 	
 	private MainScreen mainScreen; //the main GUI class
 	
@@ -48,7 +48,7 @@ public class World {
 		mainScreen = new MainScreen();
 		
 		//set the first store as the first store for the store screen
-		mainScreen.setStore(currentTown.getStore());
+		mainScreen.setTownAndStore(currentTown);
 		
 		//start main game loop
 		boolean game_running = true;
@@ -61,7 +61,7 @@ public class World {
 			//check if there is a town
 			Town temp = theMap.getNextTown();
 			if(temp != currentTown && temp != null && !mainScreen.inTown()) { 
-				mainScreen.setStore(temp.getStore());
+				mainScreen.setTownAndStore(temp);
 				currentTown = temp;
 			}
 		}
@@ -84,14 +84,6 @@ public class World {
 	 */
 	public static Wagon getWagon(){
 		return theWagon;
-	}
-	
-	/**
-	 * returns the current town
-	 * @return the current town
-	 */
-	public static Town getTown(){
-		return currentTown;
 	}
 	
 	/**
