@@ -3,7 +3,7 @@ package game;
 /**
  * backend for Town GUI
  * @author Jaron
- * @author Stephen
+ * @author Stephen Bentley
  *
  */
 public class Town {
@@ -20,7 +20,8 @@ public class Town {
 	}
 	/**
 	 * Constructor for a town that creates a store based on the town name
-	 * @param townName
+	 * @param townName name of the town
+	 * @param distance the distance of the town along the trail
 	 */
 	public Town(String townName, int distance){
 		this.townName = townName;

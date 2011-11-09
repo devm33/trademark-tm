@@ -39,6 +39,7 @@ public class Store {
 	/**
 	 * constructor for a store
 	 * @param name the name of the store
+	 * @param distance the distance along the trail of the town containing this store
 	 */
 	public Store(String name, int distance){
 		this.setName(name);
@@ -99,7 +100,6 @@ public class Store {
 	 * the buy method for a given store
 	 * @param i the item to buy
 	 * @param num the number of that item to buy
-	 * @param price the price of the item
 	 */
 	public void buy(Item i, int num) throws InsufficientFundsException, WeightCapacityExceededException{
 		int newWeight = World.getWagon().getTotalWeight() + (num*i.getWeight());

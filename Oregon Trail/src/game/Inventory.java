@@ -13,7 +13,7 @@ import items.Tongue;
 
 /**
  * Backend for Inventory GUI
- * @author Stephen
+ * @author Stephen Bentley
  * @author Jaron
  *
  */
@@ -298,6 +298,14 @@ public class Inventory {
 		}
 		return null;
 	}
+	
+	/**
+	 * Returns the price of an item from the input price array
+	 * @param i the Item to be priced
+	 * @param priceIn a 2D int array of prices
+	 * @return price the int price value
+	 */
+	
 	public int getPrice(Item i, int[][] priceIn) {
 		int price=666666;//returned when something bad happens
 		int[][] prices = priceIn;
