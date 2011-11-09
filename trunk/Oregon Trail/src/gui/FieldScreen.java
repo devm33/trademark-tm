@@ -21,7 +21,7 @@ import org.eclipse.wb.swt.SWTResourceManager;
  *
  */
 public class FieldScreen extends Composite {
-	private boolean atRiver = false, atTown = false, win = false;
+	private boolean atRiver = false, atTown = false, hunting = false, win = false;
 	private Combo dropRations;
 	private Combo dropPace;
 	private Label rationsDescript;
@@ -127,6 +127,21 @@ public class FieldScreen extends Composite {
 	}
 	
 	/**
+	 * check if user has reached a town
+	 * @return
+	 */
+	public boolean checkAtTown(){
+		return atTown;
+	}
+	
+	/**
+	 * reset atTown boolean so user can re-enter town later
+	 */
+	public void resetAtTown(){
+		atTown = false;
+	}
+	
+	/**
 	 * logic for reaching a river or town
 	 */
 	private void handleRiverOrTown(){
@@ -140,7 +155,6 @@ public class FieldScreen extends Composite {
 				System.out.println("You've reached " + World.getMap().getLastTown().getTownName()); //NOTE: not sure what's happening here -dev
 				lblNotify.setText("You've reached " + World.getMap().getLastTown().getTownName());
 			}
-			atTown = false;
 		} else {
 			/*clears label to prevent notification spamming*/
 			lblNotify.setText("");
