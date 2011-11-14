@@ -43,13 +43,17 @@ public class Map {
 			int distance = Integer.parseInt(line.substring(0, index));
 			sum_distance += distance;
 			line = line.substring(index+1);
+			index = line.indexOf(',');
+			int townImage = Integer.parseInt(line.substring(0,index));
+			System.out.println(townImage);
+			line = line.substring(index+1);		
 			if(townOrRiver.equals("T")) {
 				Town temp;
 				if(line.equals("Yes")) {
-					temp = new Town(name, sum_distance);
+					temp = new Town(name, sum_distance,townImage);
 				}
 				else
-					temp = new Town(name, null);
+					temp = new Town(name, null,townImage);
 				towns.add(new TownPair(temp,sum_distance));
 			}
 			else
@@ -96,6 +100,7 @@ public class Map {
 				return t.distance - distance;
 			}
 		}
+		
 		return 0;
 	}
 	
