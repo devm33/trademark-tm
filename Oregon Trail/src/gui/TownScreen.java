@@ -109,8 +109,9 @@ public class TownScreen extends Composite{
 		btnLeaveTown.setBounds(323, 240, 109, 23);
 		
 		canvas = new Canvas(this, SWT.NONE);
+		System.out.println("test");
 		
-		image = new Image(getDisplay(),getClass().getResourceAsStream("images/town.jpg"));
+		image = new Image(getDisplay(),getClass().getResourceAsStream("images/town1.jpg"));
 		canvas.setBounds(0, 0, 450, 234);
 		
 		canvas.addPaintListener(new PaintListener() {
@@ -135,10 +136,11 @@ public class TownScreen extends Composite{
 	 * Update contents of window.
 	 */
 	public void update() {
-		
-		if(currentTown != null)
+		if(currentTown != null){
 			lblTownName.setText(currentTown.getTownName());
-		
+			System.out.println(currentTown.getTownImage());
+			image = new Image(getDisplay(),getClass().getResourceAsStream("images/town"+Integer.toString(currentTown.getTownImage())+".jpg"));
+		}
 		if(currentTown == null || currentTown.getStore() == null)
 			btnStore.setEnabled(false);
 		else
