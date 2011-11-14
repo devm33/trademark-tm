@@ -24,8 +24,6 @@ import org.eclipse.jface.viewers.ComboViewer;
  */
 public class RiverScreen extends Composite {
 	private boolean done = false;
-	private boolean crossed = false;
-	
 	private Canvas c;
 	private Label lblCross;
 	private Label lblChoice;
@@ -83,14 +81,14 @@ public class RiverScreen extends Composite {
 		lblChoice.setBounds(24, 64, 222, 25);
 		lblChoice.setText("What we gonna do?!?");
 		
-		methodViewer = new ComboViewer(this, SWT.NONE);
-		crossMethods = methodViewer.getCombo();
+		crossMethods = new Combo(this, SWT.READ_ONLY);
 		crossMethods.setItems(new String[] {"Take Ferry", "Ford", "Caulk"});
 		crossMethods.setBounds(80, 133, 92, 21);
+		crossMethods.setText("Take Ferry");
 		
 		lblDescription= new Label(this, SWT.NONE);
-		lblDescription.setBounds(24, 168, 49, 13);
-		lblDescription.setText("New Label");
+		lblDescription.setAlignment(SWT.CENTER);
+		lblDescription.setBounds(24, 168, 222, 57);
 		
 		crossButton = new Button(this, SWT.NONE);
 		crossButton.addSelectionListener(new SelectionAdapter() {
@@ -99,7 +97,7 @@ public class RiverScreen extends Composite {
 				
 				River river = World.getMap().getNextRiver();
 				
-				if(crossMethods.getText() == "Take Ferry")
+				if(crossMethods.getText().equals("Take Ferry"))
 				{
 					try
 					{
@@ -107,15 +105,15 @@ public class RiverScreen extends Composite {
 					}
 					catch(InsufficientFundsException f)
 					{
-						// TODO what to do when error is caught
+						System.out.println("whoops insufficient funds");
 					}
 				}
-				if(crossMethods.getText() == "Ford")
+				if(crossMethods.getText().equals("Ford")){
 					ford(river);
-				else
+				}
+				if(crossMethods.getText().equals("Caulk")){
 					caulk(river);
-				
-				done = true;
+				}
 			}
 		});
 		crossButton.setBounds(80, 231, 78, 34);
@@ -134,7 +132,9 @@ public class RiverScreen extends Composite {
 		else
 		{
 			leader.setMoney(leader.getMoney()-r.getCost());
-			crossed = true;
+			done = true;
+			World.getWagon().setNotification("You spent some money to cross safely.");
+			System.out.println("FERRY RESULT");
 		}
 	}
 	
@@ -148,10 +148,16 @@ public class RiverScreen extends Composite {
 		
 		int fordChance = (int)(Math.random()*10 + 1);
 		
-		if(r.getDepth() >= 3 || fordChance > 7)
-			crossed = false;
-		else
-			crossed = true;
+		if(r.getDepth() >= 3 || fordChance > 7){
+			done = true;
+			World.getWagon().setNotification("You forded across the river but lost some items");
+			System.out.println("BAD FORD RESULT");
+		}
+		else{
+			done = true;
+			World.getWagon().setNotification("You successfully ford across the river.");
+			System.out.println("GOOD FORD RESULT");
+		}
 	}
 	
 	/**
@@ -164,9 +170,15 @@ public class RiverScreen extends Composite {
 		
 		int caulkChance = (int)(Math.random()*10 + 1);
 		
-		if(caulkChance > 4)
-			crossed = false;
-		else
-			crossed = true;
+		if(caulkChance > 4){
+			done = true;
+			World.getWagon().setNotification("You crossed the river but lost some items");
+			System.out.println("BAD CAULK RESULT");
+		}
+		else{
+			done = true;
+			World.getWagon().setNotification("You successfully crossed the river by caulking the wagon");
+			System.out.println("GOOD CAULK RESULT");
+		}
 	}
 }
