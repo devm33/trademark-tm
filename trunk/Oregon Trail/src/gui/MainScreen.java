@@ -95,7 +95,7 @@ public class MainScreen {
 				}
 			}
 		});
-		btnSuper.setBounds(147, 3, 75, 25);
+		btnSuper.setBounds(377, 3, 75, 15);
 		btnSuper.setText("super");
 		/*END SUPER BUTTON*/
 		
