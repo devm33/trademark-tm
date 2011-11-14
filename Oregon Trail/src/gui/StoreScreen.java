@@ -38,6 +38,8 @@ public class StoreScreen extends Composite{
 	private Label lblResponse;
 	private Label lblAvail;
 	
+	private final String[] defaultItems = {"Oxen", "Food", "Clothing", "Ammunition", "Medicine", "Water", "Wagon Wheel", "Wagon Axle", "Wagon Tongue"};
+	
 	/**
 	 * Create the composite.
 	 * @param parent
@@ -93,6 +95,8 @@ public class StoreScreen extends Composite{
 	 * when user selects an item in the menu
 	 */
 	private void display(int i){
+		if(i > currentStore.getInventory().getLength())
+			System.out.println("problem's right ere capt'n");
 		Item item = currentStore.getInventory().getItem(i);
 		lblName.setText(item.getName());
 		lblWeight.setText(""+item.getWeight()+" lbs");
@@ -117,7 +121,8 @@ public class StoreScreen extends Composite{
 	 */
 	public void setStore(Store s) {
 		currentStore = s;
-		createContents();
+		update();
+		//createContents();
 	}
 	
 	/**
@@ -155,13 +160,37 @@ public class StoreScreen extends Composite{
 		// Disable the check that prevents subclassing of SWT components
 	}
 	
+	
+	/**
+	 * update dynamic items on screen
+	 */
+	public void update() {
+		
+		String[] items = defaultItems;
+		
+		if(currentStore != null) {
+			Inventory tempInv = currentStore.getInventory();
+			items = new String[tempInv.getLength()];
+			for(int x = 0; x < tempInv.getLength(); x++) {
+				items[x] = tempInv.getItem(x).getName();
+			}
+			
+			lblResponse.setText("Welcome to "+currentStore.getName()+"!");
+		}
+		
+		list.setItems(items);
+		lblName.setText("No Item Selected");
+		lblDesc.setText("Select an item to buy from the store inventory.");
+		lblWagonCapacity.setText(World.getWagon().getTotalWeight()+"/"+World.getWagon().getCapacity());
+	}
+	
 	/**
 	 * creates controls for the composite
 	 */
 	private void createContents(){
 		
 		list = new List(this, SWT.BORDER);
-		String[] items = {"Oxen", "Food", "Clothing", "Ammunition", "Medicine", "Water", "Wagon Wheel", "Wagon Axle", "Wagon Tongue"};
+		String[] items = defaultItems;
 		
 		if(currentStore != null) {
 			Inventory tempInv = currentStore.getInventory();
