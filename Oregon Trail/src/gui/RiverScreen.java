@@ -1,5 +1,6 @@
 package gui;
 
+import game.Wagon;
 import game.World;
 import game.River;
 import people.Leader;
@@ -31,6 +32,7 @@ public class RiverScreen extends Composite {
 	private Combo crossMethods;
 	private Label lblDescription;
 	private Button crossButton;
+	private Label lblName;
 	
 	/**
 	 * Create the composite.
@@ -88,7 +90,7 @@ public class RiverScreen extends Composite {
 		
 		lblDescription= new Label(this, SWT.NONE);
 		lblDescription.setAlignment(SWT.CENTER);
-		lblDescription.setBounds(24, 168, 222, 57);
+		lblDescription.setBounds(24, 160, 222, 57);
 		
 		crossButton = new Button(this, SWT.NONE);
 		crossButton.addSelectionListener(new SelectionAdapter() {
@@ -116,8 +118,15 @@ public class RiverScreen extends Composite {
 				}
 			}
 		});
-		crossButton.setBounds(80, 231, 78, 34);
+		crossButton.setBounds(21, 231, 231, 34);
 		crossButton.setText("CROSS");
+		
+		Label lblResult = new Label(this, SWT.NONE);
+		lblResult.setBounds(10, 271, 430, 19);
+		
+		lblName = new Label(this, SWT.NONE);
+		lblName.setFont(SWTResourceManager.getFont("Tahoma", 14, SWT.NORMAL));
+		lblName.setBounds(24, 10, 231, 34);
 	}
 	
 	/**
