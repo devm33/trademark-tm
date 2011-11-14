@@ -298,6 +298,13 @@ public class FieldScreen extends Composite {
 		lblDistance.setText("" + wagon.getDistance());
 	}
 	
+	/**
+	 * shows notification after a river decision
+	 */
+	public void showRiverResult(){
+		lblNotify.setText(World.getWagon().getNotification());
+	}
+	
 	@Override
 	protected void checkSubclass() {
 		// Disable the check that prevents subclassing of SWT components
@@ -346,7 +353,7 @@ public class FieldScreen extends Composite {
 		lblNotify = new Label(this, SWT.WRAP);
 		lblNotify.setAlignment(SWT.CENTER);
 		lblNotify.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.BOLD));
-		lblNotify.setBounds(10, 31, 430, 35);
+		lblNotify.setBounds(10, 31, 430, 83);
 		lblNotify.setText("The Journey Begins!");
 	}
 }

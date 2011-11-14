@@ -23,6 +23,7 @@ import people.Traveler;
 
 public class Wagon {
 	private boolean lose = false;
+	private String notification = "";
 	private int pace, rations, capacity, distance, townDistance;
 	private int totalWeight;
 	private Inventory inventory;
@@ -304,6 +305,22 @@ public class Wagon {
 	 */
 	public void resetLose(){
 		lose = false;
+	}
+	
+	/**
+	 * returns the notification string used for fieldscreen
+	 * @return
+	 */
+	public String getNotification(){
+		return notification;
+	}
+	
+	/**
+	 * sets the notification string used for fieldscreen
+	 * @param s
+	 */
+	public void setNotification(String s){
+		notification = s;
 	}
 	
 	/**

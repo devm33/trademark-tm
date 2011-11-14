@@ -288,6 +288,7 @@ public class MainScreen {
 			river.resetDone();
 			screenTransition(river,field);
 			currentScreen = screen.FIELD;
+			field.showRiverResult();
 		}
 	}
 	
