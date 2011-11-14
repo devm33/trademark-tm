@@ -423,7 +423,8 @@ public class MainScreen {
 	 * @param s the store to set to
 	 */
 	public void setTownAndStore(Town t){
-		store.setStore(t.getStore());
+		if(t != null)
+			store.setStore(t.getStore());
 		town.setTown(t);
 	}
 	
