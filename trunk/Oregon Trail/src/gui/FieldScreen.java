@@ -10,7 +10,11 @@ import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.wb.swt.SWTResourceManager;
+import org.eclipse.swt.widgets.Canvas;
+import org.eclipse.swt.events.PaintEvent;
+import org.eclipse.swt.events.PaintListener;
 
 /**
  * The screen where the party travels outside of towns
@@ -35,6 +39,8 @@ public class FieldScreen extends Composite {
 	private Label lblNotify;
 	
 	private static Wagon wagon;
+	private Image image;
+	private Canvas canvas;
 	
 	/**
 	 * Create the composite.
@@ -335,12 +341,12 @@ public class FieldScreen extends Composite {
 		lbl2.setBounds(10, 252, 49, 13);
 		
 		lbl3 = new Label(this, SWT.NONE);
-		lbl3.setBounds(182, 10, 49, 15);
+		lbl3.setBounds(177, 118, 49, 15);
 		lbl3.setText("Distance:");
 		
 		lblDistance = new Label(this, SWT.NONE);
 		lblDistance.setText("0");
-		lblDistance.setBounds(235,10,32,13);
+		lblDistance.setBounds(232,118,32,13);
 		
 		rationsDescript = new Label(this, SWT.WRAP);
 		rationsDescript.setFont(SWTResourceManager.getFont("Segoe UI", 7, SWT.NORMAL));
@@ -350,10 +356,19 @@ public class FieldScreen extends Composite {
 		paceDescript.setFont(SWTResourceManager.getFont("Segoe UI", 7, SWT.NORMAL));
 		paceDescript.setBounds(165, 249, 273, 26);
 		
-		lblNotify = new Label(this, SWT.WRAP);
+		lblNotify = new Label(this, SWT.BORDER | SWT.WRAP | SWT.SHADOW_NONE);
 		lblNotify.setAlignment(SWT.CENTER);
 		lblNotify.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.BOLD));
-		lblNotify.setBounds(10, 31, 430, 83);
+		lblNotify.setBounds(8, 135, 430, 65);
 		lblNotify.setText("The Journey Begins!");
+		
+		canvas = new Canvas(this, SWT.NONE);
+		canvas.setBounds(8, 10, 430, 102);
+		image = new Image(getDisplay(),getClass().getResourceAsStream("images/wagon_Map.jpg"));
+		canvas.addPaintListener(new PaintListener() {
+	        public void paintControl(PaintEvent e) {
+	         e.gc.drawImage(image,0,0);
+	        }
+	    });
 	}
 }
