@@ -21,7 +21,8 @@ import org.eclipse.wb.swt.SWTResourceManager;
  *
  */
 public class FieldScreen extends Composite {
-	private boolean atRiver = false, atTown = false, hunting = false, win = false;
+	private boolean atRiver = false, atTown = false, hunting = false, 
+			win = false, reachedRiver = false, reachedTown = false;
 	private Combo dropRations;
 	private Combo dropPace;
 	private Label rationsDescript;
@@ -66,13 +67,11 @@ public class FieldScreen extends Composite {
 				if(World.getMap().distanceToRiver() <= World.getWagon().getPace() && 
 					World.getMap().getNextRiver() != null){
 					/*Checks distance to next river based upon current pace and if a next river exists*/
-					String name = World.getMap().getNextRiver().getName();
-					System.out.println("You've reached " + name);
-					lblNotify.setText("You've reached " + name);
+					reachedRiver = true;
 					//atRiver = true;
 				} else if(World.getMap().distanceToTown() <= World.getWagon().getPace()){
 					/*Checks distance to next town based upon current pace*/
-					atTown = true;
+					reachedTown = true;
 				}
 			}
 		});
@@ -142,19 +141,30 @@ public class FieldScreen extends Composite {
 	}
 	
 	/**
+	 * check if user has reached a river
+	 * @return
+	 */
+	public boolean checkAtRiver(){
+		return atRiver;
+	}
+	
+	/**
+	 * reset atRiver boolean so user can re-enter town later
+	 */
+	public void resetAtRiver(){
+		atRiver = false;
+	}
+	
+	/**
 	 * logic for reaching a river or town
 	 */
 	private void handleRiverOrTown(){
-		if(atRiver){
-/*			String name = World.getMap().getNextRiver().getName();
-			System.out.println("You've reached " + name);
-			lblNotify.setText("You've reached " + name);
-			atRiver = false;*/
-		} else if(atTown){
-			if(World.getMap().getNextTown()!=null){
-				System.out.println("You've reached " + World.getMap().getLastTown().getTownName()); //NOTE: not sure what's happening here -dev
-				lblNotify.setText("You've reached " + World.getMap().getLastTown().getTownName());
-			}
+		if(reachedRiver){
+			atRiver = true;
+			reachedRiver = false;
+		} else if(reachedTown){
+			atTown = true;
+			reachedTown = false;
 		} else {
 			/*clears label to prevent notification spamming*/
 			lblNotify.setText("");
@@ -299,23 +309,23 @@ public class FieldScreen extends Composite {
 	private void createContents(){
 		btnTakeTurn = new Button(this, SWT.NONE);
 		btnTakeTurn.setText("Take Turn");
-		btnTakeTurn.setBounds(346, 241, 94, 28);
+		btnTakeTurn.setBounds(344, 207, 94, 28);
 		
 		dropRations = new Combo(this, SWT.NONE);
 		dropRations.setItems(new String[] {"None", "Bare-Bones", "Meager", "Normal", "Wellfed"});
-		dropRations.setBounds(65, 246, 94, 23);
+		dropRations.setBounds(65, 207, 94, 23);
 		
 		dropPace = new Combo(this, SWT.NONE);
 		dropPace.setItems(new String[] {"Stopped", "Leisurely", "Steady", "Grueling"});
-		dropPace.setBounds(65, 209, 94, 23);
+		dropPace.setBounds(65, 249, 94, 23);
 		
 		lbl1 = new Label(this, SWT.NONE);
 		lbl1.setText("Rations:");
-		lbl1.setBounds(10, 249, 49, 13);
+		lbl1.setBounds(10, 210, 49, 13);
 		
 		lbl2 = new Label(this, SWT.NONE);
 		lbl2.setText("Pace:");
-		lbl2.setBounds(10, 212, 49, 13);
+		lbl2.setBounds(10, 252, 49, 13);
 		
 		lbl3 = new Label(this, SWT.NONE);
 		lbl3.setBounds(182, 10, 49, 15);
@@ -327,11 +337,11 @@ public class FieldScreen extends Composite {
 		
 		rationsDescript = new Label(this, SWT.WRAP);
 		rationsDescript.setFont(SWTResourceManager.getFont("Segoe UI", 7, SWT.NORMAL));
-		rationsDescript.setBounds(165, 248, 175, 23);
+		rationsDescript.setBounds(163, 207, 175, 23);
 		
 		paceDescript = new Label(this, SWT.WRAP);
 		paceDescript.setFont(SWTResourceManager.getFont("Segoe UI", 7, SWT.NORMAL));
-		paceDescript.setBounds(165, 209, 273, 26);
+		paceDescript.setBounds(165, 249, 273, 26);
 		
 		lblNotify = new Label(this, SWT.WRAP);
 		lblNotify.setAlignment(SWT.CENTER);

@@ -32,8 +32,6 @@ public class MainScreen {
 	public static boolean accessInventory = false;
 	public static boolean accessWagon = false;
 	public static boolean accessMap = false;
-	public static boolean accessHunt = false;
-	public static boolean accessRiver = false;	
 	private static boolean Townstate = true;
 	
 	@SuppressWarnings("unused")
@@ -206,17 +204,16 @@ public class MainScreen {
 	 * logic for handling post-Field screens
 	 */
 	private void continueField(){
-		if (accessHunt){
-			accessHunt = false;
-		}
-		if (accessRiver){
-			accessRiver = false;
-		}
 		if (field.checkAtTown()){
 			field.resetAtTown();
 			Townstate = true;
 			screenTransition(field,town);
 			currentScreen = screen.TOWN;
+		}
+		if (field.checkAtRiver()){
+			field.resetAtRiver();
+			screenTransition(field,river);
+			currentScreen = screen.RIVER;
 		}
 		if (wagon.getLose()){
 			wagon.resetLose();
@@ -289,6 +286,8 @@ public class MainScreen {
 	private void continueRiver(){
 		if(river.isDone()){
 			river.resetDone();
+			screenTransition(river,field);
+			currentScreen = screen.FIELD;
 		}
 	}
 	
