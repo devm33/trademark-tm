@@ -24,7 +24,7 @@ import org.eclipse.jface.viewers.ComboViewer;
  */
 public class RiverScreen extends Composite {
 	private boolean done = false;
-	private boolean crossed;
+	private boolean crossed = false;
 	
 	private Canvas c;
 	private Label lblCross;
