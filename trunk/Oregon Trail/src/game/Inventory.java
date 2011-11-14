@@ -24,6 +24,7 @@ public class Inventory {
 	 * Default Constructor for empty game items in Inventory
 	 */
 	public Inventory(){
+		length = 9;
 		itemInventory = new Item[length];
 		itemInventory[0] = new Ammo();
 		itemInventory[1] = new Food();
@@ -48,6 +49,7 @@ public class Inventory {
 	 * @param item8 an item to go in the Inventory
 	 */
 	public Inventory(Item item0,Item item1, Item item2, Item item3, Item item4, Item item5, Item item6, Item item7, Item item8){
+		length = 9;
 		itemInventory = new Item[length];
 		itemInventory[0] = item0;
 		itemInventory[1] = item1;
@@ -71,6 +73,7 @@ public class Inventory {
 
 	 */
 	public Inventory(Item item0,Item item1, Item item2, Item item3, Item item4, Item item5, Item item6){
+		length = 7;
 		itemInventory = new Item[length];
 		itemInventory[0] = item0;
 		itemInventory[1] = item1;
@@ -91,6 +94,7 @@ public class Inventory {
 
 	 */
 	public Inventory(Item item0,Item item1, Item item2, Item item3, Item item4){
+		length = 5;
 		itemInventory = new Item[length];
 		itemInventory[0] = item0;
 		itemInventory[1] = item1;
@@ -105,6 +109,7 @@ public class Inventory {
 	 * @param item2 an item to go in the Inventory
 	 */
 	public Inventory(Item item0,Item item1, Item item2){
+		length  = 3;
 		itemInventory = new Item[length];
 		itemInventory[0] = item0;
 		itemInventory[1] = item1;
@@ -340,6 +345,13 @@ public class Inventory {
 		}
 		return price;
 		
+	}
+	
+	public String toString() {
+		String ret = "Inventory:\n";
+		for(Item i : itemInventory)
+			ret += i.toString() + "\n";
+		return ret;
 	}
 
 }

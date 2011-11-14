@@ -166,19 +166,18 @@ public class StoreScreen extends Composite{
 	 */
 	public void update() {
 		
-		String[] items = defaultItems;
-		
 		if(currentStore != null) {
 			Inventory tempInv = currentStore.getInventory();
-			items = new String[tempInv.getLength()];
+			//System.out.println(tempInv+"\n\n");
+			String[] items = new String[tempInv.getLength()];
 			for(int x = 0; x < tempInv.getLength(); x++) {
 				items[x] = tempInv.getItem(x).getName();
 			}
-			
+			list.setItems(items);
 			lblResponse.setText("Welcome to "+currentStore.getName()+"!");
 		}
-		
-		list.setItems(items);
+		else
+			list.setItems(defaultItems);
 		lblName.setText("No Item Selected");
 		lblDesc.setText("Select an item to buy from the store inventory.");
 		lblWagonCapacity.setText(World.getWagon().getTotalWeight()+"/"+World.getWagon().getCapacity());
