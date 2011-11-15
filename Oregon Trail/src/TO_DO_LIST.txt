@@ -1,10 +1,6 @@
 --Trademark TM Oregon Trail TODO list--
 
 Feature Slice requirements (currently M8):
-1. Create a map with locations
-
-M9:
-    move logic to river
 
 M10:
 //save game
@@ -22,7 +18,9 @@ Bugs:
 3. Implement conditional update (currently everything updates constantly)
 4. IMPLEMENT OXENS
 5. IMPLEMENT INN REPLENISHES THIRST AND HEALTH
-6. Implement code in ford() and caulk() that take items away from wagon.
+6. move riverscreen logic to river
+7. Implement code in ford() and caulk() that take items away from wagon.
+8. also ferry crashes (around 1470 mi)
 
 Complete following Screens:
 1. FieldScreen
