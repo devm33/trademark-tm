@@ -1,6 +1,8 @@
 package gui;
 
 import game.Wagon;
+import game.Inventory;
+import items.Food;
 import game.World;
 import game.River;
 import people.Leader;
@@ -159,7 +161,12 @@ public class RiverScreen extends Composite {
 		
 		if(r.getDepth() >= 3 || fordChance > 7){
 			done = true;
-			World.getWagon().setNotification("You forded across the river but lost some items");
+			Food f = World.getWagon().getInventory().getFood();
+			if(f.getNumber() > 25)
+				f.setNumber(f.getNumber()-25);
+			else
+				f.setNumber(0);
+			World.getWagon().setNotification("You forded across the river but lost some food");
 			System.out.println("BAD FORD RESULT");
 		}
 		else{
@@ -181,7 +188,12 @@ public class RiverScreen extends Composite {
 		
 		if(caulkChance > 4){
 			done = true;
-			World.getWagon().setNotification("You crossed the river but lost some items");
+			Food f = World.getWagon().getInventory().getFood();
+			if(f.getNumber() > 25)
+				f.setNumber(f.getNumber()-25);
+			else
+				f.setNumber(0);
+			World.getWagon().setNotification("You crossed the river but lost some food");
 			System.out.println("BAD CAULK RESULT");
 		}
 		else{
