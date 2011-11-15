@@ -38,6 +38,8 @@ public class StoreScreen extends Composite{
 	private Label lblResponse;
 	private Label lblAvail;
 	
+	private int lastIndex;
+	
 	private final String[] defaultItems = {"Oxen", "Food", "Clothing", "Ammunition", "Medicine", "Water", "Wagon Wheel", "Wagon Axle", "Wagon Tongue"};
 	
 	/**
@@ -49,12 +51,13 @@ public class StoreScreen extends Composite{
 		super(parent,style);
 		
 		createContents();
-
+		
 		//When user selects an item in the store inventory list.
 		list.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				display(list.getSelectionIndex());
+				lastIndex = list.getSelectionIndex();
+				display(lastIndex);
 			}
 		});
 		
@@ -62,21 +65,19 @@ public class StoreScreen extends Composite{
 		btnPurchase.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				if(isInteger(txtAmount.getText())){
+				if(lastIndex < 0)
+					lblResponse.setText("You need to choose an item, fool!");
+				else if(!isInteger(txtAmount.getText()))
+					lblResponse.setText("Try specifying a real quantity, dummy.");
+				else{
 					try {
-						buy(list.getSelectionIndex());
+						buy(lastIndex);
 					} catch (InsufficientFundsException e1) {
 						lblResponse.setText("Come back when you have enough money, you bum!");
 					} catch (WeightCapacityExceededException e2){
 						lblResponse.setText("What in tarnations! Your wagon can't hold that!");
 					}
 					lblWagonCapacity.setText(World.getWagon().getTotalWeight()+"/"+World.getWagon().getCapacity());
-				} else {
-					if(list.getSelectionIndex() == -1){
-						lblResponse.setText("You need to choose an item, fool!");
-					} else {
-						lblResponse.setText("Try specifying a real quantity, dummy.");
-					}
 				}
 			}
 		});
@@ -166,6 +167,8 @@ public class StoreScreen extends Composite{
 	 */
 	public void update() {
 		
+		lastIndex = -1;
+		
 		if(currentStore != null) {
 			Inventory tempInv = currentStore.getInventory();
 			//System.out.println(tempInv+"\n\n");
@@ -187,6 +190,8 @@ public class StoreScreen extends Composite{
 	 * creates controls for the composite
 	 */
 	private void createContents(){
+		
+		lastIndex = -1;
 		
 		list = new List(this, SWT.BORDER);
 		String[] items = defaultItems;
