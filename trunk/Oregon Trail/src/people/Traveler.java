@@ -11,8 +11,11 @@ package people;
 public class Traveler implements Person {
 	
 	private int health, thirst, hunger;
-
 	private String name;
+	private boolean isSick;
+	private boolean isPoisoned;
+	private String illnessName;
+	private String poisonType;
 	
 	/**
 	 * Create a new Traveler with a given name.
@@ -36,6 +39,10 @@ public class Traveler implements Person {
 		this.thirst = thirst;
 		this.hunger = hunger;
 		this.name = name;
+		this.isPoisoned = false;
+		this.isSick = false;
+		this.illnessName = null;
+		this.poisonType = null;
 	}
 
 
@@ -61,8 +68,15 @@ public class Traveler implements Person {
 	}
 
 	@Override
-	public void sick() {
-		//TODO
+	public void setSickness(String type, String name) {
+		if(type.equals("disease")){
+			this.isSick = true;
+			this.illnessName = name;
+		}
+		if(type.equals("poison")){
+			this.isPoisoned = true;
+			this.poisonType = name;
+		}
 	}
 
 	@Override

@@ -11,6 +11,10 @@ public abstract class Leader implements Person {
 	
 	protected int money, health, thirst, hunger;
 	protected String name;
+	private boolean isSick;
+	private String illnessName;
+	private boolean isPoisoned;
+	private String poisonType;
 	
 	/**
 	 * Create a new Leader with a given name.
@@ -35,6 +39,10 @@ public abstract class Leader implements Person {
 		this.hunger = hunger;
 		this.name = name;
 		money = 0;
+		this.isPoisoned = false;
+		this.isSick = false;
+		this.illnessName = null;
+		this.poisonType = null;
 	}
 
 
@@ -160,9 +168,16 @@ public abstract class Leader implements Person {
 	public void hunt() {
 		//TODO
 	}
-	
-	public void sick() {
-		//TODO
+	@Override
+	public void setSickness(String type, String name) {
+		if(type.equals("disease")){
+			this.isSick = true;
+			this.illnessName = name;
+		}
+		if(type.equals("poison")){
+			this.isPoisoned = true;
+			this.poisonType = name;
+		}
 	}
 	
 	public void trade() {

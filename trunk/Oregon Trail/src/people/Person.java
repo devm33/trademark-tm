@@ -33,7 +33,7 @@ public interface Person {
 	/**
 	 * Designate this person as sick. Further implementation details to come.
 	 */
-	public void sick();
+	public void setSickness(String type, String name);
 	
 	/**
 	 * Kill this person: sets the health to zero and the status to DEAD.
