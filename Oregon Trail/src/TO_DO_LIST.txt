@@ -17,9 +17,7 @@ Bugs:
     3. Implement conditional update (currently everything updates constantly)
     4. IMPLEMENT OXENS
     5. IMPLEMENT INN REPLENISHES THIRST AND HEALTH
-    6. move riverscreen logic to river
-    7. Implement code in ford() and caulk() that take items away from wagon.
-    8. also ferry crashes (around 1470 mi)
+    6. also ferry crashes (around 1470 mi)
 
 Complete following Screens:
 1. FieldScreen
