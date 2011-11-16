@@ -39,12 +39,9 @@ public class Event {
 				r+=10;
 			}
 		}
-		
 		if(l>4 && r<15 && b){
 			System.out.println("heal people");
 		}
-		
-		
 		if(r>=90 && l<7 && b){
 			System.out.println("disease");
 			if(s==0){
@@ -54,12 +51,10 @@ public class Event {
 			if(s==1){
 				//System.out.println("typhoid");
 				this.diseaseMessage("typhoid");
-
 			}
 			if(s==2){
 				//System.out.println("scarlet fever");
 				this.diseaseMessage("scarlet fever");
-
 			}
 			if(s==3){
 				//System.out.println("measels");
