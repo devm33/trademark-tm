@@ -99,30 +99,52 @@ public class Event {
 			}
 		}
 	}
+	/**
+	 * for use with the event status messages
+	 * @param str the message to display
+	 */
 	public void displayMessage(String str) {
 		if(System.getProperty("os.name").equals("Mac OS X"))
 			System.out.println(str);
 		else
 			JOptionPane.showMessageDialog(null,str);
 	}
+	/**
+	 * this message is triggered by a lightning strike
+	 */
 	public void lightningMessage() {
 		//JOptionPane.showMessageDialog(null, "Your wagon was struck by a random lighting bolt...none survived.");
 		displayMessage("Your wagon was struck by a random lighting bolt...none survived.");
 	}
+	/**
+	 * this message is triggered by the disease event
+	 * @param s the disease name
+	 */
 	public void diseaseMessage(String s){
 		//JOptionPane.showMessageDialog(null, "(Traveler/Leader) has caught "+s);
 		displayMessage("(Traveler/Leader) has caught "+s);
 	}
+	/**
+	 * this message is triggered by the snakebite event
+	 */
 	public void snakebiteMessage(){
 		//JOptionPane.showMessageDialog(null, "(Traveler/Leader) was bitten by a snake and is sick from the venom.");
 		displayMessage("(Traveler/Leader) was bitten by a snake and is sick from the venom.");
 	}
+	/**
+	 * this message is triggered by the theft event
+	 * @param d the int number of dollars stolen
+	 */
 	public void theftMessage(int d){
 		//JOptionPane.showMessageDialog(null, "You were robbed of $"+d+".00");
 		displayMessage("You were robbed of $"+d+".00");
 	}
+	/**
+	 * this message is triggered by the finding of treasure
+	 * @param d the int number of dollars found
+	 */
 	public void treasureMessage(int d){
 		//JOptionPane.showMessageDialog(null, "You were robbed of $"+d+".00");
-		displayMessage("You were robbed of $"+d+".00");
+		displayMessage("You found $"+d+".00 on the ground.");
 	}
 }
