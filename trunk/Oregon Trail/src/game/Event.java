@@ -5,6 +5,7 @@ import java.util.Random;
 import exceptions.InsufficientFundsException;
 
 import people.Leader;
+import people.Person;
 
 
 public class Event {
@@ -60,13 +61,40 @@ public class Event {
 			}
 		}else if(r<60&&r>55){
 			System.out.println("lightning strike");
-			
+			for (Person p: eventWagon.getPassengers()){
+				p.die();
+				//output to popup
+				eventWagon.setNotification("Your wagon was struck by a random lighting bolt...none survived");
+				eventWagon.setTotalDeath();
+			}
 		}
 		
 		
 		
 		if(r<25){
 			System.out.println("treasure");
+			int newCash;
+			if(s==0){
+				newCash = 10;
+			}
+			if(s==1){
+				newCash = 20;
+			}
+			if(s==2){
+				newCash = 30;
+			}
+			if(s==3){
+				newCash = 40;
+			}
+			else{
+				newCash = 50;
+			}
+			try {
+				eventWagon.getLeader().addMoney(newCash);
+			} catch (InsufficientFundsException e) {
+				// TODO Auto-generated catch block
+				//e.printStackTrace();
+			}
 		}
 		
 		

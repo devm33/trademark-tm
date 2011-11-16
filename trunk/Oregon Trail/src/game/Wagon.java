@@ -29,6 +29,7 @@ public class Wagon {
 	private Inventory inventory;
 	private List<Traveler> members;
 	private Leader leader;
+	private boolean allDead = false;
 	
 	
 	/**
@@ -355,5 +356,11 @@ public class Wagon {
 		f.use();
 		w.use();
 		
+	}
+	public void setTotalDeath(){
+		this.allDead = true;
+	}
+	public boolean getTotalDeath(){
+		return this.allDead;
 	}
 }
