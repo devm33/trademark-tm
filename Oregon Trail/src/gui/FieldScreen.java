@@ -58,6 +58,7 @@ public class FieldScreen extends Composite {
 		btnTakeTurn.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
+				World.getEvent().eventCall();
 				wagon.takeStep();
 				update();
 				System.out.println(wagon.getDistance());
