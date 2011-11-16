@@ -25,9 +25,9 @@ public class World {
 	
 	private static Wagon theWagon; //the user's wagon class containing the leader, travellers, inventory, etc.
 	
-	private Town currentTown; //the next town coming up or the one that we're currently in
+	private static Town currentTown; //the next town coming up or the one that we're currently in
 	
-	private MainScreen mainScreen; //the main GUI class
+	private static MainScreen mainScreen; //the main GUI class
 	
 	private static Map theMap;
 	
@@ -43,23 +43,7 @@ public class World {
 	}
 	
 	public World() {
-		//set initial date and days
-		calendar = Calendar.getInstance();
-		calendar.set(1848, 5, 1);
-		days = 1;
-		
-		//initialize first town and store as well as a wagon to be passed to 
-		theWagon = new Wagon();
-		wagonEvent = new Event(theWagon);
-		theMap = new Map();
-		//start off in a town
-		currentTown = new Town();
-		
-		//initialize the main gui
-		mainScreen = new MainScreen();
-		
-		//set the first store as the first store for the store screen
-		mainScreen.setTownAndStore(currentTown);
+		initializeGame();
 		
 		//start main game loop
 		boolean game_running = true;
@@ -79,6 +63,27 @@ public class World {
 		
 		//kill the gui now that we're done
 		mainScreen.disposeDisplay();
+	}
+	
+	public static void initializeGame() {
+		//set initial date and days
+		calendar = Calendar.getInstance();
+		calendar.set(1848, 5, 1);
+		days = 1;
+		
+		//initialize first town and store as well as a wagon to be passed to 
+		theWagon = new Wagon();
+		wagonEvent = new Event(theWagon);
+		theMap = new Map();
+		//start off in a town
+		currentTown = new Town();
+		
+		//initialize the main gui
+		mainScreen = new MainScreen();
+		
+		//set the first store as the first store for the store screen
+		mainScreen.setTownAndStore(currentTown);
+		
 	}
 	
 	/**
@@ -165,6 +170,8 @@ public class World {
 			number = Integer.parseInt(lines[i++]);
 			inventory.getItemByName(name).setNumber(number);
 		}
+		//load it into the actual game play
+		initializeGame(); //TODO NOTE: THIS IS PROBABLY GOING TO CAUSE A HUGE PROBLEM YIKES RUN
 		theWagon = new Wagon(pace, rations, capacity, leader, members, distance, inventory);
 	}
 	
