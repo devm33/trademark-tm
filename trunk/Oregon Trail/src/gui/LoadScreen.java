@@ -85,6 +85,7 @@ public class LoadScreen extends Composite {
 				System.out.println("Invalid game file: " + filename + i);
 			}
 		}
+		//TODO this line causes errors
 		list.setItems((String[])items.toArray());
 	}
 	
@@ -100,7 +101,7 @@ public class LoadScreen extends Composite {
 	private void createContents() {
 		Label lbl1 = new Label(this, SWT.NONE);
 		lbl1.setFont(SWTResourceManager.getFont("Lucida Grande", 14, SWT.NORMAL));
-		lbl1.setBounds(27, 23, 103, 18);
+		lbl1.setBounds(27, 23, 132, 18);
 		lbl1.setText("Saved Games:");
 		
 		List list = new List(this, SWT.BORDER);

@@ -62,7 +62,7 @@ public class World {
 		}
 		
 		//kill the gui now that we're done
-		mainScreen.disposeDisplay();
+		mainScreen.quitGame();
 	}
 	
 	public static void initializeGame() {

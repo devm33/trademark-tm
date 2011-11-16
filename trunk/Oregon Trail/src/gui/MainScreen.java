@@ -25,9 +25,9 @@ import org.eclipse.swt.widgets.Label;
 public class MainScreen {	
 
 	public enum screen{
-		CONFIG, TOWN, INN, STORE, FIELD, HUNT, RIVER
+		NEW, LOAD, CONFIG, TOWN, INN, STORE, FIELD, HUNT, RIVER, WIN, LOSE
 	}
-	public static screen currentScreen = screen.CONFIG;
+	public static screen currentScreen = screen.NEW;
 	
 	public static boolean accessInventory = false;
 	public static boolean accessWagon = false;
@@ -47,6 +47,8 @@ public class MainScreen {
 	private Button btnInventory;
 	private Button btnMap;
 	private Button btnWagon;
+	private Button btnSaveGame;
+	private Button btnSuper;
 	private Composite contentPanel;
 	private StackLayout layout;
 	
@@ -62,7 +64,8 @@ public class MainScreen {
 	private RiverScreen river;
 	private WinScreen winView;
 	private LoseScreen loseView;
-	private Button btnSaveGame;
+	private LoadScreen load;
+	private NewScreen newView;
 
 	/**
 	 * creates the main window of the game
@@ -82,35 +85,7 @@ public class MainScreen {
 
 		createScreens();
 
-		layout.topControl = config;
-		
-		/*SUPER BUTTON*/ 
-		Button btnSuper = new Button(shell, SWT.NONE);
-		btnSuper.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent arg0) {
-				World.getWagon().setCapacity(99999999);
-				try {
-					World.getWagon().addToInventory(new Food(), 99999);
-				} catch (WeightCapacityExceededException e) {
-				}
-			}
-		});
-		btnSuper.setBounds(377, 3, 75, 15);
-		btnSuper.setText("super");
-		
-		btnSaveGame = new Button(shell, SWT.NONE);
-		btnSaveGame.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent arg0) {
-				World.saveGame();
-			}
-		});
-		btnSaveGame.setBounds(247, -5, 94, 28);
-		btnSaveGame.setText("Save Game");
-		btnSaveGame.setEnabled(false);
-		/*END SUPER BUTTON*/
-		
+		layout.topControl = newView;
 		contentPanel.layout();
 		shell.update();
 	}
@@ -125,6 +100,14 @@ public class MainScreen {
 		if (!shell.isDisposed()){
 			/*Screen Continuation*/
 		
+			updateCash();
+			updateWagon();
+			updateInventory();
+			updateMap();
+			updateDate();
+			
+			refresh();
+			
 			continueConfig();
 			continueTown();
 			continueInn();
@@ -137,14 +120,7 @@ public class MainScreen {
 			continueRiver();
 			continueWin();
 			continueLose();
-		
-			updateCash();
-			updateWagon();
-			updateInventory();
-			updateMap();
-			updateDate();
-			
-			refresh();
+			continueNew();
 		}	
 		return !shell.isDisposed();
 	}
@@ -217,7 +193,12 @@ public class MainScreen {
 	 * logic for handling post-Field screens
 	 */
 	private void continueField(){
-		if (field.checkAtTown()){
+		if (field.getWin()){
+			field.resetWin();
+			screenTransition(field,winView);
+			disableButtons();
+			currentScreen = screen.WIN;
+		} else if (field.checkAtTown()){
 			field.resetAtTown();
 			Townstate = true;
 			screenTransition(field,town);
@@ -231,12 +212,6 @@ public class MainScreen {
 		if (wagon.getLose()){
 			wagon.resetLose();
 			screenTransition(field,loseView);
-			disableButtons();
-			currentScreen = screen.CONFIG;
-		}
-		if (field.getWin()){
-			field.resetWin();
-			screenTransition(field,winView);
 			disableButtons();
 			currentScreen = screen.CONFIG;
 		}
@@ -312,11 +287,10 @@ public class MainScreen {
 		switch(winView.getChoice()){
 		case 1:
 			winView.resetChoice();
-			initialize();
+
 			break;
 		case 2:
-			shell.dispose();
-			display.dispose();
+			quitGame();
 		}
 	}
 	
@@ -327,13 +301,42 @@ public class MainScreen {
 		switch(loseView.getChoice()){
 		case 1:
 			loseView.resetChoice();
-			initialize();
+
 			break;
 		case 2:
-			shell.dispose();
-			display.dispose();
+			quitGame();
 		}
 	}
+	
+	/**
+	 * logic for handling post-load screens
+	 */
+	private void continueLoad(){
+		
+	}
+	
+	/**
+	 * logic for handling post-newgame screens
+	 */
+	private void continueNew(){
+		//Player chooses New Game
+		if(newView.getChoice() == 1){
+			newView.resetChoice();
+			screenTransition(newView,config);
+			currentScreen = screen.CONFIG;
+		}
+		//Player chooses Load Game
+		else if(newView.getChoice() == 2){
+			newView.resetChoice();
+			screenTransition(newView,load);
+			currentScreen = screen.LOAD;
+		}
+		//Player chooses Quit Game
+		else if(newView.getChoice() == 3){
+			quitGame();
+		}
+	}
+	
 	/*END SCREEN CONTINUATION PORTION*/
 	
 	/**
@@ -366,6 +369,8 @@ public class MainScreen {
 		river = new RiverScreen(contentPanel,SWT.NONE);
 		winView = new WinScreen(contentPanel,SWT.NONE);
 		loseView = new LoseScreen(contentPanel,SWT.NONE);
+		load = new LoadScreen(contentPanel,SWT.NONE);
+		newView = new NewScreen(contentPanel,SWT.NONE);
 	}
 	
 	/**
@@ -418,7 +423,8 @@ public class MainScreen {
 	/**
 	 * close the display
 	 */
-	public void disposeDisplay(){
+	public void quitGame(){
+		shell.dispose();
 		display.dispose();
 	}
 
@@ -544,6 +550,33 @@ public class MainScreen {
 				accessWagon = true;
 			}
 		});
+		
+		/*SUPER BUTTON*/ 
+		btnSuper = new Button(shell, SWT.NONE);
+		btnSuper.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent arg0) {
+				World.getWagon().setCapacity(99999999);
+				try {
+					World.getWagon().addToInventory(new Food(), 99999);
+				} catch (WeightCapacityExceededException e) {
+				}
+			}
+		});
+		btnSuper.setBounds(377, 3, 75, 15);
+		btnSuper.setText("super");
+		/*END SUPER BUTTON*/
+		
+		btnSaveGame = new Button(shell, SWT.NONE);
+		btnSaveGame.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent arg0) {
+				World.saveGame();
+			}
+		});
+		btnSaveGame.setBounds(247, -5, 94, 28);
+		btnSaveGame.setText("Save Game");
+		btnSaveGame.setEnabled(false);
 		
 		/*Create the composite that the pages will share*/
 		contentPanel = new Composite(shell, SWT.BORDER);
