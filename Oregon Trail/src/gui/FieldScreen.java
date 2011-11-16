@@ -58,27 +58,27 @@ public class FieldScreen extends Composite {
 		btnTakeTurn.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
+
 				World.getEvent().eventCall();
 				wagon.takeStep();
 				update();
 				System.out.println(wagon.getDistance());
-				//check if we're in oregon
+				
+				//check if we're in oregon or has reached a river or town
 				if(World.getWagon().getDistance() >= 1909) {
 					System.out.println("Welcome to Oregon! You Win!");
 					win = true;
-				}
-				
-				handleRiverOrTown();
-				
-				//Checks if the party has reached a river or town
-				if(World.getMap().distanceToRiver() <= World.getWagon().getPace() && 
-					World.getMap().getNextRiver() != null){
-					/*Checks distance to next river based upon current pace and if a next river exists*/
-					reachedRiver = true;
-					//atRiver = true;
-				} else if(World.getMap().distanceToTown() <= World.getWagon().getPace()){
-					/*Checks distance to next town based upon current pace*/
-					reachedTown = true;
+				} else {
+					handleRiverOrTown();
+					if(World.getMap().distanceToRiver() <= World.getWagon().getPace() && 
+						World.getMap().getNextRiver() != null){
+						/*Checks distance to next river based upon current pace and if a next river exists*/
+						reachedRiver = true;
+						//atRiver = true;
+					} else if(World.getMap().distanceToTown() <= World.getWagon().getPace()){
+						/*Checks distance to next town based upon current pace*/
+						reachedTown = true;
+					}
 				}
 			}
 		});
