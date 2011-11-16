@@ -5,9 +5,10 @@ import items.Item;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Calendar;
 
-import people.Person;
+import people.*;
 
 import gui.MainScreen;
 
@@ -107,11 +108,14 @@ public class World {
 			//capacity
 			fw.write(""+theWagon.getCapacity()+"\n");
 			//people in wagon
-			for(Person t : theWagon.getPassengers())
-				fw.write(""+t.getName()+'\n'+t.getHealth()+'\n'+t.getHunger()+'\n'+t.getThirst()+"\n");
+			for(Person t : theWagon.getPassengers()) {
+				fw.write(""+t.getClass().getName()+"\n"+t.getName()+'\n'+t.getHealth()+'\n'+t.getHunger()+'\n'+t.getThirst()+"\n");
+			}
 			//inventory in wagon
+			fw.write("inventory\n");
 			for(Item item : theWagon.getInventory().getItemInventory())
 				fw.write(""+item.getName()+"\n"+item.getNumber()+"\n");
+			fw.write("end\n");
 		} catch (IOException e) {
 			System.out.println("problem creating file: " + filename + i);
 			e.printStackTrace();
@@ -123,7 +127,43 @@ public class World {
 	 * @param game a string of the saved game
 	 */
 	public static void loadGame(String game) {
-		
+		String[] lines = game.split("\n");
+		int i = 0;
+		//wagon
+		int distance = Integer.parseInt(lines[i++]);
+		int pace = Integer.parseInt(lines[i++]);
+		int rations = Integer.parseInt(lines[i++]);
+		int capacity = Integer.parseInt(lines[i++]);
+		//people
+		String classname, name;
+		int health, hunger, thirst;
+		Leader leader = null;
+		ArrayList<Traveler> members = new ArrayList<Traveler>();
+		while(!lines[i].equals("inventory")) {
+			classname = lines[i++];
+			name = lines[i++];
+			health = Integer.parseInt(lines[i++]);
+			hunger = Integer.parseInt(lines[i++]);
+			thirst = Integer.parseInt(lines[i++]);
+			if(classname.equals("Banker"))
+				leader = new Banker(health, hunger, thirst, name);
+			else if(classname.equals("Farmer"))
+				leader = new Farmer(health, hunger, thirst, name);
+			else if(classname.equals("Carpenter"))
+				leader = new Carpenter(health, hunger, thirst, name);
+			else
+				members.add(new Traveler(health, hunger, thirst, name));	
+		}
+		//inventory
+		i++;
+		Inventory inventory = new Inventory();
+		int number;
+		while(!lines[i].equals("end")) {
+			name = lines[i++];
+			number = Integer.parseInt(lines[i++]);
+			inventory.getItemByName(name).setNumber(number);
+		}
+		theWagon = new Wagon(pace, rations, capacity, leader, members, distance, inventory);
 	}
 	
 	/**
