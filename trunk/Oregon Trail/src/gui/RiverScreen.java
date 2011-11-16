@@ -94,7 +94,15 @@ public class RiverScreen extends Composite {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
 				
-				River river = World.getMap().getNextRiver();
+				
+				River river;
+				try {
+					System.out.println("NEXTS RIVERSSS");
+					river = World.getMap().getNextRiver();
+				} catch (Exception e) {
+					System.out.println("PREVIOUS REIVERSFISIDF");
+					river = World.getMap().getLastRiver();
+				}
 				
 				if(crossMethods.getText().equals("Take Ferry"))
 				{

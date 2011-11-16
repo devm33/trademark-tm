@@ -45,7 +45,6 @@ public class Map {
 			line = line.substring(index+1);
 			index = line.indexOf(',');
 			int townImage = Integer.parseInt(line.substring(0,index));
-			System.out.println(townImage);
 			line = line.substring(index+1);		
 			if(townOrRiver.equals("T")) {
 				Town temp;
@@ -128,6 +127,21 @@ public class Map {
 		for(RiverPair t : rivers) {
 			if(t.distance > distance)
 				return t.river;
+		}
+		return null;
+	}
+	
+	/**
+	 * Return the last river to be visited
+	 * @return the last river
+	 */
+	public River getLastRiver() {
+		int distance = World.getWagon().getDistance();
+		River rlast = rivers.get(0).river;
+		for(RiverPair r : rivers) {
+			if(r.distance > distance)
+				return rlast;
+			rlast = r.river;
 		}
 		return null;
 	}
