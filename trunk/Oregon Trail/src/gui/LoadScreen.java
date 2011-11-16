@@ -1,5 +1,7 @@
 package gui;
 
+import game.World;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
