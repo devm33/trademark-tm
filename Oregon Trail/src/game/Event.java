@@ -70,7 +70,7 @@ public class Event {
 		}else if(r<74 && r>72 && b){
 			//System.out.println("snakebite");
 			this.snakebiteMessage();
-		}else if(r<=69 && r>=68 && l>6 && b){
+		}else if(r==68 && l>7 && b){
 			//System.out.println("theft");
 			try {
 				eventWagon.getLeader().setMoney(eventWagon.getLeader().getMoney()-((s+1)*10));
@@ -126,7 +126,6 @@ public class Event {
 	}
 	public void lightningMessage(){
 		JOptionPane.showMessageDialog(null, "Your wagon was struck by a random lighting bolt...none survived.");
-
 	}
 	public void diseaseMessage(String s){
 		JOptionPane.showMessageDialog(null, "(Traveler/Leader) has caught "+s);
