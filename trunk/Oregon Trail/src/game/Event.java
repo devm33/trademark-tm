@@ -99,19 +99,30 @@ public class Event {
 			}
 		}
 	}
-	public void lightningMessage(){
-		JOptionPane.showMessageDialog(null, "Your wagon was struck by a random lighting bolt...none survived.");
+	public void displayMessage(String str) {
+		if(System.getProperty("os.name").equals("Mac OS X"))
+			System.out.println(str);
+		else
+			JOptionPane.showMessageDialog(null,str);
+	}
+	public void lightningMessage() {
+		//JOptionPane.showMessageDialog(null, "Your wagon was struck by a random lighting bolt...none survived.");
+		displayMessage("Your wagon was struck by a random lighting bolt...none survived.");
 	}
 	public void diseaseMessage(String s){
-		JOptionPane.showMessageDialog(null, "(Traveler/Leader) has caught "+s);
+		//JOptionPane.showMessageDialog(null, "(Traveler/Leader) has caught "+s);
+		displayMessage("(Traveler/Leader) has caught "+s);
 	}
 	public void snakebiteMessage(){
-		JOptionPane.showMessageDialog(null, "(Traveler/Leader) was bitten by a snake and is sick from the venom.");
+		//JOptionPane.showMessageDialog(null, "(Traveler/Leader) was bitten by a snake and is sick from the venom.");
+		displayMessage("(Traveler/Leader) was bitten by a snake and is sick from the venom.");
 	}
 	public void theftMessage(int d){
-		JOptionPane.showMessageDialog(null, "You were robbed of $"+d+".00");
+		//JOptionPane.showMessageDialog(null, "You were robbed of $"+d+".00");
+		displayMessage("You were robbed of $"+d+".00");
 	}
 	public void treasureMessage(int d){
-		JOptionPane.showMessageDialog(null, "You were robbed of $"+d+".00");
+		//JOptionPane.showMessageDialog(null, "You were robbed of $"+d+".00");
+		displayMessage("You were robbed of $"+d+".00");
 	}
 }
