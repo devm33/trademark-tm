@@ -140,6 +140,12 @@ public abstract class Leader implements Person {
 	public void live() {
 		if(health <= 0)
 			return; //I ain't living.
+		if(isSick)
+			health -= 5;
+		if(isPoisoned)
+			health -= 10;
+		if(health <= 0)
+			die();
 		thirst += 30;
 		if(thirst >= 100) {
 			thirst = 100;

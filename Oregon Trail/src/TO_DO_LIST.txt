@@ -5,8 +5,6 @@ Feature Slice requirements (currently M8):
 M10:
     //save game
 dev 1. At game start-up, the player should be given the option to load a previous game.
-dev 2. During game play, after the wagon departs Independence, there should be a way for the player to save the game.
-dev 3. After saving, the player may continue to play, or exit the game.
     //random events
 
 stephen    5. If an event happens, the appropriate action should be taken.
