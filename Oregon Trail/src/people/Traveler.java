@@ -138,4 +138,10 @@ public class Traveler implements Person {
 		//TODO
 		return null;
 	}
+
+
+	@Override
+	public String getSickness() {
+		return this.illnessName;
+	}
 }
