@@ -13,7 +13,6 @@ stephen    5. If the event happens, the appropriate action should be taken.
 
 
 Bugs:
-?   1. Fix displayed Date and Day
     2. Clear store between towns
     3. Implement conditional update (currently everything updates constantly)
     4. IMPLEMENT OXENS
