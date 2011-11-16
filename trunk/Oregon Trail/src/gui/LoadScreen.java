@@ -64,7 +64,7 @@ public class LoadScreen extends Composite {
 	 */
 	public void update() {
 		int i = 0;
-		String filename = "savedgame_";
+		String filename = "src/game/savedgames/savedgame_";
 		ArrayList<String> items = new ArrayList<String>();
 		String t = "";
 		Scanner scan = null;

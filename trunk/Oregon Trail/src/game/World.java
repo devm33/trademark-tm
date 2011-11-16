@@ -86,12 +86,13 @@ public class World {
 	 */
 	public static void saveGame() {
 		int i = 0;
-		String filename = "savedgame_";
+		String filename = "src/game/savedgames/savedgame_";
 		File file = new File(filename + i);
 		FileWriter fw = null;
 		try {
-			while(file.exists() || !file.createNewFile())
+			while(file.exists())
 				file = new File(filename + ++i);
+			//file.createNewFile();
 			fw = new FileWriter(file);
 			//leader name
 			fw.write(theWagon.getLeader().getName() + "\n");
@@ -116,6 +117,7 @@ public class World {
 			for(Item item : theWagon.getInventory().getItemInventory())
 				fw.write(""+item.getName()+"\n"+item.getNumber()+"\n");
 			fw.write("end\n");
+			fw.close();
 		} catch (IOException e) {
 			System.out.println("problem creating file: " + filename + i);
 			e.printStackTrace();
@@ -145,13 +147,13 @@ public class World {
 			health = Integer.parseInt(lines[i++]);
 			hunger = Integer.parseInt(lines[i++]);
 			thirst = Integer.parseInt(lines[i++]);
-			if(classname.equals("Banker"))
+			if(classname.equals("people.Banker"))
 				leader = new Banker(health, hunger, thirst, name);
-			else if(classname.equals("Farmer"))
+			else if(classname.equals("people.Farmer"))
 				leader = new Farmer(health, hunger, thirst, name);
-			else if(classname.equals("Carpenter"))
+			else if(classname.equals("people.Carpenter"))
 				leader = new Carpenter(health, hunger, thirst, name);
-			else
+			else //people.Traveler
 				members.add(new Traveler(health, hunger, thirst, name));	
 		}
 		//inventory

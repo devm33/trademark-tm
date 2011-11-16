@@ -62,6 +62,7 @@ public class MainScreen {
 	private RiverScreen river;
 	private WinScreen winView;
 	private LoseScreen loseView;
+	private Button btnSaveGame;
 
 	/**
 	 * creates the main window of the game
@@ -97,6 +98,17 @@ public class MainScreen {
 		});
 		btnSuper.setBounds(377, 3, 75, 15);
 		btnSuper.setText("super");
+		
+		btnSaveGame = new Button(shell, SWT.NONE);
+		btnSaveGame.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent arg0) {
+				World.saveGame();
+			}
+		});
+		btnSaveGame.setBounds(247, -5, 94, 28);
+		btnSaveGame.setText("Save Game");
+		btnSaveGame.setEnabled(false);
 		/*END SUPER BUTTON*/
 		
 		contentPanel.layout();
@@ -146,6 +158,7 @@ public class MainScreen {
 			btnInventory.setEnabled(true);
 			btnWagon.setEnabled(true);
 			btnMap.setEnabled(true);
+			btnSaveGame.setEnabled(true);
 			config.resetDone();
 			screenTransition(config, town);
 			currentScreen = screen.TOWN;
