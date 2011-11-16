@@ -85,7 +85,7 @@ public class Map {
 				return tlast;
 			tlast = t.town;
 		}
-		return null;
+		return tlast;
 	}
 	
 	/**
@@ -139,11 +139,11 @@ public class Map {
 		int distance = World.getWagon().getDistance();
 		River rlast = rivers.get(0).river;
 		for(RiverPair r : rivers) {
-			if(r.distance > distance)
+			if(r.distance >= distance) 
 				return rlast;
 			rlast = r.river;
 		}
-		return null;
+		return rlast;
 	}
 	
 	/**
