@@ -8,8 +8,8 @@ dev 1. At game start-up, the player should be given the option to load a previou
 dev 2. During game play, after the wagon departs Independence, there should be a way for the player to save the game.
 dev 3. After saving, the player may continue to play, or exit the game.
     //random events
-    4. Each turn (move) of the wagon, there should be a check for a random event.
-    5. If the event happens, the appropriate action should be taken.
+stephen    4. Each turn (move) of the wagon, there should be a check for a random event.
+stephen    5. If the event happens, the appropriate action should be taken.
 
 
 Bugs:
