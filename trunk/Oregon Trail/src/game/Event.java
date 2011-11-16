@@ -35,14 +35,16 @@ public class Event {
 		
 		if(eventWagon.getPace()> 10 && eventWagon.getRations()<=2 ){
 			r+=20;
+			l+=2;
 			if (eventWagon.getRations()<=1){
 				r+=10;
+				l+=2;
 			}
 		}
 		if(l>4 && r<15 && b){
 			System.out.println("heal people");
 		}
-		if(r>=90 && l<7 && b){
+		if(r>=90 && l>3 && b){
 			System.out.println("disease");
 			if(s==0){
 				//System.out.println("dysentery");
@@ -64,7 +66,7 @@ public class Event {
 				//System.out.println("scurvy");
 				this.diseaseMessage("scurvy");
 			}
-		}else if(r<74 && r>72 && b){
+		}else if(r==73 && l>4 && b){
 			//System.out.println("snakebite");
 			this.snakebiteMessage();
 		}else if(r==68 && l>7 && b){
