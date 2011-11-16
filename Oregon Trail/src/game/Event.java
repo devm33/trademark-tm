@@ -48,27 +48,37 @@ public class Event {
 			System.out.println("disease");
 			if(s==0){
 				//System.out.println("dysentery");
+				eventWagon.getPassengers().get(ep).setSickness("disease", "dysentery");
 				this.diseaseMessage("dysentery");
 			}
 			if(s==1){
 				//System.out.println("typhoid");
+				eventWagon.getPassengers().get(ep).setSickness("disease", "typhoid");
 				this.diseaseMessage("typhoid");
 			}
 			if(s==2){
 				//System.out.println("scarlet fever");
+				eventWagon.getPassengers().get(ep).setSickness("disease", "scarlet fever");
 				this.diseaseMessage("scarlet fever");
 			}
 			if(s==3){
 				//System.out.println("measels");
+				eventWagon.getPassengers().get(ep).setSickness("disease", "measels");
 				this.diseaseMessage("measels");
 			}
 			if(s==4){
 				//System.out.println("scurvy");
+				eventWagon.getPassengers().get(ep).setSickness("disease", "scurvy");
 				this.diseaseMessage("scurvy");
 			}
 		}else if(r==73 && l>4 && b){
 			//System.out.println("snakebite");
+			eventWagon.getPassengers().get(ep).setSickness("poison", "venom");
 			this.snakebiteMessage();
+		}else if(r==72 && l>4 && b){
+			//System.out.println("poison");
+			this.poisonMessage();
+			eventWagon.getPassengers().get(ep).setSickness("poison", "poison");
 		}else if(r==68 && l>7 && b){
 			//System.out.println("theft");
 			try {
@@ -132,6 +142,13 @@ public class Event {
 	public void snakebiteMessage(){
 		//JOptionPane.showMessageDialog(null, "(Traveler/Leader) was bitten by a snake and is sick from the venom.");
 		displayMessage("(Traveler/Leader) was bitten by a snake and is sick from the venom.");
+	}
+	/**
+	 * this message is triggered by the snakebite event
+	 */
+	public void poisonMessage(){
+		//JOptionPane.showMessageDialog(null, "(Traveler/Leader) was bitten by a snake and is sick from the venom.");
+		displayMessage("(Traveler/Leader) was poisoned, possibly from your cooking.");
 	}
 	/**
 	 * this message is triggered by the theft event
