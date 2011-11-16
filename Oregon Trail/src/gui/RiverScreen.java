@@ -1,13 +1,8 @@
 package gui;
 
-import game.Wagon;
-import game.Inventory;
-import items.Food;
 import game.World;
 import game.River;
-import people.Leader;
 import exceptions.InsufficientFundsException;
-import java.lang.Math;
 
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Button;
@@ -105,19 +100,21 @@ public class RiverScreen extends Composite {
 				{
 					try
 					{
-						takeFerry(river);
+						river.takeFerry();
 					}
 					catch(InsufficientFundsException f)
 					{
 						System.out.println("whoops insufficient funds");
 					}
 				}
-				if(crossMethods.getText().equals("Ford")){
-					ford(river);
+				else if(crossMethods.getText().equals("Ford")){
+					river.ford();
 				}
-				if(crossMethods.getText().equals("Caulk")){
-					caulk(river);
+				else{
+					river.caulk();
 				}
+				
+				done = true;
 			}
 		});
 		crossButton.setBounds(21, 231, 231, 34);
@@ -129,77 +126,5 @@ public class RiverScreen extends Composite {
 		lblName = new Label(this, SWT.NONE);
 		lblName.setFont(SWTResourceManager.getFont("Tahoma", 14, SWT.NORMAL));
 		lblName.setBounds(24, 10, 231, 34);
-	}
-	
-	/**
-	 *  Runs the situation where the user chooses to take a ferry
-	 * @param r the river to be crossed
-	 */
-	public void takeFerry(River r) throws InsufficientFundsException
-	{
-		Leader leader = World.getWagon().getLeader();
-		if(leader.getMoney() < r.getCost())
-			throw new InsufficientFundsException();
-		else
-		{
-			leader.setMoney(leader.getMoney()-r.getCost());
-			done = true;
-			World.getWagon().setNotification("You spent some money to cross safely.");
-			System.out.println("FERRY RESULT");
-		}
-	}
-	
-	/**
-	 * Runs the situation where the user chooses to ford the river
-	 * @param r the river to be crossed
-	 */
-	public void ford(River r)
-	{
-		// TODO Take items off the wagon when crossing fails
-		
-		int fordChance = (int)(Math.random()*10 + 1);
-		
-		if(r.getDepth() >= 3 || fordChance > 7){
-			done = true;
-			Food f = World.getWagon().getInventory().getFood();
-			if(f.getNumber() > 25)
-				f.setNumber(f.getNumber()-25);
-			else
-				f.setNumber(0);
-			World.getWagon().setNotification("You forded across the river but lost some food");
-			System.out.println("BAD FORD RESULT");
-		}
-		else{
-			done = true;
-			World.getWagon().setNotification("You successfully ford across the river.");
-			System.out.println("GOOD FORD RESULT");
-		}
-	}
-	
-	/**
-	 * Runs the situation where the user chooses to caulk the wagon
-	 * @param r the river to be crossed
-	 */
-	public void caulk(River r)
-	{
-		// TODO Take items off the wagon when crossing fails
-		
-		int caulkChance = (int)(Math.random()*10 + 1);
-		
-		if(caulkChance > 4){
-			done = true;
-			Food f = World.getWagon().getInventory().getFood();
-			if(f.getNumber() > 25)
-				f.setNumber(f.getNumber()-25);
-			else
-				f.setNumber(0);
-			World.getWagon().setNotification("You crossed the river but lost some food");
-			System.out.println("BAD CAULK RESULT");
-		}
-		else{
-			done = true;
-			World.getWagon().setNotification("You successfully crossed the river by caulking the wagon");
-			System.out.println("GOOD CAULK RESULT");
-		}
 	}
 }
