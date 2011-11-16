@@ -156,7 +156,13 @@ public abstract class Leader implements Person {
 	
 	@Override
 	public String toString(){
-		return name+": health = "+health+", hunger = "+hunger+", thirst = "+thirst;
+		if(isPoisoned){
+			return name+": health= "+health+", hunger= "+hunger+", thirst= "+thirst+", status= poisoned";
+		}
+		if(isSick){
+			return name+": health= "+health+", hunger= "+hunger+", thirst= "+thirst+", status= "+illnessName;
+		}
+		else return name+": health= "+health+", hunger= "+hunger+", thirst= "+thirst;
 	}
 	
 	@Override
