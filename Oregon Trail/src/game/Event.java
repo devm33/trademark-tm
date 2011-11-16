@@ -1,26 +1,30 @@
 package game;
 
 import java.util.Random;
-
 import javax.swing.*;
-
-
 import exceptions.InsufficientFundsException;
-
 import people.Leader;
 import people.Person;
 
-
+/**
+ * This class houses the random events that happen anywhere/everywhere in game
+ * @author Stephen Bentley
+ *
+ */
 public class Event {
 	Random rand;
 	Wagon eventWagon;
-	
+	/**
+	 * Constructor for events
+	 * @param w the wagon that the events will affect
+	 */
 	public Event(Wagon w){
 		this.eventWagon = w;
 		this.rand = new Random();
 	}
-	
-	
+	/**
+	 * The massive event call that should be run every turn to determine if random event happens, and if so, which one.
+	 */
 	public void eventCall(){
 		int r = rand.nextInt(100);
 		int l = rand.nextInt(10);
@@ -60,12 +64,10 @@ public class Event {
 			if(s==3){
 				//System.out.println("measels");
 				this.diseaseMessage("measels");
-
 			}
 			if(s==4){
 				//System.out.println("scurvy");
 				this.diseaseMessage("scurvy");
-
 			}
 		}else if(r<74 && r>72 && b){
 			//System.out.println("snakebite");
@@ -88,13 +90,9 @@ public class Event {
 			this.lightningMessage();
 				//output to popup
 				//eventWagon.setNotification("Your wagon was struck by a random lighting bolt...none survived.");
-			eventWagon.setTotalDeath();
-			
+			eventWagon.setTotalDeath();	
 		}
-		
-		
-		
-		if(r<10 && b){
+		if(r<6 && b){
 			//System.out.println("treasure");
 			int newCash;
 			if(s==0){
@@ -120,9 +118,6 @@ public class Event {
 				//e.printStackTrace();
 			}
 		}
-		
-		
-		
 	}
 	public void lightningMessage(){
 		JOptionPane.showMessageDialog(null, "Your wagon was struck by a random lighting bolt...none survived.");
