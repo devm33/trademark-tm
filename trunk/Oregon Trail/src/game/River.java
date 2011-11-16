@@ -1,5 +1,11 @@
 package game;
 
+import exceptions.InsufficientFundsException;
+import items.Food;
+import people.Leader;
+import java.lang.Math;
+import game.World;
+
 /**
  * Backend for river.
  * @author Jaron
@@ -83,6 +89,66 @@ public class River {
 	public int getCost()
 	{
 		return ferryCost;
+	}
+	
+	/**
+	 *  Runs the situation where the user chooses to take a ferry
+	 */
+	public void takeFerry() throws InsufficientFundsException
+	{
+		Leader leader = World.getWagon().getLeader();
+		if(leader.getMoney() < getCost())
+			throw new InsufficientFundsException();
+		else
+		{
+			leader.setMoney(leader.getMoney()-getCost());
+			World.getWagon().setNotification("You spent some money to cross safely.");
+			System.out.println("FERRY RESULT");
+		}
+	}
+	
+	/**
+	 * Runs the situation where the user chooses to ford the river
+	 */
+	public void ford()
+	{		
+		int fordChance = (int)(Math.random()*10 + 1);
+		
+		if(getDepth() >= 3 || fordChance > 7){
+			Food f = World.getWagon().getInventory().getFood();
+			if(f.getNumber() > 25)
+				f.setNumber(f.getNumber()-25);
+			else
+				f.setNumber(0);
+			World.getWagon().setNotification("You forded across the river but lost some food");
+			System.out.println("BAD FORD RESULT");
+		}
+		else{
+			World.getWagon().setNotification("You successfully ford across the river.");
+			System.out.println("GOOD FORD RESULT");
+		}
+	}
+	
+	/**
+	 * Runs the situation where the user chooses to caulk the wagon
+	 */
+	public void caulk()
+	{		
+		int caulkChance = (int)(Math.random()*10 + 1);
+		
+		if(caulkChance > 4){
+			Food f = World.getWagon().getInventory().getFood();
+			if(f.getNumber() > 25)
+				f.setNumber(f.getNumber()-25);
+			else
+				f.setNumber(0);
+			World.getWagon().setNotification("You crossed the river but lost some food");
+			System.out.println("BAD CAULK RESULT");
+		}
+		else{
+			World.getWagon().setNotification("You successfully crossed the river by caulking the wagon");
+			System.out.println("GOOD CAULK RESULT");
+		}
 	}
 	
 }
