@@ -1,6 +1,10 @@
 package game;
 
+import java.awt.Component;
 import java.util.Random;
+
+import javax.swing.*;
+
 
 import exceptions.InsufficientFundsException;
 
@@ -22,16 +26,16 @@ public class Event {
 		int s = rand.nextInt(5);
 		
 		if(eventWagon.getPace()> 10 && eventWagon.getRations()<=2 ){
-			r+=30;
+			r+=20;
 			if (eventWagon.getRations()<=1){
-				r+=30;
+				r+=10;
 			}
 		}
 		
 		
 		
 		
-		if(r>=74){
+		if(r>=84){
 			System.out.println("disease");
 			if(s==0){
 				System.out.println("dysentery");
@@ -50,7 +54,7 @@ public class Event {
 			}
 		}else if(r<74&&r>70){
 			System.out.println("snakebite");
-		}else if(r<=69&&r>=60){
+		}else if(r<=69&&r>=64){
 			System.out.println("theft");
 			try {
 				eventWagon.getLeader().setMoney(eventWagon.getLeader().getMoney()-50);
@@ -59,19 +63,20 @@ public class Event {
 				// TODO Auto-generated catch block
 				//e.printStackTrace();
 			}
-		}else if(r<60&&r>55){
+		}else if(r<100&&r>55){
 			System.out.println("lightning strike");
 			for (Person p: eventWagon.getPassengers()){
 				p.die();
+				this.lightningMessage();
 				//output to popup
-				eventWagon.setNotification("Your wagon was struck by a random lighting bolt...none survived");
+				//eventWagon.setNotification("Your wagon was struck by a random lighting bolt...none survived.");
 				eventWagon.setTotalDeath();
 			}
 		}
 		
 		
 		
-		if(r<25){
+		if(r<15){
 			System.out.println("treasure");
 			int newCash;
 			if(s==0){
@@ -99,5 +104,10 @@ public class Event {
 		
 		
 		
+	}
+	public void lightningMessage(){
+
+		JOptionPane.showMessageDialog(null, "Your wagon was struck by a random lighting bolt...none survived.");
+
 	}
 }
