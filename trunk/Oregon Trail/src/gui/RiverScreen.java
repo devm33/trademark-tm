@@ -13,7 +13,6 @@ import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.wb.swt.SWTResourceManager;
 import org.eclipse.swt.widgets.Combo;
-import org.eclipse.jface.viewers.ComboViewer;
 
 /**
  * River crossing choice/minigame
@@ -25,7 +24,6 @@ public class RiverScreen extends Composite {
 	private Canvas c;
 	private Label lblCross;
 	private Label lblChoice;
-	private ComboViewer methodViewer;
 	private Combo crossMethods;
 	private Label lblDescription;
 	private Button crossButton;
@@ -94,21 +92,16 @@ public class RiverScreen extends Composite {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
 				
-				
-				River river;
-				try {
-					System.out.println("NEXTS RIVERSSS");
-					river = World.getMap().getNextRiver();
-				} catch (Exception e) {
-					System.out.println("PREVIOUS REIVERSFISIDF");
-					river = World.getMap().getLastRiver();
-				}
+				River river =  World.getMap().getLastRiver();
+				if(river == null)
+					river = World.getMap().getNextRiver(); //backup for the first river
 				
 				if(crossMethods.getText().equals("Take Ferry"))
 				{
 					try
 					{
 						river.takeFerry();
+						done = true;
 					}
 					catch(InsufficientFundsException f)
 					{
@@ -117,12 +110,12 @@ public class RiverScreen extends Composite {
 				}
 				else if(crossMethods.getText().equals("Ford")){
 					river.ford();
+					done = true;
 				}
 				else{
 					river.caulk();
+					done = true;
 				}
-				
-				done = true;
 			}
 		});
 		crossButton.setBounds(21, 231, 231, 34);

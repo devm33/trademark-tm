@@ -1,6 +1,13 @@
 package game;
 
+import items.Item;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Calendar;
+
+import people.Person;
 
 import gui.MainScreen;
 
@@ -71,6 +78,52 @@ public class World {
 		
 		//kill the gui now that we're done
 		mainScreen.disposeDisplay();
+	}
+	
+	/**
+	 * Save the current game
+	 */
+	public static void saveGame() {
+		int i = 0;
+		String filename = "savedgame_";
+		File file = new File(filename + i);
+		FileWriter fw = null;
+		try {
+			while(file.exists() || !file.createNewFile())
+				file = new File(filename + ++i);
+			fw = new FileWriter(file);
+			//leader name
+			fw.write(theWagon.getLeader().getName() + "\n");
+			//date
+			Calendar c = Calendar.getInstance();
+			fw.write(""+c.get(Calendar.MONTH)+"/"+c.get(Calendar.DATE)+"/"+c.get(Calendar.YEAR)+"\n");
+			//	Wagon
+			//distance
+			fw.write(""+theWagon.getDistance()+"\n");
+			//pace
+			fw.write(""+theWagon.getPace()+"\n");
+			//rations
+			fw.write(""+theWagon.getRations()+"\n");
+			//capacity
+			fw.write(""+theWagon.getCapacity()+"\n");
+			//people in wagon
+			for(Person t : theWagon.getPassengers())
+				fw.write(""+t.getName()+'\n'+t.getHealth()+'\n'+t.getHunger()+'\n'+t.getThirst()+"\n");
+			//inventory in wagon
+			for(Item item : theWagon.getInventory().getItemInventory())
+				fw.write(""+item.getName()+"\n"+item.getNumber()+"\n");
+		} catch (IOException e) {
+			System.out.println("problem creating file: " + filename + i);
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Load a saved game
+	 * @param game a string of the saved game
+	 */
+	public static void loadGame(String game) {
+		
 	}
 	
 	/**

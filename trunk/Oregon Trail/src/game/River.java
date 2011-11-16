@@ -151,4 +151,10 @@ public class River {
 		}
 	}
 	
+	/**
+	 * @return String representation of this river
+	 */
+	public String toString() {
+		return name;
+	}
 }
