@@ -183,5 +183,9 @@ public abstract class Leader implements Person {
 	public void trade() {
 		//TODO
 	}
+	@Override
+	public String getSickness() {
+		return this.illnessName;
+	}
 
 }

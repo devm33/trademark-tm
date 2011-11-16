@@ -31,10 +31,15 @@ public interface Person {
 	public int addHealth(int change);
 	
 	/**
-	 * Designate this person as sick. Further implementation details to come.
+	 * Designate this person as sick.
 	 */
 	public void setSickness(String type, String name);
-	
+	/**
+	 * returns the name of the illness
+	 * @return
+	 */
+	public String getSickness();
+		
 	/**
 	 * Kill this person: sets the health to zero and the status to DEAD.
 	 */
