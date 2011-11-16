@@ -20,12 +20,26 @@ public class Traveler implements Person {
 	 * @param name the Traveler's name.
 	 */
 	public Traveler(String name) {
-		health = 100;
-		thirst = 0;
-		hunger = 0;
-		this.name = name;
+		this(100,0,0,name);
 	}
 	
+	
+	/**
+	 * Create a new traveler
+	 * @param health
+	 * @param thirst
+	 * @param hunger
+	 * @param name
+	 */
+	public Traveler(int health, int thirst, int hunger, String name) {
+		this.health = health;
+		this.thirst = thirst;
+		this.hunger = hunger;
+		this.name = name;
+	}
+
+
+
 	@Override
 	public String getName() {
 		return name;

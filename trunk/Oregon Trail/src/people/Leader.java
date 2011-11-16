@@ -18,13 +18,27 @@ public abstract class Leader implements Person {
 	 * @param name the Leader's name
 	 */
 	public Leader(String name) {
-		money = 0;
-		health = 100;
-		thirst = 0;
-		hunger = 0;
-		this.name = name;
+		this(100,0,0,name);
 	}
 	
+	
+	/**
+	 * Create a new leader
+	 * @param health
+	 * @param thirst
+	 * @param hunger
+	 * @param name
+	 */
+	public Leader(int health, int thirst, int hunger, String name) {
+		this.health = health;
+		this.thirst = thirst;
+		this.hunger = hunger;
+		this.name = name;
+		money = 0;
+	}
+
+
+
 	/**
 	 * Method to check Leader's money.
 	 * 
