@@ -17,4 +17,9 @@ public class Banker extends Leader {
 		super(name);
 		money = 1600;
 	}
+	
+	public Banker(int health, int thirst, int hunger, String name) {
+		super(health, thirst, hunger, name);
+		money = 1600;
+	}
 }
