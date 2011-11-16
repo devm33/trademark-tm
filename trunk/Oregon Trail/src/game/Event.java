@@ -21,6 +21,7 @@ public class Event {
 		this.rand = new Random();
 	}
 	
+	
 	public void eventCall(){
 		int r = rand.nextInt(100);
 		int l = rand.nextInt(10);
@@ -34,12 +35,12 @@ public class Event {
 			}
 		}
 		
-		if(l>4&&r<15&&b){
+		if(l>4 && r<15 && b){
 			System.out.println("heal people");
 		}
 		
 		
-		if(r>=95&&l<5&&b){
+		if(r>=90 && l<7 && b){
 			System.out.println("disease");
 			if(s==0){
 				//System.out.println("dysentery");
@@ -65,10 +66,10 @@ public class Event {
 				this.diseaseMessage("scurvy");
 
 			}
-		}else if(r<74&&r>72&&b){
+		}else if(r<74 && r>72 && b){
 			//System.out.println("snakebite");
 			this.snakebiteMessage();
-		}else if(r<=69&&r>=67){
+		}else if(r<=69 && r>=68 && l>6 && b){
 			//System.out.println("theft");
 			try {
 				eventWagon.getLeader().setMoney(eventWagon.getLeader().getMoney()-((s+1)*10));
@@ -92,8 +93,8 @@ public class Event {
 		
 		
 		
-		if(r<5&&b){
-			System.out.println("treasure");
+		if(r<10 && b){
+			//System.out.println("treasure");
 			int newCash;
 			if(s==0){
 				newCash = 10;
@@ -110,6 +111,7 @@ public class Event {
 			else{
 				newCash = 50;
 			}
+			this.treasureMessage((s+1)*10);
 			try {
 				eventWagon.getLeader().addMoney(newCash);
 			} catch (InsufficientFundsException e) {
@@ -132,6 +134,9 @@ public class Event {
 		JOptionPane.showMessageDialog(null, "(Traveler/Leader) was bitten by a snake and is sick from the venom.");
 	}
 	public void theftMessage(int d){
+		JOptionPane.showMessageDialog(null, "You were robbed of $"+d+".00");
+	}
+	public void treasureMessage(int d){
 		JOptionPane.showMessageDialog(null, "You were robbed of $"+d+".00");
 	}
 }
