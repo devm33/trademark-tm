@@ -89,22 +89,7 @@ public class Event {
 		}
 		if(r<6 && b){
 			//System.out.println("treasure");
-			int newCash;
-			if(s==0){
-				newCash = 10;
-			}
-			if(s==1){
-				newCash = 20;
-			}
-			if(s==2){
-				newCash = 30;
-			}
-			if(s==3){
-				newCash = 40;
-			}
-			else{
-				newCash = 50;
-			}
+			int newCash = (s+1)*10;
 			this.treasureMessage((s+1)*10);
 			try {
 				eventWagon.getLeader().addMoney(newCash);
