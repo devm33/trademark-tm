@@ -11,10 +11,14 @@ stephen    5. If an event happens, the appropriate action should be taken.
 
 
 Bugs:
+    1. New game button crashes
+    2. Quit game button crashes
     3. Implement conditional update (currently everything updates constantly)
     4. IMPLEMENT OXENS
     5. IMPLEMENT INN REPLENISHES THIRST AND HEALTH
     6. also ferry crashes (around 1470 mi)
+    7. Pre config screen is needed or someway of loading before starting
+    8. problems with killing people, why are they so healthy?
 
 Complete following Screens:
 1. FieldScreen
