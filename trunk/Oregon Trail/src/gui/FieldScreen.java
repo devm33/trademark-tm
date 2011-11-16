@@ -355,7 +355,7 @@ public class FieldScreen extends Composite {
 		
 		paceDescript = new Label(this, SWT.WRAP);
 		paceDescript.setFont(SWTResourceManager.getFont("Segoe UI", 7, SWT.NORMAL));
-		paceDescript.setBounds(165, 249, 273, 26);
+		paceDescript.setBounds(163, 249, 275, 26);
 		
 		lblNotify = new Label(this, SWT.BORDER | SWT.WRAP | SWT.SHADOW_NONE);
 		lblNotify.setAlignment(SWT.CENTER);
