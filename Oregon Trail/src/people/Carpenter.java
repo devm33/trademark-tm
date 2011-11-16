@@ -17,4 +17,9 @@ public class Carpenter extends Leader {
 		super(name);
 		money = 800;
 	}
+	
+	public Carpenter(int health, int thirst, int hunger, String name) {
+		super(health, thirst, hunger, name);
+		money = 800;
+	}
 }
