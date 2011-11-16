@@ -142,7 +142,9 @@ public abstract class Leader implements Person {
 			return; //I ain't living.
 		if(isSick)
 			health -= 5;
-		if(isPoisoned)
+		if(isPoisoned && poisonType.equals("poison"))
+			health -= 5;
+		if(isPoisoned && poisonType.equals("venom"))
 			health -= 10;
 		if(health <= 0)
 			die();
@@ -190,6 +192,14 @@ public abstract class Leader implements Person {
 			this.isPoisoned = true;
 			this.poisonType = name;
 		}
+	}
+	@Override
+	public void setHealed() {
+		this.isPoisoned = false;
+		this.isSick = false;
+		this.illnessName = null;
+		this.poisonType = null;
+		
 	}
 	
 	public void trade() {

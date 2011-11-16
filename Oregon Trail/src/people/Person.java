@@ -29,17 +29,21 @@ public interface Person {
 	 * @return integer representing person's current health.
 	 */
 	public int addHealth(int change);
-	
 	/**
-	 * Designate this person as sick.
+	 * designates this person as sick
+	 * @param type the type of sickness
+	 * @param name the name of the sickness
 	 */
 	public void setSickness(String type, String name);
 	/**
 	 * returns the name of the illness
-	 * @return
+	 * @return the string name of the sickness
 	 */
 	public String getSickness();
-		
+	/**
+	 * resets this person's health status
+	 */
+	public void setHealed();	
 	/**
 	 * Kill this person: sets the health to zero and the status to DEAD.
 	 */

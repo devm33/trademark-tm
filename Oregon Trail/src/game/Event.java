@@ -42,7 +42,10 @@ public class Event {
 			}
 		}
 		if(l>4 && r<15 && b){
-			System.out.println("heal people");
+			//System.out.println("heal people");
+			for (Person h: eventWagon.getPassengers()){
+				h.setHealed();
+			}
 		}
 		if(r>=90 && l>3 && b){
 			System.out.println("disease");
