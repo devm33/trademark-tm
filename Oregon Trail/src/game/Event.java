@@ -27,6 +27,8 @@ public class Event {
 		int s = rand.nextInt(5);
 		boolean b = rand.nextBoolean();
 		
+		int ep = rand.nextInt(5);//for use determining who gets sick/bitten
+		
 		if(eventWagon.getPace()> 10 && eventWagon.getRations()<=2 ){
 			r+=20;
 			if (eventWagon.getRations()<=1){
