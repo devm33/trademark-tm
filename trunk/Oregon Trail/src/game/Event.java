@@ -35,7 +35,7 @@ public class Event {
 		
 		
 		
-		if(r>=84){
+		if(r>=90){
 			System.out.println("disease");
 			if(s==0){
 				System.out.println("dysentery");
@@ -52,9 +52,9 @@ public class Event {
 			if(s==4){
 				System.out.println("scurvy");
 			}
-		}else if(r<74&&r>70){
+		}else if(r<74&&r>72){
 			System.out.println("snakebite");
-		}else if(r<=69&&r>=64){
+		}else if(r<=69&&r>=66){
 			System.out.println("theft");
 			try {
 				eventWagon.getLeader().setMoney(eventWagon.getLeader().getMoney()-50);
@@ -63,20 +63,21 @@ public class Event {
 				// TODO Auto-generated catch block
 				//e.printStackTrace();
 			}
-		}else if(r<100&&r>55){
+		}else if(r<60&&r>57){
 			System.out.println("lightning strike");
 			for (Person p: eventWagon.getPassengers()){
 				p.die();
-				this.lightningMessage();
+			}
+			this.lightningMessage();
 				//output to popup
 				//eventWagon.setNotification("Your wagon was struck by a random lighting bolt...none survived.");
-				eventWagon.setTotalDeath();
-			}
+			eventWagon.setTotalDeath();
+			
 		}
 		
 		
 		
-		if(r<15){
+		if(r<5){
 			System.out.println("treasure");
 			int newCash;
 			if(s==0){
