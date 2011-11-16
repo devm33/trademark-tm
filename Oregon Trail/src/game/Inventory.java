@@ -153,13 +153,25 @@ public class Inventory {
 	public boolean contains(Item i) {
 		// TODO Auto-generated method stub
 		for (int x=0; x<length; x++){
-			if (itemInventory[x].getName()==i.getName()){
+			if (itemInventory[x].getName().equals(i.getName())){
 				return true;
 			}
 			
 		}
 		return false;
 	}
+	/**
+	 * Finds an item based on its name and returns it.
+	 * @param name the name of the item to get
+	 * @return the item or null if not found
+	 */
+	public Item getItemByName(String name) {
+		for(int x = 0; x < length; x++)
+			if(itemInventory[x].getName().equals(name))
+				return itemInventory[x];
+		return null;
+	}
+	
 	/**
 	 * Returns the Food object in the Inventory if it exists, if not returns null
 	 * @return Food or null depending on the presence of a Food object in inventory
