@@ -64,6 +64,30 @@ public class Wagon {
 	}
 	
 	/**
+	 * Constructor for saved games.
+	 * @param pace
+	 * @param rations
+	 * @param capacity
+	 * @param leader
+	 * @param members
+	 * @param distance
+	 * @param inventory
+	 */
+	public Wagon(int pace, int rations, int capacity,
+			Leader leader, List<Traveler> members, int distance, Inventory inventory) {
+		this.pace = pace;
+		this.rations = rations;
+		this.capacity = capacity;
+		this.leader = leader;
+		this.members = members;
+		this.distance = distance;
+		this.inventory = inventory;
+		totalWeight = 0;
+		for(Item i : inventory.getItemInventory())
+			totalWeight += i.getWeight();
+	}
+	
+	/**
 	 * set a new leader
 	 * @param l the new leader object
 	 */
