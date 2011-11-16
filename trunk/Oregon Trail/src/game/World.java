@@ -13,6 +13,8 @@ import gui.MainScreen;
  */
 public class World {
 	
+	private static Event wagonEvent; //the random events that affect the user and wagon
+	
 	private static Wagon theWagon; //the user's wagon class containing the leader, travellers, inventory, etc.
 	
 	private Town currentTown; //the next town coming up or the one that we're currently in
@@ -40,6 +42,7 @@ public class World {
 		
 		//initialize first town and store as well as a wagon to be passed to 
 		theWagon = new Wagon();
+		wagonEvent = new Event(theWagon);
 		theMap = new Map();
 		//start off in a town
 		currentTown = new Town();
@@ -84,6 +87,10 @@ public class World {
 	 */
 	public static Wagon getWagon(){
 		return theWagon;
+	}
+	
+	public static Event getEvent(){
+		return wagonEvent;
 	}
 	
 	/**
