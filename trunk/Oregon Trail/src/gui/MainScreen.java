@@ -1,6 +1,9 @@
 package gui;
 
+import java.io.IOException;
+
 import items.Food;
+import exceptions.InsufficientFundsException;
 import exceptions.WeightCapacityExceededException;
 import game.Town;
 import game.Wagon;
@@ -35,7 +38,6 @@ public class MainScreen {
 	private static boolean Townstate = true;
 
 	
-	private Wagon wagon;
 	private Display display;
 	private Shell shell;
 	private Image icon;
@@ -78,7 +80,6 @@ public class MainScreen {
 	 * start the game
 	 */
 	private void initialize(){
-		wagon = World.getWagon();
 
 		createContents();		
 		shell.open();
@@ -106,8 +107,6 @@ public class MainScreen {
 			updateMap();
 			updateDate();
 			
-			refresh();
-			
 			continueConfig();
 			continueTown();
 			continueInn();
@@ -121,7 +120,11 @@ public class MainScreen {
 			continueWin();
 			continueLose();
 			continueNew();
+			
+			refresh();
+
 			continueLoad();
+
 		}	
 		return !shell.isDisposed();
 	}
@@ -138,6 +141,7 @@ public class MainScreen {
 			btnSaveGame.setEnabled(true);
 			config.resetDone();
 			screenTransition(config, town);
+			Townstate = true;
 			currentScreen = screen.TOWN;
 			field.update();
 		}
@@ -210,8 +214,8 @@ public class MainScreen {
 			screenTransition(field,river);
 			currentScreen = screen.RIVER;
 		}
-		if (wagon.getLose()){
-			wagon.resetLose();
+		if (World.getWagon().getLose()){
+			World.getWagon().resetLose();
 			screenTransition(field,loseView);
 			disableButtons();
 			currentScreen = screen.CONFIG;
@@ -288,7 +292,17 @@ public class MainScreen {
 		switch(winView.getChoice()){
 		case 1:
 			winView.resetChoice();
-
+			currentScreen = screen.NEW;
+			try {
+				World.getWagon().getLeader().setMoney(0);
+			} catch (InsufficientFundsException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			World.getWagon().setDistance(0);
+			World.restartGame();
+			Townstate = true;
+			screenTransition(winView,newView);
 			break;
 		case 2:
 			quitGame();
@@ -302,7 +316,17 @@ public class MainScreen {
 		switch(loseView.getChoice()){
 		case 1:
 			loseView.resetChoice();
-
+			currentScreen = screen.NEW;
+			try {
+				World.getWagon().getLeader().setMoney(0);
+			} catch (InsufficientFundsException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			World.getWagon().setDistance(0);
+			World.restartGame();
+			Townstate = true;
+			screenTransition(loseView,newView);
 			break;
 		case 2:
 			quitGame();
@@ -466,6 +490,12 @@ public class MainScreen {
 	private Composite getCurrentComposite(){
 		Composite comp;
 		switch(currentScreen){
+		case NEW:
+			comp = newView;
+			break;
+		case LOAD:
+			comp = load;
+			break;
 		case CONFIG:
 			comp = config;
 			break;
@@ -486,6 +516,12 @@ public class MainScreen {
 			break;
 		case RIVER:
 			comp = river;
+			break;
+		case WIN:
+			comp = winView;
+			break;
+		case LOSE:
+			comp = loseView;
 			break;
 		default:
 			comp = config;
