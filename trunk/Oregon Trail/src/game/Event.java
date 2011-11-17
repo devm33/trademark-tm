@@ -52,30 +52,35 @@ public class Event {
 		}
 		if(r>=90 && l>3 && b){
 			//System.out.println("disease");
-			if(s==0){
-				//System.out.println("dysentery");
-				eventWagon.getPassengers().get(ep).setSickness("disease", "dysentery");
-				this.diseaseMessage("dysentery", eventWagon.getPassengers().get(ep).getName());
+			if(eventWagon.getPassengers().get(ep).getStatus().equals("SICK")||eventWagon.getPassengers().get(ep).getStatus().equals("DEAD")||eventWagon.getPassengers().get(ep).getStatus().equals("POISONED")){
+
 			}
-			if(s==1){
-				//System.out.println("typhoid");
-				eventWagon.getPassengers().get(ep).setSickness("disease", "typhoid");
-				this.diseaseMessage("typhoid", eventWagon.getPassengers().get(ep).getName());
-			}
-			if(s==2){
-				//System.out.println("scarlet fever");
-				eventWagon.getPassengers().get(ep).setSickness("disease", "scarlet fever");
-				this.diseaseMessage("scarlet fever", eventWagon.getPassengers().get(ep).getName());
-			}
-			if(s==3){
-				//System.out.println("measels");
-				eventWagon.getPassengers().get(ep).setSickness("disease", "measels");
-				this.diseaseMessage("measels", eventWagon.getPassengers().get(ep).getName());
-			}
-			if(s==4){
-				//System.out.println("scurvy");
-				eventWagon.getPassengers().get(ep).setSickness("disease", "scurvy");
-				this.diseaseMessage("scurvy", eventWagon.getPassengers().get(ep).getName());
+			else{
+				if(s==0){
+					//System.out.println("dysentery");
+					eventWagon.getPassengers().get(ep).setSickness("disease", "dysentery");
+					this.diseaseMessage("dysentery", eventWagon.getPassengers().get(ep).getName());
+				}
+				if(s==1){
+					//System.out.println("typhoid");
+					eventWagon.getPassengers().get(ep).setSickness("disease", "typhoid");
+					this.diseaseMessage("typhoid", eventWagon.getPassengers().get(ep).getName());
+				}
+				if(s==2){
+					//System.out.println("scarlet fever");
+					eventWagon.getPassengers().get(ep).setSickness("disease", "scarlet fever");
+					this.diseaseMessage("scarlet fever", eventWagon.getPassengers().get(ep).getName());
+				}
+				if(s==3){
+					//System.out.println("measels");
+					eventWagon.getPassengers().get(ep).setSickness("disease", "measels");
+					this.diseaseMessage("measels", eventWagon.getPassengers().get(ep).getName());
+				}
+				if(s==4){
+					//System.out.println("scurvy");
+					eventWagon.getPassengers().get(ep).setSickness("disease", "scurvy");
+					this.diseaseMessage("scurvy", eventWagon.getPassengers().get(ep).getName());
+				}
 			}
 		}else if(r==73 && l>4 && b){
 			//System.out.println("snakebite");

@@ -176,6 +176,26 @@ public abstract class Leader implements Person {
 	@Override
 	public String getStatus() {
 		//TODO
+		if(isPoisoned){
+			return "POISONED";
+		}
+		if(isSick){
+			return "SICK";
+		}
+		if(isPoisoned){
+			return "POISONED";
+		}
+		if(health==0){
+			return "DEAD";
+		}
+		if(thirst>=50 && hunger>=50){
+			return "THIRSTY"+" "+"HUNGRY";
+		}
+		if(thirst>=50){
+			return "THIRSTY";
+		}if(hunger>=50){
+			return "HUNGRY";
+		}
 		return null;
 	}
 	
