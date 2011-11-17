@@ -5,6 +5,7 @@ import items.Item;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.management.ManagementFactory;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -44,6 +45,7 @@ public class World {
 	}
 	
 	public World() {
+
 		initializeGame();
 		
 		//start main game loop
@@ -83,8 +85,30 @@ public class World {
 		mainScreen = new MainScreen();
 		
 		//set the first store as the first store for the store screen
-		mainScreen.setTownAndStore(currentTown);
+		mainScreen.setTownAndStore(currentTown);	
+	}
+
+	public static void restartGame(){
+		//set initial date and days
+		calendar = Calendar.getInstance();
+		calendar.set(1848, 5, 1);
+		days = 1;
 		
+		//initialize first town and store as well as a wagon to be passed to 
+		theWagon.setCapacity(3500);
+		theWagon.setDistance(0);
+		theWagon.setTotalWeight(0);
+		theWagon.resetInventory();
+		wagonEvent = new Event(theWagon);
+		theMap = new Map();
+		//start off in a town
+		currentTown = new Town();
+		
+		//initialize the main gui
+		//mainScreen = new MainScreen();
+		
+		//set the first store as the first store for the store screen
+		mainScreen.setTownAndStore(currentTown);	
 	}
 	
 	/**
