@@ -52,8 +52,9 @@ public class Event {
 		}
 		if(r>=90 && l>3 && b){
 			//System.out.println("disease");
+			
 			if(eventWagon.getPassengers().get(ep).getStatus().equals("SICK")||eventWagon.getPassengers().get(ep).getStatus().equals("DEAD")||eventWagon.getPassengers().get(ep).getStatus().equals("POISONED")){
-
+					//do nothing if person is already sick, dead, or poisoned.
 			}
 			else{
 				if(s==0){
@@ -84,12 +85,22 @@ public class Event {
 			}
 		}else if(r==73 && l>4 && b){
 			//System.out.println("snakebite");
-			eventWagon.getPassengers().get(ep).setSickness("poison", "venom");
-			this.snakebiteMessage(eventWagon.getPassengers().get(ep).getName());
+			if(eventWagon.getPassengers().get(ep).getStatus().equals("SICK")||eventWagon.getPassengers().get(ep).getStatus().equals("DEAD")||eventWagon.getPassengers().get(ep).getStatus().equals("POISONED")){
+				//do nothing if person is already sick, dead, or poisoned.
+			}
+			else{
+				eventWagon.getPassengers().get(ep).setSickness("poison", "venom");
+				this.snakebiteMessage(eventWagon.getPassengers().get(ep).getName());
+			}
 		}else if(r==72 && l>4 && b){
 			//System.out.println("poison");
-			this.poisonMessage(eventWagon.getPassengers().get(ep).getName());
-			eventWagon.getPassengers().get(ep).setSickness("poison", "poison");
+			if(eventWagon.getPassengers().get(ep).getStatus().equals("SICK")||eventWagon.getPassengers().get(ep).getStatus().equals("DEAD")||eventWagon.getPassengers().get(ep).getStatus().equals("POISONED")){
+				//do nothing if person is already sick, dead, or poisoned.
+			}
+			else{
+				this.poisonMessage(eventWagon.getPassengers().get(ep).getName());
+				eventWagon.getPassengers().get(ep).setSickness("poison", "poison");
+			}
 		}else if(r==68 && l>7 && b){
 			//System.out.println("theft");
 			try {

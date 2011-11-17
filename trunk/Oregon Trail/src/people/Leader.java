@@ -182,9 +182,6 @@ public abstract class Leader implements Person {
 		if(isSick){
 			return "SICK";
 		}
-		if(isPoisoned){
-			return "POISONED";
-		}
 		if(health==0){
 			return "DEAD";
 		}
@@ -193,10 +190,13 @@ public abstract class Leader implements Person {
 		}
 		if(thirst>=50){
 			return "THIRSTY";
-		}if(hunger>=50){
+		}
+		if(hunger>=50){
 			return "HUNGRY";
 		}
-		return null;
+		else{
+			return "HEALTHY";
+		}
 	}
 	
 	public void hunt() {
