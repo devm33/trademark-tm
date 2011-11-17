@@ -165,6 +165,14 @@ public class Wagon {
 	}
 	
 	/**
+	 * setter for distance
+	 * @param d
+	 */
+	public void setDistance(int d){
+		distance = d;
+	}
+	
+	/**
 	 * gets the current distance from previous town to next town
 	 * @return the distance to next town from previous town
 	 */
@@ -315,6 +323,20 @@ public class Wagon {
 		return totalWeight;
 	}
 	
+	/**
+	 * setter for total weight
+	 * @param w
+	 */
+	public void setTotalWeight(int w){
+		totalWeight = w;
+	}
+	
+	/**
+	 * reset wagon inventory
+	 */
+	public void resetInventory(){
+		inventory = new Inventory();
+	}
 	/**
 	 * check lose boolean
 	 * @return
