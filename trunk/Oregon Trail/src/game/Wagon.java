@@ -209,7 +209,13 @@ public class Wagon {
 	}
 	
 	/**
-	 * 
+	 * Get the list of travelers in this wagon
+	 */
+	public List<Traveler> getMembers() {
+		return members;
+	}
+	
+	/**
 	 * @return the Wagon's inventory in a list of Items.
 	 */
 	public Inventory getInventory() {
@@ -300,6 +306,9 @@ public class Wagon {
 	 */
 	public String toString(){
 		String str = "";
+		str += "dist: "+distance;
+		str += ", pace: "+pace;
+		str += ", rations: "+rations+" ";
 		str += leader;
 		for(Traveler t : members)
 			str += ", " + t;
