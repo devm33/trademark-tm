@@ -51,7 +51,7 @@ public class Event {
 			}
 		}
 		if(r>=90 && l>3 && b){
-			System.out.println("disease");
+			//System.out.println("disease");
 			if(s==0){
 				//System.out.println("dysentery");
 				eventWagon.getPassengers().get(ep).setSickness("disease", "dysentery");
