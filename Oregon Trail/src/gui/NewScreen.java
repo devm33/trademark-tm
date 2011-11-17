@@ -5,15 +5,20 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.SWT;
 import org.eclipse.wb.swt.SWTResourceManager;
 import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.events.PaintEvent;
+import org.eclipse.swt.events.PaintListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.widgets.Canvas;
 
 public class NewScreen extends Composite {
 	private int choice = 0;
-	private Label lbl1;
 	private Button btnNew;
 	private Button btnLoad;
 	private Button btnQuit;
+	private Canvas canvas;
+	private Image image;
 	
 	/**
 	 * Create the composite.
@@ -48,11 +53,6 @@ public class NewScreen extends Composite {
 	}
 	
 	private void createContents(){
-		lbl1 = new Label(this, SWT.NONE);
-		lbl1.setFont(SWTResourceManager.getFont("Segoe UI", 27, SWT.BOLD));
-		lbl1.setAlignment(SWT.CENTER);
-		lbl1.setBounds(110, 41, 229, 63);
-		lbl1.setText("Oregon Trail");
 		
 		btnNew = new Button(this, SWT.NONE);
 		btnNew.addSelectionListener(new SelectionAdapter() {
@@ -61,7 +61,7 @@ public class NewScreen extends Composite {
 				choice = 1;
 			}
 		});
-		btnNew.setBounds(131, 110, 194, 25);
+		btnNew.setBounds(20, 260, 158, 25);
 		btnNew.setText("New Game");
 		
 		btnLoad = new Button(this, SWT.NONE);
@@ -71,7 +71,7 @@ public class NewScreen extends Composite {
 				choice = 2;
 			}
 		});
-		btnLoad.setBounds(131, 160, 194, 25);
+		btnLoad.setBounds(184, 260, 158, 25);
 		btnLoad.setText("Load Game");
 		
 		btnQuit = new Button(this, SWT.NONE);
@@ -81,7 +81,16 @@ public class NewScreen extends Composite {
 				choice = 3;
 			}
 		});
-		btnQuit.setBounds(194, 208, 75, 25);
+		btnQuit.setBounds(348, 260, 92, 25);
 		btnQuit.setText("Quit Game");
+		
+		canvas = new Canvas(this, SWT.NONE);
+		canvas.setBounds(10, 10, 430, 244);
+		image = new Image(getDisplay(),getClass().getResourceAsStream("images/title.jpg"));
+		canvas.addPaintListener(new PaintListener() {
+	        public void paintControl(PaintEvent e) {
+	         e.gc.drawImage(image,0,0);
+	        }
+	    });
 	}
 }
