@@ -113,19 +113,19 @@ public class WagonScreen extends Composite {
 		
 		traveler0 = new Label(this, SWT.NONE);
 		traveler0.setFont(SWTResourceManager.getFont("Segoe UI", 12, SWT.NORMAL));
-		traveler0.setBounds(43, 154, 360, 24);
+		traveler0.setBounds(10, 154, 430, 24);
 		
 		traveler1 = new Label(this, SWT.NONE);
 		traveler1.setFont(SWTResourceManager.getFont("Segoe UI", 12, SWT.NORMAL));
-		traveler1.setBounds(43, 193, 360, 24);
+		traveler1.setBounds(10, 193, 430, 24);
 		
 		traveler2 = new Label(this, SWT.NONE);
 		traveler2.setFont(SWTResourceManager.getFont("Segoe UI", 12, SWT.NORMAL));
-		traveler2.setBounds(43, 232, 360, 24);
+		traveler2.setBounds(10, 232, 430, 24);
 		
 		traveler3 = new Label(this, SWT.NONE);
 		traveler3.setFont(SWTResourceManager.getFont("Segoe UI", 12, SWT.NORMAL));
-		traveler3.setBounds(43, 271, 360, 24);
+		traveler3.setBounds(10, 271, 430, 24);
 		
 		lblWagon = new Label(this, SWT.NONE);
 		lblWagon.setAlignment(SWT.CENTER);
