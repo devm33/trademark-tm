@@ -27,6 +27,8 @@ import org.eclipse.swt.events.SelectionEvent;
 
 public class LoadScreen extends Composite {
 	
+	private boolean done;
+	private boolean goBack;
 	private List list;
 	private Button load;
 	private Button back;
@@ -34,24 +36,26 @@ public class LoadScreen extends Composite {
 	
 	public LoadScreen(Composite parent, int style) {
 		super(parent, style);
+		goBack = false;
+		done = false;
 		games = new ArrayList<String>();
 		createContents();
-		update();
 		
 		load.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
-				load(list.getSelectionIndex());
+				if(load(list.getSelectionIndex()))
+					done = true;
 			}
 		});
 		
 		back.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
-				//TODO somehow go back here
+				goBack = true;
+				done = true;
 			}
 		});
-		
 	}
 	
 	/**
@@ -63,6 +67,8 @@ public class LoadScreen extends Composite {
 	 * ...
 	 */
 	public void update() {
+		done = false;
+		goBack = false;
 		int i = 0;
 		String filename = "src/game/savedgames/savedgame_";
 		ArrayList<String> items = new ArrayList<String>();
@@ -72,7 +78,8 @@ public class LoadScreen extends Composite {
 		while(file != null && file.exists()) {
 			try {
 				scan = new Scanner(file);
-				t += scan.nextLine() + '\t' + scan.nextLine();
+				t += scan.nextLine() + "      " + scan.nextLine();
+				items.add(t);
 				t = "";
 				while(scan.hasNextLine())
 					t += scan.nextLine() + '\n';
@@ -85,14 +92,22 @@ public class LoadScreen extends Composite {
 				System.out.println("Invalid game file: " + filename + i);
 			}
 		}
-		//TODO this line causes errors
-		list.setItems((String[])items.toArray());
+		if(!items.isEmpty()) {
+			String[] arr = new String[items.size()];
+			i = 0;
+			for(String s : items)
+				arr[i++] = s;
+			System.out.println(items.size() + " saved game" + ((items.size()==1)?"":"s"));
+			for(String s : arr)
+				System.out.println(s);
+			list.setItems(arr);
+		}
+		load.setEnabled(!items.isEmpty());
+			
 	}
 	
-	public void load(int i) {
-		if(i < 0 || i > games.size())
-			return;
-		World.loadGame(games.get(i));
+	public boolean load(int i) {
+		return i >= 0 && i < games.size() && World.loadGame(games.get(i));
 	}
 	
 	/**
@@ -104,7 +119,7 @@ public class LoadScreen extends Composite {
 		lbl1.setBounds(27, 23, 132, 18);
 		lbl1.setText("Saved Games:");
 		
-		List list = new List(this, SWT.BORDER);
+		list = new List(this, SWT.BORDER);
 		list.setBounds(27, 57, 351, 174);
 		
 		load = new Button(this, SWT.NONE);
@@ -116,5 +131,27 @@ public class LoadScreen extends Composite {
 		back.setBounds(294,248,84,28);
 		back.setText("Back");
 		back.setEnabled(true);
+	}
+	
+	/**
+	 * @return true if the load screen is done
+	 */
+	public boolean isDone() {
+		return done;
+	}
+	
+	/**
+	 * @return true if the load screen was nixed and back button was pressed
+	 */
+	public boolean goBack() {
+		return goBack;
+	}
+	
+	/**
+	 * resets the booleans keeping track of the loadscreen's state
+	 */
+	public void resetBools() {
+		goBack = false;
+		done = false;
 	}
 }
