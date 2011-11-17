@@ -77,10 +77,10 @@ public class WinScreen extends Composite {
 		
 		btnNewGame = new Button(this, SWT.NONE);
 		btnNewGame.setBounds(71, 180, 75, 25);
-		btnNewGame.setText("New Game");
+		btnNewGame.setText("Main Menu");
 		
 		btnQuitGame = new Button(this, SWT.NONE);
 		btnQuitGame.setBounds(258, 180, 75, 25);
-		btnQuitGame.setText("Quit Game");
+		btnQuitGame.setText("Quit");
 	}
 }

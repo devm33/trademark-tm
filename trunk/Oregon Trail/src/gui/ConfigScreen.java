@@ -49,7 +49,6 @@ public class ConfigScreen extends Composite{
 	private Traveler party2;
 	private Traveler party3;
 	private Traveler party4;
-	private Wagon wagon;
 	private List<Traveler> memberList;
 
 	/**
@@ -61,7 +60,6 @@ public class ConfigScreen extends Composite{
 	 */
 	public ConfigScreen(Composite parent, int style) {
 		super(parent, style);
-		wagon = World.getWagon();
 		
 		createContents();
 
@@ -146,8 +144,8 @@ public class ConfigScreen extends Composite{
 		memberList.add(party4);
 
 		//add the people to the wagon
-		wagon.setMembers(memberList);
-		wagon.setLeader(partyLeader);
+		World.getWagon().setMembers(memberList);
+		World.getWagon().setLeader(partyLeader);
 	}
 	
 	/**
@@ -155,11 +153,11 @@ public class ConfigScreen extends Composite{
 	 */
 	private void setPace(){
 		if(dropPace.getText().equals("Leisurely")){
-			wagon.setPace(5);
+			World.getWagon().setPace(5);
 		} else if(dropPace.getText().equals("Steady")){
-			wagon.setPace(10);
+			World.getWagon().setPace(10);
 		} else {
-			wagon.setPace(15);
+			World.getWagon().setPace(15);
 		}
 	}
 	
@@ -168,13 +166,13 @@ public class ConfigScreen extends Composite{
 	 */
 	private void setRations(){
 		if(dropRations.getText().equals("Bare-Bones")){
-			wagon.setRations(1);
+			World.getWagon().setRations(1);
 		} else if(dropRations.getText().equals("Meager")){
-			wagon.setRations(2);
+			World.getWagon().setRations(2);
 		} else if(dropRations.getText().equals("Normal")){
-			wagon.setRations(3);
+			World.getWagon().setRations(3);
 		} else {
-			wagon.setRations(4);
+			World.getWagon().setRations(4);
 		}
 	}
 	
