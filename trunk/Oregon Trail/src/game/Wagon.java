@@ -196,7 +196,6 @@ public class Wagon {
 	public List<Person> getPassengers() {
 		List<Person> l = new ArrayList<Person>();
 		l.add(leader);
-		System.out.println(members);
 		l.addAll(members);
 		return l;
 	}
