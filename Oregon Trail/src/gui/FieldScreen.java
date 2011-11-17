@@ -38,7 +38,6 @@ public class FieldScreen extends Composite {
 	private Label lblDistance;
 	private Label lblNotify;
 	
-	private static Wagon wagon;
 	private Image image;
 	private Canvas canvas;
 	
@@ -50,8 +49,6 @@ public class FieldScreen extends Composite {
 	public FieldScreen(Composite parent, int style) {
 		super(parent, style);
 		
-		wagon = World.getWagon();
-		
 		createContents();
 		
 		//logic for Take Turn button
@@ -60,9 +57,9 @@ public class FieldScreen extends Composite {
 			public void widgetSelected(SelectionEvent arg0) {
 
 				World.getEvent().eventCall();
-				wagon.takeStep();
+				World.getWagon().takeStep();
 				update();
-				System.out.println(wagon.getDistance());
+				System.out.println(World.getWagon().getDistance());
 				
 				//check if we're in oregon or has reached a river or town
 				if(World.getWagon().getDistance() >= 1909) {
@@ -92,9 +89,9 @@ public class FieldScreen extends Composite {
 					System.out.println("wtf happened? \n crashing from confusion.");
 					System.exit(1);
 				}
-				if(cur_rations != wagon.getRations()) {
-					wagon.setRations(cur_rations);
-					rationsDescript.setText(rationsDescript(wagon.getRations()));
+				if(cur_rations != World.getWagon().getRations()) {
+					World.getWagon().setRations(cur_rations);
+					rationsDescript.setText(rationsDescript(World.getWagon().getRations()));
 				}
 			}
 		});
@@ -108,9 +105,9 @@ public class FieldScreen extends Composite {
 					System.out.println("wtf happened? \n crashing from confusion.");
 					System.exit(1);
 				}
-				if(cur_pace != wagon.getPace()) {
-					wagon.setPace(cur_pace);
-					paceDescript.setText(paceDescript(wagon.getPace()));
+				if(cur_pace != World.getWagon().getPace()) {
+					World.getWagon().setPace(cur_pace);
+					paceDescript.setText(paceDescript(World.getWagon().getPace()));
 				}
 			}
 		});
@@ -294,15 +291,15 @@ public class FieldScreen extends Composite {
 	 * in configuration screen
 	 */
 	public void update(){
-		dropRations.setText(rations(wagon.getRations()));
+		dropRations.setText(rations(World.getWagon().getRations()));
 		
-		dropPace.setText(pace(wagon.getPace()));
+		dropPace.setText(pace(World.getWagon().getPace()));
 		
-		rationsDescript.setText(rationsDescript(wagon.getRations()));
+		rationsDescript.setText(rationsDescript(World.getWagon().getRations()));
 		
-		paceDescript.setText(paceDescript(wagon.getPace()));
+		paceDescript.setText(paceDescript(World.getWagon().getPace()));
 		
-		lblDistance.setText("" + wagon.getDistance());
+		lblDistance.setText("" + World.getWagon().getDistance());
 	}
 	
 	/**

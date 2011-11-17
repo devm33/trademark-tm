@@ -71,11 +71,11 @@ public class LoseScreen extends Composite {
 		
 		btnNewGame = new Button(this, SWT.NONE);
 		btnNewGame.setBounds(68, 247, 75, 25);
-		btnNewGame.setText("New Game");
+		btnNewGame.setText("Main Menu");
 		
 		btnQuitGame = new Button(this, SWT.NONE);
 		btnQuitGame.setEnabled(true);
 		btnQuitGame.setBounds(294, 247, 75, 25);
-		btnQuitGame.setText("Quit Game");
+		btnQuitGame.setText("Quit");
 	}
 }
