@@ -122,7 +122,7 @@ public class Event {
 		if(System.getProperty("os.name").equals("Mac OS X"))
 			System.out.println(str);
 		else
-			JOptionPane.showMessageDialog(null,str);
+			JOptionPane.showMessageDialog(null,str); //the lack of a parent component is what causes problems here (on mac at least)
 	}
 	/**
 	 * this message is triggered by a lightning strike

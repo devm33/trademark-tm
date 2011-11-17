@@ -133,46 +133,53 @@ public class World {
 	 * Load a saved game
 	 * @param game a string of the saved game
 	 */
-	public static void loadGame(String game) {
-		String[] lines = game.split("\n");
-		int i = 0;
-		//wagon
-		int distance = Integer.parseInt(lines[i++]);
-		int pace = Integer.parseInt(lines[i++]);
-		int rations = Integer.parseInt(lines[i++]);
-		int capacity = Integer.parseInt(lines[i++]);
-		//people
-		String classname, name;
-		int health, hunger, thirst;
-		Leader leader = null;
-		ArrayList<Traveler> members = new ArrayList<Traveler>();
-		while(!lines[i].equals("inventory")) {
-			classname = lines[i++];
-			name = lines[i++];
-			health = Integer.parseInt(lines[i++]);
-			hunger = Integer.parseInt(lines[i++]);
-			thirst = Integer.parseInt(lines[i++]);
-			if(classname.equals("people.Banker"))
-				leader = new Banker(health, hunger, thirst, name);
-			else if(classname.equals("people.Farmer"))
-				leader = new Farmer(health, hunger, thirst, name);
-			else if(classname.equals("people.Carpenter"))
-				leader = new Carpenter(health, hunger, thirst, name);
-			else //people.Traveler
-				members.add(new Traveler(health, hunger, thirst, name));	
+	public static boolean loadGame(String game) {
+		try {
+			String[] lines = game.split("\n");
+			int i = 0;
+			//wagon
+			int distance = Integer.parseInt(lines[i++]);
+			int pace = Integer.parseInt(lines[i++]);
+			int rations = Integer.parseInt(lines[i++]);
+			int capacity = Integer.parseInt(lines[i++]);
+			//people
+			String classname, name;
+			int health, hunger, thirst;
+			Leader leader = null;
+			ArrayList<Traveler> members = new ArrayList<Traveler>();
+			while(!lines[i].equals("inventory")) {
+				classname = lines[i++];
+				name = lines[i++];
+				health = Integer.parseInt(lines[i++]);
+				hunger = Integer.parseInt(lines[i++]);
+				thirst = Integer.parseInt(lines[i++]);
+				if(classname.equals("people.Banker"))
+					leader = new Banker(health, hunger, thirst, name);
+				else if(classname.equals("people.Farmer"))
+					leader = new Farmer(health, hunger, thirst, name);
+				else if(classname.equals("people.Carpenter"))
+					leader = new Carpenter(health, hunger, thirst, name);
+				else //people.Traveler
+					members.add(new Traveler(health, hunger, thirst, name));	
+			}
+			//inventory
+			i++;
+			Inventory inventory = new Inventory();
+			int number;
+			while(!lines[i].equals("end")) {
+				name = lines[i++];
+				number = Integer.parseInt(lines[i++]);
+				inventory.getItemByName(name).setNumber(number);
+			}
+			//load it into the actual game play
+			initializeGame(); //TODO NOTE: THIS IS PROBABLY GOING TO CAUSE A HUGE PROBLEM YIKES RUN
+			theWagon = new Wagon(pace, rations, capacity, leader, members, distance, inventory);
+		} catch(Exception e) {
+			System.out.println("Unable to load file: "+game);
+			e.printStackTrace();
+			return false;
 		}
-		//inventory
-		i++;
-		Inventory inventory = new Inventory();
-		int number;
-		while(!lines[i].equals("end")) {
-			name = lines[i++];
-			number = Integer.parseInt(lines[i++]);
-			inventory.getItemByName(name).setNumber(number);
-		}
-		//load it into the actual game play
-		initializeGame(); //TODO NOTE: THIS IS PROBABLY GOING TO CAUSE A HUGE PROBLEM YIKES RUN
-		theWagon = new Wagon(pace, rations, capacity, leader, members, distance, inventory);
+		return true;
 	}
 	
 	/**

@@ -33,8 +33,8 @@ public class MainScreen {
 	public static boolean accessWagon = false;
 	public static boolean accessMap = false;
 	private static boolean Townstate = true;
+
 	
-	@SuppressWarnings("unused")
 	private Wagon wagon;
 	private Display display;
 	private Shell shell;
@@ -121,6 +121,7 @@ public class MainScreen {
 			continueWin();
 			continueLose();
 			continueNew();
+			continueLoad();
 		}	
 		return !shell.isDisposed();
 	}
@@ -312,7 +313,17 @@ public class MainScreen {
 	 * logic for handling post-load screens
 	 */
 	private void continueLoad(){
-		
+		if(load.isDone()) {
+			if(load.goBack()) {
+				screenTransition(load, newView);
+				currentScreen = screen.NEW;
+			}
+			else {
+				screenTransition(load, field);
+				currentScreen = screen.FIELD;
+			}
+			load.resetBools();
+		}
 	}
 	
 	/**
@@ -328,6 +339,7 @@ public class MainScreen {
 		//Player chooses Load Game
 		else if(newView.getChoice() == 2){
 			newView.resetChoice();
+			load.update();
 			screenTransition(newView,load);
 			currentScreen = screen.LOAD;
 		}
