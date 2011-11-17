@@ -64,7 +64,7 @@ public interface Person {
 	public void drinkWater(int amount);
 	
 	/**
-	 * Method to check on the person's current condition. Valid statuses include: HEALTHY, SICK, HUNGRY, THIRSTY, and DEAD.
+	 * Method to check on the person's current condition. Valid statuses include: HEALTHY, SICK, POISONED, HUNGRY, THIRSTY,HUNGRY THIRSTY, and DEAD.
 	 * 
 	 * @return a string representing the person's current status.
 	 */
