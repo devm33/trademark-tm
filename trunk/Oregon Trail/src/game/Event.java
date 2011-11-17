@@ -138,6 +138,7 @@ public class Event {
 	/**
 	 * this message is triggered by the disease event
 	 * @param s the disease name
+	 * @param n the name of the person afflicted
 	 */
 	public void diseaseMessage(String s, String n){
 		//JOptionPane.showMessageDialog(null, "(Traveler/Leader) has caught "+s);
@@ -145,13 +146,15 @@ public class Event {
 	}
 	/**
 	 * this message is triggered by the snakebite event
+	 * @param n the name of the person bitten
 	 */
 	public void snakebiteMessage(String n){
 		//JOptionPane.showMessageDialog(null, "(Traveler/Leader) was bitten by a snake and is sick from the venom.");
 		displayMessage(n+" was bitten by a snake and is sick from the venom.");
 	}
 	/**
-	 * this message is triggered by the snakebite event
+	 * this message is triggered by the poisoned event
+	 * @param n the name of the person poisoned
 	 */
 	public void poisonMessage(String n){
 		//JOptionPane.showMessageDialog(null, "(Traveler/Leader) was bitten by a snake and is sick from the venom.");
@@ -159,6 +162,7 @@ public class Event {
 	}
 	/**
 	 * this message is triggered by healing
+	 * @param n the name of the person healed
 	 */
 	public void healMessage(String n){
 		//JOptionPane.showMessageDialog(null, "(Traveler/Leader) was bitten by a snake and is sick from the venom.");
