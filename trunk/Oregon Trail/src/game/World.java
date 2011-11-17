@@ -7,6 +7,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import people.*;
 
@@ -49,9 +50,9 @@ public class World {
 		boolean game_running = true;
 		while(game_running) {
 			
-			
 			game_running = mainScreen.stepGame();
-			theWagon.setTownDistance(theMap.distanceToTown());
+			theWagon.setTownDistance(theMap.distanceToTown()); //?
+			
 			
 			//check if there is a town
 			Town temp = theMap.getNextTown();
@@ -146,7 +147,7 @@ public class World {
 			String classname, name;
 			int health, hunger, thirst;
 			Leader leader = null;
-			ArrayList<Traveler> members = new ArrayList<Traveler>();
+			List<Traveler> members = new ArrayList<Traveler>();
 			while(!lines[i].equals("inventory")) {
 				classname = lines[i++];
 				name = lines[i++];
@@ -171,9 +172,10 @@ public class World {
 				number = Integer.parseInt(lines[i++]);
 				inventory.getItemByName(name).setNumber(number);
 			}
+			System.out.println(members);
 			//load it into the actual game play
-			initializeGame(); //TODO NOTE: THIS IS PROBABLY GOING TO CAUSE A HUGE PROBLEM YIKES RUN
 			theWagon = new Wagon(pace, rations, capacity, leader, members, distance, inventory);
+			System.out.println("the wagon should be this: "+theWagon);
 		} catch(Exception e) {
 			System.out.println("Unable to load file: "+game);
 			e.printStackTrace();

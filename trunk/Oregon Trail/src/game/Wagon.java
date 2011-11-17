@@ -85,6 +85,7 @@ public class Wagon {
 		totalWeight = 0;
 		for(Item i : inventory.getItemInventory())
 			totalWeight += i.getWeight();
+		System.out.println("made wagon from saved game, this.members = "+this.members);
 	}
 	
 	/**
@@ -100,6 +101,7 @@ public class Wagon {
 	 * @param l the list of new party members
 	 */
 	public void setMembers(List<Traveler> l) {
+		System.out.println("Changing members to be this "+l);
 		members = l;
 	}
 
@@ -196,6 +198,7 @@ public class Wagon {
 	public List<Person> getPassengers() {
 		List<Person> l = new ArrayList<Person>();
 		l.add(leader);
+		System.out.println(members);
 		l.addAll(members);
 		return l;
 	}
