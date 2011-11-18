@@ -20,11 +20,13 @@ public class Water extends Item {
 	
 	@Override
 	public void use() {
-		// TODO Auto-generated method stub
+		
 		if(this.getNumber()>0){
 			this.setNumber(this.getNumber()-1);
 		}
-		
+		else {
+			
+		}
 	}
 
 
