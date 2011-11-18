@@ -146,6 +146,9 @@ public class World {
 			fw.write("inventory\n");
 			for(Item item : theWagon.getInventory().getItemInventory())
 				fw.write(""+item.getName()+"\n"+item.getNumber()+"\n");
+			//current screen
+			fw.write("screen\n");
+			fw.write(mainScreen.getCurrentScreen() + "\n");
 			fw.write("end\n");
 			fw.close();
 		} catch (IOException e) {
@@ -187,19 +190,18 @@ public class World {
 				else //people.Traveler
 					members.add(new Traveler(health, hunger, thirst, name));	
 			}
-			//inventory
-			i++;
+			i++; //inventory
 			Inventory inventory = new Inventory();
 			int number;
-			while(!lines[i].equals("end")) {
+			while(!lines[i].equals("screen")) {
 				name = lines[i++];
 				number = Integer.parseInt(lines[i++]);
 				inventory.getItemByName(name).setNumber(number);
 			}
-			System.out.println(members);
+			i++; //screen
+			mainScreen.setCurrentScreen(lines[i++]);
 			//load it into the actual game play
 			theWagon = new Wagon(pace, rations, capacity, leader, members, distance, inventory);
-			System.out.println("the wagon should be this: "+theWagon);
 		} catch(Exception e) {
 			System.out.println("Unable to load file: "+game);
 			e.printStackTrace();
