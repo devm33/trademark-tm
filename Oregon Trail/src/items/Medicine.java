@@ -1,4 +1,8 @@
 package items;
+
+import people.Person;
+import game.World;
+
 /**
  * Class to implement medicine items.
  * 
@@ -44,6 +48,14 @@ public class Medicine extends Item {
 			uses = 0;
 			return;
 		}
+		
+		//fully heals all the people in the wagon per use
+		for(Person p : World.getWagon().getPassengers()) {
+			p.setHealed();
+			p.addHealth(100);
+		}
+		
+		
 		uses--;
 		if(uses % num_uses == 0)
 			super.setNumber(getNumber()-1);
