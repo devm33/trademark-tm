@@ -15,7 +15,7 @@ import org.eclipse.wb.swt.SWTResourceManager;
 
 import people.Person;
 /**
- * Screen to display the wagon contents and controls.
+ * Screen to display the World.getWagon() contents and controls.
  * 
  * 
  * @author Devraj Mehta
@@ -34,18 +34,15 @@ public class WagonScreen extends Composite {
 	private Label lblFoodRemaining;
 	private Label lblDistanceRemaining;
 	private Button btnDone;
-	
-	private static Wagon wagon;
 
 	/**
-	 * creats the wagon status composite
+	 * creates the wagon status composite
 	 * @param arg0
 	 * @param arg1
 	 */
 	public WagonScreen(Composite arg0, int arg1) {
 		super(arg0, arg1);
 		
-		wagon = World.getWagon();
 		
 		createContents();
 		
@@ -60,11 +57,11 @@ public class WagonScreen extends Composite {
 	
 	public void update() {
 		
-		food.setText("" + wagon.getInventory().getFood().getNumber());
+		food.setText("" + World.getWagon().getInventory().getFood().getNumber());
 		
-		distance.setText("" + wagon.getDistance());
+		distance.setText("" + World.getWagon().getDistance());
 		
-		List<Person> pass = wagon.getPassengers();
+		List<Person> pass = World.getWagon().getPassengers();
 		Label[] labels = {leader, traveler0, traveler1, traveler2, traveler3};
 		int i = 0;
 		for(Person p : pass) {
@@ -74,7 +71,7 @@ public class WagonScreen extends Composite {
 	}
 	
 	/**
-	 * checks if user is leaving the wagon status screen
+	 * checks if user is leaving the World.getWagon() status screen
 	 * @return
 	 */
 	public boolean isDone(){
@@ -82,7 +79,7 @@ public class WagonScreen extends Composite {
 	}
 	
 	/**
-	 * reset done boolean so user can re-enter wagon status screen
+	 * reset done boolean so user can re-enter World.getWagon() status screen
 	 */
 	public void resetDone(){
 		done = false;

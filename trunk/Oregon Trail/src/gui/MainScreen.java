@@ -100,7 +100,7 @@ public class MainScreen {
 
 		if (!shell.isDisposed()){
 			/*Screen Continuation*/
-		
+
 			updateCash();
 			updateWagon();
 			updateInventory();
@@ -320,7 +320,6 @@ public class MainScreen {
 			try {
 				World.getWagon().getLeader().setMoney(0);
 			} catch (InsufficientFundsException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			World.getWagon().setDistance(0);
@@ -347,6 +346,7 @@ public class MainScreen {
 				currentScreen = screen.FIELD;
 			}
 			load.resetBools();
+			System.out.println("continueLoad and wagon is: "+World.getWagon());
 		}
 	}
 	
