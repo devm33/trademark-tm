@@ -30,7 +30,7 @@ public class MainScreen {
 	public enum screen{
 		NEW, LOAD, CONFIG, TOWN, INN, STORE, FIELD, HUNT, RIVER, WIN, LOSE
 	}
-	public static screen currentScreen = screen.NEW;
+	private static screen currentScreen = screen.NEW;
 	
 	public static boolean accessInventory = false;
 	public static boolean accessWagon = false;
@@ -218,7 +218,7 @@ public class MainScreen {
 			World.getWagon().resetLose();
 			screenTransition(field,loseView);
 			disableButtons();
-			currentScreen = screen.CONFIG;
+			currentScreen = screen.LOSE;
 		}
 	}
 	
@@ -277,6 +277,12 @@ public class MainScreen {
 	 * logic for handling post-river screens
 	 */
 	private void continueRiver(){
+		if (World.getWagon().getLose()){
+			World.getWagon().resetLose();
+			screenTransition(river,loseView);
+			disableButtons();
+			currentScreen = screen.LOSE;
+		}
 		if(river.isDone()){
 			river.resetDone();
 			screenTransition(river,field);
@@ -527,6 +533,84 @@ public class MainScreen {
 			break;
 		}
 		return comp;
+	}
+	
+	/**
+	 * returns a string of current screen
+	 * @return
+	 */
+	public String getCurrentScreen(){
+		String a = "";
+		switch(currentScreen){
+		case NEW:
+			a = "NEW";
+			break;
+		case LOAD:
+			a = "LOAD";
+			break;
+		case CONFIG:
+			a = "CONFIG";
+			break;
+		case TOWN:
+			a = "TOWN";
+			break;
+		case INN:
+			a = "INN";
+			break;
+		case STORE:
+			a = "STORE";
+			break;
+		case FIELD:
+			a = "FIELD";
+			break;
+		case HUNT:
+			a = "HUNT";
+			break;
+		case RIVER:
+			a = "RIVER";
+			break;
+		case WIN:
+			a = "WIN";
+			break;
+		case LOSE:
+			a = "LOSE";
+			break;
+		default:
+			a = "what";
+			break;
+		}
+		return a;
+	}
+	
+	/**
+	 * sets current screen based on a string input
+	 * @param s
+	 */
+	public void setCurrentScreen(String s){
+		if(s.equals("NEW"))
+			currentScreen = screen.NEW;
+		else if(s.equals("LOAD"))
+			currentScreen = screen.LOAD;
+		else if(s.equals("CONFIG"))
+			currentScreen = screen.CONFIG;
+		else if(s.equals("TOWN"))
+			currentScreen = screen.TOWN;
+		else if(s.equals("INN"))
+			currentScreen = screen.INN;
+		else if(s.equals("STORE"))
+			currentScreen = screen.STORE;
+		else if(s.equals("FIELD"))
+			currentScreen = screen.FIELD;
+		else if(s.equals("HUNT"))
+			currentScreen = screen.HUNT;
+		else if(s.equals("RIVER"))
+			currentScreen = screen.RIVER;
+		else if(s.equals("WIN"))
+			currentScreen = screen.WIN;
+		else if(s.equals("LOSE"))
+			currentScreen = screen.LOSE;
+		else
+			System.out.println("you fucked up");
 	}
 	
 	/**
