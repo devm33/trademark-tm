@@ -24,7 +24,7 @@ public class Ammo extends Item {
 	 * Create a new Ammo object. Weighs 3 lbs. Costs $2 for 20 rounds.
 	 */
 	public Ammo(){
-		super(3, 0, "Ammunition");
+		super(3, 0, "Ammo");
 		rounds = 0;
 		amount = 0;
 	}
