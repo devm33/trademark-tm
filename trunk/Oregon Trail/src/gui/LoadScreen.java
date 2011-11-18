@@ -77,8 +77,10 @@ public class LoadScreen extends Composite {
 		File file = new File(filename + i);
 		while(file != null && file.exists()) {
 			try {
+				t = "";
 				scan = new Scanner(file);
 				t += scan.nextLine() + "      " + scan.nextLine();
+				System.out.println("Found game: "+t);
 				items.add(t);
 				t = "";
 				while(scan.hasNextLine())
