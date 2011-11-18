@@ -5,6 +5,7 @@
 
 Bugs:
     1. IMPLEMENT OXEN
+    2. Available option on storescreen. needs implementation or removal.
 
 Complete following Screens:
 1. HuntingScreen (extra credit)
