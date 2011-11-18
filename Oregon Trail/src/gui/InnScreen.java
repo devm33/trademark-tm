@@ -40,6 +40,7 @@ public class InnScreen extends Composite {
 				for(Person p : World.getWagon().getMembers()){
 					p.setHealed();
 				}
+				
 				World.nextDay();
 				for(Person p : World.getWagon().getPassengers()) {
 					p.addHealth(100);

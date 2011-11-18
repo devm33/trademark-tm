@@ -11,7 +11,7 @@ public class Wheel extends Item {
 	 */
 	public Wheel()
 	{
-		super(75, 0, "Wagon Wheel");
+		super(75, 0, "Wheel");
 	}
 	
 	@Override
