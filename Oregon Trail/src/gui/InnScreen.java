@@ -15,6 +15,8 @@ import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.swt.events.PaintEvent;
 import org.eclipse.swt.events.PaintListener;
 
+import people.Person;
+
 public class InnScreen extends Composite {
 	private boolean done = false;
 	private Button btnRest;
@@ -35,7 +37,9 @@ public class InnScreen extends Composite {
 		btnRest.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
-				System.out.println("PLACEHOLDER RESPONSE");
+				for(Person p : World.getWagon().getMembers()){
+					p.setHealed();
+				}
 				World.nextDay();
 			}
 		});

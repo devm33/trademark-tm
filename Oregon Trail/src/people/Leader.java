@@ -141,11 +141,11 @@ public abstract class Leader implements Person {
 		if(health <= 0)
 			return; //I ain't living.
 		if(isSick)
-			health -= 5;
-		if(isPoisoned && poisonType.equals("poison"))
-			health -= 5;
-		if(isPoisoned && poisonType.equals("venom"))
-			health -= 10;
+			this.addHealth(-20);
+		if(isPoisoned && this.poisonType.equals("poison"))
+			this.addHealth(-20);
+		if(isPoisoned && this.poisonType.equals("venom"))
+			this.addHealth(-25);
 		if(health <= 0)
 			die();
 		thirst += 30;

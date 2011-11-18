@@ -319,7 +319,7 @@ public class Inventory {
 	/**
 	 * Returns the price of an item from the input price array
 	 * @param i the Item to be priced
-	 * @param priceIn a 2D int array of prices
+	 * @param priceIn a 1D int array of prices
 	 * @return price the int price value
 	 */
 	
