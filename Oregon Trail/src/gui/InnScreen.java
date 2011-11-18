@@ -43,9 +43,11 @@ public class InnScreen extends Composite {
 				
 				World.nextDay();
 				for(Person p : World.getWagon().getPassengers()) {
-					p.addHealth(100);
-					p.eatFood(100);
-					p.drinkWater(100);
+					if(p.getHealth() > 0) {
+						p.addHealth(100);
+						p.eatFood(100);
+						p.drinkWater(100);
+					}
 				}
 			}
 		});
