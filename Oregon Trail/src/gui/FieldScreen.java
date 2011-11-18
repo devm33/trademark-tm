@@ -59,7 +59,6 @@ public class FieldScreen extends Composite {
 				World.getEvent().eventCall();
 				World.getWagon().takeStep();
 				update();
-				System.out.println(World.getWagon().getDistance());
 				
 				//check if we're in oregon or has reached a river or town
 				if(World.getWagon().getDistance() >= 1909) {
