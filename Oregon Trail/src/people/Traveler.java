@@ -113,11 +113,11 @@ public class Traveler implements Person {
 	@Override
 	public void live() {
 		if(isSick)
-			this.addHealth(-30);
+			this.addHealth(-15);
 		if(isPoisoned && this.poisonType.equals("poison"))
-			this.addHealth(-30);
+			this.addHealth(-15);
 		if(isPoisoned && this.poisonType.equals("venom"))
-			this.addHealth(-35);
+			this.addHealth(-25);
 		if(health <= 0){
 			die();
 			return;
