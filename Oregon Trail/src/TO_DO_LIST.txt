@@ -11,17 +11,13 @@ stephen    5. If an event happens, the appropriate action should be taken.
 
 
 Bugs:
-    1. New game button crashes
-    2. Implement conditional update (currently everything updates constantly)
-    3. IMPLEMENT OXENS
-    4. IMPLEMENT INN REPLENISHES THIRST AND HEALTH
-    5. problems with killing people, why are they so healthy?
+    1. IMPLEMENT OXENS
+    2. IMPLEMENT INN REPLENISHES THIRST AND HEALTH
+    3. problems with killing people, why are they so healthy?
 
 Complete following Screens:
-1. FieldScreen
-2. HuntingScreen (extra credit)
-3. InnScreen
-4. LoseScreen
-5. MapScreen
-6. RiverScreen (extra credit)
-7. WinScreen
+1. HuntingScreen (extra credit)
+2. InnScreen (replenish health and thirst)
+3. LoseScreen (add picture)
+4. RiverScreen (extra credit)
+5. WinScreen (add picture)
