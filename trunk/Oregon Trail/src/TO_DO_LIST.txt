@@ -1,14 +1,5 @@
 --Trademark TM Oregon Trail TODO list--
 
-Feature Slice requirements (currently M8):
-
-M10:
-    //save game
-dev 1. At game start-up, the player should be given the option to load a previous game.
-    //random events
-
-stephen    5. If an event happens, the appropriate action should be taken.
-
 
 Bugs:
     1. IMPLEMENT OXENS
