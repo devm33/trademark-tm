@@ -92,14 +92,10 @@ public class Food extends Item {
 					for(Person p : World.getWagon().getPassengers()){
 						if (!(p.getStatus().equals("DEAD")||p.getStatus().equals("SICK")||p.getStatus().equals("POISONED"))) {
 							if (ration > 2) {
-								for (Person r : World.getWagon().getPassengers()) {
-									r.addHealth(5);
-								}
+									p.addHealth(5);
 							}
 							if (ration > 3) {
-								for (Person q : World.getWagon().getPassengers()) {
-									q.addHealth(5);
-								}
+									p.addHealth(5);
 								
 							}
 							p.eatFood(ration * 5);
