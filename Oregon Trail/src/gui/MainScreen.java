@@ -342,8 +342,7 @@ public class MainScreen {
 				currentScreen = screen.NEW;
 			}
 			else {
-				screenTransition(load, field);
-				currentScreen = screen.FIELD;
+				screenTransition(load, getCurrentComposite());
 			}
 			load.resetBools();
 			System.out.println("continueLoad and wagon is: "+World.getWagon());
