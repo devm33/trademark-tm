@@ -1,8 +1,9 @@
 --Trademark TM Oregon Trail TODO list--
 
+    1. Message notification of death when a traveler or leader's health becomes zero.
 
 Bugs:
-    1. IMPLEMENT OXENS
+    1. IMPLEMENT OXEN
     2. IMPLEMENT INN REPLENISHES THIRST AND HEALTH
     3. problems with killing people, why are they so healthy?
 
