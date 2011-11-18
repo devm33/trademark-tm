@@ -51,6 +51,7 @@ public class MainScreen {
 	private Button btnWagon;
 	private Button btnSaveGame;
 	private Button btnSuper;
+	private Button btnRestart;
 	private Composite contentPanel;
 	private StackLayout layout;
 	
@@ -106,6 +107,7 @@ public class MainScreen {
 			updateInventory();
 			updateMap();
 			updateDate();
+			updateField();
 			
 			continueConfig();
 			continueTown();
@@ -120,11 +122,9 @@ public class MainScreen {
 			continueWin();
 			continueLose();
 			continueNew();
+			continueLoad();
 			
 			refresh();
-
-			continueLoad();
-
 		}	
 		return !shell.isDisposed();
 	}
@@ -135,10 +135,7 @@ public class MainScreen {
 	 */
 	private void continueConfig(){
 		if (config.isDone()){
-			btnInventory.setEnabled(true);
-			btnWagon.setEnabled(true);
-			btnMap.setEnabled(true);
-			btnSaveGame.setEnabled(true);
+			enableButtons();
 			config.resetDone();
 			screenTransition(config, town);
 			Townstate = true;
@@ -299,15 +296,7 @@ public class MainScreen {
 		case 1:
 			winView.resetChoice();
 			currentScreen = screen.NEW;
-			try {
-				World.getWagon().getLeader().setMoney(0);
-			} catch (InsufficientFundsException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			World.getWagon().setDistance(0);
-			World.restartGame();
-			Townstate = true;
+			restart();
 			screenTransition(winView,newView);
 			break;
 		case 2:
@@ -323,14 +312,7 @@ public class MainScreen {
 		case 1:
 			loseView.resetChoice();
 			currentScreen = screen.NEW;
-			try {
-				World.getWagon().getLeader().setMoney(0);
-			} catch (InsufficientFundsException e) {
-				e.printStackTrace();
-			}
-			World.getWagon().setDistance(0);
-			World.restartGame();
-			Townstate = true;
+			restart();
 			screenTransition(loseView,newView);
 			break;
 		case 2:
@@ -453,6 +435,27 @@ public class MainScreen {
 	}
 	
 	/**
+	 * update field
+	 */
+	private void updateField(){
+		field.update();
+	}
+	
+	/**
+	 * restarts the game
+	 */
+	private void restart(){
+		try {
+			World.getWagon().getLeader().setMoney(0);
+		} catch (InsufficientFundsException e) {
+			e.printStackTrace();
+		}
+		World.getWagon().setDistance(0);
+		World.restartGame();
+		Townstate = true;
+	}
+	
+	/**
 	 * refresh screen
 	 */
 	private void refresh(){
@@ -467,11 +470,24 @@ public class MainScreen {
 		shell.dispose();
 		display.dispose();
 	}
+	
+	/**
+	 * enables the pop-up buttons
+	 */
+	private void enableButtons(){
+		btnRestart.setEnabled(true);
+		btnInventory.setEnabled(true);
+		btnWagon.setEnabled(true);
+		btnMap.setEnabled(true);
+		btnSaveGame.setEnabled(true);
+	}
 
 	/**
 	 * disables the pop-up buttons
 	 */
 	private void disableButtons(){
+		btnRestart.setEnabled(false);
+		btnSaveGame.setEnabled(false);
 		btnMap.setEnabled(false);
 		btnWagon.setEnabled(false);
 		btnInventory.setEnabled(false);
@@ -609,7 +625,7 @@ public class MainScreen {
 		else if(s.equals("LOSE"))
 			currentScreen = screen.LOSE;
 		else
-			System.out.println("you fucked up");
+			System.out.println("something's wrong");
 	}
 	
 	/**
@@ -704,9 +720,21 @@ public class MainScreen {
 				World.saveGame();
 			}
 		});
-		btnSaveGame.setBounds(247, -5, 94, 28);
+		btnSaveGame.setBounds(297, 0, 75, 21);
 		btnSaveGame.setText("Save Game");
 		btnSaveGame.setEnabled(false);
+		
+		btnRestart = new Button(shell, SWT.NONE);
+		btnRestart.setEnabled(false);
+		btnRestart.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent arg0) {
+				restart();
+				screenTransition(getCurrentComposite(),newView);
+			}
+		});
+		btnRestart.setBounds(223,0,68,21);
+		btnRestart.setText("Restart");
 		
 		/*Create the composite that the pages will share*/
 		contentPanel = new Composite(shell, SWT.BORDER);

@@ -61,7 +61,7 @@ public class NewScreen extends Composite {
 				choice = 1;
 			}
 		});
-		btnNew.setBounds(20, 260, 158, 25);
+		btnNew.setBounds(10, 260, 158, 25);
 		btnNew.setText("New Game");
 		
 		btnLoad = new Button(this, SWT.NONE);
@@ -71,7 +71,7 @@ public class NewScreen extends Composite {
 				choice = 2;
 			}
 		});
-		btnLoad.setBounds(184, 260, 158, 25);
+		btnLoad.setBounds(174, 260, 158, 25);
 		btnLoad.setText("Load Game");
 		
 		btnQuit = new Button(this, SWT.NONE);
@@ -81,7 +81,7 @@ public class NewScreen extends Composite {
 				choice = 3;
 			}
 		});
-		btnQuit.setBounds(348, 260, 92, 25);
+		btnQuit.setBounds(338, 260, 102, 25);
 		btnQuit.setText("Quit Game");
 		
 		canvas = new Canvas(this, SWT.NONE);
