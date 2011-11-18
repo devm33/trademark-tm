@@ -5,8 +5,6 @@
 
 Bugs:
     1. IMPLEMENT OXEN
-    2. IMPLEMENT INN REPLENISHES THIRST AND HEALTH
-    3. problems with killing people, why are they so healthy?
 
 Complete following Screens:
 1. HuntingScreen (extra credit)
