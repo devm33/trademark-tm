@@ -42,12 +42,17 @@ public class Event {
 			}
 		}
 		if(l>4 && r<15 && b){
-			//System.out.println("heal people");
-			for (Person h: eventWagon.getPassengers()){
-				if (h.getSickness() != null){
-					this.healMessage(h.getName());
+			if(eventWagon.getPassengers().get(ep).getStatus().equals("DEAD")){
+				//do nothing if person is already dead.
+			}
+			else{
+				//System.out.println("heal people");
+				for (Person h: eventWagon.getPassengers()){
+					if (h.getSickness() != null){
+						this.healMessage(h.getName());
+					}
+					h.setHealed();
 				}
-				h.setHealed();
 			}
 		}
 		if(r>=90 && l>3 && b){

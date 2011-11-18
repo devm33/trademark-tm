@@ -18,6 +18,7 @@ public class Food extends Item {
 	}
 	/**
 	 * Method for using food with input ration used which automatically compensates for dead party members
+	 * Usage Not Recommended
 	 * @param ration int used the number of lbs of food used (increments of 5lbs) 
 	 */
 	public void use(int ration) {
@@ -89,18 +90,21 @@ public class Food extends Item {
 						setNumber(getNumber() + 1);
 					}
 					for(Person p : World.getWagon().getPassengers()){
-						if (ration>2){
-							for(Person r : World.getWagon().getPassengers()){
-								r.addHealth(5);
-							}
-							if(ration>3){
-								for(Person q : World.getWagon().getPassengers()){
-									q.addHealth(5);
+						if (!(p.getStatus().equals("DEAD")||p.getStatus().equals("SICK")||p.getStatus().equals("POISONED"))) {
+							if (ration > 2) {
+								for (Person r : World.getWagon().getPassengers()) {
+									r.addHealth(5);
 								}
 							}
+							if (ration > 3) {
+								for (Person q : World.getWagon().getPassengers()) {
+									q.addHealth(5);
+								}
+								
+							}
+							p.eatFood(ration * 5);
+							p.drinkWater(30);
 						}
-						p.eatFood(ration*5);
-						p.drinkWater(30);
 					}
 				} else {
 					throw new InsufficientFoodException();
