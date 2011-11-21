@@ -41,6 +41,11 @@ public interface Person {
 	 */
 	public String getSickness();
 	/**
+	 * returns the name of the poison
+	 * @return the string name of the poison type
+	 */
+	public String getPoisonType();
+	/**
 	 * resets this person's health status
 	 */
 	public void setHealed();	
