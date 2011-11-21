@@ -8,6 +8,7 @@ import game.Inventory;
 import java.util.List;
 import java.util.ArrayList;
 
+import exceptions.InsufficientFundsException;
 import exceptions.ItemNotFoundException;
 import exceptions.WeightCapacityExceededException;
 
@@ -73,18 +74,25 @@ public class Wagon {
 	 * @param distance
 	 * @param inventory
 	 */
-	public Wagon(int pace, int rations, int capacity,
-			Leader leader, List<Traveler> members, int distance, Inventory inventory) {
+	public Wagon(int pace, int rations, int capacity, int weight,
+			Leader leader, List<Traveler> members, int distance, Inventory inventory, int cash) {
 		this.pace = pace;
 		this.rations = rations;
 		this.capacity = capacity;
+		this.totalWeight = weight;
 		this.leader = leader;
 		this.members = members;
 		this.distance = distance;
 		this.inventory = inventory;
-		totalWeight = 0;
+		try {
+			this.leader.setMoney(cash);
+		} catch (InsufficientFundsException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+/*		totalWeight = 0;
 		for(Item i : inventory.getItemInventory())
-			totalWeight += i.getWeight();
+			totalWeight += i.getWeight();*/
 	}
 	
 	/**

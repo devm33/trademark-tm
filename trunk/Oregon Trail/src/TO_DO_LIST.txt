@@ -7,10 +7,11 @@
 Bugs:
     1. IMPLEMENT OXEN
     2. Available option on storescreen. needs implementation or removal.
+    3. World.saveGame() needs to store wagon capacity and save number(if identical name)
 
 Complete following Screens:
-1. HuntingScreen (extra credit)
+1. HuntingScreen (extra credit & add picture)
 2. InnScreen (replenish health and thirst)
 3. LoseScreen (add picture)
-4. RiverScreen (extra credit)
+4. RiverScreen (extra credit & add picture)
 5. WinScreen (add picture)

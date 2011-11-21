@@ -1,11 +1,13 @@
-Jonathan
-10/17/2011
+buystore
+10/21/2011
 0
 10
 3
 3500
+36
+40
 people.Farmer
-Jonathan
+buystore
 100
 0
 0
@@ -35,7 +37,7 @@ Ammo
 Food
 0
 Medicine
-0
+36
 Water
 0
 Axle
@@ -49,5 +51,5 @@ Tongue
 Wheel
 0
 screen
-TOWN
+STORE
 end
