@@ -51,6 +51,9 @@ public class Event {
 					if (h.getSickness() != null){
 						this.healMessage(h.getName());
 					}
+					if (h.getPoisonType() != null){
+						this.healMessage(h.getName());
+					}
 					h.setHealed();
 				}
 			}

@@ -178,6 +178,11 @@ public class Traveler implements Person {
 	public String getSickness() {
 		return this.illnessName;
 	}
+	
+	@Override
+	public String getPoisonType(){
+		return this.poisonType;
+	}
 
 
 	@Override
