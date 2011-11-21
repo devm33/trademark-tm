@@ -42,7 +42,7 @@ public class Event {
 			}
 		}
 		if(l>4 && r<15 && b){
-			if(eventWagon.getPassengers().get(ep).getStatus().equals("DEAD")){
+			if(!eventWagon.getPassengers().get(ep).getStatus().equals("DEAD")){
 				//do nothing if person is already dead.
 			}
 			else{
