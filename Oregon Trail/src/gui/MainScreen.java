@@ -109,6 +109,8 @@ public class MainScreen {
 			updateDate();
 			updateField();
 			
+			refresh();
+			
 			continueConfig();
 			continueTown();
 			continueInn();
@@ -124,7 +126,7 @@ public class MainScreen {
 			continueNew();
 			continueLoad();
 			
-			refresh();
+			
 		}	
 		return !shell.isDisposed();
 	}
@@ -140,7 +142,7 @@ public class MainScreen {
 			screenTransition(config, town);
 			Townstate = true;
 			currentScreen = screen.TOWN;
-			field.update();
+			updateField();
 		}
 	}
 	
@@ -330,7 +332,14 @@ public class MainScreen {
 				currentScreen = screen.NEW;
 			}
 			else {
+				if(currentScreen == screen.INN || 
+					currentScreen == screen.STORE || 
+					currentScreen == screen.TOWN)
+					Townstate = true;
 				screenTransition(load, getCurrentComposite());
+				enableButtons();
+				updateStore();
+				updateField();
 			}
 			load.resetBools();
 		}
@@ -442,6 +451,13 @@ public class MainScreen {
 	}
 	
 	/**
+	 * update store
+	 */
+	private void updateStore(){
+		store.update();
+	}
+	
+	/**
 	 * restarts the game
 	 */
 	private void restart(){
@@ -452,6 +468,7 @@ public class MainScreen {
 		}
 		World.getWagon().setDistance(0);
 		World.restartGame();
+		disableButtons();
 		Townstate = true;
 	}
 	

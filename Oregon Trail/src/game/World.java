@@ -138,6 +138,10 @@ public class World {
 			fw.write(""+theWagon.getRations()+"\n");
 			//capacity
 			fw.write(""+theWagon.getCapacity()+"\n");
+			//total weight
+			fw.write(""+theWagon.getTotalWeight()+"\n");
+			//cash
+			fw.write(""+theWagon.getCash()+"\n");
 			//people in wagon
 			for(Person t : theWagon.getPassengers()) {
 				fw.write(""+t.getClass().getName()+"\n"+t.getName()+'\n'+t.getHealth()+'\n'+t.getHunger()+'\n'+t.getThirst()+"\n");
@@ -170,6 +174,8 @@ public class World {
 			int pace = Integer.parseInt(lines[i++]);
 			int rations = Integer.parseInt(lines[i++]);
 			int capacity = Integer.parseInt(lines[i++]);
+			int weight = Integer.parseInt(lines[i++]);
+			int cash = Integer.parseInt(lines[i++]);
 			//people
 			String classname, name;
 			int health, hunger, thirst;
@@ -201,7 +207,7 @@ public class World {
 			i++; //screen
 			mainScreen.setCurrentScreen(lines[i++]);
 			//load it into the actual game play
-			theWagon = new Wagon(pace, rations, capacity, leader, members, distance, inventory);
+			theWagon = new Wagon(pace, rations, capacity, weight, leader, members, distance, inventory,cash);
 		} catch(Exception e) {
 			System.out.println("Unable to load file: "+game);
 			e.printStackTrace();
