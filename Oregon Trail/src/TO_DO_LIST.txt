@@ -2,6 +2,7 @@
 
     1. Message notification of death when a traveler or leader's health becomes zero.
     2. Event notification text added to fieldscreen.
+    3. Water
 
 Bugs:
     1. IMPLEMENT OXEN
