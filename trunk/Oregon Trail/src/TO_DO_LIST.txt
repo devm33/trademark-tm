@@ -8,6 +8,7 @@ Bugs:
     1. IMPLEMENT OXEN
     2. Available option on storescreen. needs implementation or removal.
     3. World.saveGame() needs to store wagon capacity and save number(if identical name)
+    4. "Everyone died. You lose." message still appears in command line
 
 Complete following Screens:
 1. HuntingScreen (extra credit & add picture)

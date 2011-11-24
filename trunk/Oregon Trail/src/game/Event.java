@@ -119,7 +119,7 @@ public class Event {
 				// TODO Auto-generated catch block
 				//e.printStackTrace();
 			}
-		}else if(r<60 && r>58 && l<3 && b){
+		}else if(r<60 && r>58 && l<3){
 			System.out.println("lightning strike");
 			for (Person p: eventWagon.getPassengers()){
 				p.die();
