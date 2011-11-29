@@ -38,6 +38,7 @@ public class TestOregonTrail {
 	@Before
 	public void setUp() throws Exception {
 		leader = new Banker("Leader Person");
+		members = new ArrayList<Traveler>();
 		members.add(new Traveler("Member One"));
 		members.add(new Traveler("Member Two"));
 		members.add(new Traveler("Member Three"));
