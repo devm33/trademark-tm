@@ -418,6 +418,7 @@ public class Wagon {
 		f.use();
 		w.use();
 		
+		System.out.println(this);
 	}
 	public void setTotalDeath(){
 		this.allDead = true;
