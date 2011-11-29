@@ -45,6 +45,7 @@ public class TestOregonTrail {
 		wagon = new Wagon();
 		wagon.setLeader(leader);
 		wagon.setMembers(members);
+		map = new Map();
 	}
 
 	//test the values of the wagon at start
@@ -59,11 +60,12 @@ public class TestOregonTrail {
 		assertFalse("People start dead.", wagon.getTotalDeath());
 	}
 	
-	
+	/*
 	//Implement tests like so
 	@Test
 	public void test() {
 		fail("Not yet implemented");
 	}
+	*/
 
 }
