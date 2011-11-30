@@ -407,7 +407,6 @@ public class Wagon {
 				alive = true;
 		}
 		if(!alive) {
-			System.out.println("Everyone died. You lose.");
 			lose = true;
 		}
 		
