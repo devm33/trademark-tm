@@ -9,6 +9,8 @@ Tasks:
     2. Event notification text added to fieldscreen.
     3. Water
     4. Add all items to inventory screen
+    5. Use buttons in inventory
+    6. # oxen determine actual pace
 
 Bugs:
     1. IMPLEMENT OXEN
