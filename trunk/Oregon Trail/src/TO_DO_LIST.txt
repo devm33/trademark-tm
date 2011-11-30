@@ -1,5 +1,10 @@
 --Trademark TM Oregon Trail TODO list--
+Primary Objectives:
+    1. JUnit tests
+    2. code review
+    3. paperwork
 
+Tasks:
     1. Message notification of death when a traveler or leader's health becomes zero.
     2. Event notification text added to fieldscreen.
     3. Water
