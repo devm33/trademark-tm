@@ -4,7 +4,7 @@
         <property name="classes" value="build"/>
         <property name="jar" value="jar"/>
         <property name="doc" value="apidoc"/>
-        <property name="src" location="src/"/>
+        <property name="src" location="src/*"/>
         <property name="lib" location="lib/"/>
         <path id="build.classpath">
             <fileset dir="${lib}">
@@ -29,7 +29,7 @@
         <jar basedir="${classes}" destfile="${jar}/OregonTrail.jar">
             <manifest>
                 <attribute name="Main-Class" value="game.World" />
-                <attribute name="Class-Path" value="build.classpath" />
+                <attribute name="Class-Path" value="lib/" />
             </manifest>
         </jar>
     </target>
@@ -38,8 +38,8 @@
          <java jar="${jar}/OregonTrail.jar" fork="true" />
     </target>
     
-    <target name="javadoc">
-        <javadoc sourcepath="${src}" access="public" destdir="${doc}" Verbose="false">
+    <target name="javadoc" depends="init">
+        <javadoc sourcepath="src/" access="public" destdir="${doc}" Verbose="false">
             <classpath refid="build.classpath"/>
             <bottom>
                 <![CDATA[<i>Copyright &#169; 2011 Team Trademark TM CS2340.  All Rights Reserved.</i>]]>
@@ -47,7 +47,7 @@
         </javadoc>
     </target>
     
-    <target name="all" depends="run,javadoc" />
+	<target name="all" depends="javadoc" />
 
     <target name="clean" depends="init">
         <delete dir="${classes}"/>
