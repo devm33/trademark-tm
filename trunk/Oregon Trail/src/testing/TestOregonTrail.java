@@ -61,6 +61,27 @@ public class TestOregonTrail {
 		assertFalse("People start dead.", wagon.getTotalDeath());
 	}
 	
+	
+	/**
+	 * This test checks that each passenger's values were initialized correctly.
+	 * 
+	 * @author Robert Heck
+	 */
+	@Test
+	public void testPassengerStatus()
+	{
+		List<Person> testPassengers = new ArrayList<Person>();
+		testPassengers.add(leader);
+		testPassengers.addAll(members);
+		assertTrue("Leader has incorrect money.", leader.getMoney() == 1600);
+		for(int x=0; x<testPassengers.size(); x++)
+		{
+			assertTrue("Members have incorrect health.", testPassengers.get(x).getHealth() == 100);
+			assertTrue("Members have incorrect hunger.", testPassengers.get(x).getHunger() == 0);
+			assertTrue("Members have incorrect thirst.", testPassengers.get(x).getThirst() == 0);
+		}
+	}
+	
 	/*
 	//Implement tests like so
 	@Test
