@@ -99,6 +99,32 @@ public class TestOregonTrail {
 		assertTrue("Game restarts to blank Inventory", World.getWagon().getInventory().isBlank() == true);
 		assertTrue("Game restarts to Independence", World.getCurrentTown().getTownName().equals("Independence"));
 	}
+	
+	/**
+	 * This test checks traveller status and health when poisoned and sick. It also tests passenger death.
+	 * 
+	 *  @author David Byas-Smith
+	 */
+	@Test
+	public void testTravellerSickness()
+	{
+		Traveler testPassenger = new Traveler("Test");
+		testPassenger.setSickness("poison", "bleach");
+		assertTrue("Passenger is not poisoned.", testPassenger.getStatus().equals("POISONED"));
+		testPassenger.setHealed();
+		assertTrue("Passenger is still poisoned.", testPassenger.getStatus().equals("HEALTHY"));
+		testPassenger.setSickness("disease", "chicken pox");
+		assertTrue("Passenger is not sick.", testPassenger.getStatus().equals("SICK"));
+		int testPassHealth = testPassenger.getHealth();
+		testPassenger.live();
+		assertTrue("Passenger is not dying.", testPassenger.getHealth()==(testPassHealth-15));
+		testPassenger.setHealed();
+		assertTrue("Passenger is still sick.", testPassenger.getStatus().equals("HEALTHY"));
+		testPassenger.die();
+		assertTrue("Passender is still alive.", testPassenger.getStatus().equals("DEAD"));
+		assertTrue("Passender is still alive.", testPassenger.getHealth()==0);
+	}
+	
 	/*
 	//Implement tests like so
 	@Test
