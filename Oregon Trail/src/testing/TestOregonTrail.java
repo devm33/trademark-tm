@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import game.Map;
 import game.Wagon;
+import game.World;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -82,6 +83,22 @@ public class TestOregonTrail {
 		}
 	}
 	
+	/**
+	 * Testing for correct restart of game
+	 * located in World.restartGame()
+	 * @author Jaron Gao
+	 */
+	@Test
+	public void testRestartGame()
+	{
+		World.initializeGame();
+		World.restartGame();
+		assertTrue("Game restarts to Day 1", World.getDays() == 1);
+		assertTrue("Game restarts to Distance 0", World.getWagon().getDistance() == 0);
+		assertTrue("Game restarts to Weight 0", World.getWagon().getTotalWeight() == 0);
+		assertTrue("Game restarts to blank Inventory", World.getWagon().getInventory().isBlank() == true);
+		assertTrue("Game restarts to Independence", World.getCurrentTown().getTownName().equals("Independence"));
+	}
 	/*
 	//Implement tests like so
 	@Test

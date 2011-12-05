@@ -245,6 +245,14 @@ public class World {
 	}
 	
 	/**
+	 * returns the current town
+	 * @return the current town
+	 */
+	public static Town getCurrentTown(){
+		return currentTown;
+	}
+	
+	/**
 	 * returns number of days traveled
 	 * @return
 	 */
