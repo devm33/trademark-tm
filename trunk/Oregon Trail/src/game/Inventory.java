@@ -145,6 +145,23 @@ public class Inventory {
 	public Item[] getItemInventory(){
 		return itemInventory;
 	}
+	
+	/**
+	 * returns true if inventory contains 0 quantity of items
+	 * @return
+	 */
+	public boolean isBlank(){
+		boolean blank = true;
+		Item[] inventory = getItemInventory();
+		for(int i = 0; i<getLength(); i++){
+			if(inventory[i].getNumber() != 0){
+				blank = false;
+				break;
+			}
+		}
+		return blank;
+	}
+	
 	/**
 	 * Checks the contents of inventory for an item
 	 * @param i the item to check for
