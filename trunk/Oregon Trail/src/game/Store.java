@@ -141,5 +141,8 @@ public class Store {
 	public int[] getPrices(){
 		return prices;
 	}
+	public int getOffset(){
+		return offset;
+	}
 
 }
