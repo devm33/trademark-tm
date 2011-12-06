@@ -51,7 +51,6 @@ public class MainScreen {
 	private Button btnWagon;
 	private Button btnSaveGame;
 	private Button btnSuper;
-	private Button btnRestart;
 	private Composite contentPanel;
 	private StackLayout layout;
 	
@@ -294,32 +293,16 @@ public class MainScreen {
 	 * logic for handling post-win screens (either new game or quit)
 	 */
 	private void continueWin(){
-		switch(winView.getChoice()){
-		case 1:
-			winView.resetChoice();
-			currentScreen = screen.NEW;
-			restart();
-			screenTransition(winView,newView);
-			break;
-		case 2:
+		if(winView.getDone())
 			quitGame();
-		}
 	}
 	
 	/**
 	 * logic for handling post-lose screens (either new game or quit)
 	 */
 	private void continueLose(){
-		switch(loseView.getChoice()){
-		case 1:
-			loseView.resetChoice();
-			currentScreen = screen.NEW;
-			restart();
-			screenTransition(loseView,newView);
-			break;
-		case 2:
+		if(loseView.getDone())
 			quitGame();
-		}
 	}
 	
 	/**
@@ -460,6 +443,7 @@ public class MainScreen {
 	/**
 	 * restarts the game
 	 */
+	/*
 	private void restart(){
 		try {
 			World.getWagon().getLeader().setMoney(0);
@@ -471,7 +455,7 @@ public class MainScreen {
 		disableButtons();
 		Townstate = true;
 	}
-	
+	*/
 	/**
 	 * refresh screen
 	 */
@@ -492,7 +476,6 @@ public class MainScreen {
 	 * enables the pop-up buttons
 	 */
 	private void enableButtons(){
-		btnRestart.setEnabled(true);
 		btnInventory.setEnabled(true);
 		btnWagon.setEnabled(true);
 		btnMap.setEnabled(true);
@@ -503,7 +486,6 @@ public class MainScreen {
 	 * disables the pop-up buttons
 	 */
 	private void disableButtons(){
-		btnRestart.setEnabled(false);
 		btnSaveGame.setEnabled(false);
 		btnMap.setEnabled(false);
 		btnWagon.setEnabled(false);
@@ -740,18 +722,6 @@ public class MainScreen {
 		btnSaveGame.setBounds(297, 0, 75, 21);
 		btnSaveGame.setText("Save Game");
 		btnSaveGame.setEnabled(false);
-		
-		btnRestart = new Button(shell, SWT.NONE);
-		btnRestart.setEnabled(false);
-		btnRestart.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent arg0) {
-				restart();
-				screenTransition(getCurrentComposite(),newView);
-			}
-		});
-		btnRestart.setBounds(223,0,68,21);
-		btnRestart.setText("Restart");
 		
 		/*Create the composite that the pages will share*/
 		contentPanel = new Composite(shell, SWT.BORDER);

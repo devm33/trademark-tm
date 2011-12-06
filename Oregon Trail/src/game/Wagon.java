@@ -90,9 +90,9 @@ public class Wagon {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-/*		totalWeight = 0;
+		totalWeight = 0;
 		for(Item i : inventory.getItemInventory())
-			totalWeight += i.getWeight();*/
+			totalWeight += i.getWeight() * i.getNumber();
 	}
 	
 	/**

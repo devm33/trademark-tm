@@ -161,18 +161,23 @@ public class TestOregonTrail {
 	 * located in World.restartGame()
 	 * @author Jaron Gao
 	 */
+	/* RESTART IS NOW OBSELETE
 	@Test
 	public void testRestartGame()
 	{
 		World.initializeGame();
+		World.getWagon().setDistance(2500);
+		World.getWagon().getInventory().setItemNum(0, 10);
+		assertTrue("Game did not change distance", World.getWagon().getDistance() == 2500);
+		assertTrue("Game did not change inventory", World.getWagon().getInventory().getItem(0).getNumber() == 10);
 		World.restartGame();
-		assertTrue("Game restarts to Day 1", World.getDays() == 1);
-		assertTrue("Game restarts to Distance 0", World.getWagon().getDistance() == 0);
-		assertTrue("Game restarts to Weight 0", World.getWagon().getTotalWeight() == 0);
-		assertTrue("Game restarts to blank Inventory", World.getWagon().getInventory().isBlank() == true);
-		assertTrue("Game restarts to Independence", World.getCurrentTown().getTownName().equals("Independence"));
+		assertTrue("Game does not restart to Day 1", World.getDays() == 1);
+		assertTrue("Game does not restart to Distance 0", World.getWagon().getDistance() == 0);
+		assertTrue("Game does not restart to Weight 0", World.getWagon().getTotalWeight() == 0);
+		assertTrue("Game does not restart to blank Inventory", World.getWagon().getInventory().isBlank() == true);
+		assertTrue("Game does not restart to Independence", World.getCurrentTown().getTownName().equals("Independence"));
 	}
-	
+	*/
 	/**
 	 * This test checks traveller status and health when poisoned and sick. It also tests passenger death.
 	 * 

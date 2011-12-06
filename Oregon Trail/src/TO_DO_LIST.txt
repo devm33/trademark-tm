@@ -8,7 +8,6 @@ Tasks:
 Bugs:
     1. IMPLEMENT OXEN that affect wagon pace (oxen * pace) or something similar
     2. Available option on storescreen. needs implementation or removal.
-    3. World.saveGame() needs to store wagon capacity and save number(if identical name).
     4. Save needs to store illness and poison vars from people (traveler and leader).
 
 Complete following Screens:

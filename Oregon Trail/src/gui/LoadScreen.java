@@ -30,6 +30,7 @@ public class LoadScreen extends Composite {
 	private boolean done;
 	private boolean goBack;
 	private List list;
+	private Label lblNewerSavesAppear;
 	private Button load;
 	private Button back;
 	private ArrayList<String> games;
@@ -132,6 +133,11 @@ public class LoadScreen extends Composite {
 		back.setBounds(294,248,84,28);
 		back.setText("Back");
 		back.setEnabled(true);
+		
+		lblNewerSavesAppear = new Label(this, SWT.WRAP);
+		lblNewerSavesAppear.setAlignment(SWT.CENTER);
+		lblNewerSavesAppear.setBounds(27, 248, 161, 28);
+		lblNewerSavesAppear.setText("Newer Saves appear lower in the list");
 	}
 	
 	/**
