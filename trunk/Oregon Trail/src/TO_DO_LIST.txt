@@ -3,16 +3,14 @@
 Tasks:
     1. Message notification of death when a traveler or leader's health becomes zero.
     2. Event notification text added to fieldscreen.
-    3. # oxen determine actual pace
+    3. oxen can randomly die if grueling
+    4. occupation affects events
 
 Bugs:
-    1. IMPLEMENT OXEN that affect wagon pace (oxen * pace) or something similar
-    2. Available option on storescreen. needs implementation or removal.
-    4. Save needs to store illness and poison vars from people (traveler and leader).
+    1. Available option on storescreen. needs implementation or removal.
+    2. Save needs to store illness and poison vars from people (traveler and leader).
 
 Complete following Screens:
-1. HuntingScreen (extra credit & add picture)
-2. InnScreen (replenish health and thirst)
-3. LoseScreen (add picture)
-4. RiverScreen (extra credit & add picture)
-5. WinScreen (add picture)
+1. LoseScreen (add picture)
+2. RiverScreen (extra credit & add picture)
+3. WinScreen (add picture)
