@@ -99,7 +99,7 @@ public class Food extends Item {
 								
 							}
 							p.eatFood(ration * 5);
-							p.drinkWater(30);
+							p.drinkWater(1);
 						}
 					}
 				} else {
@@ -110,14 +110,14 @@ public class Food extends Item {
 				//e.printStackTrace();
 				for(Person p : World.getWagon().getPassengers()){
 					p.addHealth(-15);
-					p.drinkWater(60);
+					p.drinkWater(2);
 				}
 			}
 		}
 		else{
 			for(Person p : World.getWagon().getPassengers()){
 				p.addHealth(-15);
-				p.drinkWater(60);
+				p.drinkWater(2);
 			}
 		}
 		
