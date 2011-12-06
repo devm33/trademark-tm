@@ -2,10 +2,7 @@ package gui;
 
 import game.World;
 import game.Inventory;
-import items.Ammo;
-import items.Food;
-import items.Item;
-import items.Medicine;
+import items.*;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
@@ -22,23 +19,14 @@ import org.eclipse.swt.events.SelectionEvent;
  */
 public class InventoryScreen extends Composite{
 	private boolean done = false;
-	private Item[]itemInventory;
-	private int length = 6;
 	
-	private Label lblItem;
-	private Label lblWeight;
-	private Label lblAmmount;
-	private Label lblItems0;
-	private Label lblItems0wt;
-	private Label lblItems0amt;
-	private Label lblItems1;
-	private Label lblItems1wt;
-	private Label lblItems1amt;
-	private Label lblItems2;
-	private Label lblItems2wt;
-	private Label lblItems2amt;
+	private Label[] lblItemsname;
+	private Label[] lblItemswt;
+	private Label[] lblItemsamt;
+	private Button[] btnItems;
+	
 	private Button btnClose;
-	private String display="";
+	//private String display="";
 	
 	/**
 	 * Creates a new inventory screen and inventory items
@@ -48,16 +36,6 @@ public class InventoryScreen extends Composite{
 	public InventoryScreen(Composite parent, int style){
 		super(parent,style);
 		
-		itemInventory = new Item[length];
-		itemInventory[0] = new Ammo();
-		//itemInventory[1] = new Axle();
-		//itemInventory[2] = new Clothing();
-		itemInventory[1] = new Food();
-		itemInventory[2] = new Medicine();
-		//itemInventory[5] = new Oxen();
-		//itemInventory[6] = new Tongue();
-		//itemInventory[7] = new Water();
-		//itemInventory[8] = new Wheel();
 		createContents();
 		
 		//Logic when user clicks the Close Inventory button
@@ -76,69 +54,28 @@ public class InventoryScreen extends Composite{
 		
 		int inventoryLength = World.getWagon().getInventory().getLength();
 		Inventory inv = World.getWagon().getInventory();
-		int[] amounts = new int[inventoryLength];
-		int[] weights = new int[inventoryLength];
+		int amount, weight;
+		String name;
 		
 		for(int i=0; i<inventoryLength; i++)
 		{
-			amounts[i] = inv.getItemInventory()[i].getNumber();
-			weights[i] = inv.getItemInventory()[i].getWeight();
-		}
+			amount = inv.getItem(i).getNumber();
+			weight = inv.getItem(i).getWeight();
+			name = inv.getItem(i).getName();
 			
-			lblItems0wt.setText(""+weights[0]*amounts[0]);
-			lblItems1wt.setText(""+weights[1]*amounts[1]);
-			lblItems2wt.setText(""+weights[2]*amounts[2]);
-			lblItems0amt.setText(""+amounts[0]);
-			lblItems1amt.setText(""+amounts[1]);
-			lblItems2amt.setText(""+amounts[2]);
-	}
-
-	/**
-	 * check if inventory contains a certain item
-	 * @param i the item to check for
-	 * @return if the item exists in inventory
-	 */
-	public boolean contains(Item i) {
-		for (int x=0; x<length; x++){
-			if (itemInventory[x].getName()==i.getName()){
-				return true;
-			}
+			lblItemsname[i].setText(name);
+			lblItemswt[i].setText(""+weight*amount);
+			lblItemsamt[i].setText(""+amount);
+			if(amount != 0)
+				btnItems[i].setEnabled(true);
+			else
+				btnItems[i].setEnabled(false);
+			
+			if(name.equals("Ammo"))
+				btnItems[i].setText("hunt");
+			else if(name.equals("Food") || name.equals("Water") || name.equals("Oxen") || name.equals("Clothing"))
+				btnItems[i].setEnabled(false);
 		}
-		return false;
-	}
-	
-	/**
-	 * returns capacity of inventory
-	 * @return
-	 */
-	public int getLength(){
-		return length;
-	}
-	
-	/**
-	 * returns the item at index x
-	 * @param x the index of the item to return
-	 * @return the item at index x
-	 */
-	public Item getItem(int x){
-		return itemInventory[x];
-	}
-	
-	/**
-	 * sets quantity of an item in inventory
-	 * @param item the item index
-	 * @param num the new number of the item
-	 */
-	public void setItemNum(int item, int num){
-		itemInventory[item].setNumber(num);
-	}
-	
-	/**
-	 * returns an array of the Items in the inventory
-	 * @return
-	 */
-	public Item[] getItemInventory(){
-		return itemInventory;
 	}
 	
 	/**
@@ -165,52 +102,49 @@ public class InventoryScreen extends Composite{
 	 * creates controls for the composite
 	 */
 	private void createContents(){
-		this.setLayout(new GridLayout(3, true));
+		GridLayout g = new GridLayout();
+		g.numColumns = 4;
+		g.makeColumnsEqualWidth = true;
+		g.verticalSpacing = 0;
+		g.horizontalSpacing = 0;
+		g.marginHeight = 0;
+		g.marginWidth = 0;
 		
-		lblItem = new Label(this, SWT.NONE);
-		lblItem.setText("Item                ");
+		this.setLayout(g);
 		
-		lblWeight = new Label(this, SWT.NONE);
+		Label lblItem = new Label(this, SWT.NONE);
+		lblItem.setText("Item   ");
+		
+		Label lblWeight = new Label(this, SWT.NONE);
 		lblWeight.setText("Weight");
 
 		
-		lblAmmount = new Label(this, SWT.NONE);
+		Label lblAmmount = new Label(this, SWT.NONE);
 		lblAmmount.setText("Amount");
 		
-
-		lblItems0 = new Label(this, SWT.NONE);
-		lblItems0.setText(itemInventory[0].getName());
-
+		Label lblButton = new Label(this, SWT.NONE);
+		lblButton.setText("");
 		
-		lblItems0wt = new Label(this, SWT.NONE);
-		lblItems0wt.setText("0000");
+		
+		int inventoryLength = World.getWagon().getInventory().getLength();
+		Inventory inv = World.getWagon().getInventory();
+		String name;
+		lblItemsname = new Label[inventoryLength];
+		lblItemswt = new Label[inventoryLength];
+		lblItemsamt = new Label[inventoryLength];
+		btnItems = new Button[inventoryLength];
+		for(int i=0; i < inventoryLength; i++) {
+			lblItemsname[i] = new Label(this, SWT.NONE);
+			lblItemsname[i].setText("name of item");
+			lblItemswt[i] = new Label(this, SWT.NONE);
+			lblItemswt[i].setText("0000");
+			lblItemsamt[i] = new Label(this, SWT.NONE);
+			lblItemsamt[i].setText("0000");
+			btnItems[i] = new Button(this, SWT.NONE);
+			btnItems[i].setText("use");
+			btnItems[i].setEnabled(false);
+		}
 
-		
-		lblItems0amt = new Label(this, SWT.NONE);
-		lblItems0amt.setText("0000");
-		
-		lblItems1 = new Label(this, SWT.NONE);
-		lblItems1.setText(itemInventory[1].getName());
-
-		
-		lblItems1wt = new Label(this, SWT.NONE);
-		lblItems1wt.setText("0000");
-
-		
-		lblItems1amt = new Label(this, SWT.NONE);
-		lblItems1amt.setText("0000");
-
-		
-		lblItems2 = new Label(this, SWT.NONE);
-		lblItems2.setText(itemInventory[2].getName());
-
-		
-		lblItems2wt = new Label(this, SWT.NONE);
-		lblItems2wt.setText("0000");
-
-		
-		lblItems2amt = new Label(this, SWT.NONE);
-		lblItems2amt.setText("0000");
 		new Label(this, SWT.NONE);
 		new Label(this, SWT.NONE);
 		new Label(this, SWT.NONE);
@@ -220,4 +154,20 @@ public class InventoryScreen extends Composite{
 		btnClose.setText("Close Inventory");
 		new Label(this, SWT.NONE);
 	}
+	
+	//class for calling the use methods of items
+	public class UseButton extends SelectionAdapter {
+		//the index of the item this button corresponds to
+		private int index;
+		//create a new use button
+		public UseButton(int i) {
+			index = i;
+		}
+		@Override
+		public void widgetSelected(SelectionEvent e) {
+			World.getWagon().getInventory().getItem(index).use();
+		}
+		
+	}
+	
 }
