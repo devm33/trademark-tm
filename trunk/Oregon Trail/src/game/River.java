@@ -96,6 +96,7 @@ public class River {
 	 */
 	public void takeFerry() throws InsufficientFundsException
 	{
+		World.getWagon().getInventory().getWater().setNumber(200);
 		Leader leader = World.getWagon().getLeader();
 		if(leader.getMoney() < getCost())
 			throw new InsufficientFundsException();
@@ -112,6 +113,8 @@ public class River {
 	 */
 	public void ford()
 	{		
+		World.getWagon().getInventory().getWater().setNumber(200);
+
 		int fordChance = (int)(Math.random()*10 + 1);
 		
 		if(getDepth() >= 3 || fordChance > 7){
@@ -134,6 +137,8 @@ public class River {
 	 */
 	public void caulk()
 	{		
+		World.getWagon().getInventory().getWater().setNumber(200);
+
 		int caulkChance = (int)(Math.random()*10 + 1);
 		
 		if(caulkChance > 4){
