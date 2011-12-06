@@ -1,4 +1,9 @@
 package items;
+
+import game.World;
+
+import java.util.Random;
+
 /**
  * Class to implement the ammunition item.
  * 
@@ -32,6 +37,8 @@ public class Ammo extends Item {
 	
 	@Override
 	public void use() {
+		Random huntingRand = new Random();
+		int foodGained = huntingRand.nextInt(50)+1;
 		if(amount != getNumber()) {
 			rounds += 20*(getNumber() - amount);
 			amount = getNumber();
@@ -43,6 +50,8 @@ public class Ammo extends Item {
 			return; //still do nothing
 		}
 		rounds--;
+		int food = World.getWagon().getInventory().getFood().getNumber();
+		World.getWagon().getInventory().getFood().setNumber(food+foodGained);
 		if(rounds % 20 == 0)
 			setNumber(getNumber()-1);
 	}
