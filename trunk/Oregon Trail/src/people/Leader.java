@@ -138,7 +138,7 @@ public abstract class Leader implements Person {
 			thirst -= amount*30;
 			if (thirst < 0)
 				thirst = 0;
-			World.getWagon().getInventory().getWater().setNumber(availWater-1);
+			World.getWagon().getInventory().getWater().use();
 			//TODO update health
 		}
 		else{
