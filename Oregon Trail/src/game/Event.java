@@ -42,7 +42,7 @@ public class Event {
 			}
 		}
 		if(l>4 && r<15 && b){
-			if(!eventWagon.getPassengers().get(ep).getStatus().equals("DEAD")){
+			if(!eventWagon.getPassengers().get(ep).getStatus().equals("DEAD")||eventWagon.getPassengers().get(ep).getHealth()<=0){
 				//do nothing if person is already dead.
 			}
 			else{
@@ -55,13 +55,14 @@ public class Event {
 						this.healMessage(h.getName());
 					}
 					h.setHealed();
+					h.addHealth(10);
 				}
 			}
 		}
 		if(r>=90 && l>3 && b){
 			//System.out.println("disease");
 			
-			if(eventWagon.getPassengers().get(ep).getStatus().equals("SICK")||eventWagon.getPassengers().get(ep).getStatus().equals("DEAD")||eventWagon.getPassengers().get(ep).getStatus().equals("POISONED")){
+			if(eventWagon.getPassengers().get(ep).getHealth()<=0||eventWagon.getPassengers().get(ep).getStatus().equals("SICK")||eventWagon.getPassengers().get(ep).getStatus().equals("DEAD")||eventWagon.getPassengers().get(ep).getStatus().equals("POISONED")){
 					//do nothing if person is already sick, dead, or poisoned.
 			}
 			else{
