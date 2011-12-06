@@ -14,7 +14,7 @@ import org.eclipse.swt.events.SelectionEvent;
  *
  */
 public class WinScreen extends Composite {
-	private int choice = 0;
+	private boolean done = false;
 	private Label lbl1;
 	private Button btnNewGame;
 	private Button btnQuitGame;
@@ -28,7 +28,7 @@ public class WinScreen extends Composite {
 		super(parent, style);
 		
 		createContents();
-		
+		/*
 		//logic for New Game button
 		btnNewGame.addSelectionListener(new SelectionAdapter() {
 			@Override
@@ -36,29 +36,30 @@ public class WinScreen extends Composite {
 				choice = 1;
 			}
 		});
+		*/
 
 		//logic for Quit Game button
 		btnQuitGame.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
-				choice = 2;
+				done = true;
 			}
 		});
 	}
 
 	/**
-	 * return user choice. 1 for NEW GAME, 2 for QUIT GAME
+	 * return if user clicks quit game button
 	 * @return
 	 */
-	public int getChoice(){
-		return choice;
+	public boolean getDone(){
+		return done;
 	}
 	
 	/**
 	 * reset choice so user can play again
 	 */
-	public void resetChoice(){
-		choice = 0;
+	public void resetDone(){
+		done = false;
 	}
 	
 	@Override
@@ -74,10 +75,6 @@ public class WinScreen extends Composite {
 		lbl1.setFont(SWTResourceManager.getFont("Segoe UI", 40, SWT.NORMAL));
 		lbl1.setBounds(43, 50, 290, 82);
 		lbl1.setText("YOU WIN!");
-		
-		btnNewGame = new Button(this, SWT.NONE);
-		btnNewGame.setBounds(71, 180, 75, 25);
-		btnNewGame.setText("Main Menu");
 		
 		btnQuitGame = new Button(this, SWT.NONE);
 		btnQuitGame.setBounds(258, 180, 75, 25);

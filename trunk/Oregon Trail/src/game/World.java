@@ -89,6 +89,7 @@ public class World {
 		mainScreen.setTownAndStore(currentTown);	
 	}
 
+/*
 	public static void restartGame(){
 		//set initial date and days
 		calendar = Calendar.getInstance();
@@ -111,7 +112,7 @@ public class World {
 		//set the first store as the first store for the store screen
 		mainScreen.setTownAndStore(currentTown);	
 	}
-	
+/*
 	/**
 	 * Save the current game
 	 */
@@ -209,6 +210,8 @@ public class World {
 			mainScreen.setCurrentScreen(lines[i++]);
 			//load it into the actual game play
 			theWagon = new Wagon(pace, rations, capacity, weight, leader, members, distance, inventory,cash);
+			System.out.println(World.getWagon().getCash());
+			System.out.println(World.getWagon().getTotalWeight());
 		} catch(Exception e) {
 			System.out.println("Unable to load file: "+game);
 			e.printStackTrace();
