@@ -61,7 +61,7 @@ public class World {
 			if(temp != currentTown && temp != null && !mainScreen.inTown()) { 
 				mainScreen.setTownAndStore(temp);
 				currentTown = temp;
-				theWagon.getInventory().getWater().setNumber(50);
+				theWagon.getInventory().getWater().setNumber(100);
 			}
 		}
 		

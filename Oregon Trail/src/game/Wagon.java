@@ -415,7 +415,7 @@ public class Wagon {
 		World.nextDay();
 		
 		f.use();
-		w.use();
+		//w.use();
 		
 		System.out.println(this);
 	}
