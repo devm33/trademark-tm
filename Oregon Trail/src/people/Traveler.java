@@ -84,6 +84,7 @@ public class Traveler implements Person {
 	@Override
 	public void die() {
 		health = 0;
+		this.getStatus();
 	}
 	
 	@Override
