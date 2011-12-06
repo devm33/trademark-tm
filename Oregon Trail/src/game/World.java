@@ -263,6 +263,10 @@ public class World {
 	public static int getDays(){
 		return days;
 	}
+	
+	public static MainScreen getMainScreen(){
+		return mainScreen;
+	}
 
 	public static String getDate(){
 		String date = " "+calendar.get(Calendar.DATE)+", "+calendar.get(Calendar.YEAR);
