@@ -109,25 +109,25 @@ public class Traveler implements Person {
 		//called with eating food
 		int availWater = World.getWagon().getInventory().getWater().getNumber();
 		if (availWater>0) {
-			thirst -= amount;
+			thirst -= amount*30;
 			if (thirst < 0)
 				thirst = 0;
 			World.getWagon().getInventory().getWater().setNumber(availWater-1);
 			//TODO update health
 		}
 		else{
-			thirst += (amount/2);
+			thirst += (amount);
 		}
 	}
-	
+
 	@Override
 	public void live() {
 		if(isSick)
-			this.addHealth(-15);
+			this.addHealth(-20);
 		if(isPoisoned && this.poisonType.equals("poison"))
-			this.addHealth(-15);
+			this.addHealth(-20);
 		if(isPoisoned && this.poisonType.equals("venom"))
-			this.addHealth(-25);
+			this.addHealth(-30);
 		if(health <= 0){
 			die();
 			return;
