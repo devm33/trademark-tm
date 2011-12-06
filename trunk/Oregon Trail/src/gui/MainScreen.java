@@ -734,4 +734,12 @@ public class MainScreen {
 	public boolean inTown(){
 		return Townstate;
 	}
+
+	/**
+	 * Used to display messages on the field screen when events occur.
+	 * @param str
+	 */
+	public void displayOnField(String str) {
+		field.displayMessage(str);
+	}
 }

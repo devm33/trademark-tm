@@ -1,6 +1,5 @@
 package gui;
 
-import game.Wagon;
 import game.World;
 
 import org.eclipse.swt.widgets.Composite;
@@ -170,7 +169,7 @@ public class FieldScreen extends Composite {
 			reachedTown = false;
 		} else {
 			/*clears label to prevent notification spamming*/
-			lblNotify.setText("");
+			//lblNotify.setText("");
 		}
 	}
 
@@ -367,5 +366,12 @@ public class FieldScreen extends Composite {
 	         e.gc.drawImage(image,0,0);
 	        }
 	    });
+	}
+	/**
+	 * Displays a message on the notify label.
+	 * @param str the string to display
+	 */
+	public void displayMessage(String str) {
+		lblNotify.setText(str);
 	}
 }
