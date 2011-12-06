@@ -1,5 +1,7 @@
 package people;
 
+import game.World;
+
 /**
  * Class for inactive members of the wagon party.
  * 
@@ -104,10 +106,18 @@ public class Traveler implements Person {
 
 	@Override
 	public void drinkWater(int amount) {
-		thirst -= amount;
-		if(thirst < 0)
-			thirst = 0;
-		//TODO update health
+		//called with eating food
+		int availWater = World.getWagon().getInventory().getWater().getNumber();
+		if (availWater>0) {
+			thirst -= amount;
+			if (thirst < 0)
+				thirst = 0;
+			World.getWagon().getInventory().getWater().setNumber(availWater-1);
+			//TODO update health
+		}
+		else{
+			thirst += (amount/2);
+		}
 	}
 	
 	@Override

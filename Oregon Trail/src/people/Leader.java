@@ -1,6 +1,7 @@
 package people;
 
 import exceptions.InsufficientFundsException;
+import game.World;
 
 /**
  * Abstract class to implement basic functions of all leader classes.
@@ -131,10 +132,18 @@ public abstract class Leader implements Person {
 
 	@Override
 	public void drinkWater(int amount) {
-		thirst -= amount;
-		if(thirst < 0)
-			thirst = 0;
-		//TODO update health
+		//called with eating food
+		int availWater = World.getWagon().getInventory().getWater().getNumber();
+		if (availWater>0) {
+			thirst -= amount;
+			if (thirst < 0)
+				thirst = 0;
+			World.getWagon().getInventory().getWater().setNumber(availWater-1);
+			//TODO update health
+		}
+		else{
+			thirst += (amount/2);
+		}
 	}
 
 	@Override

@@ -51,8 +51,10 @@ public class Medicine extends Item {
 		
 		//fully heals all the people in the wagon per use
 		for(Person p : World.getWagon().getPassengers()) {
-			p.setHealed();
-			p.addHealth(100);
+			if (p.getHealth()>0) {
+				p.setHealed();
+				p.addHealth(100);
+			}
 		}
 		
 		
