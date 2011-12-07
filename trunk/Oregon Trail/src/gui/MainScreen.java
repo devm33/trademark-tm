@@ -106,6 +106,7 @@ public class MainScreen {
 			updateInventory();
 			updateMap();
 			updateDate();
+			updateLeaveTown();
 			updateField();
 			
 			refresh();
@@ -416,6 +417,20 @@ public class MainScreen {
 	 */
 	private void updateMap(){
 		map.update();
+	}
+	
+	/**
+	 * update leave town
+	 */
+	private void updateLeaveTown(){
+		if(World.getWagon().getInventory().getOxen().getNumber()==0){
+			town.getLeaveTown().setEnabled(false);
+			town.getLeaveTown().setText("BUY SOME OX");
+		}
+		else{
+			town.getLeaveTown().setEnabled(true);
+			town.getLeaveTown().setText("Leave Town");
+		}
 	}
 	
 	/**
