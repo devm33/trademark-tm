@@ -30,10 +30,11 @@ public class Event {
 		int l = rand.nextInt(10);
 		int s = rand.nextInt(5);
 		boolean b = rand.nextBoolean();
-		
+		boolean farmLeader = eventWagon.getLeader().getType().equals("farm");
+		displayMessage("Nothing interesting happened.");
 		int ep = rand.nextInt(5);//for use determining who gets sick/bitten
 		
-		if(eventWagon.getPace()> 10 && eventWagon.getRations()<=2 ){
+		if(eventWagon.getPace()> 10 && eventWagon.getRations()<=2 && !farmLeader){
 			r+=20;
 			l+=2;
 			if (eventWagon.getRations()<=1){
@@ -120,8 +121,8 @@ public class Event {
 				// TODO Auto-generated catch block
 				//e.printStackTrace();
 			}
-		}else if(r<60 && r>58 && l<3 && b){
-			System.out.println("lightning strike");
+		}else if(r<60 && r>58 && l<4 && b){
+			//System.out.println("lightning strike");
 			for (Person p: eventWagon.getPassengers()){
 				p.die();
 			}
@@ -130,7 +131,12 @@ public class Event {
 				//eventWagon.setNotification("Your wagon was struck by a random lighting bolt...none survived.");
 			eventWagon.setTotalDeath();	
 		}
-		if(r<6 && b){
+		if(r<30 && r>6 && farmLeader){
+			eventWagon.getInventory().getFood().setNumber(eventWagon.getInventory().getFood().getNumber()+25);
+			this.farmFoodMessage();
+		}
+		boolean assist = (eventWagon.getInventory().getFood().getNumber()<50 && Integer.parseInt(eventWagon.getCash())<100);
+		if(r<5 && b|| assist && b){
 			//System.out.println("treasure");
 			int newCash = (s+1)*10;
 			
@@ -149,7 +155,7 @@ public class Event {
 	 */
 	public void displayMessage(String str) {
 		World.getMainScreen().displayOnField(str);
-		System.out.println("this should be on field screen: "+str);
+		//System.out.println("this should be on field screen: "+str);
 		/*
 		if(System.getProperty("os.name").equals("Mac OS X"))
 			System.out.println(str);
@@ -212,5 +218,8 @@ public class Event {
 	public void treasureMessage(int d){
 		//JOptionPane.showMessageDialog(null, "You were robbed of $"+d+".00");
 		displayMessage("You found $"+d+".00 on the ground.");
+	}
+	public void farmFoodMessage(){
+		displayMessage(eventWagon.getLeader().getName()+" found some food along the trail.");
 	}
 }

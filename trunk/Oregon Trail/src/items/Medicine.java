@@ -51,16 +51,16 @@ public class Medicine extends Item {
 		
 		//fully heals all the people in the wagon per use
 		for(Person p : World.getWagon().getPassengers()) {
-			if (p.getHealth()>0) {
+			if (!p.getStatus().equals("DEAD")) {
 				p.setHealed();
-				p.addHealth(100);
+				p.addHealth(10);
 			}
 		}
-		
-		
+		World.getMainScreen().displayOnField("Medicine Used to make everything better.");
 		uses--;
 		if(uses % num_uses == 0)
 			super.setNumber(getNumber()-1);
+		return;
 	}
 
 	@Override

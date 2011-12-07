@@ -105,24 +105,24 @@ public class WagonScreen extends Composite {
 		distance.setText("0");
 		
 		leader = new Label(this, SWT.NONE);
-		leader.setFont(SWTResourceManager.getFont("Segoe UI", 12, SWT.NORMAL));
-		leader.setBounds(43, 117, 360, 24);
+		leader.setFont(SWTResourceManager.getFont("Segoe UI", 10, SWT.NORMAL));
+		leader.setBounds(2, 117, 440, 24);
 		
 		traveler0 = new Label(this, SWT.NONE);
-		traveler0.setFont(SWTResourceManager.getFont("Segoe UI", 12, SWT.NORMAL));
-		traveler0.setBounds(10, 154, 430, 24);
+		traveler0.setFont(SWTResourceManager.getFont("Segoe UI", 10, SWT.NORMAL));
+		traveler0.setBounds(2, 154, 440, 24);
 		
 		traveler1 = new Label(this, SWT.NONE);
-		traveler1.setFont(SWTResourceManager.getFont("Segoe UI", 12, SWT.NORMAL));
-		traveler1.setBounds(10, 193, 430, 24);
+		traveler1.setFont(SWTResourceManager.getFont("Segoe UI", 10, SWT.NORMAL));
+		traveler1.setBounds(2, 193, 440, 24);
 		
 		traveler2 = new Label(this, SWT.NONE);
-		traveler2.setFont(SWTResourceManager.getFont("Segoe UI", 12, SWT.NORMAL));
-		traveler2.setBounds(10, 232, 430, 24);
+		traveler2.setFont(SWTResourceManager.getFont("Segoe UI", 10, SWT.NORMAL));
+		traveler2.setBounds(2, 232, 440, 24);
 		
 		traveler3 = new Label(this, SWT.NONE);
-		traveler3.setFont(SWTResourceManager.getFont("Segoe UI", 12, SWT.NORMAL));
-		traveler3.setBounds(10, 271, 430, 24);
+		traveler3.setFont(SWTResourceManager.getFont("Segoe UI", 10, SWT.NORMAL));
+		traveler3.setBounds(2, 271, 440, 24);
 		
 		lblWagon = new Label(this, SWT.NONE);
 		lblWagon.setAlignment(SWT.CENTER);
