@@ -3,6 +3,7 @@
 Tasks:
     1. oxen can randomly die if grueling
     2. occupation affects events
+    3. message on LoseScreen regarding cause of death (if time remains)
 
 Bugs:
     1. Available option on storescreen. needs implementation or removal.
