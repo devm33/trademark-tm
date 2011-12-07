@@ -107,7 +107,7 @@ public class River {
 		{
 			leader.setMoney(leader.getMoney()-getCost());
 			World.getWagon().setNotification("You spent some money to cross safely.");
-			System.out.println("FERRY RESULT");
+			//System.out.println("FERRY RESULT");
 		}
 	}
 	
