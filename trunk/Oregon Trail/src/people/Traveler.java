@@ -92,6 +92,8 @@ public class Traveler implements Person {
 			thirst = 0;
 			hunger = 0;
 			World.getMainScreen().displayOnField(this.name + " had died!");
+			World.getMainScreen().stepGame();
+
 		}
 		else{ //see comment in leader's die method
 			health = 0;
