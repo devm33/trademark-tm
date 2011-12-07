@@ -45,7 +45,7 @@ public class Event {
 				l+=2;
 			}
 		}
-		if(l>4 && r<15 && b){
+		if((l>4 && r<15 && b)||(farmLeader && b && l<7)){
 			if(!eventWagon.getPassengers().get(ep).getStatus().equals("DEAD")||eventWagon.getPassengers().get(ep).getHealth()<=0){
 				//do nothing if person is already dead.
 			}
