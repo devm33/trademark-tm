@@ -1,5 +1,7 @@
 package items;
 
+import game.World;
+
 /**
  * class for wagon tongue item
  * @author Jaron
@@ -15,8 +17,10 @@ public class Tongue extends Item{
 
 	@Override
 	public void use(){
-		if(getNumber() > 0)
+		if(getNumber() > 0){
 			setNumber(getNumber()-1);
+			World.getWagon().setIsTongueBroken(false);
+		}
 	}
 
 	@Override
