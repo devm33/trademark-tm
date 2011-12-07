@@ -85,6 +85,7 @@ public class Traveler implements Person {
 	public void die() {
 		health = 0;
 		this.getStatus();
+		World.getMainScreen().displayOnField(this.name+" had died!");
 	}
 	
 	@Override
