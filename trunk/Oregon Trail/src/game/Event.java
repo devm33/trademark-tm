@@ -1,9 +1,7 @@
 package game;
 
 import java.util.Random;
-import javax.swing.*;
 import exceptions.InsufficientFundsException;
-import people.Leader;
 import people.Person;
 
 /**
@@ -36,6 +34,9 @@ public class Event {
 		boolean assist = (eventWagon.getInventory().getFood().getNumber()<50 && Integer.parseInt(eventWagon.getCash())<100);
 		displayMessage("Nothing interesting happened.");
 		int ep = rand.nextInt(5);//for use determining who gets sick/bitten
+		
+		//updates message
+		World.getMainScreen().stepGame();
 		
 		if(eventWagon.getPace()> 10 && eventWagon.getRations()<=2 && !farmLeader){
 			r+=20;
@@ -152,7 +153,7 @@ public class Event {
 			//overworked oxen
 			eventWagon.getInventory().getOxen().setNumber(eventWagon.getInventory().getOxen().getNumber()-1);
 			this.deadOxenMessage();
-		}else if(r<5 && b|| assist && b){
+		}else if(((r<5 && b)|| (assist && b)) && !bankLeader){
 			//System.out.println("treasure");
 			int newCash = (s+1)*10;
 			
