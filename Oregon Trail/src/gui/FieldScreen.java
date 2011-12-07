@@ -55,8 +55,9 @@ public class FieldScreen extends Composite {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
 
-				World.getWagon().takeStep();
 				World.getEvent().eventCall();
+				World.getWagon().takeStep();
+				
 
 				update();
 				
