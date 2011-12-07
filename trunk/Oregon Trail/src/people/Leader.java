@@ -17,8 +17,7 @@ public abstract class Leader implements Person {
 	private boolean isPoisoned;
 	private String poisonType;
 	private String type;
-	private boolean alreadyDead = false;
-
+	private boolean alreadyDead;
 	
 	/**
 	 * Create a new Leader with a given name.
@@ -47,6 +46,7 @@ public abstract class Leader implements Person {
 		this.isSick = false;
 		this.illnessName = null;
 		this.poisonType = null;
+		alreadyDead = false;
 	}
 
 
@@ -128,9 +128,9 @@ public abstract class Leader implements Person {
 			World.getMainScreen().displayOnField(this.name + " had died!");
 			//different from traveler die
 			//LEADER ONLY DIE CODE
-			World.getWagon().setTotalDeath();
+			World.getWagon().setTotalDeath(); //if the leader dies the whole wagon dies?
 		}
-		else{
+		else{ //why is this else necessary? the flag alreadyDead is reversed for this method right?
 			health = 0;
 			thirst = 0;
 			hunger = 0;
