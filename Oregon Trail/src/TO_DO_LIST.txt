@@ -1,10 +1,8 @@
 --Trademark TM Oregon Trail TODO list--
 
 Tasks:
-    1. Message notification of death when a traveler or leader's health becomes zero.
-    2. Event notification text added to fieldscreen.
-    3. oxen can randomly die if grueling
-    4. occupation affects events
+    1. oxen can randomly die if grueling
+    2. occupation affects events
 
 Bugs:
     1. Available option on storescreen. needs implementation or removal.
