@@ -143,6 +143,7 @@ public class InventoryScreen extends Composite{
 			btnItems[i] = new Button(this, SWT.NONE);
 			btnItems[i].setText("use");
 			btnItems[i].setEnabled(false);
+			btnItems[i].addSelectionListener(new UseButton(i));
 		}
 
 		new Label(this, SWT.NONE);
