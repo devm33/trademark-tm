@@ -1,12 +1,11 @@
 --Trademark TM Oregon Trail TODO list--
 
 Tasks:
-    1. oxen can randomly die if grueling
-    2. occupation affects events
-    3. message on LoseScreen regarding cause of death (if time remains)
+    1. message on LoseScreen regarding cause of death (if time remains)
+    2. TESTING
 
 Bugs:
-    1. USE BUTTONS IN INVENTORY DON'T WORK
+    1. USE BUTTONS IN INVENTORY DON'T WORK!!!!!!!!
     1. Available option on storescreen. needs implementation or removal.
     2. Save needs to store illness and poison vars from people (traveler and leader).
     3. Error in load after save trace *1
