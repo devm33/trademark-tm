@@ -409,9 +409,10 @@ public class Wagon {
 		if(!alive) {
 			lose = true;
 		}
-		
-		distance += pace;
-		townDistance += pace;
+		if(inventory.getOxen().getNumber() > 0){
+			distance += pace;
+			townDistance += pace;		
+		}
 		World.nextDay();
 		
 		f.use();

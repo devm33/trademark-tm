@@ -131,6 +131,10 @@ public class TownScreen extends Composite{
 	
 	}
 	
+	public Button getLeaveTown(){
+		return btnLeaveTown;
+	}
+	
 	/**
 	 * Update contents of window.
 	 */
