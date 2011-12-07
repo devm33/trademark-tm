@@ -119,6 +119,8 @@ public abstract class Leader implements Person {
 	@Override
 	public void die() {
 		health = 0;
+		thirst = 0;
+		hunger = 0;
 		this.getStatus();
 		World.getMainScreen().displayOnField(this.name+" had died!");
 
@@ -156,7 +158,7 @@ public abstract class Leader implements Person {
 			this.addHealth(-15);
 		if(isPoisoned && this.poisonType.equals("venom"))
 			this.addHealth(-25);
-		if(health <= 0){
+		if(health <= 0 && !(getStatus().equals("DEAD"))){
 			die();
 			return;
 		} //I ain't living.
