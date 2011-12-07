@@ -59,7 +59,7 @@ public class Event {
 				}
 			}
 		}
-		if(r>=90 && l>3 && b){
+		if(r>=90 && l>2 && b){
 			//System.out.println("disease");
 			
 			if(eventWagon.getPassengers().get(ep).getHealth()<=0||eventWagon.getPassengers().get(ep).getStatus().equals("SICK")||eventWagon.getPassengers().get(ep).getStatus().equals("DEAD")||eventWagon.getPassengers().get(ep).getStatus().equals("POISONED")){

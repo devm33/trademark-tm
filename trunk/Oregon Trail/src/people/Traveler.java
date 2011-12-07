@@ -84,8 +84,11 @@ public class Traveler implements Person {
 	@Override
 	public void die() {
 		health = 0;
+		thirst = 0;
+		hunger = 0;
 		this.getStatus();
 		World.getMainScreen().displayOnField(this.name+" had died!");
+
 	}
 	
 	@Override
@@ -125,12 +128,12 @@ public class Traveler implements Person {
 	@Override
 	public void live() {
 		if(isSick)
-			this.addHealth(-20);
+			this.addHealth(-15);
 		if(isPoisoned && this.poisonType.equals("poison"))
-			this.addHealth(-20);
+			this.addHealth(-15);
 		if(isPoisoned && this.poisonType.equals("venom"))
-			this.addHealth(-30);
-		if(health <= 0){
+			this.addHealth(-25);
+		if(health <= 0 && !(getStatus().equals("DEAD"))){
 			die();
 			return;
 		} //I ain't living.
