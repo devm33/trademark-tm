@@ -18,7 +18,7 @@ public class Traveler implements Person {
 	private boolean isPoisoned;
 	private String illnessName;
 	private String poisonType;
-	private boolean alreadyDead = false;
+	private boolean alreadyDead;
 	
 	/**
 	 * Create a new Traveler with a given name.
@@ -46,6 +46,7 @@ public class Traveler implements Person {
 		this.isSick = false;
 		this.illnessName = null;
 		this.poisonType = null;
+		alreadyDead = false;
 	}
 
 
@@ -92,7 +93,7 @@ public class Traveler implements Person {
 			hunger = 0;
 			World.getMainScreen().displayOnField(this.name + " had died!");
 		}
-		else{
+		else{ //see comment in leader's die method
 			health = 0;
 			thirst = 0;
 			hunger = 0;
