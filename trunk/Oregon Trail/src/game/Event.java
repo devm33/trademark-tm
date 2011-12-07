@@ -31,6 +31,9 @@ public class Event {
 		int s = rand.nextInt(5);
 		boolean b = rand.nextBoolean();
 		boolean farmLeader = eventWagon.getLeader().getType().equals("farm");
+		boolean carpLeader = eventWagon.getLeader().getType().equals("carp");
+		boolean bankLeader = eventWagon.getLeader().getType().equals("bank");
+		boolean assist = (eventWagon.getInventory().getFood().getNumber()<50 && Integer.parseInt(eventWagon.getCash())<100);
 		displayMessage("Nothing interesting happened.");
 		int ep = rand.nextInt(5);//for use determining who gets sick/bitten
 		
@@ -59,8 +62,7 @@ public class Event {
 					h.addHealth(10);
 				}
 			}
-		}
-		if(r>=90 && l>2 && b){
+		}else if(r>=90 && l>2 && b){
 			//System.out.println("disease");
 			
 			if(eventWagon.getPassengers().get(ep).getHealth()<=0||eventWagon.getPassengers().get(ep).getStatus().equals("SICK")||eventWagon.getPassengers().get(ep).getStatus().equals("DEAD")||eventWagon.getPassengers().get(ep).getStatus().equals("POISONED")){
@@ -123,20 +125,34 @@ public class Event {
 			}
 		}else if(r<60 && r>58 && l<4 && b){
 			//System.out.println("lightning strike");
+			this.lightningMessage();
+			
 			for (Person p: eventWagon.getPassengers()){
 				p.die();
 			}
-			this.lightningMessage();
 				//output to popup
 				//eventWagon.setNotification("Your wagon was struck by a random lighting bolt...none survived.");
 			eventWagon.setTotalDeath();	
-		}
-		if(r<30 && r>6 && farmLeader){
-			eventWagon.getInventory().getFood().setNumber(eventWagon.getInventory().getFood().getNumber()+25);
+		}else if(r<40 &&r>39 && !carpLeader && eventWagon.getPace()>10){
+			if(s<4){
+				eventWagon.setIsWheelBroken(true);
+				this.brokenWheelMessage();
+			}else if(s==4){
+				eventWagon.setIsAxleBroken(true);
+				this.brokenAxleMessage();
+			}else if(s==5){
+				eventWagon.setIsTongueBroken(true);
+				this.brokenTongueMessage();
+			}
+		}else if(r<30 && r>6 && farmLeader && eventWagon.getInventory().getFood().getNumber()<100){
+			//farmer found food
+			eventWagon.getInventory().getFood().setNumber(eventWagon.getInventory().getFood().getNumber()+50);
 			this.farmFoodMessage();
-		}
-		boolean assist = (eventWagon.getInventory().getFood().getNumber()<50 && Integer.parseInt(eventWagon.getCash())<100);
-		if(r<5 && b|| assist && b){
+		}else if(r<30 && r>25 && !farmLeader && eventWagon.getPace()>10){
+			//overworked oxen
+			eventWagon.getInventory().getOxen().setNumber(eventWagon.getInventory().getOxen().getNumber()-1);
+			this.deadOxenMessage();
+		}else if(r<5 && b|| assist && b){
 			//System.out.println("treasure");
 			int newCash = (s+1)*10;
 			
@@ -149,6 +165,7 @@ public class Event {
 			}
 		}
 	}
+
 	/**
 	 * for use with the event status messages
 	 * @param str the message to display
@@ -221,5 +238,17 @@ public class Event {
 	}
 	public void farmFoodMessage(){
 		displayMessage(eventWagon.getLeader().getName()+" found some food along the trail.");
+	}
+	public void deadOxenMessage(){
+		displayMessage("An ox has died from exhaustion!");
+	}
+	public void brokenWheelMessage(){
+		displayMessage("A wheel has broken!");
+	}
+	public void brokenAxleMessage(){
+		displayMessage("An axle has broken!");
+	}
+	public void brokenTongueMessage(){
+		displayMessage("An oxen Tongue has broken!");
 	}
 }

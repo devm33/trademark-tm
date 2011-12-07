@@ -55,8 +55,9 @@ public class FieldScreen extends Composite {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
 
-				World.getEvent().eventCall();
 				World.getWagon().takeStep();
+				World.getEvent().eventCall();
+
 				update();
 				
 				//check if we're in oregon or has reached a river or town
