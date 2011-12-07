@@ -2,6 +2,7 @@ package game;
 
 import items.Item;
 import items.Food;
+import items.Oxen;
 import items.Water;
 import game.Inventory;
 
@@ -31,6 +32,9 @@ public class Wagon {
 	private List<Traveler> members;
 	private Leader leader;
 	private boolean allDead = false;
+	private boolean isWheelBroken = false;
+	private boolean isAxleBroken = false;
+	private boolean isTongueBroken = false;
 	
 	
 	/**
@@ -244,7 +248,10 @@ public class Wagon {
 				if(inventory.getItemInventory()[x]!=null){
 					if(i.equals(inventory.getItemInventory()[x])){
 						totalWeight += (i.getWeight()*n);
-						World.getWagon().getInventory().getItemInventory()[x].setNumber((inventory.getItemInventory()[x].getNumber()+n));
+						if(i.equals(new Oxen())){
+							World.getWagon().getInventory().getItemInventory()[x].setNumber((inventory.getItemInventory()[x].getNumber()+2*n));
+						}else
+							World.getWagon().getInventory().getItemInventory()[x].setNumber((inventory.getItemInventory()[x].getNumber()+n));
 					}
 				}
 			}
@@ -410,9 +417,19 @@ public class Wagon {
 		if(leader.getHealth()<=0){
 			lose = true;
 		}
-		if(inventory.getOxen().getNumber() > 0){
+		if(inventory.getOxen().getNumber() > 0 && !isWheelBroken && !isAxleBroken && !isTongueBroken){
 			distance += pace;
 			townDistance += pace;		
+		}else{
+			if(inventory.getOxen().getNumber()<=0){
+				World.getMainScreen().displayOnField("You don't have even one ox!");
+			}else if(isWheelBroken){
+				World.getMainScreen().displayOnField("You have a broken wagon wheel!");
+			}else if(isAxleBroken){
+				World.getMainScreen().displayOnField("You have a broken axle on your wagon!");
+			}else if(isTongueBroken){
+				World.getMainScreen().displayOnField("You have a broken tongue on your oxen!");
+			}
 		}
 		World.nextDay();
 		
@@ -426,5 +443,14 @@ public class Wagon {
 	}
 	public boolean getTotalDeath(){
 		return this.allDead;
+	}
+	public void setIsWheelBroken(boolean bool){
+		isWheelBroken = bool;
+	}
+	public void setIsAxleBroken(boolean bool){
+		isAxleBroken = bool;
+	}
+	public void setIsTongueBroken(boolean bool){
+		isTongueBroken = bool;
 	}
 }
