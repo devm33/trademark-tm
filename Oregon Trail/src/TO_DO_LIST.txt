@@ -5,9 +5,8 @@ Tasks:
     2. TESTING
 
 Bugs:
-    1. Available option on storescreen. needs implementation or removal.
-    2. Save needs to store illness and poison vars from people (traveler and leader).
-    3. Error in load after save trace *1
+    1. Save needs to store illness and poison vars from people (traveler and leader).
+    2. Error in load after save trace *1
 
 Complete following Screens:
 1. LoseScreen (add picture)

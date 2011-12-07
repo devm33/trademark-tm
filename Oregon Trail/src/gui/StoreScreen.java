@@ -36,7 +36,6 @@ public class StoreScreen extends Composite{
 	private Label lblAmount;
 	private Label lblWagonCapacity;
 	private Label lblResponse;
-	private Label lblAvail;
 	
 	private int lastIndex;
 	
@@ -269,12 +268,5 @@ public class StoreScreen extends Composite{
 		lblResponse.setBounds(43, 249, 352, 41);
 		if(currentStore != null)
 			lblResponse.setText("Welcome to "+currentStore.getName()+"!");
-		
-		Label lbl7 = new Label(this, SWT.NONE);
-		lbl7.setBounds(311, 91, 59, 14);
-		lbl7.setText("Available: ");
-		
-		lblAvail = new Label(this, SWT.NONE);
-		lblAvail.setBounds(376, 91, 59, 14);
 	}
 }
