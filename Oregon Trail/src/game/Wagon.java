@@ -394,12 +394,10 @@ public class Wagon {
 	{
 		Food f = inventory.getFood();
 		Water w = inventory.getWater();
-		
 		leader.live(); //Live dammnit LIVE!
 		for(Traveler t : members) {
 			t.live();
 		}
-		
 		//check if anyone's still alive
 		boolean alive = false;
 		for(Person p : this.getPassengers()) {
@@ -407,6 +405,9 @@ public class Wagon {
 				alive = true;
 		}
 		if(!alive) {
+			lose = true;
+		}
+		if(leader.getHealth()<=0){
 			lose = true;
 		}
 		if(inventory.getOxen().getNumber() > 0){
@@ -418,7 +419,7 @@ public class Wagon {
 		f.use();
 		//w.use();
 		
-		System.out.println(this);
+		//System.out.println(this+" print from wagon turn");
 	}
 	public void setTotalDeath(){
 		this.allDead = true;

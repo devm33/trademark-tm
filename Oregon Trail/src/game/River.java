@@ -96,7 +96,10 @@ public class River {
 	 */
 	public void takeFerry() throws InsufficientFundsException
 	{
+		//fishing and water refill
 		World.getWagon().getInventory().getWater().setNumber(200);
+		World.getWagon().getInventory().getFood().setNumber(World.getWagon().getInventory().getWater().getNumber()+10);
+
 		Leader leader = World.getWagon().getLeader();
 		if(leader.getMoney() < getCost())
 			throw new InsufficientFundsException();
@@ -113,22 +116,25 @@ public class River {
 	 */
 	public void ford()
 	{		
+		//fishing and water refill
 		World.getWagon().getInventory().getWater().setNumber(200);
+		World.getWagon().getInventory().getFood().setNumber(World.getWagon().getInventory().getWater().getNumber()+10);
+
 
 		int fordChance = (int)(Math.random()*10 + 1);
 		
 		if(getDepth() >= 3 || fordChance > 7){
 			Food f = World.getWagon().getInventory().getFood();
-			if(f.getNumber() > 25)
-				f.setNumber(f.getNumber()-25);
+			if(f.getNumber() > 50)
+				f.setNumber(f.getNumber()-20);
 			else
-				f.setNumber(0);
+				f.setNumber(f.getNumber()-1);
 			World.getWagon().setNotification("You forded across the river but lost some food");
-			System.out.println("BAD FORD RESULT");
+			//System.out.println("BAD FORD RESULT");
 		}
 		else{
 			World.getWagon().setNotification("You successfully ford across the river.");
-			System.out.println("GOOD FORD RESULT");
+			//System.out.println("GOOD FORD RESULT");
 		}
 	}
 	
@@ -137,22 +143,24 @@ public class River {
 	 */
 	public void caulk()
 	{		
+		//fishing and water refill
 		World.getWagon().getInventory().getWater().setNumber(200);
+		World.getWagon().getInventory().getFood().setNumber(World.getWagon().getInventory().getWater().getNumber()+10);
 
 		int caulkChance = (int)(Math.random()*10 + 1);
 		
 		if(caulkChance > 4){
 			Food f = World.getWagon().getInventory().getFood();
-			if(f.getNumber() > 25)
-				f.setNumber(f.getNumber()-25);
+			if(f.getNumber() > 50)
+				f.setNumber(f.getNumber()-20);
 			else
-				f.setNumber(0);
+				f.setNumber(f.getNumber()-1);
 			World.getWagon().setNotification("You crossed the river but lost some food");
-			System.out.println("BAD CAULK RESULT");
+			//System.out.println("BAD CAULK RESULT");
 		}
 		else{
 			World.getWagon().setNotification("You successfully crossed the river by caulking the wagon");
-			System.out.println("GOOD CAULK RESULT");
+			//System.out.println("GOOD CAULK RESULT");
 		}
 	}
 	

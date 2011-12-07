@@ -7,7 +7,7 @@ package people;
  */
 
 public class Farmer extends Leader {
-
+	String type = "farm";
 	/**
 	 * Create a new Farmer with a given name. Money initially set to 400.
 	 * 
@@ -21,5 +21,9 @@ public class Farmer extends Leader {
 	public Farmer(int health, int thirst, int hunger, String name) {
 		super(health, thirst, hunger, name);
 		money = 400;
+	}
+	@Override
+	public String getType(){
+		return type;
 	}
 }

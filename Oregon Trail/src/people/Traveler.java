@@ -18,6 +18,7 @@ public class Traveler implements Person {
 	private boolean isPoisoned;
 	private String illnessName;
 	private String poisonType;
+	private boolean alreadyDead = false;
 	
 	/**
 	 * Create a new Traveler with a given name.
@@ -62,8 +63,10 @@ public class Traveler implements Person {
 	@Override
 	public int addHealth(int change) {
 		health += change;
-		if(health < 0)
+		if(health < 0 && !(getStatus().equals("DEAD"))){
 			health = 0;
+			die();
+		}
 		if(health > 100)
 			health = 100;
 		return health;
@@ -83,12 +86,18 @@ public class Traveler implements Person {
 
 	@Override
 	public void die() {
-		health = 0;
-		thirst = 0;
-		hunger = 0;
-		this.getStatus();
-		World.getMainScreen().displayOnField(this.name+" had died!");
-
+		if (!alreadyDead) {
+			health = 0;
+			thirst = 0;
+			hunger = 0;
+			World.getMainScreen().displayOnField(this.name + " had died!");
+		}
+		else{
+			health = 0;
+			thirst = 0;
+			hunger = 0;
+		}
+		alreadyDead = true;
 	}
 	
 	@Override
@@ -115,9 +124,10 @@ public class Traveler implements Person {
 		int availWater = World.getWagon().getInventory().getWater().getNumber();
 		if (availWater>0) {
 			thirst -= amount*30;
-			if (thirst < 0)
+			if (thirst < 0){
 				thirst = 0;
 			World.getWagon().getInventory().getWater().use();
+			}
 			//TODO update health
 		}
 		else{
@@ -126,14 +136,14 @@ public class Traveler implements Person {
 	}
 
 	@Override
-	public void live() {
+	public void live(){
 		if(isSick)
-			this.addHealth(-15);
-		if(isPoisoned && this.poisonType.equals("poison"))
-			this.addHealth(-15);
-		if(isPoisoned && this.poisonType.equals("venom"))
-			this.addHealth(-25);
-		if(health <= 0 && !(getStatus().equals("DEAD"))){
+			addHealth(-10);
+		if(isPoisoned && poisonType.equals("poison"))
+			addHealth(-15);
+		if(isPoisoned && poisonType.equals("venom"))
+			addHealth(-25);
+		if(health <= 0){
 			die();
 			return;
 		} //I ain't living.
@@ -146,20 +156,23 @@ public class Traveler implements Person {
 		if(hunger >= 100) {
 			hunger = 100;
 			health -= 15;
-			if(health < 0)
+			if(health <= 0)
 				die();
 		}
 	}
 	
 	@Override
 	public String toString() {
+		if(getStatus().equals("DEAD")){
+			return name+": health= "+health+", hunger= "+hunger+", thirst= "+thirst+", status= "+getStatus();
+		}
 		if(isPoisoned){
-			return name+": health= "+health+", hunger= "+hunger+", thirst= "+thirst+", status= poisoned";
+			return name+": health= "+health+", hunger= "+hunger+", thirst= "+thirst+", status= "+getStatus();
 		}
 		if(isSick){
 			return name+": health= "+health+", hunger= "+hunger+", thirst= "+thirst+", status= "+illnessName;
 		}
-		else return name+": health= "+health+", hunger= "+hunger+", thirst= "+thirst;
+		else return name+": health= "+health+", hunger= "+hunger+", thirst= "+thirst+", status= "+getStatus();
 	}
 
 	@Override
@@ -175,7 +188,7 @@ public class Traveler implements Person {
 			return "SICK";
 		}
 		if(thirst>=50 && hunger>=50){
-			return "THIRSTY"+" "+"HUNGRY";
+			return "THIRSTY"+", "+"HUNGRY";
 		}
 		if(thirst>=50){
 			return "THIRSTY";
@@ -206,6 +219,6 @@ public class Traveler implements Person {
 		this.isSick = false;
 		this.illnessName = null;
 		this.poisonType = null;
-		
+		getStatus();
 	}
 }

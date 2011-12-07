@@ -16,6 +16,9 @@ public abstract class Leader implements Person {
 	private String illnessName;
 	private boolean isPoisoned;
 	private String poisonType;
+	private String type;
+	private boolean alreadyDead = false;
+
 	
 	/**
 	 * Create a new Leader with a given name.
@@ -118,12 +121,26 @@ public abstract class Leader implements Person {
 
 	@Override
 	public void die() {
-		health = 0;
-		thirst = 0;
-		hunger = 0;
-		this.getStatus();
-		World.getMainScreen().displayOnField(this.name+" had died!");
+		if (!alreadyDead) {
+			health = 0;
+			thirst = 0;
+			hunger = 0;
+			World.getMainScreen().displayOnField(this.name + " had died!");
+			//different from traveler die
+			//LEADER ONLY DIE CODE
+			World.getWagon().setTotalDeath();
+		}
+		else{
+			health = 0;
+			thirst = 0;
+			hunger = 0;
+			World.getWagon().setTotalDeath();
 
+		}
+		alreadyDead = true;
+		
+			//different from traveler die
+			//LEADER ONLY DIE CODE
 	}
 
 	@Override
@@ -151,14 +168,14 @@ public abstract class Leader implements Person {
 	}
 
 	@Override
-	public void live() {
+	public void live(){
 		if(isSick)
-			this.addHealth(-15);
-		if(isPoisoned && this.poisonType.equals("poison"))
-			this.addHealth(-15);
-		if(isPoisoned && this.poisonType.equals("venom"))
-			this.addHealth(-25);
-		if(health <= 0 && !(getStatus().equals("DEAD"))){
+			addHealth(-10);
+		if(isPoisoned && poisonType.equals("poison"))
+			addHealth(-15);
+		if(isPoisoned && poisonType.equals("venom"))
+			addHealth(-25);
+		if(health <= 0){
 			die();
 			return;
 		} //I ain't living.
@@ -171,20 +188,23 @@ public abstract class Leader implements Person {
 		if(hunger >= 100) {
 			hunger = 100;
 			health -= 15;
-			if(health < 0)
+			if(health <= 0)
 				die();
 		}
 	}
 	
 	@Override
-	public String toString(){
+	public String toString() {
+		if(getStatus().equals("DEAD")){
+			return name+": health= "+health+", hunger= "+hunger+", thirst= "+thirst+", status= "+getStatus();
+		}
 		if(isPoisoned){
-			return name+": health= "+health+", hunger= "+hunger+", thirst= "+thirst+", status= poisoned";
+			return name+": health= "+health+", hunger= "+hunger+", thirst= "+thirst+", status= "+getStatus();
 		}
 		if(isSick){
 			return name+": health= "+health+", hunger= "+hunger+", thirst= "+thirst+", status= "+illnessName;
 		}
-		else return name+": health= "+health+", hunger= "+hunger+", thirst= "+thirst;
+		else return name+": health= "+health+", hunger= "+hunger+", thirst= "+thirst+", status= "+getStatus();
 	}
 	
 	@Override
@@ -246,6 +266,9 @@ public abstract class Leader implements Person {
 	@Override
 	public String getPoisonType(){
 		return this.poisonType;
+	}
+	public String getType(){
+		return type;
 	}
 
 }

@@ -7,8 +7,26 @@ Tasks:
 Bugs:
     1. Available option on storescreen. needs implementation or removal.
     2. Save needs to store illness and poison vars from people (traveler and leader).
+    3. Error in load after save trace *1
 
 Complete following Screens:
 1. LoseScreen (add picture)
 2. RiverScreen (extra credit & add picture)
 3. WinScreen (add picture)
+
+
+Error Traces:
+*1
+    Exception in thread "main" java.lang.NullPointerException
+    at java.util.ArrayList.addAll(Unknown Source)
+    at game.Wagon.getPassengers(Wagon.java:215)
+    at game.Event.eventCall(Event.java:65)
+    at gui.FieldScreen$1.widgetSelected(FieldScreen.java:58)
+    at org.eclipse.swt.widgets.TypedListener.handleEvent(Unknown Source)
+    at org.eclipse.swt.widgets.EventTable.sendEvent(Unknown Source)
+    at org.eclipse.swt.widgets.Widget.sendEvent(Unknown Source)
+    at org.eclipse.swt.widgets.Display.runDeferredEvents(Unknown Source)
+    at org.eclipse.swt.widgets.Display.readAndDispatch(Unknown Source)
+    at gui.MainScreen.stepGame(MainScreen.java:98)
+    at game.World.<init>(World.java:55)
+    at game.World.main(World.java:44)
