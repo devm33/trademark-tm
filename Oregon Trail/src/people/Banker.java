@@ -17,7 +17,13 @@ public class Banker extends Leader {
 		super(name);
 		money = 1600;
 	}
-	
+	/**
+	 * constructor for ues with saving/loading
+	 * @param health of banker
+	 * @param thirst of banker
+	 * @param hunger of banker
+	 * @param name of banker
+	 */
 	public Banker(int health, int thirst, int hunger, String name) {
 		super(health, thirst, hunger, name);
 		money = 1600;

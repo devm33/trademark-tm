@@ -4,11 +4,15 @@ import people.Person;
 import exceptions.InsufficientFoodException;
 import game.World;
 
+/**
+ * The food item class and methods
+ * @author Stephen Bentley
+ *
+ */
+
 public class Food extends Item {
 	private int excess;
-	//class needs adjustment for individual units of food.
-	//write getter for excess
-	//mention update to GUI display of food left for wagon
+
 	/**
 	 * constructor for food
 	 */

@@ -7,7 +7,7 @@ import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 
 /**
- * Hunting screen minigame GUI
+ * Hunting screen minigame GUI for possible implementation
  * @author Jaron
  *
  */

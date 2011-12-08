@@ -2,7 +2,7 @@ package game;
 /**
  * Backend for Store GUI
  * 
- * @author Stephen
+ * @author Stephen Bentley
  * @author Jaron
  *
  */
@@ -132,15 +132,25 @@ public class Store {
 	public String getName() {
 		return name;
 	}
-	
-
+	/**
+	 * retrieves the store inventory
+	 * @return storeInventory
+	 */
 	public Inventory getInventory() {
 		//TODO
 		return storeInventory;
 	}
+	/**
+	 * returns the prices after their calculations from the store constructor
+	 * @return prices for this store
+	 */
 	public int[] getPrices(){
 		return prices;
 	}
+	/**
+	 * the distance offset used for item availability and prices
+	 * @return the offset value
+	 */
 	public int getOffset(){
 		return offset;
 	}
