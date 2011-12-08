@@ -1,5 +1,6 @@
 package gui;
 
+import exceptions.InsufficientFundsException;
 import game.World;
 
 import org.eclipse.swt.widgets.Composite;
@@ -37,16 +38,23 @@ public class InnScreen extends Composite {
 		btnRest.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
-				for(Person p : World.getWagon().getMembers()){
-					p.setHealed();
-				}
-				
-				World.nextDay();
-				for(Person p : World.getWagon().getPassengers()) {
-					if(p.getHealth() > 0) {
-						p.addHealth(100);
-						p.eatFood(100);
-						p.drinkWater(100);
+				if(World.getWagon().getLeader().getMoney()>4){
+					try {
+						World.getWagon().getLeader().addMoney(-5);
+					} catch (InsufficientFundsException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					for(Person p : World.getWagon().getMembers()){
+						p.setHealed();
+					}
+					World.nextDay();
+					for(Person p : World.getWagon().getPassengers()) {
+						if(p.getHealth() > 0) {
+							p.addHealth(100);
+							p.eatFood(100);
+							p.drinkWater(100);
+						}
 					}
 				}
 			}
