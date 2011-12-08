@@ -70,8 +70,9 @@ public class RiverScreen extends Composite {
 		
 		
 		lblCross = new Label(this, SWT.NONE);
-		lblCross.setFont(SWTResourceManager.getFont("Tahoma", 14, SWT.NORMAL));
-		lblCross.setBounds(20, 228, 430, 25);
+		lblCross.setAlignment(SWT.CENTER);
+		lblCross.setFont(SWTResourceManager.getFont("Tahoma", 13, SWT.NORMAL));
+		lblCross.setBounds(12, 228, 430, 25);
 		lblCross.setText("We need to cross the river! What we gonna do?!");
 		
 		crossMethods = new Combo(this, SWT.READ_ONLY);
@@ -97,7 +98,7 @@ public class RiverScreen extends Composite {
 					}
 					catch(InsufficientFundsException f)
 					{
-						System.out.println("whoops insufficient funds");
+						lblCross.setText("We're too poor for that, pick another way across.");
 					}
 				}
 				else if(crossMethods.getText().equals("Ford")){
