@@ -2,7 +2,7 @@ package game;
 
 /**
  * backend for Town GUI
- * @author Jaron
+ * @author Jaron Gao
  * @author Stephen Bentley
  *
  */
