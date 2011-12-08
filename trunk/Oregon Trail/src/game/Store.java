@@ -1,16 +1,17 @@
 package game;
+
+
+import exceptions.InsufficientFundsException;
+import exceptions.WeightCapacityExceededException;
+import items.*;
+import items.Item;
 /**
- * Backend for Store GUI
+ * Backend logic for Store GUI
  * 
  * @author Stephen Bentley
  * @author Jaron
  *
  */
-import exceptions.InsufficientFundsException;
-import exceptions.WeightCapacityExceededException;
-import items.*;
-import items.Item;
-
 public class Store {
 	private String name;
 	private Inventory storeInventory;
