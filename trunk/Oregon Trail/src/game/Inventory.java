@@ -341,7 +341,7 @@ public class Inventory {
 	 */
 	
 	public int getPrice(Item i, int[] priceIn) {
-		int price=666666;//returned when something bad happens
+		int price=666666;//returned when a critical error occurs
 		int[] prices = priceIn;
 		for (int z=0;z<9;z++){
 			if(i.getName().equals("Ammo")){

@@ -31,14 +31,12 @@ public class World {
 	
 	private static MainScreen mainScreen; //the main GUI class
 	
-	private static Map theMap;
+	private static Map theMap; //the map that tracks the wagon's progress
 	
-	private static Calendar calendar;
+	private static Calendar calendar; //the calendar keeps track of the date
 	
-	private static int days;
-	
-	//this class should also contain the events and should run them periodically/randomly
-	
+	private static int days; //the number of days spent on the trail 
+		
 	@SuppressWarnings("unused")
 	public static void main(String[] args) {
 		World thisWorld = new World();
@@ -75,7 +73,7 @@ public class World {
 		calendar.set(1848, 5, 1);
 		days = 1;
 		
-		//initialize first town and store as well as a wagon to be passed to 
+		//initialize first town and store as well as a wagon to be passed to event
 		theWagon = new Wagon();
 		wagonEvent = new Event(theWagon);
 		theMap = new Map();
@@ -263,11 +261,17 @@ public class World {
 	public static int getDays(){
 		return days;
 	}
-	
+	/**
+	 * returns the MainScreen to access it's methods
+	 * @return mainscreen the Screen
+	 */
 	public static MainScreen getMainScreen(){
 		return mainScreen;
 	}
-
+	/**
+	 * returns the current date
+	 * @return date in string form
+	 */
 	public static String getDate(){
 		String date = " "+calendar.get(Calendar.DATE)+", "+calendar.get(Calendar.YEAR);
 		String month = "";

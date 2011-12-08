@@ -17,7 +17,13 @@ public class Carpenter extends Leader {
 		super(name);
 		money = 800;
 	}
-	
+	/**
+	 * constructor for use with saving/loading
+	 * @param health of carpenter
+	 * @param thirst of carpenter
+	 * @param hunger of carpenter
+	 * @param name of carpenter
+	 */
 	public Carpenter(int health, int thirst, int hunger, String name) {
 		super(health, thirst, hunger, name);
 		money = 800;

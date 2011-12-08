@@ -114,7 +114,7 @@ public class Event {
 				this.poisonMessage(eventWagon.getPassengers().get(ep).getName());
 				eventWagon.getPassengers().get(ep).setSickness("poison", "poison");
 			}
-		}else if(r==68 && l>7 && b){
+		}else if((r==68 && l>7 && b)||(bankLeader && r==68 && b)){
 			//System.out.println("theft");
 			try {
 				eventWagon.getLeader().setMoney(eventWagon.getLeader().getMoney()-((s+1)*10));
@@ -124,7 +124,7 @@ public class Event {
 				// TODO Auto-generated catch block
 				//e.printStackTrace();
 			}
-		}else if(r<60 && r>58 && l<4 && b){
+		}else if(r<60 && r>59 && l<3 && b){
 			//System.out.println("lightning strike");
 			this.lightningMessage();
 			
@@ -133,15 +133,16 @@ public class Event {
 			}
 				//output to popup
 				//eventWagon.setNotification("Your wagon was struck by a random lighting bolt...none survived.");
-			eventWagon.setTotalDeath();	
+			//eventWagon.setTotalDeath();	
+				//call to be changed if lose conditions are added to losescreen
 		}else if(r<40 &&r>39 && !carpLeader && eventWagon.getPace()>10){
-			if(s<4){
+			if(s<2){
 				eventWagon.setIsWheelBroken(true);
 				this.brokenWheelMessage();
-			}else if(s==4){
+			}else if(s==2 || s==3){
 				eventWagon.setIsAxleBroken(true);
 				this.brokenAxleMessage();
-			}else if(s==5){
+			}else if(s==4){
 				eventWagon.setIsTongueBroken(true);
 				this.brokenTongueMessage();
 			}
@@ -149,7 +150,7 @@ public class Event {
 			//farmer found food
 			eventWagon.getInventory().getFood().setNumber(eventWagon.getInventory().getFood().getNumber()+50);
 			this.farmFoodMessage();
-		}else if(r<30 && r>25 && !farmLeader && eventWagon.getPace()>10){
+		}else if(r<30 && r>25 && !farmLeader && eventWagon.getPace()>10 && b){
 			//overworked oxen
 			eventWagon.getInventory().getOxen().setNumber(eventWagon.getInventory().getOxen().getNumber()-1);
 			this.deadOxenMessage();
@@ -169,7 +170,7 @@ public class Event {
 
 	/**
 	 * for use with the event status messages
-	 * @param str the message to display
+	 * @param str the message to pass to the fieldscreen display
 	 */
 	public void displayMessage(String str) {
 		World.getMainScreen().displayOnField(str);
@@ -237,18 +238,33 @@ public class Event {
 		//JOptionPane.showMessageDialog(null, "You were robbed of $"+d+".00");
 		displayMessage("You found $"+d+".00 on the ground.");
 	}
+	/**
+	 * this message is triggered by the farmer finding food
+	 */
 	public void farmFoodMessage(){
 		displayMessage(eventWagon.getLeader().getName()+" found some food along the trail.");
 	}
+	/**
+	 * this message is triggered by an ox dying of exhaustion
+	 */
 	public void deadOxenMessage(){
 		displayMessage("An ox has died from exhaustion!");
 	}
+	/**
+	 * this message is triggered by a broken wheel event
+	 */
 	public void brokenWheelMessage(){
 		displayMessage("A wheel has broken!");
 	}
+	/**
+	 * this message is triggered by a broken axle
+	 */
 	public void brokenAxleMessage(){
 		displayMessage("An axle has broken!");
 	}
+	/**
+	 * this message is triggered by a broken oxen tongue
+	 */
 	public void brokenTongueMessage(){
 		displayMessage("An oxen Tongue has broken!");
 	}

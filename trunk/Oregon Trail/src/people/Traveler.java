@@ -125,16 +125,16 @@ public class Traveler implements Person {
 	public void drinkWater(int amount) {
 		//called with eating food
 		int availWater = World.getWagon().getInventory().getWater().getNumber();
-		if (availWater>0) {
-			thirst -= amount*30;
-			if (thirst < 0){
-				thirst = 0;
-			World.getWagon().getInventory().getWater().use();
+		if (!alreadyDead) {
+			if (availWater > 0) {
+				thirst -= amount * 30;
+				if (thirst < 0) {
+					thirst = 0;
+					World.getWagon().getInventory().getWater().use();
+				}else {
+					thirst += (amount);
+				}
 			}
-			//TODO update health
-		}
-		else{
-			thirst += (amount);
 		}
 	}
 

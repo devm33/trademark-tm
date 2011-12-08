@@ -150,20 +150,21 @@ public abstract class Leader implements Person {
 			hunger = 0;
 		//TODO update health
 	}
-
+	
 	@Override
 	public void drinkWater(int amount) {
 		//called with eating food
 		int availWater = World.getWagon().getInventory().getWater().getNumber();
-		if (availWater>0) {
-			thirst -= amount*30;
-			if (thirst < 0)
-				thirst = 0;
-			World.getWagon().getInventory().getWater().use();
-			//TODO update health
-		}
-		else{
-			thirst += (amount);
+		if (!alreadyDead) {
+			if (availWater > 0) {
+				thirst -= amount * 30;
+				if (thirst < 0) {
+					thirst = 0;
+					World.getWagon().getInventory().getWater().use();
+				}else {
+					thirst += (amount);
+				}
+			}
 		}
 	}
 

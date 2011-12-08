@@ -16,6 +16,7 @@ import org.eclipse.swt.events.SelectionEvent;
  * Inventory class to hold and display Items
  * 
  * @author Stephen Bentley
+ * @author Jaron Gao
  */
 public class InventoryScreen extends Composite{
 	private boolean done = false;
