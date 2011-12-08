@@ -14,7 +14,7 @@ import items.Tongue;
 /**
  * Backend for Inventory GUI
  * @author Stephen Bentley
- * @author Jaron
+ * @author Jaron Gao
  *
  */
 public class Inventory {

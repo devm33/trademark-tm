@@ -9,7 +9,7 @@ import items.Item;
  * Backend logic for Store GUI
  * 
  * @author Stephen Bentley
- * @author Jaron
+ * @author Jaron Gao
  *
  */
 public class Store {

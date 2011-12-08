@@ -8,7 +8,7 @@ import game.World;
 
 /**
  * Backend for river.
- * @author Jaron
+ * @author Jaron Gao
  *
  */
 public class River {
