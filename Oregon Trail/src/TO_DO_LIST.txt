@@ -8,10 +8,6 @@ Bugs:
     1. Save needs to store illness and poison vars from people (traveler and leader).
     2. Error in load after save trace *1
 
-Complete following Screens:
-1. LoseScreen (add picture)
-3. WinScreen (add picture)
-
 
 Error Traces:
 *1
