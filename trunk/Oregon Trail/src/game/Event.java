@@ -35,13 +35,13 @@ public class Event {
 		//updates message
 		World.getMainScreen().stepGame();
 		
-		if(World.getWagon().getPace()> 10 && World.getWagon().getRations()<=3 && !farmLeader){
+		if(World.getWagon().getPace()> 9 && World.getWagon().getRations()<=4 && !farmLeader){
 			r+=5;
 			l+=2;
-			if (World.getWagon().getRations()<=2){
+			if (World.getWagon().getRations()<=3){
 				r+=10;
 				l+=2;
-				if (World.getWagon().getRations()<=1){
+				if (World.getWagon().getRations()<=2){
 					r+=20;
 					l+=1;
 				}
@@ -65,7 +65,7 @@ public class Event {
 					h.addHealth(10);
 				}
 			}
-		}else if(r>=85 && l>2 && b){
+		}else if(r>=80 && l>2 && b){
 			//System.out.println("disease");
 			
 			if(World.getWagon().getPassengers().get(ep).getHealth()<=0||World.getWagon().getPassengers().get(ep).getStatus().equals("SICK")||World.getWagon().getPassengers().get(ep).getStatus().equals("DEAD")||World.getWagon().getPassengers().get(ep).getStatus().equals("POISONED")){
@@ -126,7 +126,7 @@ public class Event {
 				// TODO Auto-generated catch block
 				//e.printStackTrace();
 			}
-		}else if(r<60 && r>59 && l>7 && b){
+		}else if(r<60 && r>59 && l>6 && b){
 			//System.out.println("lightning strike");
 			World.getMainScreen().setLightning(true);
 			this.lightningMessage();
