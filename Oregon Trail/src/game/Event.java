@@ -11,13 +11,10 @@ import people.Person;
  */
 public class Event {
 	private Random rand;
-	private Wagon eventWagon;
 	/**
 	 * Constructor for events
-	 * @param w the wagon that the events will affect
 	 */
 	public Event(Wagon w){
-		this.eventWagon = w;
 		this.rand = new Random();
 	}
 	/**
@@ -28,31 +25,31 @@ public class Event {
 		int l = rand.nextInt(10);
 		int s = rand.nextInt(5);
 		boolean b = rand.nextBoolean();
-		boolean farmLeader = eventWagon.getLeader().getType().equals("farm");
-		boolean carpLeader = eventWagon.getLeader().getType().equals("carp");
-		boolean bankLeader = eventWagon.getLeader().getType().equals("bank");
-		boolean assist = (eventWagon.getInventory().getFood().getNumber()<50 && Integer.parseInt(eventWagon.getCash())<100);
+		boolean farmLeader = World.getWagon().getLeader().getType().equals("farm");
+		boolean carpLeader = World.getWagon().getLeader().getType().equals("carp");
+		boolean bankLeader = World.getWagon().getLeader().getType().equals("bank");
+		boolean assist = (World.getWagon().getInventory().getFood().getNumber()<50 && Integer.parseInt(World.getWagon().getCash())<100);
 		displayMessage("Nothing interesting happened.");
 		int ep = rand.nextInt(5);//for use determining who gets sick/bitten
 		
 		//updates message
 		World.getMainScreen().stepGame();
 		
-		if(eventWagon.getPace()> 10 && eventWagon.getRations()<=2 && !farmLeader){
+		if(World.getWagon().getPace()> 10 && World.getWagon().getRations()<=2 && !farmLeader){
 			r+=20;
 			l+=2;
-			if (eventWagon.getRations()<=1){
+			if (World.getWagon().getRations()<=1){
 				r+=10;
 				l+=2;
 			}
 		}
 		if((l>4 && r<15 && b)||(farmLeader && b && l<7)){
-			if(!eventWagon.getPassengers().get(ep).getStatus().equals("DEAD")||eventWagon.getPassengers().get(ep).getHealth()<=0){
+			if(!World.getWagon().getPassengers().get(ep).getStatus().equals("DEAD")||World.getWagon().getPassengers().get(ep).getHealth()<=0){
 				//do nothing if person is already dead.
 			}
 			else{
 				//System.out.println("heal people");
-				for (Person h: eventWagon.getPassengers()){
+				for (Person h: World.getWagon().getPassengers()){
 					if (h.getSickness() != null){
 						this.healMessage(h.getName());
 					}
@@ -66,58 +63,58 @@ public class Event {
 		}else if(r>=90 && l>2 && b){
 			//System.out.println("disease");
 			
-			if(eventWagon.getPassengers().get(ep).getHealth()<=0||eventWagon.getPassengers().get(ep).getStatus().equals("SICK")||eventWagon.getPassengers().get(ep).getStatus().equals("DEAD")||eventWagon.getPassengers().get(ep).getStatus().equals("POISONED")){
+			if(World.getWagon().getPassengers().get(ep).getHealth()<=0||World.getWagon().getPassengers().get(ep).getStatus().equals("SICK")||World.getWagon().getPassengers().get(ep).getStatus().equals("DEAD")||World.getWagon().getPassengers().get(ep).getStatus().equals("POISONED")){
 					//do nothing if person is already sick, dead, or poisoned.
 			}
 			else{
 				if(s==0){
 					//System.out.println("dysentery");
-					eventWagon.getPassengers().get(ep).setSickness("disease", "dysentery");
-					this.diseaseMessage("dysentery", eventWagon.getPassengers().get(ep).getName());
+					World.getWagon().getPassengers().get(ep).setSickness("disease", "dysentery");
+					this.diseaseMessage("dysentery", World.getWagon().getPassengers().get(ep).getName());
 				}
 				if(s==1){
 					//System.out.println("typhoid");
-					eventWagon.getPassengers().get(ep).setSickness("disease", "typhoid");
-					this.diseaseMessage("typhoid", eventWagon.getPassengers().get(ep).getName());
+					World.getWagon().getPassengers().get(ep).setSickness("disease", "typhoid");
+					this.diseaseMessage("typhoid", World.getWagon().getPassengers().get(ep).getName());
 				}
 				if(s==2){
 					//System.out.println("scarlet fever");
-					eventWagon.getPassengers().get(ep).setSickness("disease", "scarlet fever");
-					this.diseaseMessage("scarlet fever", eventWagon.getPassengers().get(ep).getName());
+					World.getWagon().getPassengers().get(ep).setSickness("disease", "scarlet fever");
+					this.diseaseMessage("scarlet fever", World.getWagon().getPassengers().get(ep).getName());
 				}
 				if(s==3){
 					//System.out.println("measels");
-					eventWagon.getPassengers().get(ep).setSickness("disease", "measels");
-					this.diseaseMessage("measels", eventWagon.getPassengers().get(ep).getName());
+					World.getWagon().getPassengers().get(ep).setSickness("disease", "measels");
+					this.diseaseMessage("measels", World.getWagon().getPassengers().get(ep).getName());
 				}
 				if(s==4){
 					//System.out.println("scurvy");
-					eventWagon.getPassengers().get(ep).setSickness("disease", "scurvy");
-					this.diseaseMessage("scurvy", eventWagon.getPassengers().get(ep).getName());
+					World.getWagon().getPassengers().get(ep).setSickness("disease", "scurvy");
+					this.diseaseMessage("scurvy", World.getWagon().getPassengers().get(ep).getName());
 				}
 			}
 		}else if(r==73 && l>4 && b){
 			//System.out.println("snakebite");
-			if(eventWagon.getPassengers().get(ep).getStatus().equals("SICK")||eventWagon.getPassengers().get(ep).getStatus().equals("DEAD")||eventWagon.getPassengers().get(ep).getStatus().equals("POISONED")){
+			if(World.getWagon().getPassengers().get(ep).getStatus().equals("SICK")||World.getWagon().getPassengers().get(ep).getStatus().equals("DEAD")||World.getWagon().getPassengers().get(ep).getStatus().equals("POISONED")){
 				//do nothing if person is already sick, dead, or poisoned.
 			}
 			else{
-				eventWagon.getPassengers().get(ep).setSickness("poison", "venom");
-				this.snakebiteMessage(eventWagon.getPassengers().get(ep).getName());
+				World.getWagon().getPassengers().get(ep).setSickness("poison", "venom");
+				this.snakebiteMessage(World.getWagon().getPassengers().get(ep).getName());
 			}
 		}else if(r==72 && l>4 && b){
 			//System.out.println("poison");
-			if(eventWagon.getPassengers().get(ep).getStatus().equals("SICK")||eventWagon.getPassengers().get(ep).getStatus().equals("DEAD")||eventWagon.getPassengers().get(ep).getStatus().equals("POISONED")){
+			if(World.getWagon().getPassengers().get(ep).getStatus().equals("SICK")||World.getWagon().getPassengers().get(ep).getStatus().equals("DEAD")||World.getWagon().getPassengers().get(ep).getStatus().equals("POISONED")){
 				//do nothing if person is already sick, dead, or poisoned.
 			}
 			else{
-				this.poisonMessage(eventWagon.getPassengers().get(ep).getName());
-				eventWagon.getPassengers().get(ep).setSickness("poison", "poison");
+				this.poisonMessage(World.getWagon().getPassengers().get(ep).getName());
+				World.getWagon().getPassengers().get(ep).setSickness("poison", "poison");
 			}
 		}else if((r==68 && l>7 && b)||(bankLeader && r==68 && b)){
 			//System.out.println("theft");
 			try {
-				eventWagon.getLeader().setMoney(eventWagon.getLeader().getMoney()-((s+1)*10));
+				World.getWagon().getLeader().setMoney(World.getWagon().getLeader().getMoney()-((s+1)*10));
 				this.theftMessage(((s+1)*10));
 			} catch (InsufficientFundsException e) {
 				System.out.println("avoided theft due to lack of valuables");
@@ -128,38 +125,38 @@ public class Event {
 			//System.out.println("lightning strike");
 			this.lightningMessage();
 			
-			for (Person p: eventWagon.getPassengers()){
+			for (Person p: World.getWagon().getPassengers()){
 				p.die();
 			}
 				//output to popup
-				//eventWagon.setNotification("Your wagon was struck by a random lighting bolt...none survived.");
-			//eventWagon.setTotalDeath();	
+				//World.getWagon().setNotification("Your wagon was struck by a random lighting bolt...none survived.");
+			//World.getWagon().setTotalDeath();	
 				//call to be changed if lose conditions are added to losescreen
-		}else if(r<40 &&r>39 && !carpLeader && eventWagon.getPace()>10){
+		}else if(r<40 &&r>39 && !carpLeader && World.getWagon().getPace()>10){
 			if(s<2){
-				eventWagon.setIsWheelBroken(true);
+				World.getWagon().setIsWheelBroken(true);
 				this.brokenWheelMessage();
 			}else if(s==2 || s==3){
-				eventWagon.setIsAxleBroken(true);
+				World.getWagon().setIsAxleBroken(true);
 				this.brokenAxleMessage();
 			}else if(s==4){
-				eventWagon.setIsTongueBroken(true);
+				World.getWagon().setIsTongueBroken(true);
 				this.brokenTongueMessage();
 			}
-		}else if(r<30 && r>6 && farmLeader && eventWagon.getInventory().getFood().getNumber()<100){
+		}else if(r<30 && r>6 && farmLeader && World.getWagon().getInventory().getFood().getNumber()<100){
 			//farmer found food
-			eventWagon.getInventory().getFood().setNumber(eventWagon.getInventory().getFood().getNumber()+50);
+			World.getWagon().getInventory().getFood().setNumber(World.getWagon().getInventory().getFood().getNumber()+50);
 			this.farmFoodMessage();
-		}else if(r<30 && r>25 && !farmLeader && eventWagon.getPace()>10 && b){
+		}else if(r<30 && r>25 && !farmLeader && World.getWagon().getPace()>10 && b){
 			//overworked oxen
-			eventWagon.getInventory().getOxen().setNumber(eventWagon.getInventory().getOxen().getNumber()-1);
+			World.getWagon().getInventory().getOxen().setNumber(World.getWagon().getInventory().getOxen().getNumber()-1);
 			this.deadOxenMessage();
 		}else if(((r<5 && b)|| (assist && b)) && !bankLeader){
 			//System.out.println("treasure");
 			int newCash = (s+1)*10;
 			
 			try {
-				eventWagon.getLeader().addMoney(newCash);
+				World.getWagon().getLeader().addMoney(newCash);
 				this.treasureMessage((s+1)*10);
 			} catch (InsufficientFundsException e) {
 				// TODO Auto-generated catch block
@@ -252,7 +249,7 @@ public class Event {
 	 * this message is triggered by the farmer finding food
 	 */
 	public void farmFoodMessage(){
-		displayMessage(eventWagon.getLeader().getName()+" found some food along the trail.");
+		displayMessage(World.getWagon().getLeader().getName()+" found some food along the trail.");
 	}
 	/**
 	 * this message is triggered by an ox dying of exhaustion
