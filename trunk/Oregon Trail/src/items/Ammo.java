@@ -61,7 +61,7 @@ public class Ammo extends Item {
 
 	@Override
 	public String getDescription() {
-		return "A box of 20 hunting rifle rounds used for big game.";
+		return "A box of 10 hunting rifle rounds used for big game.";
 	}
 
 
