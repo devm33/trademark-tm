@@ -421,7 +421,12 @@ public class Wagon {
 		}
 		if(inventory.getOxen().getNumber() > 0 && !isWheelBroken && !isAxleBroken && !isTongueBroken){
 			distance += pace;
-			townDistance += pace;		
+			townDistance += pace;
+			int weight = 0;
+			for(int i = 0; i<inventory.getLength();i++){
+				weight += inventory.getItem(i).getWeight()*inventory.getItem(i).getNumber();
+			}
+			setTotalWeight(weight);
 		}else{
 			if(inventory.getOxen().getNumber()<=0){
 				World.getMainScreen().displayOnField("You don't have even one ox!");

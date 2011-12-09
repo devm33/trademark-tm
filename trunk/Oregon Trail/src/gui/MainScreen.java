@@ -159,6 +159,7 @@ public class MainScreen {
 		//Player chooses STORE
 		else if(town.getChoice() == 2){
 			town.resetChoice();
+			updateStore();
 			screenTransition(town,store);
 			currentScreen = screen.STORE;
 		}

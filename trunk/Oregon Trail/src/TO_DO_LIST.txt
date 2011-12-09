@@ -6,6 +6,4 @@ Tasks:
 Bugs:
     1. Save needs to store illness and poison vars from people (traveler and leader).
     2. Ammo and medicine don't get subtracted from the inventory when used.
-    3. Stores after the initial keep the capacity from the previous store despite item usage 
-       and subsequent weight change from the trip.
     
