@@ -411,13 +411,15 @@ public class Wagon {
 			if(p.getHealth() > 0)
 				alive = true;
 		}
-		if(!alive) {
+		if(!alive && !World.getMainScreen().getLightning()) {
 			lose = true;
 			World.getMainScreen().displayOnLose("Everyone died!");
-		}
-		if(leader.getHealth()<=0){
+		}else if(leader.getHealth()<=0 && !World.getMainScreen().getLightning()){
 			lose = true;
 			World.getMainScreen().displayOnLose("The leader died!");
+		}else if(!World.getMainScreen().getLightning()){
+			lose = true;
+			World.getMainScreen().displayOnLose(("Your wagon was struck by a random lighting bolt...none survived."));
 		}
 		if(inventory.getOxen().getNumber() > 0 && !isWheelBroken && !isAxleBroken && !isTongueBroken){
 			distance += pace;

@@ -96,7 +96,7 @@ public class Food extends Item {
 					for(Person p : World.getWagon().getPassengers()){
 						if (!(p.getStatus().equals("DEAD")||p.getStatus().equals("SICK")||p.getStatus().equals("POISONED"))) {
 							if (ration > 2) {
-									p.addHealth(5);
+									p.addHealth(10);
 							}
 							if (ration > 3) {
 									p.addHealth(5);

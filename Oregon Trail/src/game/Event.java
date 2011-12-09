@@ -128,11 +128,13 @@ public class Event {
 			}
 		}else if(r<60 && r>59 && l>7 && b){
 			//System.out.println("lightning strike");
+			World.getMainScreen().setLightning(true);
 			this.lightningMessage();
 			
-			for (Person p: World.getWagon().getPassengers()){
-				p.die();
-			}
+			
+			//for (Person p: World.getWagon().getPassengers()){
+			//	p.die();
+			//}
 				//output to popup
 				//World.getWagon().setNotification("Your wagon was struck by a random lighting bolt...none survived.");
 			//World.getWagon().setTotalDeath();	
