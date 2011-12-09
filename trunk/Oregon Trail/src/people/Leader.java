@@ -160,22 +160,28 @@ public abstract class Leader implements Person {
 				thirst -= amount * 30;
 				if (thirst < 0) {
 					thirst = 0;
-					World.getWagon().getInventory().getWater().use();
 				}else {
 					thirst += (amount);
 				}
+				World.getWagon().getInventory().getWater().use();
 			}
 		}
 	}
 
 	@Override
 	public void live(){
-		if(isSick)
+		if(isSick){
 			addHealth(-10);
-		if(isPoisoned && poisonType.equals("poison"))
+			drinkWater(1);
+		}
+		if(isPoisoned && poisonType.equals("poison")){
 			addHealth(-15);
-		if(isPoisoned && poisonType.equals("venom"))
+			drinkWater(1);
+		}
+		if(isPoisoned && poisonType.equals("venom")){
 			addHealth(-25);
+			drinkWater(1);
+		}
 		if(health <= 0){
 			die();
 			return;
