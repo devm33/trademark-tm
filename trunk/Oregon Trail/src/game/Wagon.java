@@ -417,7 +417,7 @@ public class Wagon {
 		}else if(leader.getHealth()<=0 && !World.getMainScreen().getLightning()){
 			lose = true;
 			World.getMainScreen().displayOnLose("The leader died!");
-		}else if(!World.getMainScreen().getLightning()){
+		}else if(World.getMainScreen().getLightning()){
 			lose = true;
 			World.getMainScreen().displayOnLose(("Your wagon was struck by a random lighting bolt...none survived."));
 		}
