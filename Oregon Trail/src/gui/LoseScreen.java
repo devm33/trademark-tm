@@ -55,6 +55,13 @@ public class LoseScreen extends Composite {
 	}
 	
 	/**
+	 * sets the label text to notify user of cause of loss
+	 */
+	public void setNotification(String a){
+		lbl1.setText(a);
+	}
+	
+	/**
 	 * reset choice so user can play again
 	 */
 	/*
@@ -71,7 +78,7 @@ public class LoseScreen extends Composite {
 	 * creates controls for the composite
 	 */
 	private void createContents(){
-		lbl1 = new Label(this, SWT.NONE);
+		lbl1 = new Label(this, SWT.WRAP);
 		lbl1.setFont(SWTResourceManager.getFont("Segoe UI", 12, SWT.NORMAL));
 		lbl1.setBounds(10, 234, 430, 25);
 		lbl1.setText("Sorry. You were not smart enough to survive the Oregon Trail.");

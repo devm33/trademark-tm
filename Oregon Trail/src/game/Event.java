@@ -182,12 +182,22 @@ public class Event {
 			JOptionPane.showMessageDialog(null,str); //the lack of a parent component is what causes problems here (on mac at least)
 		*/
 	}
+	
+	/**
+	 * Displays cause of loss on lose screen.
+	 * @param str
+	 */
+	public void displayLoss(String str){
+		World.getMainScreen().displayOnLose(str);
+	}
+	
+	
 	/**
 	 * this message is triggered by a lightning strike
 	 */
 	public void lightningMessage() {
 		//JOptionPane.showMessageDialog(null, "Your wagon was struck by a random lighting bolt...none survived.");
-		displayMessage("Your wagon was struck by a random lighting bolt...none survived.");
+		displayLoss("Your wagon was struck by a random lighting bolt...none survived.");
 	}
 	/**
 	 * this message is triggered by the disease event

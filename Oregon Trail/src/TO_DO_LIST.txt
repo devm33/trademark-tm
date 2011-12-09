@@ -1,8 +1,7 @@
 --Trademark TM Oregon Trail TODO list--
 
 Tasks:
-    1. message on LoseScreen regarding cause of death (if time remains)
-    2. TESTING
+    1. TESTING
 
 Bugs:
     1. Save needs to store illness and poison vars from people (traveler and leader).

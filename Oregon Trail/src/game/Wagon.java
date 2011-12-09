@@ -413,9 +413,11 @@ public class Wagon {
 		}
 		if(!alive) {
 			lose = true;
+			World.getMainScreen().displayOnLose("Everyone died!");
 		}
 		if(leader.getHealth()<=0){
 			lose = true;
+			World.getMainScreen().displayOnLose("The leader died!");
 		}
 		if(inventory.getOxen().getNumber() > 0 && !isWheelBroken && !isAxleBroken && !isTongueBroken){
 			distance += pace;
