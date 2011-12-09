@@ -26,7 +26,7 @@ public class Ammo extends Item {
 	private int amount;
 	
 	/**
-	 * Create a new Ammo object. Weighs 3 lbs. Costs $2 for 20 rounds.
+	 * Create a new Ammo object. Weighs 3 lbs. Costs $2 for 10 rounds.
 	 */
 	public Ammo(){
 		super(3, 0, "Ammo");
@@ -38,9 +38,9 @@ public class Ammo extends Item {
 	@Override
 	public void use() {
 		Random huntingRand = new Random();
-		int foodGained = huntingRand.nextInt(50)+1;
+		int foodGained = huntingRand.nextInt(35)+1;
 		if(amount != getNumber()) {
-			rounds += 20*(getNumber() - amount);
+			rounds += 10*(getNumber() - amount);
 			amount = getNumber();
 		}
 		if(rounds == 0)

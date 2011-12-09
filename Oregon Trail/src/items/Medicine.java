@@ -27,7 +27,7 @@ public class Medicine extends Item {
 	/**
 	 * the number of uses per item.
 	 */
-	private final static int num_uses = 50;
+	private final static int num_uses = 10;
 	
 	/**
 	 * Creates a new medicine item with 0 inventory.
