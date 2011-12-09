@@ -54,6 +54,8 @@ public class Ammo extends Item {
 		World.getWagon().getInventory().getFood().setNumber(food+foodGained);
 		if(rounds % 20 == 0)
 			setNumber(getNumber()-1);
+		World.getMainScreen().displayOnField("Went hunting and gained "+foodGained+" pounds of food.");
+		World.getMainScreen().stepGame();
 	}
 
 

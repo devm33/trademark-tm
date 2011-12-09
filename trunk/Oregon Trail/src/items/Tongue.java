@@ -21,6 +21,8 @@ public class Tongue extends Item{
 			setNumber(getNumber()-1);
 			World.getWagon().setIsTongueBroken(false);
 		}
+		World.getMainScreen().displayOnField("Spare oxen tongue used to fix wagon.");
+		World.getMainScreen().stepGame();
 	}
 
 	@Override
