@@ -748,6 +748,10 @@ public class MainScreen {
 		contentPanel.setLayout(layout);
 	}
 	
+	/**
+	 * returns true if player is in a town
+	 * @return
+	 */
 	public boolean inTown(){
 		return Townstate;
 	}
@@ -758,5 +762,13 @@ public class MainScreen {
 	 */
 	public void displayOnField(String str) {
 		field.displayMessage(str);
+	}
+	
+	/**
+	 * used to display messages on the lose screen when lose event occur.
+	 * @param str
+	 */
+	public void displayOnLose(String str){
+		loseView.setNotification(str);
 	}
 }
