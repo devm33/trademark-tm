@@ -711,7 +711,8 @@ public class MainScreen {
 			}
 		});
 		
-		/*SUPER BUTTON*/ 
+		/*SUPER BUTTON*/
+		/*
 		btnSuper = new Button(shell, SWT.NONE);
 		btnSuper.addSelectionListener(new SelectionAdapter() {
 			@Override
@@ -725,6 +726,7 @@ public class MainScreen {
 		});
 		btnSuper.setBounds(377, 3, 75, 15);
 		btnSuper.setText("super");
+		*/
 		/*END SUPER BUTTON*/
 		
 		btnSaveGame = new Button(shell, SWT.NONE);

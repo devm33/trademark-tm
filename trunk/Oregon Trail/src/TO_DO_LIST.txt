@@ -1,9 +1,8 @@
 --Trademark TM Oregon Trail TODO list--
 
 Tasks:
-	1. remove SUPER button.
-    2. message on LoseScreen regarding cause of death (if time remains)
-    3. TESTING
+    1. message on LoseScreen regarding cause of death (if time remains)
+    2. TESTING
 
 Bugs:
     1. Save needs to store illness and poison vars from people (traveler and leader).
@@ -11,6 +10,7 @@ Bugs:
     3. Ammo and medicine don't get subtracted from the inventory when used.
     4. Stores after the initial keep the capacity from the previous store despite item usage 
        and subsequent weight change from the trip.
+    
     
 
 
