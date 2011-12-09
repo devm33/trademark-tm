@@ -60,7 +60,7 @@ public class Medicine extends Item {
 		uses--;
 		if(uses % num_uses == 0)
 			super.setNumber(getNumber()-1);
-		return;
+		World.getMainScreen().stepGame();
 	}
 
 	@Override

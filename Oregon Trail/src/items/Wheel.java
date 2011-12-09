@@ -24,6 +24,8 @@ public class Wheel extends Item {
 			setNumber(getNumber()-1);
 			World.getWagon().setIsWheelBroken(false);
 		}
+		World.getMainScreen().displayOnField("Spare wheel used to fix wagon.");
+		World.getMainScreen().stepGame();
 	}
 
 	@Override

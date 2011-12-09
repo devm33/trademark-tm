@@ -21,6 +21,8 @@ public class Axle extends Item{
 			setNumber(getNumber()-1);
 			World.getWagon().setIsAxleBroken(false);
 		}
+		World.getMainScreen().displayOnField("Spare axle used to fix wagon.");
+		World.getMainScreen().stepGame();
 	}
 
 	@Override
