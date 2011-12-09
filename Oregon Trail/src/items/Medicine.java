@@ -65,7 +65,7 @@ public class Medicine extends Item {
 
 	@Override
 	public String getDescription() {
-		return "A large container of medicine.";
+		return "A container of medicine with 10 doses.";
 	}
 
 	@Override
