@@ -98,7 +98,7 @@ public class River {
 	{
 		//fishing and water refill
 		World.getWagon().getInventory().getWater().setNumber(200);
-		World.getWagon().getInventory().getFood().setNumber(World.getWagon().getInventory().getWater().getNumber()+10);
+		World.getWagon().getInventory().getFood().setNumber(World.getWagon().getInventory().getFood().getNumber()+10);
 
 		Leader leader = World.getWagon().getLeader();
 		if(leader.getMoney() < getCost())
@@ -118,7 +118,7 @@ public class River {
 	{		
 		//fishing and water refill
 		World.getWagon().getInventory().getWater().setNumber(200);
-		World.getWagon().getInventory().getFood().setNumber(World.getWagon().getInventory().getWater().getNumber()+10);
+		World.getWagon().getInventory().getFood().setNumber(World.getWagon().getInventory().getFood().getNumber()+10);
 
 
 		int fordChance = (int)(Math.random()*10 + 1);
@@ -145,7 +145,7 @@ public class River {
 	{		
 		//fishing and water refill
 		World.getWagon().getInventory().getWater().setNumber(200);
-		World.getWagon().getInventory().getFood().setNumber(World.getWagon().getInventory().getWater().getNumber()+10);
+		World.getWagon().getInventory().getFood().setNumber(World.getWagon().getInventory().getFood().getNumber()+10);
 
 		int caulkChance = (int)(Math.random()*10 + 1);
 		
