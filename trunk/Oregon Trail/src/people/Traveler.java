@@ -150,12 +150,12 @@ public class Traveler implements Person {
 			die();
 			return;
 		} //I ain't living.
-		thirst += 30;
+		thirst += 20;
 		if(thirst >= 100) {
 			thirst = 100;
 			die();
 		}
-		hunger += 15;
+		hunger += 10;
 		if(hunger >= 100) {
 			hunger = 100;
 			health -= 15;
