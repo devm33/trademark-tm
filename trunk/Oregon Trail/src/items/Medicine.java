@@ -56,7 +56,7 @@ public class Medicine extends Item {
 				p.addHealth(10);
 			}
 		}
-		World.getMainScreen().displayOnField("Medicine Used to make everything better.");
+		World.getMainScreen().displayOnField("Medicine used to make everything better.");
 		uses--;
 		if(uses % num_uses == 0)
 			super.setNumber(getNumber()-1);
