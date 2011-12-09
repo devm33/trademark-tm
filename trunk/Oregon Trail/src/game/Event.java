@@ -139,7 +139,7 @@ public class Event {
 				//World.getWagon().setNotification("Your wagon was struck by a random lighting bolt...none survived.");
 			//World.getWagon().setTotalDeath();	
 				//call to be changed if lose conditions are added to losescreen
-		}else if(r<40 &&r>39 && !carpLeader && World.getWagon().getPace()>10){
+		}else if(r<40 &&r>37 && !carpLeader && World.getWagon().getPace()>9){
 			if(s<2){
 				World.getWagon().setIsWheelBroken(true);
 				this.brokenWheelMessage();
