@@ -36,6 +36,7 @@ public class MainScreen {
 	public static boolean accessWagon = false;
 	public static boolean accessMap = false;
 	private static boolean Townstate = true;
+	private boolean lightning = false;
 
 	
 	private Display display;
@@ -89,6 +90,12 @@ public class MainScreen {
 		layout.topControl = newView;
 		contentPanel.layout();
 		shell.update();
+	}
+	public void setLightning(boolean bool){
+		lightning = bool;
+	}
+	public boolean getLightning(){
+		return lightning;
 	}
 	/**
 	 * Handles screen continuation and screen refresh/updates

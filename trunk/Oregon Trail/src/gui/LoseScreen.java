@@ -45,6 +45,7 @@ public class LoseScreen extends Composite {
 			}
 		});
 	}
+	
 
 	/**
 	 * returns true if user clicks quit game
